@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bcfaa38f3bd775413869db26ce602316",
+    "content-hash": "03ab21c422eed145c50a03f531806a0f",
     "packages": [
         {
             "name": "aloha/twilio",
@@ -1065,6 +1065,56 @@
                 "storage"
             ],
             "time": "2019-06-18T20:09:29+00:00"
+        },
+        {
+            "name": "mohannadnaj/smsa-sdk",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MohannadNaj/smsa-sdk.git",
+                "reference": "8a6c442c6f719fd64bb45f8ca424fc3346782a40"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MohannadNaj/smsa-sdk/zipball/8a6c442c6f719fd64bb45f8ca424fc3346782a40",
+                "reference": "8a6c442c6f719fd64bb45f8ca424fc3346782a40",
+                "shasum": ""
+            },
+            "require": {
+                "ext-soap": "*",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.6",
+                "wsdl2phpgenerator/wsdl2phpgenerator": "^3.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [],
+                    "aliases": {
+                        "Smsa": "SmsaSDK\\Smsa"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SmsaSDK\\": "src/",
+                    "SmsaSDKTests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MohannadNaj",
+                    "email": "mohannad.najjar@mail.com"
+                }
+            ],
+            "description": "SMSA Integration",
+            "time": "2018-01-10T03:30:46+00:00"
         },
         {
             "name": "monolog/monolog",
