@@ -29,5 +29,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/assign-user', 'UsersController@userAssigned')->name('assign-user');
 	Route::get('/user-active/{id}', 'UsersController@userActivated');
 	Route::get('/user-inactive/{id}', 'UsersController@userInactivated');
+	Route::get('/password-change', 'UsersController@passwordChangeView');
+	Route::post('/password-changed', 'UsersController@passwordChanged')->name('password-change');
 
 });

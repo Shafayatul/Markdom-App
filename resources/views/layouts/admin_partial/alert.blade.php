@@ -10,7 +10,7 @@
 @if(Session::has('error'))
     <div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <a href="#" class="alert-link">Alert Link</a> {{ Session::get('error') }}
+        <a href="#" class="alert-link">Error</a> {{ Session::get('error') }}
     </div>
 @endif
     </div>
