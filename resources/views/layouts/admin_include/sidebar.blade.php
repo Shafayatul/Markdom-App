@@ -20,10 +20,10 @@
                 <a href="#"><i class="fa fa-user fa-fw"></i> Category<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ url('roles/create') }}">Create</a>
+                        <a href="{{ url('categories/create') }}">Create</a>
                     </li>
                     <li>
-                        <a href="{{ url('roles') }}">Manage</a>
+                        <a href="{{ url('categories') }}">Manage</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
