@@ -18,6 +18,18 @@ class LoginController extends Controller
     |
     */
 
+    /**
+    * Get the needed authorization credentials from the request.
+    *
+    * @param \Illuminate\Http\Request $request
+    * @return array
+    */
+    protected function credentials(\Illuminate\Http\Request $request)
+    {
+        $credentials = $request->only($this->username(), 'password');
+        return array_add($credentials, 'status', '1');
+    }
+
     use AuthenticatesUsers;
 
     /**
