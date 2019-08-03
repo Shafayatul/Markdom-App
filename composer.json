@@ -12,10 +12,12 @@
         "aloha/twilio": "^4.0",
         "brozot/laravel-fcm": "^1.2",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "mohannadnaj/smsa-sdk": "^1.0",
-        "spatie/laravel-permission": "^2.37"
+        "spatie/laravel-permission": "^2.37",
+        "wildbit/swiftmailer-postmark": "^3.1"
     },
     "require-dev": {
         "appzcoder/crud-generator": "^3.0",
