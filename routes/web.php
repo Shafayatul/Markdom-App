@@ -16,8 +16,18 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::middleware(['auth'])->group(function () {
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('roles', 'RolesController');
-Route::resource('categories', 'CategoriesController');
+
+	Route::get('/home', 'HomeController@index')->name('home');
+
+	Route::resource('roles', 'RolesController');
+	Route::resource('categories', 'CategoriesController');
+	Route::resource('sub-categories', 'SubCategoriesController');
+	Route::resource('users', 'UsersController');
+	Route::post('/assign-user', 'UsersController@userAssigned')->name('assign-user');
+	Route::get('/user-active/{id}', 'UsersController@userActivated');
+	Route::get('/user-inactive/{id}', 'UsersController@userInactivated');
+
+});

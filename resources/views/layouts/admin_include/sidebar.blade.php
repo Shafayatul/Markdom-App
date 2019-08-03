@@ -17,6 +17,18 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Users<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('users/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('users') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Category<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
@@ -24,6 +36,18 @@
                     </li>
                     <li>
                         <a href="{{ url('categories') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Sub category<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('sub-categories/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('sub-categories') }}">Manage</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
