@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\SubSubCategory;
+use App\SubCategory;
 use Illuminate\Http\Request;
 
 class SubSubCategoriesController extends Controller
@@ -29,8 +30,8 @@ class SubSubCategoriesController extends Controller
         } else {
             $subsubcategories = SubSubCategory::latest()->paginate($perPage);
         }
-
-        return view('sub-sub-categories.index', compact('subsubcategories'));
+        $subcategories = SubCategory::pluck('name', 'id');
+        return view('sub-sub-categories.index', compact('subsubcategories', 'subcategories'));
     }
 
     /**
@@ -40,7 +41,8 @@ class SubSubCategoriesController extends Controller
      */
     public function create()
     {
-        return view('sub-sub-categories.create');
+        $subcategories = SubCategory::pluck('name', 'id');
+        return view('sub-sub-categories.create', compact('subcategories'));
     }
 
     /**
@@ -53,11 +55,24 @@ class SubSubCategoriesController extends Controller
     public function store(Request $request)
     {
         
-        $requestData = $request->all();
-        
-        SubSubCategory::create($requestData);
+        if($request->hasFile('image')){
+            $image      = $request->file('image');
+            $image_name = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+            $path       = 'sub-sub-category-img/';
+            $image_url  = $path.$image_name;
+            $image->move($path,$image_name);
+        }else{
+            $image_url  = null;
+        }
 
-        return redirect('sub-sub-categories')->with('flash_message', 'SubSubCategory added!');
+        $subcategory                    = new SubSubCategory();
+        $subcategory->sub_category_id   = $request->sub_category_id;
+        $subcategory->name              = $request->name;
+        $subcategory->name_arabic       = $request->name_arabic;
+        $subcategory->image             = $image_url;
+        $subcategory->save();
+
+        return redirect('sub-sub-categories/create')->with('success', 'SubSubCategory added!');
     }
 
     /**
@@ -70,8 +85,8 @@ class SubSubCategoriesController extends Controller
     public function show($id)
     {
         $subsubcategory = SubSubCategory::findOrFail($id);
-
-        return view('sub-sub-categories.show', compact('subsubcategory'));
+        $subcategories = SubCategory::pluck('name', 'id');
+        return view('sub-sub-categories.show', compact('subsubcategory', 'subcategories'));
     }
 
     /**
@@ -84,8 +99,9 @@ class SubSubCategoriesController extends Controller
     public function edit($id)
     {
         $subsubcategory = SubSubCategory::findOrFail($id);
+        $subcategories = SubCategory::pluck('name', 'id');
 
-        return view('sub-sub-categories.edit', compact('subsubcategory'));
+        return view('sub-sub-categories.edit', compact('subsubcategory','subcategories'));
     }
 
     /**
@@ -99,12 +115,27 @@ class SubSubCategoriesController extends Controller
     public function update(Request $request, $id)
     {
         
-        $requestData = $request->all();
-        
         $subsubcategory = SubSubCategory::findOrFail($id);
-        $subsubcategory->update($requestData);
+        if($request->hasFile('image')){
+            $image      = $request->file('image');
+            $image_name = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+            $path       = 'sub-sub-category-img/';
+            $image_url  = $path.$image_name;
+            $image->move($path,$image_name);
+            if($subsubcategory->image != null){
+                unlink($subsubcategory->image);
+            }
+        }else{
+            $image_url  = $subsubcategory->image;
+        }
 
-        return redirect('sub-sub-categories')->with('flash_message', 'SubSubCategory updated!');
+        $subsubcategory->sub_category_id    = $request->sub_category_id;
+        $subsubcategory->name               = $request->name;
+        $subsubcategory->name_arabic        = $request->name_arabic;
+        $subsubcategory->image              = $image_url;
+        $subsubcategory->save();
+
+        return redirect('sub-sub-categories')->with('success', 'SubSubCategory updated!');
     }
 
     /**
@@ -116,8 +147,12 @@ class SubSubCategoriesController extends Controller
      */
     public function destroy($id)
     {
+        $subsubcategory = SubSubCategory::findOrFail($id);
+        if($subsubcategory->image != null){
+            unlink($subsubcategory->image);
+        }
         SubSubCategory::destroy($id);
 
-        return redirect('sub-sub-categories')->with('flash_message', 'SubSubCategory deleted!');
+        return redirect('sub-sub-categories')->with('success', 'SubSubCategory deleted!');
     }
 }

@@ -41,13 +41,26 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-user fa-fw"></i> Sub category<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Sub Category<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{ url('sub-categories/create') }}">Create</a>
                     </li>
                     <li>
                         <a href="{{ url('sub-categories') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Sub Sub Category<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('sub-sub-categories/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('sub-sub-categories') }}">Manage</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
