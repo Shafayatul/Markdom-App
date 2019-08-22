@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('categories', 'CategoriesController');
 	Route::resource('sub-categories', 'SubCategoriesController');
 	Route::resource('sub-sub-categories', 'SubSubCategoriesController');
+	Route::resource('stores', 'StoresController');
 
 
 	Route::resource('roles', 'RolesController');
@@ -36,4 +37,5 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/password-changed', 'UsersController@passwordChanged')->name('password-change');
 
 });
+
 
