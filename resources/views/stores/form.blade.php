@@ -7,15 +7,23 @@
         </div>
     </div>
     <div class="col-md-6">
+
+        <div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
+            {!! Form::label('status', 'Status', ['class' => 'control-label']) !!}
+            {!! Form::select('status', (['1'=>'Active', '0'=>'Deactive']), null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+            {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">   
         <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
             {!! Form::label('name', 'Name', ['class' => 'control-label']) !!}
             {!! Form::text('name', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
             {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
-</div>
-
-<div class="row">
     <div class="col-md-6">
         <div class="form-group {{ $errors->has('name_arabic') ? 'has-error' : ''}}">
             {!! Form::label('name_arabic', 'Name Arabic', ['class' => 'control-label']) !!}
@@ -23,7 +31,27 @@
             {!! $errors->first('name_arabic', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
-    <div class="col-md-6">   
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+       <div class="form-group {{ $errors->has('lat') ? 'has-error' : ''}}">
+            {!! Form::label('lat', 'Lat', ['class' => 'control-label']) !!}
+            {!! Form::text('lat', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+            {!! $errors->first('lat', '<p class="help-block">:message</p>') !!}
+        </div> 
+    </div>
+    <div class="col-md-6">
+        <div class="form-group {{ $errors->has('lan') ? 'has-error' : ''}}">
+            {!! Form::label('lan', 'Lan', ['class' => 'control-label']) !!}
+            {!! Form::text('lan', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+            {!! $errors->first('lan', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
         <div class="form-group {{ $errors->has('description') ? 'has-error' : ''}}">
             {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}
             {!! Form::textarea('description', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'rows' => '4', 'cols' => '5'] : ['class' => 'form-control', 'rows' => '4', 'cols' => '5']) !!}
@@ -63,34 +91,6 @@
                 @endforeach
             @endif
         @endif
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-6">
-       <div class="form-group {{ $errors->has('lat') ? 'has-error' : ''}}">
-            {!! Form::label('lat', 'Lat', ['class' => 'control-label']) !!}
-            {!! Form::text('lat', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
-            {!! $errors->first('lat', '<p class="help-block">:message</p>') !!}
-        </div> 
-    </div>
-    <div class="col-md-6">
-        <div class="form-group {{ $errors->has('lan') ? 'has-error' : ''}}">
-            {!! Form::label('lan', 'Lan', ['class' => 'control-label']) !!}
-            {!! Form::text('lan', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
-            {!! $errors->first('lan', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
-</div>
-
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
-            {!! Form::label('status', 'Status', ['class' => 'control-label']) !!}
-            {!! Form::select('status', (['1'=>'Active', '0'=>'Deactive']), null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
-            {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
-        </div>
     </div>
 </div>
 
