@@ -32,7 +32,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    @yield('header-script')
 </head>
 
 <body>
@@ -64,7 +64,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('admin_asset/dist/js/sb-admin-2.js') }}"></script>
-
+    @yield('footer-script')
 </body>
 
 </html>

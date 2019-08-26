@@ -14,3 +14,5 @@ yarn-error.log
 /public/sub-sub-category-img
 /public/store-images
 /public/product-image
+/public/order-image
+/public/offer-image
