@@ -50,7 +50,6 @@ Create New Offer
         $("#percentage-div").hide();
         $('#type').change(function(){
             var type = $("#type").find(":selected").val();
-            alert(type);
             if(type == ''){
                 $("#amount-div").hide(500);
                 $("#percentage-div").hide(500);

@@ -54,10 +54,10 @@ Edit Offer #{{ $offer->id }}
         $("#percentage-div").hide();
         $('#type').change(function(){
             var type = $("#type").find(":selected").val();
-            alert(type);
             if(type == ''){
                 $("#amount-div").hide(500);
                 $("#percentage-div").hide(500);
+                
             }else if(type == 1){
                 $("#amount-div").show(500);
                 $("#percentage-div").hide(500);
@@ -68,7 +68,6 @@ Edit Offer #{{ $offer->id }}
         });
 
         var type = $("#type").find(":selected").val();
-            alert(type);
             if(type == ''){
                 $("#amount-div").hide(500);
                 $("#percentage-div").hide(500);

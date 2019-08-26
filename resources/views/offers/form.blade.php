@@ -9,10 +9,10 @@
     {!! $errors->first('title_arabic', '<p class="help-block">:message</p>') !!}
 </div>
 
-<div class="form-group {{ $errors->has('type') ? 'has-error' : ''}}">
-    {!! Form::label('type', 'Type', ['class' => 'control-label']) !!}
-    {!! Form::select('type', (['' => '---Select Type---', '1' => 'Amount', '0' => 'Percentage']), null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'id' => 'type'] : ['class' => 'form-control', 'id' => 'type']) !!}
-    {!! $errors->first('type', '<p class="help-block">:message</p>') !!}
+<div class="form-group {{ $errors->has('is_amount') ? 'has-error' : ''}}">
+    {!! Form::label('is_amount', 'Type', ['class' => 'control-label']) !!}
+    {!! Form::select('is_amount', (['' => '---Select Type---', '1' => 'Amount', '0' => 'Percentage']), null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'id' => 'type'] : ['class' => 'form-control', 'id' => 'type']) !!}
+    {!! $errors->first('is_amount', '<p class="help-block">:message</p>') !!}
 </div>
 
 <div id="amount-div">

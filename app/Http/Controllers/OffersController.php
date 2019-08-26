@@ -67,7 +67,7 @@ class OffersController extends Controller
         $offer                  = new Offer();
         $offer->title           = $request->title;
         $offer->title_arabic    = $request->title_arabic;
-        $offer->is_amount            = $request->type;
+        $offer->is_amount       = $request->is_amount;
         $offer->amount          = $request->amount;
         $offer->percentage      = $request->percentage;
         $offer->image           = $image_url;
@@ -130,7 +130,7 @@ class OffersController extends Controller
 
         $offer->title           = $request->title;
         $offer->title_arabic    = $request->title_arabic;
-        $offer->is_amount            = $request->type;
+        $offer->is_amount       = $request->is_amount;
         $offer->amount          = $request->amount;
         $offer->percentage      = $request->percentage;
         $offer->image           = $image_url;
