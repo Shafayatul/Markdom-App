@@ -9,6 +9,7 @@ use App\Schedule;
 use App\ScheduleType;
 use App\Store;
 use App\Day;
+use App\BookedSchedule;
 use Illuminate\Http\Request;
 
 class SchedulesController extends Controller
@@ -76,6 +77,8 @@ class SchedulesController extends Controller
         $days = Day::pluck('name', 'id');
         $scheduletypes = ScheduleType::pluck('name', 'id');
         $current_day = Day::where('id', $day_id)->first();
+        // dd(gettype($schedule_ids));
+
         return view('schedules.show', compact('store_id', 'current_day', 'schedule', 'stores', 'days', 'scheduletypes'));
     }
 

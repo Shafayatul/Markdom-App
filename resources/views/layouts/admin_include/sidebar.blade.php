@@ -161,6 +161,10 @@
                 <!-- /.nav-second-level -->
             </li>
 
+            <li>
+                <a href="{{ url('/booked-schedules') }}"><i class="fa fa-dashboard fa-fw"></i> Booked Schedule</a>
+            </li>
+
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

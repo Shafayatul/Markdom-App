@@ -52,7 +52,9 @@ Route::middleware(['auth'])->group(function () {
 	
 	// Route::resource('schedules', 'SchedulesController');
 	Route::patch('/schedules/{id}', 'SchedulesController@update');
+	Route::resource('booked-schedules', 'BookedSchedulesController');
 });
+
 
 
 
