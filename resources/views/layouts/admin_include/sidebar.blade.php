@@ -135,6 +135,19 @@
                 <a href="{{ url('/orders') }}"><i class="fa fa-dashboard fa-fw"></i> Orders</a>
             </li>
 
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Days<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('days/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('days') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+
         </ul>
     </div>
     <!-- /.sidebar-collapse -->
