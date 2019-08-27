@@ -44,7 +44,16 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/password-change', 'UsersController@passwordChangeView');
 	Route::post('/password-changed', 'UsersController@passwordChanged')->name('password-change');
 
+	Route::get('/schedule/{id}', 'SchedulesController@index');
+	Route::get('/schedules/{id}/edit', 'SchedulesController@edit');
+	Route::get('/schedules/{day_id}/{store_id}', 'SchedulesController@show');
+	Route::get('/schedules/create', 'SchedulesController@create');
+	Route::delete('/schedules/{id}', 'SchedulesController@destroy');
+	
+	// Route::resource('schedules', 'SchedulesController');
+	Route::patch('/schedules/{id}', 'SchedulesController@update');
 });
+
 
 
 
