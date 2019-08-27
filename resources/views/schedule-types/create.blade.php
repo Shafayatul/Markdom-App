@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('title')
-Edit Day #{{ $day->name }}
+Create New ScheduleType
 @endsection
 @section('content')
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Day</h1>
+            <h1 class="page-header">ScheduleType</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -17,10 +17,10 @@ Edit Day #{{ $day->name }}
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                   Edit Day #{{ $day->name }}
+                   Create New ScheduleType
                 </div>
                 <div class="panel-body">
-                    <a href="{{ url('/days') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                    <a href="{{ url('/schedule-types') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                     <br />
                     <br />
 
@@ -32,13 +32,9 @@ Edit Day #{{ $day->name }}
                         </ul>
                     @endif
 
-                    {!! Form::model($day, [
-                        'method' => 'PATCH',
-                        'url' => ['/days', $day->id],
-                        'files' => true
-                    ]) !!}
+                    {!! Form::open(['url' => '/schedule-types', 'files' => true]) !!}
 
-                    @include ('days.form', ['formMode' => 'edit'])
+                    @include ('schedule-types.form', ['formMode' => 'create'])
 
                     {!! Form::close() !!}
 

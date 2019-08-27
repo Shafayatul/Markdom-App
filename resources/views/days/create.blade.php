@@ -13,7 +13,7 @@ Create New Day
     <!-- /.row -->
     @include('layouts.admin_partial.alert')
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
 
             <div class="panel panel-default">
                 <div class="panel-heading">

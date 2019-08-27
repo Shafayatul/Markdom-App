@@ -27,6 +27,14 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('sub-sub-categories', 'SubSubCategoriesController');
 	Route::resource('stores', 'StoresController');
 
+	Route::resource('products', 'ProductsController');
+	Route::resource('service-types', 'ServiceTypesController');
+	Route::resource('reviews', 'ReviewsController');
+	Route::resource('orders', 'OrdersController');
+	Route::resource('offers', 'OffersController');
+	Route::resource('days', 'DaysController');
+	Route::resource('schedule-types', 'ScheduleTypesController');
+
 
 	Route::resource('roles', 'RolesController');
 	Route::resource('users', 'UsersController');
@@ -40,9 +48,3 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-Route::resource('products', 'ProductsController');
-Route::resource('service-types', 'ServiceTypesController');
-Route::resource('reviews', 'ReviewsController');
-Route::resource('orders', 'OrdersController');
-Route::resource('offers', 'OffersController');
-Route::resource('days', 'DaysController');
