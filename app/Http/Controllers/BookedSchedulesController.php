@@ -8,8 +8,10 @@ use App\Http\Controllers\Controller;
 use App\BookedSchedule;
 use App\Schedule;
 use App\Store;
+use App\Day;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Auth;
 
 class BookedSchedulesController extends Controller
 {
@@ -20,27 +22,48 @@ class BookedSchedulesController extends Controller
      */
     public function index(Request $request)
     {
-        $book_date = $request->get('book_date');
+        if ($request->get('book_date') !== null) {
+            $book_date = Carbon::parse($request->get('book_date'))->format('Y-m-d');
+        }else{
+            $book_date = null;
+        }
+        // dd($book_date);
         $store_id = $request->get('store_id');
-        $perPage = 25;
 
+        $perPage = 25;
         if (!empty($book_date) || !empty($store_id)) {
-            $schedules = BookedSchedule::whereNotNull('id');
+
+            $booked_schedules = BookedSchedule::whereNotNull('id');
 
             if($book_date){
-                $schedules = $schedules->whereDate('created_at', $book_date);
+                $booked_schedules = $booked_schedules->where('date', $book_date);
             }
 
             if($store_id){
-                $schedules = $schedules->where('store_id', $store_id);
+                $booked_schedules = $booked_schedules->where('store_id', $store_id);
             }
-            $schedules = $schedules->latest()->paginate($perPage);
+            $bookedschedule_ids = $booked_schedules->pluck('schedule_id')->toArray();
+
+            // $book_date  --find day --- day_id -- schedule table -- day_id & store_id
+            $book_day = Carbon::parse($request->get('book_date'))->format('l');
+
+            $day = Day::where('name', $book_day)->first();
+            // dd($store_id);
+            $schedules = Schedule::where('day_id', $day->id)->where('store_id', $store_id)->latest()->paginate($perPage);
+            $stores = Store::where('store_owner_id', Auth::user()->id)->pluck('name', 'id');
+            
         } else {
-            $today = Carbon::today()->toDateString();
-            $schedules = Schedule::whereDate('created_at', $today)->latest()->paginate($perPage);
+            $today = Carbon::today()->format('l');
+            $day = Day::where('name', $today)->first();
+            $schedules = Schedule::where('day_id', $day->id)->latest()->paginate($perPage);
+            $bookedschedule_ids = BookedSchedule::where('date',Carbon::today()->format('Y-m-d'))->pluck('schedule_id')->toArray();
+            $stores = Store::where('store_owner_id', Auth::user()->id)->pluck('name', 'id');
         }
-        $stores = Store::pluck('name', 'id');
-        $bookedschedule_ids = BookedSchedule::pluck('schedule_id')->toArray();
+        
+        // $stores = Store::where('user_id', Auth::id())->pluck('name', 'id');
+
+// dd($schedules);
+
         return view('booked-schedules.index', compact('bookedschedule_ids', 'schedules', 'stores'));
     }
 

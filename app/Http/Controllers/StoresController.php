@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Store;
 use App\SubCategory;
 use Illuminate\Http\Request;
+use Auth;
 
 class StoresController extends Controller
 {
@@ -92,6 +93,7 @@ class StoresController extends Controller
         $store->lat             = $request->lat;
         $store->lan             = $request->lan;
         $store->status          = $request->status;
+        $store->store_owner_id  = Auth::user()->id;
         $store->preview_image   = $preview_image_url;
         if($data[0] == null){
             $data_img = null;
@@ -188,6 +190,7 @@ class StoresController extends Controller
         $store->lat             = $request->lat;
         $store->lan             = $request->lan;
         $store->status          = $request->status;
+        $store->store_owner_id  = Auth::user()->id;
         $store->preview_image   = $preview_image_url;
         if($data[0] == null){
             $data_img = null;

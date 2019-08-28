@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/schedules/{id}/edit', 'SchedulesController@edit');
 	Route::get('/schedules/{day_id}/{store_id}', 'SchedulesController@show');
 	Route::get('/schedules/create', 'SchedulesController@create');
+	Route::post('/schedules', 'SchedulesController@store');
 	Route::delete('/schedules/{id}', 'SchedulesController@destroy');
 	
 	// Route::resource('schedules', 'SchedulesController');
