@@ -11,4 +11,9 @@ class RestaurantsController extends Controller
     {
       return view('front-end.restaurant.index');
     }
+
+    public function subCategoryRestaurant()
+    {
+      return view('front-end.restaurant.sub-category-restaurant');
+    }
 }

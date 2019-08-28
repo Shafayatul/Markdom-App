@@ -13,6 +13,7 @@
 
 .main-li:hover {
   transform: scale(1.2);
+  z-index: 10000;
 }
 
 .main-li-dropdown {
@@ -30,6 +31,7 @@
 
 .main-li-a:hover {
   text-decoration: none;
+  z-index: 100000;
 }
 
 .sub-ul {
@@ -40,6 +42,7 @@
   right: 20px;
   background: #fff;
   border: 1px solid #cece;
+  z-index: 1000 !important;
 }
 
 .sub-li {
