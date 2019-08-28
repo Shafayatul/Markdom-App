@@ -11,22 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//FrontEnd Route Starts From Here
+
+Route::get('/', 'FrontEndController@index');
+Route::get('/user-login', 'FrontEndController@userLogin')->name('user-login');
+Route::get('/user-signup', 'FrontEndController@userSignup')->name('user-signup');
+
+//FrontEnd Route Ends Here
 
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
 
-
-
 	Route::get('/home', 'HomeController@index')->name('home');
-	
+
 	Route::resource('categories', 'CategoriesController');
 	Route::resource('sub-categories', 'SubCategoriesController');
 	Route::resource('sub-sub-categories', 'SubSubCategoriesController');
 	Route::resource('stores', 'StoresController');
-
 
 	Route::resource('roles', 'RolesController');
 	Route::resource('users', 'UsersController');
