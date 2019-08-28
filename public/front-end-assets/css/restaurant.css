@@ -1,0 +1,71 @@
+.restaurant {
+  margin-top: 30px;
+}
+.sliding-category-box {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  /* border: 1px solid #cecece; */
+  border-radius: 50%;
+  margin-top: 20px;
+}
+
+.shadow {
+  box-shadow: 0 5px 30px rgba(0.30,0.30,0.30,0.30), 0 5px 5px rgba(0.30,0.30,0.30,0.30);
+}
+
+.sliding-category-name {
+  margin-top: 15px;
+  color: #4c4a37;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  line-height: 32px;
+}
+
+.sliding-category-img {
+  width: 100%;
+  display: block;
+}
+
+.sliding-category-img img {
+  width: 100%;
+  display: block;
+  border-radius: 50%;
+}
+
+.rectangle-div {
+  margin-top: 40px;
+}
+
+#grid {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2vw;
+  }
+#grid > div {
+  height: 150px;
+  background: #fff;
+  text-align: center;
+  border-radius: 16px;
+}
+
+.rectangle-box {
+  position: relative;
+}
+
+.title {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  color: #000;
+  font-size: 20px;
+}
+
+.number {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  color: #000;
+  font-size: 20px;
+}

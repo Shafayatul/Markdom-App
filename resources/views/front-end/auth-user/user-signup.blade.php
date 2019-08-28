@@ -4,49 +4,59 @@
 @endsection
 @section('main-content')
   <div id="page-wrapper" class="sign-in-wrapper">
-  <div class="graphs">
-    <div class="sign-in-form">
-      <div class="sign-in-form-top">
-        <h1>Signup</h1>
-      </div>
-      <div class="signin">
-        <div class="signin-rit">
-          {{-- <span class="checkbox1">
-             <label class="checkbox"><input type="checkbox" name="checkbox" checked="">Forgot Password ?</label>
-          </span> --}}
-          <p><a href="#">Forgot Password</a> </p>
-          <div class="clearfix"> </div>
-        </div>
-        <form action="" method="post">
-        <div class="log-input">
-          <div class="log-input-left">
-             <input type="text" class="user email" name="email" value="" placeholder="Your Email"/>
+    <div class="graphs">
+      <div class="sign-up">
+        <h1>Create an account</h1>
+        <p class="creating">Having hands on experience in creating innovative designs,I do offer design
+          solutions which harness.</p>
+        <h2>Personal Information</h2>
+        <div class="sign-u">
+          <div class="sign-up1">
+            <h4>Email Address* :</h4>
           </div>
-          {{-- <span class="checkbox2">
-             <label class="checkbox"><i class="fa fa-check email-i"></i></label>
-          </span> --}}
-          <div class="clearfix"> </div>
-        </div>
-        <div class="log-input">
-          <div class="log-input-left">
-             <input type="password" class="lock" name="password" value="" placeholder="********"/>
+          <div class="sign-up2">
+            <form>
+              <input type="text" placeholder=" " required=" "/>
+            </form>
           </div>
-          {{-- <span class="checkbox2">
-             <label class="checkbox"><i class="fa fa-check password-i"></i></label>
-          </span> --}}
           <div class="clearfix"> </div>
         </div>
-        <input type="submit" value="Signup">
-      </form>
-      </div>
-      <div class="new_people">
-        <h2>Have an account</h2>
-        <p>Please login here</p>
-        <a href="{{ route('user-signup') }}">Login</a>
+        <div class="sign-u">
+          <div class="sign-up1">
+            <h4>Password* :</h4>
+          </div>
+          <div class="sign-up2">
+            <form>
+              <input type="password" placeholder=" " required=" "/>
+            </form>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class="sign-u">
+          <div class="sign-up1">
+            <h4>Confirm Password* :</h4>
+          </div>
+          <div class="sign-up2">
+            <form>
+              <input type="password" placeholder=" " required=" "/>
+            </form>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class="sub_home">
+          <div class="sub_home_left">
+            <form>
+              <input type="submit" value="Create">
+            </form>
+          </div>
+          <div class="sub_home_right">
+            <p>Go Back to <a href="{{ url('/') }}">Home</a></p>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 @endsection
 
 @section('front-additional-js')

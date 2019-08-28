@@ -135,6 +135,36 @@
                 <a href="{{ url('/orders') }}"><i class="fa fa-dashboard fa-fw"></i> Orders</a>
             </li>
 
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Days<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('days/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('days') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Schedule Types<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('schedule-types/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('schedule-types') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+
+            <li>
+                <a href="{{ url('/booked-schedules') }}"><i class="fa fa-dashboard fa-fw"></i> Booked Schedule</a>
+            </li>
+
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

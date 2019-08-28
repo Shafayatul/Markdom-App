@@ -1,5 +1,6 @@
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<script type="text/javascript" src="{{ asset('front-end-assets/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="{{ asset('front-end-assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('front-end-assets/js/bootstrap-select.js') }}"></script>
 <script type="text/javascript" src="{{ asset('front-end-assets/js/jquery.leanModal.min.js') }}"></script>
@@ -10,6 +11,7 @@
 <script src="{{ asset('front-end-assets/js/jquery.uls.regionfilter.js') }}"></script>
 <script src="{{ asset('front-end-assets/js/jquery.uls.core.js') }}"></script>
 <script type="text/javascript" src="{{ asset('front-end-assets/js/jquery.flexisel.js')}}"></script>
+<script src="{{ asset('front-end-assets/slick/slick.js')}}"></script>
 <script type="text/javascript">
   $(document).ready(function(){
     $('.hamburger').on('click',function(){
