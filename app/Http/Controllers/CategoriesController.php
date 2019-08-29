@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Category;
+use App\Module;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -28,8 +29,8 @@ class CategoriesController extends Controller
         } else {
             $categories = Category::latest()->paginate($perPage);
         }
-
-        return view('categories.index', compact('categories'));
+        $modules = Module::pluck('name', 'id');
+        return view('categories.index', compact('categories', 'modules'));
     }
 
     /**
@@ -39,7 +40,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        $modules = Module::pluck('name', 'id');
+        return view('categories.create', compact('modules'));
     }
 
     /**
@@ -62,6 +64,7 @@ class CategoriesController extends Controller
         }
 
         $category               = new Category();
+        $category->module_id    = $request->module_id;
         $category->name         = $request->name;
         $category->name_arabic  = $request->name_arabic;
         $category->image        = $image_url;
@@ -80,8 +83,8 @@ class CategoriesController extends Controller
     public function show($id)
     {
         $category = Category::findOrFail($id);
-
-        return view('categories.show', compact('category'));
+        $modules = Module::pluck('name', 'id');
+        return view('categories.show', compact('category', 'modules'));
     }
 
     /**
@@ -94,8 +97,8 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-
-        return view('categories.edit', compact('category'));
+        $modules = Module::pluck('name', 'id');
+        return view('categories.edit', compact('category', 'modules'));
     }
 
     /**
@@ -122,7 +125,7 @@ class CategoriesController extends Controller
         }else{
             $image_url          = $category->image;
         }
-
+        $category->module_id    = $request->module_id;
         $category->name         = $request->name;
         $category->name_arabic  = $request->name_arabic;
         $category->image        = $image_url;
