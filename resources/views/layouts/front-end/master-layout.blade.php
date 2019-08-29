@@ -13,10 +13,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 @yield('front-additional-css')
 </head>
 <body>
-@include('layouts.front-end.include.header')
-@yield('main-content')
+<div class="container">
+  @include('layouts.front-end.include.header')
+  @yield('main-content')
 
-@include('layouts.front-end.include.footer')
+  @include('layouts.front-end.include.footer')
+</div>
 @include('layouts.front-end.include.all-js')
 @yield('front-additional-js')
 </body>
