@@ -16,6 +16,8 @@
 Route::get('/', 'FrontEnd\FrontEndController@index');
 Route::get('/user-login', 'FrontEnd\FrontEndController@userLogin')->name('user-login');
 Route::get('/user-signup', 'FrontEnd\FrontEndController@userSignup')->name('user-signup');
+Route::get('/chat', 'FrontEnd\FrontEndController@chat')->name('chat');
+
 
 Route::get('/restaurant', 'FrontEnd\RestaurantsController@index')->name('restaurant');
 Route::get('/sub-category/restaurant', 'FrontEnd\RestaurantsController@subCategoryRestaurant')->name('sub-category-restaurant');

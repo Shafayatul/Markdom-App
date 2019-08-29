@@ -1,0 +1,232 @@
+.chat {
+  margin-top: 30px;
+}
+
+.chat-div {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.chat-box {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.msg-user p {
+  text-align: left;
+  padding-left : 20px;
+  padding-top: 20px;
+}
+
+.msg-admin p {
+  text-align: right;
+  padding-top : 20px;
+  padding-right: 20px;
+}
+
+.msg-user {
+  width: 75%;
+  float: left;
+  display: block;
+  background-color: #9b9b9b;
+  height: 60px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+}
+
+.msg-admin {
+  width: 75%;
+  float: right;
+  display: block;
+  background-color: #cecece;
+  height: 60px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+}
+
+.chat-input {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+.add-icon {
+  width: 10%;
+  float: left;
+  text-align: right;
+  padding-right: 20px;
+}
+
+.input-field {
+  width: 60%;
+  float: left;
+}
+
+.send-button {
+  width: 30%;
+  float: left;
+}
+
+input[type=text] {
+  width: 100%;
+  border-radius: 16px;
+  webkit-appearance: none;
+  border: 1px solid transparent;
+  /* background-color: #f1f1f1; */
+  height: 40px;
+  padding-left: 20px;
+}
+
+.add-icon i {
+  font-size: 40px;
+  color: #fff;
+  font-weight: bolder;
+}
+
+.send-button button {
+  border-radius: 16px;
+  padding: 9px 20px;
+}
+
+@media only screen and (min-device-width : 300px) and (max-device-width : 350px) {
+  .chat-div {
+    width: 100%;
+  }
+  .chat-input {
+    padding: 20px 5px;
+  }
+
+  .add-icon {
+    text-align: left;
+  }
+
+  .add-icon i {
+    font-size: 25px;
+  }
+
+  .input-field {
+    width: 65%;
+    float: left;
+  }
+
+  .send-button {
+    width: 25%;
+    float: left;
+  }
+
+  input[type=text] {
+    height: 30px;
+  }
+
+  .send-button button {
+    border-radius: 16px;
+    padding: 4px 9px;
+  }
+}
+@media only screen and (min-device-width : 351px) and (max-device-width : 480px) {
+  .chat-div {
+    width: 100%;
+  }
+  .chat-input {
+    padding: 20px 5px;
+  }
+
+  .add-icon {
+    text-align: left;
+  }
+
+  .add-icon i {
+    font-size: 30px;
+  }
+
+  .input-field {
+    width: 70%;
+    float: left;
+  }
+
+  .send-button {
+    width: 20%;
+    float: left;
+  }
+
+  input[type=text] {
+    height: 30px;
+  }
+
+  .send-button button {
+    border-radius: 16px;
+    padding: 4px 9px;
+  }
+}
+
+@media only screen and (min-device-width : 481px) and (max-device-width : 767px) {
+  .chat-div {
+    width: 100%;
+  }
+  .chat-input {
+    padding: 20px 5px;
+  }
+
+  .add-icon {
+    text-align: left;
+  }
+
+  .add-icon i {
+    font-size: 30px;
+  }
+
+  .input-field {
+    width: 70%;
+    float: left;
+  }
+
+  .send-button {
+    width: 20%;
+    float: left;
+  }
+
+  input[type=text] {
+    height: 30px;
+  }
+
+  .send-button button {
+    border-radius: 16px;
+    padding: 4px 9px;
+  }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  .chat-input {
+    padding: 20px 5px;
+  }
+
+  .add-icon {
+    text-align: left;
+  }
+
+  .add-icon i {
+    font-size: 30px;
+  }
+
+  .input-field {
+    width: 70%;
+    float: left;
+  }
+
+  .send-button {
+    width: 20%;
+    float: left;
+  }
+
+  input[type=text] {
+    height: 30px;
+  }
+
+  .send-button button {
+    border-radius: 16px;
+    padding: 4px 9px;
+  }
+}

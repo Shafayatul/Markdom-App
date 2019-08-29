@@ -21,4 +21,9 @@ class FrontEndController extends Controller
     {
       return view('front-end.auth-user.user-signup');
     }
+
+    public function chat()
+    {
+      return view('front-end.chat.chat');
+    }
 }
