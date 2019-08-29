@@ -53,6 +53,14 @@ Product {{ $product->id }}
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th> Sub Sub Category </th>
+                                    <td>
+                                        @if(isset($subsubcategories[$product->sub_sub_category_id])) 
+                                            {{ $subsubcategories[$product->sub_sub_category_id] }}
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th> Name </th>
                                     <td> {{ $product->name }} </td>
                                 </tr>

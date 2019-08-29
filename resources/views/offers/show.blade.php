@@ -45,6 +45,14 @@ Offer {{ $offer->id }}
                                     <td>{{ $offer->id }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Module</th>
+                                    <td>
+                                        @if(isset($modules[$offer->module_id]))
+                                            {{ $modules[$offer->module_id] }}
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th> Title </th>
                                     <td> {{ $offer->title }} </td>
                                 </tr>

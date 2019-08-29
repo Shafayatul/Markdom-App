@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Offer;
+use App\Module;
 use Illuminate\Http\Request;
 
 class OffersController extends Controller
@@ -31,8 +32,8 @@ class OffersController extends Controller
         } else {
             $offers = Offer::latest()->paginate($perPage);
         }
-
-        return view('offers.index', compact('offers'));
+        $modules = Module::pluck('name', 'id');
+        return view('offers.index', compact('offers', 'modules'));
     }
 
     /**
@@ -42,7 +43,8 @@ class OffersController extends Controller
      */
     public function create()
     {
-        return view('offers.create');
+        $modules = Module::pluck('name', 'id');
+        return view('offers.create', compact('modules'));
     }
 
     /**
@@ -71,6 +73,7 @@ class OffersController extends Controller
         $offer->amount          = $request->amount;
         $offer->percentage      = $request->percentage;
         $offer->image           = $image_url;
+        $offer->module_id       = $request->module_id;
         $offer->save();
 
         return redirect('offers')->with('success', 'Offer added!');
@@ -86,8 +89,8 @@ class OffersController extends Controller
     public function show($id)
     {
         $offer = Offer::findOrFail($id);
-
-        return view('offers.show', compact('offer'));
+        $modules = Module::pluck('name', 'id');
+        return view('offers.show', compact('offer', 'modules'));
     }
 
     /**
@@ -100,8 +103,8 @@ class OffersController extends Controller
     public function edit($id)
     {
         $offer = Offer::findOrFail($id);
-
-        return view('offers.edit', compact('offer'));
+        $modules = Module::pluck('name', 'id');
+        return view('offers.edit', compact('offer', 'modules'));
     }
 
     /**
@@ -134,6 +137,7 @@ class OffersController extends Controller
         $offer->amount          = $request->amount;
         $offer->percentage      = $request->percentage;
         $offer->image           = $image_url;
+        $offer->module_id       = $request->module_id;
         $offer->save();
 
         return redirect('offers')->with('success', 'Offer updated!');

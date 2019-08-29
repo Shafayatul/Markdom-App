@@ -33,6 +33,7 @@ Products
                                 <tr>
                                     <th>#</th>
                                     <th>Store</th>
+                                    <th>Sub Sub Category</th>
                                     <th>Name</th>
                                     <th>Name Arabic</th>
                                     <th>Actions</th>
@@ -45,6 +46,11 @@ Products
                                     <td>
                                         @if(isset($stores[$item->store_id])) 
                                             {{ $stores[$item->store_id] }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(isset($subsubcategories[$item->sub_sub_category_id])) 
+                                            {{ $subsubcategories[$item->sub_sub_category_id] }}
                                         @endif
                                     </td>
                                     <td>{{ $item->name }}</td>

@@ -42,6 +42,7 @@ Categories
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Module</th>
                                     <th>Name</th>
                                     <th>Name Arabic</th>
                                     <th>Image</th>
@@ -52,6 +53,11 @@ Categories
                             @foreach($categories as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        @if(isset($modules[$item->module_id]))
+                                            {{ $modules[$item->module_id] }}
+                                        @endif
+                                    </td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->name_arabic }}</td>
                                     <td><img src="{{ asset($item->image) }}" alt="{{ $item->name }}" style="width: 80px; height: 80px;" /></td>

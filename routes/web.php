@@ -12,19 +12,24 @@
 */
 
 //FrontEnd Route Starts From Here
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function()
+{
+	Route::get('/', 'FrontEnd\FrontEndController@index');
+	Route::get('/user-login', 'FrontEnd\FrontEndController@userLogin')->name('user-login');
+	Route::get('/user-signup', 'FrontEnd\FrontEndController@userSignup')->name('user-signup');
 
-Route::get('/', 'FrontEnd\FrontEndController@index');
-Route::get('/user-login', 'FrontEnd\FrontEndController@userLogin')->name('user-login');
-Route::get('/user-signup', 'FrontEnd\FrontEndController@userSignup')->name('user-signup');
-Route::get('/chat', 'FrontEnd\FrontEndController@chat')->name('chat');
+
+	Route::get('/chat', 'FrontEnd\FrontEndController@chat')->name('chat');
 
 
-Route::get('/restaurant', 'FrontEnd\RestaurantsController@index')->name('restaurant');
-Route::get('/sub-category/restaurant', 'FrontEnd\RestaurantsController@subCategoryRestaurant')->name('sub-category-restaurant');
-Route::get('/restaurant-details', 'FrontEnd\RestaurantsController@restaurantDetails')->name('restaurant-details');
+	Route::get('/restaurant', 'FrontEnd\RestaurantsController@index')->name('restaurant');
+	Route::get('/sub-category/restaurant', 'FrontEnd\RestaurantsController@subCategoryRestaurant')->name('sub-category-restaurant');
+	Route::get('/restaurant-details', 'FrontEnd\RestaurantsController@restaurantDetails')->name('restaurant-details');
 
-Route::get('/order-details','OrdersController@orderDetails')->name('order-details');
-Route::get('/order-notification','OrdersController@orderNotification')->name('order-notification');
+	Route::get('/order-details','OrdersController@orderDetails')->name('order-details');
+	Route::get('/order-notification','OrdersController@orderNotification')->name('order-notification');
+
+});
 
 //FrontEnd Route Ends Here
 
@@ -66,4 +71,8 @@ Route::middleware(['auth'])->group(function () {
 	// Route::resource('schedules', 'SchedulesController');
 	Route::patch('/schedules/{id}', 'SchedulesController@update');
 	Route::resource('booked-schedules', 'BookedSchedulesController');
+	Route::resource('modules', 'ModulesController');
+	Route::resource('worker-service-costs', 'WorkerServiceCostsController');
 });
+
+

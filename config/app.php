@@ -168,6 +168,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         LaravelFCM\FCMServiceProvider::class,
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -231,6 +232,8 @@ return [
         'HTML' => Collective\Html\HtmlFacade::class,
         'FCM'      => LaravelFCM\Facades\FCM::class,
         'FCMGroup' => LaravelFCM\Facades\FCMGroup::class, // Optional
+        'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+
     ],
 
 ];
