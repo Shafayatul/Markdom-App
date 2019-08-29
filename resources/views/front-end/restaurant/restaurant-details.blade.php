@@ -38,7 +38,7 @@
         <i class="fa fa-circle online"></i><span class="store-status-text">Store is Open (working time)</span>
       </div>
       <div class="order-button text-center">
-        <button class="btn btn-success" type="button" name="button">Order Menu</button>
+        <a href="{{ route('order-details') }}"><button class="btn btn-success" type="button" name="button">Order Menu</button></a>
       </div>
     </div>
   </div>

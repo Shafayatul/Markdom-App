@@ -68,7 +68,7 @@ class OrdersController extends Controller
         $order->delivery_time   = $request->delivery_time;
         $order->image           = $image_url;
         $order->save();
-        
+
 
         return redirect('orders')->with('success', 'Order added!');
     }
@@ -150,5 +150,10 @@ class OrdersController extends Controller
         Order::destroy($id);
 
         return redirect('orders')->with('success', 'Order deleted!');
+    }
+
+    public function orderDetails()
+    {
+      return view('front-end.order.order-details');
     }
 }

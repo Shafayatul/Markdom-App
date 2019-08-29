@@ -1,0 +1,121 @@
+.order-details-div {
+  margin-top: 30px;
+}
+
+.order-details-form {
+  text-align: left;
+}
+
+.order-details-form p {
+  margin: 20px 0px;
+}
+
+textarea {
+  border-radius: 16px;
+  background-color: #f1f1f1;
+  width: 50%;
+  height: 130px;
+}
+
+.promo-code-input-span {
+  width: 200px;
+  display: inline-block;
+}
+
+input[type=text] {
+  width: 100%;
+  border-radius: 16px;
+  webkit-appearance: none;
+  border: 1px solid rgb(169, 169, 169);
+  background-color: #f1f1f1;
+  height: 40px;
+  padding-left: 20px;
+}
+
+.promo-code-button-span {
+  width: 100px;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.apply-button {
+  border-radius: 16px;
+  padding: 9px;
+  width: 100%;
+  border: 1px solid rgb(169, 169, 169);
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.get-promo-code {
+  margin-bottom: 30px;
+}
+
+.custom-file-input {
+  color: transparent;
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Upload Image';
+  color: black;
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid rgb(169, 169, 169);
+  border-radius: 16px;
+  padding: 10px 55px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  /* font-weight: 700; */
+  font-size: 10pt;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active {
+  outline: 0;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+#datepicker {
+  margin-top: 20px;
+  width: 200px;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  textarea {
+    width: 100%;
+    height: 130px;
+  }
+
+  .promo-code-input-span {
+    width: 170px;
+    display: inline-block;
+  }
+
+  .promo-code-button-span {
+    width: 85px;
+    margin-left: 0px;
+  }
+
+  #datepicker {
+    width: 170px;
+  }
+}
+
+@media only screen and (min-device-width : 481px) and (max-device-width : 767px) {
+  textarea {
+    width: 100%;
+    height: 130px;
+  }
+
+  #datepicker {
+    width: 50%;
+  }
+}

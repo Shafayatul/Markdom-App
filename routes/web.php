@@ -21,6 +21,8 @@ Route::get('/restaurant', 'FrontEnd\RestaurantsController@index')->name('restaur
 Route::get('/sub-category/restaurant', 'FrontEnd\RestaurantsController@subCategoryRestaurant')->name('sub-category-restaurant');
 Route::get('/restaurant-details', 'FrontEnd\RestaurantsController@restaurantDetails')->name('restaurant-details');
 
+Route::get('/order-details','OrdersController@orderDetails')->name('order-details');
+
 //FrontEnd Route Ends Here
 
 Auth::routes();
