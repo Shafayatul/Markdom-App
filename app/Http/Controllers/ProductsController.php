@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Product;
 use App\Store;
+use App\SubSubCategory;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -33,7 +34,8 @@ class ProductsController extends Controller
             $products = Product::latest()->paginate($perPage);
         }
         $stores = Store::pluck('name', 'id');
-        return view('products.index', compact('products', 'stores'));
+        $subsubcategories = SubSubCategory::pluck('name', 'id');
+        return view('products.index', compact('products', 'stores', 'subsubcategories'));
     }
 
     /**
@@ -44,7 +46,8 @@ class ProductsController extends Controller
     public function create()
     {
         $stores = Store::pluck('name', 'id');
-        return view('products.create', compact('stores'));
+        $subsubcategories = SubSubCategory::pluck('name', 'id');
+        return view('products.create', compact('stores', 'subsubcategories'));
     }
 
     /**
@@ -66,13 +69,14 @@ class ProductsController extends Controller
             $image_url  = null;
         }
 
-        $product                = new Product();
-        $product->store_id      = $request->store_id;
-        $product->name          = $request->name;
-        $product->name_arabic   = $request->name_arabic;
-        $product->description   = $request->description;
-        $product->preview_image = $image_url;
-        $product->price         = $request->price;
+        $product                        = new Product();
+        $product->store_id              = $request->store_id;
+        $product->sub_sub_category_id   = $request->sub_sub_category_id;
+        $product->name                  = $request->name;
+        $product->name_arabic           = $request->name_arabic;
+        $product->description           = $request->description;
+        $product->preview_image         = $image_url;
+        $product->price                 = $request->price;
         $product->save();
 
         return redirect('products/create')->with('success', 'Product added!');
@@ -89,7 +93,8 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id);
         $stores = Store::pluck('name', 'id');
-        return view('products.show', compact('product', 'stores'));
+        $subsubcategories = SubSubCategory::pluck('name', 'id');
+        return view('products.show', compact('product', 'stores', 'subsubcategories'));
     }
 
     /**
@@ -103,7 +108,8 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id);
         $stores = Store::pluck('name', 'id');
-        return view('products.edit', compact('product', 'stores'));
+        $subsubcategories = SubSubCategory::pluck('name', 'id');
+        return view('products.edit', compact('product', 'stores', 'subsubcategories'));
     }
 
     /**
@@ -131,12 +137,13 @@ class ProductsController extends Controller
             $image_url  = $product->preview_image;
         }
 
-        $product->store_id      = $request->store_id;
-        $product->name          = $request->name;
-        $product->name_arabic   = $request->name_arabic;
-        $product->description   = $request->description;
-        $product->preview_image = $image_url;
-        $product->price         = $request->price;
+        $product->store_id              = $request->store_id;
+        $product->sub_sub_category_id   = $request->sub_sub_category_id;
+        $product->name                  = $request->name;
+        $product->name_arabic           = $request->name_arabic;
+        $product->description           = $request->description;
+        $product->preview_image         = $image_url;
+        $product->price                 = $request->price;
         $product->save();
 
         return redirect('products')->with('success', 'Product updated!');
