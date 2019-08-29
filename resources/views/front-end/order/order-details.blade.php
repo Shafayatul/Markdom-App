@@ -22,6 +22,44 @@
         <p>Select Delivery Date: <br> <input type="text" id="datepicker"></p>
       </form>
     </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="driver-img">
+              <img src="{{ asset('front-end-assets/images/fa11.jpg') }}" alt="">
+            </div>
+            <div class="driver-box">
+              <div class="driver-name">
+                <p>Driver Name</p>
+              </div>
+              <div class="store-rating">
+                @for ($i=0; $i < 3; $i++)
+                  <i class="fa fa- "></i>
+                  <i class="fa fa-star color-white"></i>
+                @endfor
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+              <div class="driver-cost">
+                <p>Driver Cost</p>
+                <p>25 SR</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success pull-left" data-dismiss="modal">Accept</button>
+            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Decline</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 @endsection
@@ -32,5 +70,8 @@
   $( function() {
     $( "#datepicker" ).datepicker();
   });
+  $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
 </script>
 @endsection
