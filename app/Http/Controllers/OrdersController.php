@@ -156,4 +156,8 @@ class OrdersController extends Controller
     {
       return view('front-end.order.order-details');
     }
+    public function orderNotification()
+    {
+      return view('front-end.order.order-notification');
+    }
 }

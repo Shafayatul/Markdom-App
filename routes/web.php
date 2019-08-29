@@ -24,6 +24,7 @@ Route::get('/sub-category/restaurant', 'FrontEnd\RestaurantsController@subCatego
 Route::get('/restaurant-details', 'FrontEnd\RestaurantsController@restaurantDetails')->name('restaurant-details');
 
 Route::get('/order-details','OrdersController@orderDetails')->name('order-details');
+Route::get('/order-notification','OrdersController@orderNotification')->name('order-notification');
 
 //FrontEnd Route Ends Here
 
