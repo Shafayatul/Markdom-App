@@ -19,6 +19,7 @@ Route::get('/user-signup', 'FrontEnd\FrontEndController@userSignup')->name('user
 
 Route::get('/restaurant', 'FrontEnd\RestaurantsController@index')->name('restaurant');
 Route::get('/sub-category/restaurant', 'FrontEnd\RestaurantsController@subCategoryRestaurant')->name('sub-category-restaurant');
+Route::get('/restaurant-details', 'FrontEnd\RestaurantsController@restaurantDetails')->name('restaurant-details');
 
 //FrontEnd Route Ends Here
 

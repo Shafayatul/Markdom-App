@@ -42,7 +42,7 @@
     </div>
     <div class="rectangle-div">
       <div id="grid">
-        <a href="#" class="rectangle-box-a">
+        <a href="{{ route('restaurant-details') }}" class="rectangle-box-a">
           <div class="rectangle-box shadow">
             <div class="logo-box">
               <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
@@ -56,7 +56,7 @@
             </div>
           </div>
         </a>
-        <a href="#" class="rectangle-box-a">
+        <a href="{{ route('restaurant-details') }}" class="rectangle-box-a">
           <div class="rectangle-box shadow">
             <div class="logo-box">
               <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
@@ -70,7 +70,7 @@
             </div>
           </div>
         </a>
-        <a href="#" class="rectangle-box-a">
+        <a href="{{ route('restaurant-details') }}" class="rectangle-box-a">
           <div class="rectangle-box shadow">
             <div class="logo-box">
               <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
@@ -84,7 +84,7 @@
             </div>
           </div>
         </a>
-        <a href="#" class="rectangle-box-a">
+        <a href="{{ route('restaurant-details') }}" class="rectangle-box-a">
           <div class="rectangle-box shadow">
             <div class="logo-box">
               <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
@@ -98,7 +98,7 @@
             </div>
           </div>
         </a>
-        <a href="#" class="rectangle-box-a">
+        <a href="{{ route('restaurant-details') }}" class="rectangle-box-a">
           <div class="rectangle-box shadow">
             <div class="logo-box">
               <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
@@ -112,7 +112,7 @@
             </div>
           </div>
         </a>
-        <a href="#" class="rectangle-box-a">
+        <a href="{{ route('restaurant-details') }}" class="rectangle-box-a">
           <div class="rectangle-box shadow">
             <div class="logo-box">
               <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
