@@ -73,6 +73,10 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('booked-schedules', 'BookedSchedulesController');
 	Route::resource('modules', 'ModulesController');
 	Route::resource('worker-service-costs', 'WorkerServiceCostsController');
+	Route::resource('countries', 'CountriesController');
 });
 
 
+
+
+Route::resource('states', 'StatesController');

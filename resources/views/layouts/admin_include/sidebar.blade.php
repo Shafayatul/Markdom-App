@@ -5,6 +5,30 @@
                 <a href="{{ url('/home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Country<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('countries/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('countries') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> State<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('states/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('states') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Roles<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

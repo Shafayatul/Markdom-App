@@ -169,6 +169,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         LaravelFCM\FCMServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
         /*
          * Application Service Providers...
          */

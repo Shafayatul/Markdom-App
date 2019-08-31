@@ -36,3 +36,21 @@ Route::get('get-service-type-price', 'Api\WorkerServiceCostsController@get_servi
 
 Route::post('post-review', 'Api\ReviewsController@post_review');
 
+Route::group(['middleware' => ['auth:api']], function() {
+
+	// Route::get('/test', 'Api\TestController@index');
+
+	//Users Section
+	Route::get('user-details', 'Api\UsersController@user_details');
+	Route::post('change-password', 'Api\UsersController@change_password');
+	Route::post('change-language', 'Api\UsersController@change_language');
+	Route::post('update-user-info', 'Api\UsersController@update_user_info');
+	Route::post('logout','Api\UsersController@logoutApi');
+
+	//Carts Section
+	Route::get('view-cart','Api\CartsController@index');
+	Route::post('add-to-cart','Api\CartsController@store');
+	Route::post('update-quantity','Api\CartsController@update_quantity_cart');
+	Route::post('delete-cart','Api\CartsController@destroy');
+
+});
