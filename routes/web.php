@@ -74,9 +74,10 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('modules', 'ModulesController');
 	Route::resource('worker-service-costs', 'WorkerServiceCostsController');
 	Route::resource('countries', 'CountriesController');
+	Route::resource('states', 'StatesController');
+	Route::resource('cities', 'CitiesController');
 });
 
 
 
 
-Route::resource('states', 'StatesController');
