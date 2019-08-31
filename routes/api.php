@@ -34,7 +34,7 @@ Route::get('get-product-by-sub-sub-category/{id}', 'Api\ProductsController@get_p
 
 Route::get('get-service-type-price', 'Api\WorkerServiceCostsController@get_service_type_price');
 
-Route::post('post-review', 'Api\ReviewsController@post_review');
+
 
 Route::group(['middleware' => ['auth:api']], function() {
 
@@ -52,5 +52,7 @@ Route::group(['middleware' => ['auth:api']], function() {
 	Route::post('add-to-cart','Api\CartsController@store');
 	Route::post('update-quantity','Api\CartsController@update_quantity_cart');
 	Route::post('delete-cart','Api\CartsController@destroy');
+
+	Route::post('post-review', 'Api\ReviewsController@post_review');
 
 });
