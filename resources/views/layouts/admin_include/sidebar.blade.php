@@ -41,6 +41,18 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Address<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('addresses/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('addresses') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Roles<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

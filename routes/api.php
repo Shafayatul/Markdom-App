@@ -16,6 +16,13 @@ use Illuminate\Http\Request;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+// country - state - city
+Route::get('country-list', 'Api\CountriesController@index');
+Route::get('get-state/{country_id}', 'Api\CountriesController@state');
+Route::get('get-city/{state_id}', 'Api\CountriesController@city');
+
+
 Route::get('get-categories-by-module/{id}', 'Api\CategoriesController@get_categories_by_module_id');
 Route::get('get-offers-by-module/{id}', 'Api\OffersController@get_offers_by_module_id');
 
@@ -53,6 +60,13 @@ Route::group(['middleware' => ['auth:api']], function() {
 	Route::post('update-quantity','Api\CartsController@update_quantity_cart');
 	Route::post('delete-cart','Api\CartsController@destroy');
 
+	//Review Section
 	Route::post('post-review', 'Api\ReviewsController@post_review');
+
+	//Address Section
+	Route::post('delete-address','Api\AddressController@destroy');
+	Route::post('add-address','Api\AddressController@store');
+	Route::get('get-addresses','Api\AddressController@index');
+	Route::get('get-single-address/{id}','Api\AddressController@get_single_address');
 
 });
