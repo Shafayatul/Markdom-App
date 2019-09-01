@@ -31,7 +31,7 @@ Route::get('get-subcategories-by-category/{id}', 'Api\CategoriesController@get_s
 Route::get('get-stores-by-subcategory/{id}', 'Api\StoresController@get_stores_by_subcategory_id');
 Route::get('get-store-detail/{id}', 'Api\StoresController@get_store_detail');
 
-Route::get('get-workinghours-by-store/{id}', 'Api\WorkingHoursController@get_workinghours_by_store_id');
+Route::get('get-workinghours/{id}/{date}', 'Api\WorkingHoursController@get_workinghours_by_store_id_and_date');
 Route::get('get-product-by-store/{id}', 'Api\StoresController@get_product_by_store_id');
 Route::get('get-product-detail/{id}', 'Api\ProductsController@get_product_detail');
 
@@ -68,5 +68,8 @@ Route::group(['middleware' => ['auth:api']], function() {
 	Route::post('add-address','Api\AddressController@store');
 	Route::get('get-addresses','Api\AddressController@index');
 	Route::get('get-single-address/{id}','Api\AddressController@get_single_address');
+
+	//Order Section
+	Route::post('place-order','Api\OrdersController@place_order');
 
 });

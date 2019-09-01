@@ -77,6 +77,18 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Payment Types<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('payment-types/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('payment-types') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Modules<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

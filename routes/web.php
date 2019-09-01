@@ -76,10 +76,11 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('countries', 'CountriesController');
 	Route::resource('states', 'StatesController');
 	Route::resource('cities', 'CitiesController');
+	Route::resource('addresses', 'AddressesController');
+	Route::resource('payment-types', 'PaymentTypesController');
 });
 
 
 
 
 
-Route::resource('addresses', 'AddressesController');
