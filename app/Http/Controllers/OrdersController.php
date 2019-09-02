@@ -160,4 +160,9 @@ class OrdersController extends Controller
     {
       return view('front-end.order.order-notification');
     }
+
+    public function orderDeliveryTime()
+    {
+      return view('front-end.order.order-delivery-time');
+    }
 }

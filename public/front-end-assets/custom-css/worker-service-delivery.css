@@ -1,0 +1,59 @@
+.worker {
+  margin-top: 30px;
+}
+
+.in-service {
+  width: 50%;
+  margin: 0 auto;
+  height: 200px;
+  background-color: #383838;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.in-customer {
+  width: 50%;
+  margin: 0 auto;
+  height: 200px;
+  background-color: #383838;
+  border-radius: 16px;
+  position: relative;
+}
+
+h1 {
+  color: #fff;
+}
+
+.in-service-h1 {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+}
+
+.in-customer-h1 {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 550px) {
+  .in-service {
+    width: 100%;
+  }
+
+  .in-customer {
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width : 551px) and (max-device-width : 767px) {
+  .in-service {
+    width: 75%;
+  }
+
+  .in-customer {
+    width: 75%;
+  }
+}

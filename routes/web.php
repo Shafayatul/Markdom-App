@@ -18,9 +18,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/user-login', 'FrontEnd\FrontEndController@userLogin')->name('user-login');
 	Route::get('/user-signup', 'FrontEnd\FrontEndController@userSignup')->name('user-signup');
 
-
 	Route::get('/chat', 'FrontEnd\FrontEndController@chat')->name('chat');
-
 
 	Route::get('/restaurant', 'FrontEnd\RestaurantsController@index')->name('restaurant');
 	Route::get('/sub-category/restaurant', 'FrontEnd\RestaurantsController@subCategoryRestaurant')->name('sub-category-restaurant');
@@ -29,6 +27,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/order-details','OrdersController@orderDetails')->name('order-details');
 	Route::get('/order-notification','OrdersController@orderNotification')->name('order-notification');
 
+	Route::get('/worker', 'FrontEnd\WorkerController@index')->name('worker');
+	Route::get('/sub-category/worker', 'FrontEnd\WorkerController@subCategoryWorker')->name('sub-category-worker');
+	Route::get('/sub-sub-category/worker', 'FrontEnd\WorkerController@subSubCategoryWorker')->name('sub-sub-category-worker');
+	Route::get('/worker-details', 'FrontEnd\WorkerController@workerDetails')->name('worker-details');
+	Route::get('/worker-service-delivery', 'FrontEnd\WorkerController@workerServiceDelivery')->name('worker-service-delivery');
+	Route::get('/order-delivery-time', 'OrdersController@orderDeliveryTime')->name('order-delivery-time');
 });
 
 //FrontEnd Route Ends Here
@@ -80,9 +84,3 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('payment-types', 'PaymentTypesController');
 	Route::resource('order-status', 'OrderStatusController');
 });
-
-
-
-
-
-

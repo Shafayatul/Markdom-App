@@ -1,0 +1,30 @@
+.order {
+  margin-top: 30px;
+}
+
+.month-year {
+  margin: 20px 0px;
+}
+
+.month-span, .year-span, .comma {
+  color: #2ecc71;
+  font-size: 20px;
+}
+
+.comma {
+  padding: 0px 2px;
+}
+
+.sliding-div {
+  cursor: pointer;
+}
+
+.day-number {
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    margin-top: 10px;
+    border: 1px solid #2ecc71;
+    border-radius: 50%;
+    padding-top: 4px;
+}

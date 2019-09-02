@@ -15,7 +15,7 @@
       <ul class="main-ul">
         <li class="main-li"> <a href="{{ route('restaurant') }}" class="main-li-a">Restorant</a></li>
         <li class="main-li"> <a href="#" class="main-li-a">Store</a></li>
-        <li class="main-li"> <a href="#" class="main-li-a">Workers</a></li>
+        <li class="main-li"> <a href="{{ route('worker') }}" class="main-li-a">Workers</a></li>
         <li class="main-li main-li-dropdown"> <a class="main-li-a">My account <span class="drop-down-menu"><i class="fa fa-caret-down"></i></span></a>
           <ul class="sub-ul">
             <li class="sub-li"> <a href="{{ route('user-login') }}" class="sub-li-a">Login</a></li>
