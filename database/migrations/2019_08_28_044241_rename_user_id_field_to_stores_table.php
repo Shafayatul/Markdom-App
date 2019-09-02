@@ -26,7 +26,7 @@ class RenameUserIdFieldToStoresTable extends Migration
     public function down()
     {
         Schema::table('stores', function (Blueprint $table) {
-            $table->string('user_id')->nullable();
+            $table->dropColumn('user_id');
         });
     }
 }

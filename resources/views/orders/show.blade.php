@@ -49,12 +49,12 @@ Order {{ $order->id }}
                                     <td> {{ $order->order_details }} </td>
                                 </tr>
                                 <tr>
-                                    <th> Promo Code </th>
-                                    <td> {{ $order->promo_code }} </td>
+                                    <th> Total Price </th>
+                                    <td> {{ $order->total_price }} </td>
                                 </tr>
                                 <tr>
-                                    <th> Delivery Time </th>
-                                    <td> {{ $order->delivery_time }} </td>
+                                    <th> Estimated Time </th>
+                                    <td> {{ $order->estimated_time }} </td>
                                 </tr>
                                 <tr>
                                     <th> Image </th>

@@ -33,7 +33,7 @@ Orders
                                 <tr>
                                     <th>#</th>
                                     <th>Order Details</th>
-                                    <th>Promo Code</th>
+                                    <th>Total Price</th>
                                     <th>Image</th>
                                     <th>Delivery Time</th>
                                     <th>Actions</th>
@@ -44,13 +44,13 @@ Orders
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->order_details }}</td>
-                                    <td>{{ $item->promo_code }}</td>
+                                    <td>{{ $item->total_price }}</td>
                                     <td>
                                         @if(isset($item->image))
                                             <img src="{{ asset($item->image) }}" alt="" style="width: 80px; height: 80px;">
                                         @endif
                                     </td>
-                                    <td>{{ $item->delivery_time }}</td>
+                                    <td>{{ $item->estimated_time }}</td>
                                     <td>
                                         <a href="{{ url('/orders/' . $item->id) }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                         <a href="{{ url('/orders/' . $item->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

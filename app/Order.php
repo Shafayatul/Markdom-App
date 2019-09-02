@@ -25,7 +25,7 @@ class Order extends Model
      *
      * @var array
      */
-    protected $fillable = ['order_details', 'promo_code', 'image', 'delivery_time'];
+    protected $fillable = ['order_details', 'user_id', 'cart_ids', 'total_price', 'address_id', 'final_price', 'order_status_id', 'image', 'payment_method', 'estimated_time', 'paytab_transation_id', 'smsa_awab_number'];
 
     
 }
