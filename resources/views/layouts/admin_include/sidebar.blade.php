@@ -216,6 +216,19 @@
             </li>
 
             <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> OrderStatus<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('order-status/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('order-status') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+
+            <li>
                 <a href="{{ url('/orders') }}"><i class="fa fa-dashboard fa-fw"></i> Orders</a>
             </li>
 

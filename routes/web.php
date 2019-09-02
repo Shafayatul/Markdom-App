@@ -78,7 +78,9 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('cities', 'CitiesController');
 	Route::resource('addresses', 'AddressesController');
 	Route::resource('payment-types', 'PaymentTypesController');
+	Route::resource('order-status', 'OrderStatusController');
 });
+
 
 
 

@@ -13,12 +13,24 @@
       <div class="image-div">
         <div class="image-box"></div>
       </div>
+      <form class="order-details-form" action="" method="post">
       <div class="review">
         <p>Give Your Review</p>
         <span class="store-rating">
-          
+          @for ($i=0; $i < 5; $i++)
+            <i class="fa fa-star text-success"></i>
+          @endfor
         </span>
       </div>
+      <div class="review-input">
+        <textarea class="text-left" name="message" placeholder="Add Your Review"></textarea>
+      </div>
+
+      <div class="order-button text-center">
+        <button class="btn btn-success" type="button" name="button">Order Menu</button>
+      </div>
+
+        </form>
     </div>
   </div>
 </div>
