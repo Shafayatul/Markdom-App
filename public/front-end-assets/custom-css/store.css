@@ -1,0 +1,109 @@
+.store {
+  margin-top: 30px;
+}
+.sliding-category-box {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  /* border: 1px solid #cecece; */
+  border-radius: 50%;
+  margin-top: 20px;
+}
+
+.shadow {
+  box-shadow: 0 5px 30px rgba(0.30,0.30,0.30,0.30), 0 5px 5px rgba(0.30,0.30,0.30,0.30);
+}
+
+.sliding-category-name {
+  margin-top: 15px;
+  color: #4c4a37;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  line-height: 32px;
+}
+
+.sliding-category-img {
+  width: 100%;
+  display: block;
+}
+
+.sliding-category-img img {
+  width: 100%;
+  display: block;
+  border-radius: 50%;
+}
+
+.rectangle-div {
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+.sliding-div-a:hover {
+  text-decoration: none;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 3vw;
+  }
+#grid > div {
+  height: 150px;
+  background: #fff;
+  text-align: center;
+  border-radius: 16px;
+}
+
+.rectangle-box {
+  position: relative;
+  background-color: #27ae60 !important;
+}
+
+.title {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  color: #fff;
+  font-size: 20px;
+}
+
+.number {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  color: #fff;
+  font-size: 20px;
+}
+
+/* Responsive CSS */
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  #grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sliding-category-box {
+    width: 80px;
+    height: 80px;
+  }
+
+  .sliding-category-name {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (min-device-width : 481px) and (max-device-width : 767px) {
+  #grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sliding-category-box {
+    width: 90px;
+    height: 90px;
+  }
+
+  .sliding-category-name {
+    font-size: 16px;
+  }
+}
