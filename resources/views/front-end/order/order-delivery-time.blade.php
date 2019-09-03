@@ -29,32 +29,65 @@
     </div>
 
     <div class="morning-div">
-      <div class="morning-slider-area slider" id="morning-slider-area">
-        vdfvdv
+      <div class="morning-timing-title-box text-left">
+        <span class="icon"><i class="fa fa-check"></i></span>
+        <span class="morning-title"><h2>Morning</h2></span>
       </div>
-      <div class="morning-slider-area slider" id="morning-slider-area">
-        fvdfvdfvdfv
+      <div class="morning-time-schedule-box">
+        <div class="morning-slider-area slider" id="morning-slider-area">
+          <span>09:00 - 10:00</span>
+        </div>
+        <div class="morning-slider-area slider" id="morning-slider-area">
+          <span>10:00 - 11:00</span>
+        </div>
+        <div class="morning-slider-area slider" id="morning-slider-area">
+          <span>11:00 - 12:00</span>
+        </div>
+        <div class="morning-slider-area slider" id="morning-slider-area">
+          <span>12:00 - 13:00</span>
+        </div>
       </div>
-      <div class="morning-slider-area slider" id="morning-slider-area">
-        fvdfvdfvdfv
+    </div>
+
+    <div class="afternoon-div">
+      <div class="afternoon-timing-title-box text-left">
+        <span class="icon"><i class="fa fa-check"></i></span>
+        <span class="afternoon-title"><h2>Afternoon</h2></span>
       </div>
-      <div class="morning-slider-area slider" id="morning-slider-area">
-        vdfvdv
+      <div class="afternoon-time-schedule-box">
+        <div class="afternoon-slider-area slider" id="afternoon-slider-area">
+          <span>13:00 - 14:00</span>
+        </div>
+        <div class="afternoon-slider-area slider" id="afternoon-slider-area">
+          <span>14:00 - 15:00</span>
+        </div>
+        <div class="afternoon-slider-area slider" id="afternoon-slider-area">
+          <span>15:00 - 16:00</span>
+        </div>
+        <div class="afternoon-slider-area slider" id="afternoon-slider-area">
+          <span>16:00 - 17:00</span>
+        </div>
       </div>
-      <div class="morning-slider-area slider" id="morning-slider-area">
-        fvdfvdfvdfv
+    </div>
+
+    <div class="evening-div">
+      <div class="evening-timing-title-box text-left">
+        <span class="icon"><i class="fa fa-check"></i></span>
+        <span class="evening-title"><h2>Evening</h2></span>
       </div>
-      <div class="morning-slider-area slider" id="morning-slider-area">
-        fvdfvdfvdfv
-      </div>
-      <div class="morning-slider-area slider" id="morning-slider-area">
-        vdfvdv
-      </div>
-      <div class="morning-slider-area slider" id="morning-slider-area">
-        fvdfvdfvdfv
-      </div>
-      <div class="morning-slider-area slider" id="morning-slider-area">
-        fvdfvdfvdfv
+      <div class="evening-time-schedule-box">
+        <div class="evening-slider-area slider" id="evening-slider-area">
+          <span>17:00 - 18:00</span>
+        </div>
+        <div class="evening-slider-area slider" id="evening-slider-area">
+          <span>18:00 - 19:00</span>
+        </div>
+        <div class="evening-slider-area slider" id="evening-slider-area">
+          <span>19:00 - 20:00</span>
+        </div>
+        <div class="evening-slider-area slider" id="evening-slider-area">
+          <span>20:00 - 21:00</span>
+        </div>
       </div>
     </div>
   </div>
@@ -70,10 +103,22 @@
       slidesToShow: 7,
       slidesToScroll: 7
   });
-  $(".morning-div").slick({
+  $(".morning-time-schedule-box").slick({
       dots: false,
       infinite: true,
-      slidesToShow: 3,
+      slidesToShow: 4,
+      slidesToScroll: 1
+  });
+  $(".afternoon-time-schedule-box").slick({
+      dots: false,
+      infinite: true,
+      slidesToShow: 4,
+      slidesToScroll: 1
+  });
+  $(".evening-time-schedule-box").slick({
+      dots: false,
+      infinite: true,
+      slidesToShow: 4,
       slidesToScroll: 1
   });
 
