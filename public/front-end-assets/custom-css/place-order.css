@@ -1,0 +1,322 @@
+.order {
+  margin-top: 30px;
+}
+
+.wrapper {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.shadow {
+    box-shadow: 0 5px 10px rgba(0.30,0.30,0.30,0.30), 0 5px 5px rgba(0.30,0.30,0.30,0.30);
+}
+
+.product-details-div {
+  position: relative;
+  border-radius: 8px;
+  padding: 25px 0px;
+  margin-bottom: 1rem;
+}
+
+.product-details-box {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  padding: 2rem 0rem;
+}
+
+.product-details-box:last-child {
+  margin-bottom: 0;
+}
+
+.product-image-box {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  margin-left: 2rem;
+}
+
+.product-image-box img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.service-name {
+  font-size: 25px;
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+}
+
+.product-amount {
+  font-size: 25px;
+  position: absolute;
+  top: 30%;
+  right: 5%;
+}
+
+.payment-details-div {
+  border-radius: 8px;
+  padding: 2rem 0 2rem 2rem;
+}
+
+.payment-details-box {
+  margin-top: 2rem;
+  text-align: left;
+  display: block;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+.payment-title {
+  width: 40%;
+  float: left;
+}
+
+.payment-description {
+  width: 60%;
+  float: left;
+}
+
+.delivery-title {
+  width: 40%;
+  float: left;
+}
+.delivery-description {
+  width: 40%;
+  float: left;
+}
+.delivery-cost {
+  width: 20%;
+  float: left;
+}
+
+.promo-code {
+  width: 40%;
+  float: left;
+}
+
+.promo-input-div {
+  width: 40%;
+  float: left;
+}
+
+input[type="text"] {
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #8BC34A;
+}
+
+.promo-button {
+  width: 20%;
+  float: left;
+}
+
+.promo-button  button {
+  border-radius: 8px;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 400px) {
+  .container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .wrapper {
+    width: 100%;
+  }
+
+  .product-details-div {
+    box-shadow: none;
+    padding: 0px;
+  }
+
+  .product-details-box {
+    width: 95%;
+  }
+
+  .product-image-box {
+    width: 35px;
+    height: 35px;
+  }
+
+  .service-name {
+    font-size: 15px;
+  }
+
+  .product-amount {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 15px;
+  }
+
+  .font-p {
+    font-size: 13px;
+  }
+
+  input[type="text"] {
+    width: 100px;
+    height: 34px;
+  }
+}
+
+@media only screen and (min-device-width : 401px) and (max-device-width : 480px) {
+  .container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .wrapper {
+    width: 100%;
+  }
+
+  .product-details-div {
+    box-shadow: none;
+    padding: 0px;
+  }
+
+  .product-details-box {
+    width: 95%;
+  }
+
+  .product-image-box {
+    width: 40px;
+    height: 40px;
+  }
+
+  .service-name {
+    font-size: 16px;
+  }
+
+  .product-amount {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 17px;
+  }
+
+  .font-p {
+    font-size: 15px;
+  }
+
+  input[type="text"] {
+    width: 125px;
+    height: 34px;
+  }
+}
+
+@media only screen and (min-device-width : 481px) and (max-device-width : 600px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  .product-details-box {
+    width: 95%;
+  }
+
+  .product-image-box {
+    width: 50px;
+    height: 50px;
+  }
+
+  .service-name {
+    font-size: 17px;
+  }
+
+  h1 {
+    font-size: 19px;
+  }
+
+  .font-p {
+    font-size: 16px;
+  }
+
+  .product-amount {
+    font-size: 17px;
+  }
+
+  input[type="text"] {
+    width: 145px;
+    height: 34px;
+  }
+}
+
+@media only screen and (min-device-width : 601px) and (max-device-width : 767px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  .product-details-box {
+    width: 90%;
+  }
+
+  .product-image-box {
+    width: 50px;
+    height: 50px;
+  }
+
+  .service-name {
+    font-size: 17px;
+  }
+
+  h1 {
+    font-size: 19px;
+  }
+
+  .font-p {
+    font-size: 16px;
+  }
+
+  .product-amount {
+    font-size: 17px;
+  }
+
+  input[type="text"] {
+    width: 175px;
+    height: 34px;
+  }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  .wrapper {
+    width: 75%;
+  }
+
+  .product-details-box {
+    width: 90%;
+  }
+
+  .product-image-box {
+    width: 50px;
+    height: 50px;
+  }
+
+  .service-name {
+    font-size: 17px;
+  }
+
+  h1 {
+    font-size: 19px;
+  }
+
+  .font-p {
+    font-size: 16px;
+  }
+
+  .product-amount {
+    font-size: 17px;
+  }
+
+  input[type="text"] {
+    width: 175px;
+    height: 34px;
+  }
+}

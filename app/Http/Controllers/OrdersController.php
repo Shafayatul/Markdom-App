@@ -165,4 +165,8 @@ class OrdersController extends Controller
     {
       return view('front-end.order.order-delivery-time');
     }
+    public function placeOrder()
+    {
+      return view('front-end.order.place-order');
+    }
 }
