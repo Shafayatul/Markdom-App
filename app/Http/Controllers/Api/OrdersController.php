@@ -5,6 +5,16 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Order;
+use App\Address;
+use App\City;
+use App\State;
+use App\Country;
+use App\Cart;
+use App\OrderStatus;
+use App\OrderActivity;
+use Auth;
+
 class OrdersController extends Controller
 {
     public function place_order(Request $request)
@@ -27,7 +37,7 @@ class OrdersController extends Controller
 
         $cart=Cart::where('user_id', Auth::id())->where('is_cart', '1')->latest()->get();
         foreach ($cart as $single_cart) {
-        	$total_price = $total_price + ($single_cart->quantity*$single_cart->price);
+        	$total_price = $total_price + ($single_cart->quantity*$single_cart->unit_price);
         	array_push($cart_ids, $single_cart->id);
         }
         $cart_ids = implode(',', $cart_ids);
@@ -43,7 +53,7 @@ class OrdersController extends Controller
             $final_price = $final_price+15;
         }elseif($request->input("payment_method") == "Paytab"){
             $payment_method = 'Paytab';
-            $paytab_transaction_id = $request->input("paytab_transaction_id");
+            $paytab_transaction_id = $request->input("paytab_transation_id");
         }else{
 
             if($request->hasFile('image')){
@@ -61,13 +71,14 @@ class OrdersController extends Controller
         }
 
         $order 						      	= new Order;
+        $order->order_details               = $request->input('order_details');
 		$order->user_id 			      	= Auth::id();
 		$order->cart_ids 			      	= $cart_ids;
 		$order->total_price 		      	= $total_price;
-        $order->paytab_transaction_id     	= $paytab_transaction_id;
+        $order->paytab_transation_id     	= $paytab_transaction_id;
 		$order->address_id 					= $request->input("address_id");
 		$order->final_price 				= $final_price;
-		$order->order_status 				= $order_status;
+		$order->order_status_id 			= $order_status;
         $order->estimated_time      		= $estimated_time;
         $order->image               		= $image;
         $order->payment_method      		= $payment_method;
@@ -92,5 +103,42 @@ class OrdersController extends Controller
                 ['message' => "Failed"]
             );
         }
+    }
+
+
+    public function history()
+    {
+        $orders = Order::where('user_id', Auth::id())->latest()->get();
+        return response()->json($orders);
+    }
+
+    public function order_detail($order_id)
+    {
+        $data = [];
+        $activity = [];
+
+        $order = Order::where('id', $order_id)->first();
+        $order_status = OrderStatus::get();
+        $order_status_data = [];
+        foreach ($order_status as $single_order_status) {
+            $status = [];
+            $status['id']           = $single_order_status->id;
+            $status['name']         = $single_order_status->order_status;
+            $status['arabic_name']  = $single_order_status->order_status_arabic;
+            if ($order->order_status >= $single_order_status->id) {
+                $status['status']   = 1;
+            }else{
+                $status['status']   = 0;
+            }
+            array_push($order_status_data, $status);
+        }
+
+
+        $data = [];
+        $data['id']                     = $order->id;
+        $data['orderDate']              = $order->created_at;
+        $data['status']                 = $order_status_data;
+        $data['activity']               = OrderActivity::where('order_id', $order_id)->get();;
+        return response()->json($data);
     }
 }

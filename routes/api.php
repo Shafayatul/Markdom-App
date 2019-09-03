@@ -71,5 +71,7 @@ Route::group(['middleware' => ['auth:api']], function() {
 
 	//Order Section
 	Route::post('place-order','Api\OrdersController@place_order');
+	Route::get('get-order-history','Api\OrdersController@history');
+	Route::get('order-details/{order_id}','Api\OrdersController@order_detail');
 
 });

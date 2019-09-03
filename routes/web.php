@@ -83,4 +83,5 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('addresses', 'AddressesController');
 	Route::resource('payment-types', 'PaymentTypesController');
 	Route::resource('order-status', 'OrderStatusController');
+	Route::resource('order-activities', 'OrderActivitiesController');
 });

@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('title')
-Orders
+Orderactivities
 @endsection
 @section('content')
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Order</h1>
+            <h1 class="page-header">OrderActivity</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -17,10 +17,10 @@ Orders
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                   Orders
+                   Orderactivities
                 </div>
                 <div class="panel-body">
-                    <a href="{{ url('/orders/create') }}" class="btn btn-success btn-sm" title="Add New Order">
+                    <a href="{{ url('/order-activities/create') }}" class="btn btn-success btn-sm" title="Add New OrderActivity">
                         <i class="fa fa-plus" aria-hidden="true"></i> Add New
                     </a>
 
@@ -32,37 +32,31 @@ Orders
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Order Details</th>
-                                    <th>Total Price</th>
-                                    <th>Image</th>
-                                    <th>Delivery Time</th>
+                                    <th>Order Id</th>
+                                    <th>Status</th>
+                                    <th>Status Arabic</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($orders as $item)
+                            @foreach($orderactivities as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->order_details }}</td>
-                                    <td>{{ $item->total_price }}</td>
+                                    <td>{{ $item->order_id }}</td>
+                                    <td>{{ $item->status }}</td>
+                                    <td>{{ $item->status_arabic }}</td>
                                     <td>
-                                        @if(isset($item->image))
-                                            <img src="{{ asset($item->image) }}" alt="" style="width: 80px; height: 80px;">
-                                        @endif
-                                    </td>
-                                    <td>{{ $item->estimated_time }}</td>
-                                    <td>
-                                        <a href="{{ url('/orders/' . $item->id) }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                        <a href="{{ url('/orders/' . $item->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                        <a href="{{ url('/order-activities/' . $item->id) }}" title="View OrderActivity"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                        <a href="{{ url('/order-activities/' . $item->id . '/edit') }}" title="Edit OrderActivity"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
                                         {!! Form::open([
                                             'method'=>'DELETE',
-                                            'url' => ['/orders', $item->id],
+                                            'url' => ['/order-activities', $item->id],
                                             'style' => 'display:inline'
                                         ]) !!}
                                             {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
                                                     'type' => 'submit',
                                                     'class' => 'btn btn-danger btn-sm',
-                                                    'title' => 'Delete Order',
+                                                    'title' => 'Delete OrderActivity',
                                                     'onclick'=>'return confirm("Confirm delete?")'
                                             )) !!}
                                         {!! Form::close() !!}
@@ -71,7 +65,7 @@ Orders
                             @endforeach
                             </tbody>
                         </table>
-                        <div class="pagination-wrapper"> {!! $orders->appends(['search' => Request::get('search')])->render() !!} </div>
+                        <div class="pagination-wrapper"> {!! $orderactivities->appends(['search' => Request::get('search')])->render() !!} </div>
                     </div>
                     
                 </div>
