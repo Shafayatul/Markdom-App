@@ -33,7 +33,7 @@
         </div>
 
         <div class="place-order-button-div">
-          <button class="btn btn-success place-order-button" type="button" name="button">Add Cart</button>
+          <button class="btn btn-success place-order-button" type="button" name="button">Place Order</button>
         </div>
       </div>
     </div>

@@ -31,4 +31,9 @@ class StoreController extends Controller
     {
       return view('front-end.store.store-cart');
     }
+
+    public function storePlaceOrder()
+    {
+      return view('front-end.store.store-place-order');
+    }
 }

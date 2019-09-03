@@ -40,6 +40,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/store-details', 'FrontEnd\StoreController@storeDetails')->name('store-details');
 	Route::get('/store-product-details', 'FrontEnd\StoreController@storeProductDetails')->name('store-product-details');
 	Route::get('/store-cart', 'FrontEnd\StoreController@storeCart')->name('store-cart');
+	Route::get('/store-place-order', 'FrontEnd\StoreController@storePlaceOrder')->name('store-place-order');
 
 
 });
