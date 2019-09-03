@@ -38,7 +38,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/store', 'FrontEnd\StoreController@index')->name('store');
 	Route::get('/sub-category/store', 'FrontEnd\StoreController@subCategoryStore')->name('sub-category-store');
 	Route::get('/store-details', 'FrontEnd\StoreController@storeDetails')->name('store-details');
-	Route::get('/store-product-details', 'FrontEnd\StoreController@storeProductDetails')->name('store--product-details');
+	Route::get('/store-product-details', 'FrontEnd\StoreController@storeProductDetails')->name('store-product-details');
+	Route::get('/store-cart', 'FrontEnd\StoreController@storeCart')->name('store-cart');
 
 
 });
