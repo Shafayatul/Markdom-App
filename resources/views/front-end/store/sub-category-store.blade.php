@@ -134,6 +134,7 @@
 
 @section('front-additional-js')
 <script type="text/javascript">
+  alert("{{ $id }}");
   if ($(window).width() < 480 ) {
     $(".slider-area").slick({
         dots: false,

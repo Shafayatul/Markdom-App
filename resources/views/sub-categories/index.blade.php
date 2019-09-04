@@ -53,7 +53,9 @@ Subcategories
                             @foreach($subcategories as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $category[$item->category_id] }}</td>
+                                    <td> @isset($category[$item->category_id])
+                                      {{ $category[$item->category_id] }}
+                                    @endisset</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->name_arabic }}</td>
                                     <td><img src="{{ $item->image }}" alt="" style="width: 80px; height: 80px;"></td>
@@ -79,7 +81,7 @@ Subcategories
                         </table>
                         <div class="pagination-wrapper"> {!! $subcategories->appends(['search' => Request::get('search')])->render() !!} </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

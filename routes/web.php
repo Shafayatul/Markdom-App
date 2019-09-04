@@ -35,13 +35,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/order-delivery-time', 'OrdersController@orderDeliveryTime')->name('order-delivery-time');
 	Route::get('/place-order', 'OrdersController@placeOrder')->name('place-order');
 
+	// Store Route
 	Route::get('/store', 'FrontEnd\StoreController@index')->name('store');
-	Route::get('/sub-category/store', 'FrontEnd\StoreController@subCategoryStore')->name('sub-category-store');
+	Route::get('/sub-category-store/{id}', 'FrontEnd\StoreController@subCategoryStore');
 	Route::get('/store-details', 'FrontEnd\StoreController@storeDetails')->name('store-details');
 	Route::get('/store-product-details', 'FrontEnd\StoreController@storeProductDetails')->name('store-product-details');
 	Route::get('/store-cart', 'FrontEnd\StoreController@storeCart')->name('store-cart');
 	Route::get('/store-place-order', 'FrontEnd\StoreController@storePlaceOrder')->name('store-place-order');
 
+	// Api Route for Store
 
 });
 
