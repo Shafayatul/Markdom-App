@@ -28,7 +28,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/order-notification','OrdersController@orderNotification')->name('order-notification');
 
 	Route::get('/worker', 'FrontEnd\WorkerController@index')->name('worker');
-	Route::get('/sub-category/worker', 'FrontEnd\WorkerController@subCategoryWorker')->name('sub-category-worker');
+	Route::get('/sub-category-worker/{id}', 'FrontEnd\WorkerController@subCategoryWorker');
 	Route::get('/sub-sub-category/worker', 'FrontEnd\WorkerController@subSubCategoryWorker')->name('sub-sub-category-worker');
 	Route::get('/worker-details', 'FrontEnd\WorkerController@workerDetails')->name('worker-details');
 	Route::get('/worker-service-delivery', 'FrontEnd\WorkerController@workerServiceDelivery')->name('worker-service-delivery');

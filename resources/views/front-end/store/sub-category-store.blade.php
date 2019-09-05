@@ -10,13 +10,13 @@
       <div class="slider-area slider">
         <div class="sliding-div">
           <div class="sliding-category-box">
-            <span class="sliding-category-name">All</span>
+            <a href="#" class="sliding-category-box-a"> <span class="sliding-category-name">All</span> </a>
           </div>
         </div>
         @foreach ($subCategories as $subCategory)
           <div class="sliding-div">
             <div class="sliding-category-box">
-              <span class="sliding-category-name">{{ $subCategory->name }}</span>
+              <a href="#" class="sliding-category-box-a">  <span class="sliding-category-name">{{ $subCategory->name }}</span> </a>
             </div>
           </div>
         @endforeach

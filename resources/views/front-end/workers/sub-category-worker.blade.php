@@ -10,34 +10,16 @@
       <div class="slider-area slider">
           <div class="sliding-div">
             <div class="sliding-category-box">
-              <span class="sliding-category-name">All</span>
+              <a href="#" class="sliding-category-box-a"> <span class="sliding-category-name">All</span> </a>
             </div>
           </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Per Marker</span>
+          @foreach ($subCategories as $subCategory)
+            <div class="sliding-div">
+              <div class="sliding-category-box">
+                <a href="#" class="sliding-category-box-a"> <span class="sliding-category-name">{{ $subCategory->name }}</span> </a>
+              </div>
             </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Restaurants</span>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Gifts</span>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Workers</span>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Gifts</span>
-            </div>
-          </div>
+          @endforeach
       </div>
     </div>
     <div class="rectangle-div">

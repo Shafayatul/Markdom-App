@@ -8,66 +8,18 @@
   <div class="container">
     <div class="sliding-category">
       <div class="slider-area slider">
+        @foreach ($categories as $single_category)
           <div class="sliding-div">
-            <a href="{{ route('sub-category-worker') }}" class="sliding-div-a">
+            <a href="{{ url('sub-category-worker/'.$single_category->id) }}" class="sliding-div-a" >
               <div class="sliding-category-box shadow">
                 <div class="sliding-category-img">
-                  <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
+                  <img src="{{ env('MAIN_HOST_URL').$single_category->image }}" alt="">
                 </div>
               </div>
-              <p class="sliding-category-name">Muhammad</p>
+              <p class="sliding-category-name">{{ $single_category->name }}</p>
             </a>
           </div>
-          <div class="sliding-div">
-            <a href="{{ route('sub-category-worker') }}" class="sliding-div-a">
-              <div class="sliding-category-box shadow">
-                <div class="sliding-category-img">
-                  <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-                </div>
-              </div>
-              <p class="sliding-category-name">Sharafat</p>
-            </a>
-          </div>
-          <div class="sliding-div">
-            <a href="{{ route('sub-category-worker') }}" class="sliding-div-a">
-              <div class="sliding-category-box shadow">
-                <div class="sliding-category-img">
-                  <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-                </div>
-              </div>
-              <p class="sliding-category-name">Hossain</p>
-            </a>
-          </div>
-          <div class="sliding-div">
-            <a href="{{ route('sub-category-worker') }}" class="sliding-div-a">
-              <div class="sliding-category-box shadow">
-                <div class="sliding-category-img">
-                  <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-                </div>
-              </div>
-              <p class="sliding-category-name">Sohan</p>
-            </a>
-          </div>
-          <div class="sliding-div">
-            <a href="{{ route('sub-category-worker') }}" class="sliding-div-a">
-              <div class="sliding-category-box shadow">
-                <div class="sliding-category-img">
-                  <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-                </div>
-              </div>
-              <p class="sliding-category-name">Shayafat</p>
-            </a>
-          </div>
-          <div class="sliding-div">
-            <a href="{{ route('sub-category-worker') }}" class="sliding-div-a">
-              <div class="sliding-category-box shadow">
-                <div class="sliding-category-img">
-                  <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-                </div>
-              </div>
-              <p class="sliding-category-name">Haque</p>
-            </a>
-          </div>
+        @endforeach
       </div>
     </div>
     <div class="rectangle-div">
