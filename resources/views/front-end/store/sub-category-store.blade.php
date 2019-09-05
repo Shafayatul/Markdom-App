@@ -8,36 +8,18 @@
   <div class="container">
     <div class="sliding-category">
       <div class="slider-area slider">
+        <div class="sliding-div">
+          <div class="sliding-category-box">
+            <span class="sliding-category-name">All</span>
+          </div>
+        </div>
+        @foreach ($subCategories as $subCategory)
           <div class="sliding-div">
             <div class="sliding-category-box">
-              <span class="sliding-category-name">All</span>
+              <span class="sliding-category-name">{{ $subCategory->name }}</span>
             </div>
           </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Per Marker</span>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Restaurants</span>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Gifts</span>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Restaurants</span>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Gifts</span>
-            </div>
-          </div>
+        @endforeach
       </div>
     </div>
     <div class="rectangle-div">
@@ -134,7 +116,7 @@
 
 @section('front-additional-js')
 <script type="text/javascript">
-  alert("{{ $id }}");
+
   if ($(window).width() < 480 ) {
     $(".slider-area").slick({
         dots: false,

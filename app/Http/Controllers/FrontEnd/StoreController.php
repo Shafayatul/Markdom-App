@@ -33,7 +33,11 @@ class StoreController extends Controller
 
     public function subCategoryStore($id)
     {
-      return view('front-end.store.sub-category-store', compact('id'));
+      $url_category = env('MAIN_HOST_URL').'api/get-subcategories-by-category/'.$id;
+      $method_category = 'GET';
+      $subCategories = $this->callApi($method_category, $url_category);
+
+      return view('front-end.store.sub-category-store', compact('subCategories'));
     }
 
     public function storeDetails()

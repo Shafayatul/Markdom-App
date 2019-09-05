@@ -9,6 +9,7 @@ use App\Product;
 
 class StoresController extends Controller
 {
+
     public function get_stores_by_subcategory_id($id)
     {
     	$stores = Store::where('sub_category_id', $id)->latest()->get();

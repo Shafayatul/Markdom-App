@@ -44,7 +44,9 @@ Stores
                                     <td>
                                         <img src="{{ asset($item->preview_image) }}" alt="" style="width: 100px; height: 100px;">
                                     </td>
-                                    <td>{{ $subcategories[$item->sub_category_id] }}</td>
+                                    @isset($subcategories[$item->sub_category_id])
+                                      <td>{{ $subcategories[$item->sub_category_id] }}</td>
+                                    @endisset
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->name_arabic }}</td>
                                     <td>
@@ -70,7 +72,7 @@ Stores
                         </table>
                         <div class="pagination-wrapper"> {!! $stores->appends(['search' => Request::get('search')])->render() !!} </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
