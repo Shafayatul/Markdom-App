@@ -25,7 +25,7 @@ Subsubcategories
                     </a>
                     <br/>
                     <br/>
-                    
+
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>
@@ -41,7 +41,9 @@ Subsubcategories
                             @foreach($subsubcategories as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $subcategories[$item->sub_category_id] }}</td>
+                                    @isset($subcategories[$item->sub_category_id])
+                                      <td>{{ $subcategories[$item->sub_category_id] }}</td>
+                                    @endisset
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->name_arabic }}</td>
                                     <td>
@@ -66,7 +68,7 @@ Subsubcategories
                         </table>
                         <div class="pagination-wrapper"> {!! $subsubcategories->appends(['search' => Request::get('search')])->render() !!} </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

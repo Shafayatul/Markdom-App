@@ -44,8 +44,12 @@ class WorkerController extends Controller
       return view('front-end.workers.worker-details');
     }
 
-    public function subSubCategoryWorker()
+    public function subSubCategoryWorker($id)
     {
+      $url_sub_category = env('MAIN_HOST_URL').'api/get-sub-subcategories-by-sub-category/'.$id;
+      $method_sub_category = 'GET';
+      $subSubCategories = $this->callApi($method_sub_category, $url_sub_category);
+      dd($subSubCategories);
       return view('front-end.workers.sub-sub-category-worker');
     }
 
