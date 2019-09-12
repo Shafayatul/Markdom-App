@@ -59,10 +59,10 @@
             <div class="name-location-div">
                 @if(app()->getLocale() == 'en')
                   <span class="name">{{ $store->name }}</span>
-                  {{-- <span class="location">{{ $store->location }}</span> --}}
+                  <span class="location">{{ $store->location }}</span>
                 @else
                   <span class="name">{{ $store->name_arabic }}</span>
-                  {{-- <span class="location">{{ $store->location_arabic }}</span> --}}
+                  <span class="location">{{ $store->arabic_location }}</span>
                 @endif
 
             </div>
