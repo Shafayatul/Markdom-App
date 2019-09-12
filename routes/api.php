@@ -30,6 +30,7 @@ Route::get('get-subcategories-by-category/{id}', 'Api\CategoriesController@get_s
 
 Route::get('get-stores-by-subcategory/{id}', 'Api\StoresController@get_stores_by_subcategory_id');
 Route::get('get-store-detail/{id}', 'Api\StoresController@get_store_detail');
+Route::get('get-store-by-category/{category_id}', 'Api\StoresController@get_stores_by_category_id');
 
 Route::get('get-workinghours/{id}/{date}', 'Api\WorkingHoursController@get_workinghours_by_store_id_and_date');
 Route::get('get-product-by-store/{id}', 'Api\StoresController@get_product_by_store_id');

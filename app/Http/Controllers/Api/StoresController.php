@@ -27,4 +27,10 @@ class StoresController extends Controller
     	$products = Product::where('store_id', $id)->latest()->get();
     	return response()->json($products);
     }
+
+    public function get_stores_by_category_id($id)
+    {
+        $stores = Store::where('category_id', $id)->get();
+        return response()->json($stores);
+    }
 }
