@@ -46,8 +46,20 @@ Store {{ $store->id }}
                                         <td>{{ $store->id }}</td>
                                     </tr>
                                     <tr>
+                                        <th> Category </th>
+                                        <td>
+                                            @isset($categories[$store->category_id]) 
+                                                {{ $categories[$store->category_id] }}
+                                            @endisset 
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th> Sub Category </th>
-                                        <td> {{ $subcategories[$store->sub_category_id] }} </td>
+                                        <td>
+                                            @isset($subcategories[$store->sub_category_id]) 
+                                                {{ $subcategories[$store->sub_category_id] }} 
+                                            @endisset
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th> Name </th>

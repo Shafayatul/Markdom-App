@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Store;
 use App\SubCategory;
+use App\Category;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -37,7 +38,8 @@ class StoresController extends Controller
             $stores = Store::latest()->paginate($perPage);
         }
         $subcategories = SubCategory::pluck('name', 'id');
-        return view('stores.index', compact('stores', 'subcategories'));
+        $categories = Category::pluck('name', 'id');
+        return view('stores.index', compact('stores', 'subcategories', 'categories'));
     }
 
     /**
@@ -48,7 +50,8 @@ class StoresController extends Controller
     public function create()
     {
         $subcategories = SubCategory::pluck('name', 'id');
-        return view('stores.create', compact('subcategories'));
+        $categories = Category::pluck('name', 'id');
+        return view('stores.create', compact('subcategories', 'categories'));
     }
 
     /**
@@ -87,6 +90,7 @@ class StoresController extends Controller
         
         $store                  = new Store();
         $store->sub_category_id = $request->sub_category_id;
+        $store->category_id     = $request->category_id;
         $store->name            = $request->name;
         $store->name_arabic     = $request->name_arabic;
         $store->description     = $request->description;
@@ -118,7 +122,8 @@ class StoresController extends Controller
     {
         $store = Store::findOrFail($id);
         $subcategories = SubCategory::pluck('name', 'id');
-        return view('stores.show', compact('store', 'subcategories'));
+        $categories = Category::pluck('name', 'id');
+        return view('stores.show', compact('store', 'subcategories', 'categories'));
     }
 
     /**
@@ -132,8 +137,8 @@ class StoresController extends Controller
     {
         $subcategories = SubCategory::pluck('name', 'id');
         $store = Store::findOrFail($id);
-
-        return view('stores.edit', compact('store', 'subcategories'));
+        $categories = Category::pluck('name', 'id');
+        return view('stores.edit', compact('store', 'subcategories', 'categories'));
     }
 
     /**
@@ -184,6 +189,7 @@ class StoresController extends Controller
         }
         
         $store->sub_category_id = $request->sub_category_id;
+        $store->category_id     = $request->category_id;
         $store->name            = $request->name;
         $store->name_arabic     = $request->name_arabic;
         $store->description     = $request->description;

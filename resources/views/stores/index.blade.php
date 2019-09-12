@@ -31,6 +31,7 @@ Stores
                                 <tr>
                                     <th>#</th>
                                     <th>Image</th>
+                                    <th>Category</th>
                                     <th>Sub Category</th>
                                     <th>Name</th>
                                     <th>Name Arabic</th>
@@ -44,6 +45,9 @@ Stores
                                     <td>
                                         <img src="{{ asset($item->preview_image) }}" alt="" style="width: 100px; height: 100px;">
                                     </td>
+                                    @isset($categories[$item->category_id])
+                                      <td>{{ $categories[$item->category_id] }}</td>
+                                    @endisset
                                     @isset($subcategories[$item->sub_category_id])
                                       <td>{{ $subcategories[$item->sub_category_id] }}</td>
                                     @endisset
