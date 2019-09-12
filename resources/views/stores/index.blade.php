@@ -45,12 +45,16 @@ Stores
                                     <td>
                                         <img src="{{ asset($item->preview_image) }}" alt="" style="width: 100px; height: 100px;">
                                     </td>
-                                    @isset($categories[$item->category_id])
-                                      <td>{{ $categories[$item->category_id] }}</td>
-                                    @endisset
-                                    @isset($subcategories[$item->sub_category_id])
-                                      <td>{{ $subcategories[$item->sub_category_id] }}</td>
-                                    @endisset
+                                    <td>
+                                        @isset($categories[$item->category_id])
+                                          {{ $categories[$item->category_id] }}
+                                        @endisset
+                                    </td>
+                                    <td>
+                                        @isset($subcategories[$item->sub_category_id])
+                                          {{ $subcategories[$item->sub_category_id] }}
+                                        @endisset
+                                    </td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->name_arabic }}</td>
                                     <td>

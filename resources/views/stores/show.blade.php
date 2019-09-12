@@ -74,6 +74,18 @@ Store {{ $store->id }}
                                         <td> {{ $store->description }} </td>
                                     </tr>
                                     <tr>
+                                        <th> Arabic Description </th>
+                                        <td> {{ $store->arabic_description }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Location</th>
+                                        <td>{{ $store->location }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Arabic Location</th>
+                                        <td>{{ $store->arabic_location }}</td>
+                                    </tr>
+                                    <tr>
                                         <th> Latitude </th>
                                         <td> {{ $store->lat }} </td>
                                     </tr>

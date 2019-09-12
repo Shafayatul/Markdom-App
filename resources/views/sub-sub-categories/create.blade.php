@@ -48,7 +48,6 @@ Create Sub Sub Category
     $(document).ready(function(){
         $("#module_id").change(function(){
             var module_id = $("#module_id").val();
-            alert(module_id);
             if(module_id){
 
                 $.ajax({
