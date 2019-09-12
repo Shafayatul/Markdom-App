@@ -28,9 +28,15 @@ class RestaurantsController extends Controller
       return view('front-end.restaurant.sub-category-restaurant', compact('sub_categories', 'stores'));
     }
 
-    public function restaurantDetails()
+    public function restaurantDetails($id)
     {
-      return view('front-end.restaurant.restaurant-details');
+      $url    = env('MAIN_HOST_URL').'api/get-store-detail/'.$id;
+      $method = 'GET';
+      $store  = $this->callApi($method, $url);
+
+      $multiple_images = explode(',', $store->multiple_images);
+
+      return view('front-end.restaurant.restaurant-details', compact('store', 'multiple_images'));
     }
 
     public function callApi($method, $url, $parameters=[], $headers=[]){

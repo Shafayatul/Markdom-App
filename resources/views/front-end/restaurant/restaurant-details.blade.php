@@ -2,7 +2,6 @@
 @section('front-additional-css')
 <link rel="stylesheet" href="{{ asset('front-end-assets/custom-css/restaurant-details.css') }}">
 @endsection
-
 @section('main-content')
 <div class="restaurant text-center">
   <div class="container">
@@ -11,7 +10,7 @@
       <span class="store-rate-title">Store Rate</span>
       <span class="store-rating">
         @for ($i=0; $i < 3; $i++)
-          <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
         @endfor
         <i class="fa fa-star text-success"></i>
         <i class="fa fa-star text-success"></i>
@@ -20,18 +19,20 @@
     <div class="restaurant-details-div">
       <h1 class="text-left">Restaurant Details</h1>
       <div class="restaurant-details-mother">
+        @foreach($multiple_images as $multiple_image)
         <div class="restaurant-details-box">
-          <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
+          <img src="{{ asset($multiple_image) }}" alt="">
         </div>
-        <div class="restaurant-details-box">
-          <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
-        </div>
-        <div class="restaurant-details-box">
-          <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
-        </div>
+        @endforeach
       </div>
       <div class="store-location">
-        <p class="text-left">Store location (select another location)</p>
+        <p class="text-left">
+          @if(app()->getLocale() == 'en')
+            {{ $store->location }}
+          @else
+            {{ $store->location_arabic }}
+          @endif
+        </p>
         <p class="text-left">2.05 Km</p>
       </div>
       <div class="store-status text-left">
@@ -44,9 +45,7 @@
   </div>
 </div>
 @endsection
-
 @section('front-additional-js')
 <script type="text/javascript">
-
 </script>
 @endsection

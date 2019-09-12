@@ -61,8 +61,8 @@
                   <span class="name">{{ $store->name }}</span>
                   {{-- <span class="location">{{ $store->location }}</span> --}}
                 @else
-                  <span class="name">{{ $store->name }}</span>
-                  {{-- <span class="location">{{ $store->location }}</span> --}}
+                  <span class="name">{{ $store->name_arabic }}</span>
+                  {{-- <span class="location">{{ $store->location_arabic }}</span> --}}
                 @endif
 
             </div>
