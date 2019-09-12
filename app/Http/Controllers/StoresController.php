@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Store;
 use App\SubCategory;
 use App\Category;
+use App\Module;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -51,7 +52,8 @@ class StoresController extends Controller
     {
         $subcategories = SubCategory::pluck('name', 'id');
         $categories = Category::pluck('name', 'id');
-        return view('stores.create', compact('subcategories', 'categories'));
+        $modules = Module::pluck('name', 'id');
+        return view('stores.create', compact('subcategories', 'categories', 'modules'));
     }
 
     /**
@@ -88,24 +90,27 @@ class StoresController extends Controller
             $data[]  = null;
         }
         
-        $store                  = new Store();
-        $store->sub_category_id = $request->sub_category_id;
-        $store->category_id     = $request->category_id;
-        $store->name            = $request->name;
-        $store->name_arabic     = $request->name_arabic;
-        $store->description     = $request->description;
-        $store->lat             = $request->lat;
-        $store->lan             = $request->lan;
-        $store->status          = $request->status;
-        $store->store_owner_id  = Auth::user()->id;
-        $store->preview_image   = $preview_image_url;
+        $store                          = new Store();
+        $store->sub_category_id         = $request->sub_category_id;
+        $store->category_id             = $request->category_id;
+        $store->name                    = $request->name;
+        $store->name_arabic             = $request->name_arabic;
+        $store->description             = $request->description;
+        $store->arabic_description      = $request->arabic_description;
+        $store->lat                     = $request->lat;
+        $store->lan                     = $request->lan;
+        $store->status                  = $request->status;
+        $store->store_owner_id          = Auth::user()->id;
+        $store->preview_image           = $preview_image_url;
         if($data[0] == null){
             $data_img = null;
         }else{
             $data_img = implode(',', $data);
         }
         // dd($data_img);
-        $store->multiple_images = $data_img;
+        $store->multiple_images         = $data_img;
+        $store->location                = $request->location;
+        $store->arabic_location         = $request->arabic_location;
         $store->save();
 
         return redirect('stores')->with('success', 'Store added!');
@@ -188,22 +193,27 @@ class StoresController extends Controller
             $data[]  = $store->multiple_images;
         }
         
-        $store->sub_category_id = $request->sub_category_id;
-        $store->category_id     = $request->category_id;
-        $store->name            = $request->name;
-        $store->name_arabic     = $request->name_arabic;
-        $store->description     = $request->description;
-        $store->lat             = $request->lat;
-        $store->lan             = $request->lan;
-        $store->status          = $request->status;
-        $store->store_owner_id  = Auth::user()->id;
-        $store->preview_image   = $preview_image_url;
+
+        $store->sub_category_id         = $store->sub_category_id;
+        $store->category_id             = $store->category_id;
+        $store->name                    = $request->name;
+        $store->name_arabic             = $request->name_arabic;
+        $store->description             = $request->description;
+        $store->arabic_description      = $request->arabic_description;
+        $store->lat                     = $request->lat;
+        $store->lan                     = $request->lan;
+        $store->status                  = $request->status;
+        $store->store_owner_id          = Auth::user()->id;
+        $store->preview_image           = $preview_image_url;
         if($data[0] == null){
             $data_img = null;
         }else{
             $data_img = implode(',', $data);
         }
-        $store->multiple_images = $data_img;
+        // dd($data_img);
+        $store->multiple_images         = $data_img;
+        $store->location                = $request->location;
+        $store->arabic_location         = $request->arabic_location;
         $store->save();
 
         return redirect('stores')->with('success', 'Store updated!');
