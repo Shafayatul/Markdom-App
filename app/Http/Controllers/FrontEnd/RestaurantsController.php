@@ -9,7 +9,10 @@ class RestaurantsController extends Controller
 {
     public function index()
     {
-      return view('front-end.restaurant.index');
+      $url        = env('MAIN_HOST_URL').'api/get-categories-by-module/1';
+      $method     = 'GET';
+      $categories = $this->callApi($method, $url);
+      return view('front-end.restaurant.index', compact('categories'));
     }
 
     public function subCategoryRestaurant()
@@ -21,4 +24,15 @@ class RestaurantsController extends Controller
     {
       return view('front-end.restaurant.restaurant-details');
     }
+
+    public function callApi($method, $url, $parameters=[], $headers=[]){
+      $client = new \GuzzleHttp\Client();
+      $response = $client->request($method, $url, [
+        'form_params' => $parameters,
+        'headers'     => $headers
+      ]);
+      $return_value       = json_decode($response->getBody());
+      return $return_value;
+    }
+
 }

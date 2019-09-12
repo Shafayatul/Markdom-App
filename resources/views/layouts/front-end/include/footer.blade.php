@@ -55,7 +55,7 @@
   <div class="footer-bottom text-center">
   <div class="container">
     <div class="footer-logo">
-      <a href="index.html"><span>Re</span>sale</a>
+      <a href="{{ url('/') }}"><span>Mkh</span>dom</a>
     </div>
     <div class="footer-social-icons">
       <ul>

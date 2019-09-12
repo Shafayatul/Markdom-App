@@ -21,7 +21,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/chat', 'FrontEnd\FrontEndController@chat')->name('chat');
 
 	Route::get('/restaurant', 'FrontEnd\RestaurantsController@index')->name('restaurant');
-	Route::get('/sub-category/restaurant', 'FrontEnd\RestaurantsController@subCategoryRestaurant')->name('sub-category-restaurant');
+	Route::get('/sub-category/restaurant/{id}', 'FrontEnd\RestaurantsController@subCategoryRestaurant')->name('sub-category-restaurant');
 	Route::get('/restaurant-details', 'FrontEnd\RestaurantsController@restaurantDetails')->name('restaurant-details');
 
 	Route::get('/order-details','OrdersController@orderDetails')->name('order-details');
