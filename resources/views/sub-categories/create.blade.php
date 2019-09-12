@@ -43,3 +43,33 @@ Create SubCategory
     </div>
 </div>
 @endsection
+@section('footer-script')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#module_id").change(function(){
+            var module_id = $(this).val();
+            if(module_id){
+
+                $.ajax({
+                    type:"GET",
+                    url:"{{url('get-categories-list')}}?module_id="+module_id,
+                    success:function(res){
+                        if(res){
+                            $("#category_id").empty();
+                            $("#category_id").append('<option>Select Category</option>');
+                            $.each(res,function(key,value){
+                                $("#category_id").append('<option value="'+key+'">'+value+'</option>');
+                            });
+
+                        }else{
+                        $("#category_id").empty();
+                        }
+                    }
+                });
+            }else{
+                $("#category_id").empty();
+            }
+        });
+    });
+</script>
+@endsection

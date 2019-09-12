@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\SubSubCategory;
 use App\SubCategory;
+use App\Module;
 use Illuminate\Http\Request;
 
 class SubSubCategoriesController extends Controller
@@ -31,6 +32,7 @@ class SubSubCategoriesController extends Controller
             $subsubcategories = SubSubCategory::latest()->paginate($perPage);
         }
         $subcategories = SubCategory::pluck('name', 'id');
+        
         return view('sub-sub-categories.index', compact('subsubcategories', 'subcategories'));
     }
 
@@ -42,7 +44,8 @@ class SubSubCategoriesController extends Controller
     public function create()
     {
         $subcategories = SubCategory::pluck('name', 'id');
-        return view('sub-sub-categories.create', compact('subcategories'));
+        $modules = Module::pluck('name', 'id');
+        return view('sub-sub-categories.create', compact('subcategories', 'modules'));
     }
 
     /**

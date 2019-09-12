@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 
 use App\Offer;
 use App\Module;
+use App\Store;
 use Illuminate\Http\Request;
+use Auth;
 
 class OffersController extends Controller
 {
@@ -33,7 +35,9 @@ class OffersController extends Controller
             $offers = Offer::latest()->paginate($perPage);
         }
         $modules = Module::pluck('name', 'id');
-        return view('offers.index', compact('offers', 'modules'));
+        $id = Auth::id();
+        $stores     = Store::where('store_owner_id', $id)->pluck('name', 'id');
+        return view('offers.index', compact('offers', 'modules', 'stores'));
     }
 
     /**
@@ -43,8 +47,10 @@ class OffersController extends Controller
      */
     public function create()
     {
-        $modules = Module::pluck('name', 'id');
-        return view('offers.create', compact('modules'));
+        $modules    = Module::pluck('name', 'id');
+        $id = Auth::id();
+        $stores     = Store::where('store_owner_id', $id)->pluck('name', 'id');
+        return view('offers.create', compact('modules', 'stores'));
     }
 
     /**
@@ -74,6 +80,7 @@ class OffersController extends Controller
         $offer->percentage      = $request->percentage;
         $offer->image           = $image_url;
         $offer->module_id       = $request->module_id;
+        $offer->store_id        = $request->store_id;
         $offer->save();
 
         return redirect('offers')->with('success', 'Offer added!');
@@ -104,7 +111,9 @@ class OffersController extends Controller
     {
         $offer = Offer::findOrFail($id);
         $modules = Module::pluck('name', 'id');
-        return view('offers.edit', compact('offer', 'modules'));
+        $id = Auth::id();
+        $stores     = Store::where('store_owner_id', $id)->pluck('name', 'id');
+        return view('offers.edit', compact('offer', 'modules', 'stores'));
     }
 
     /**
@@ -138,6 +147,7 @@ class OffersController extends Controller
         $offer->percentage      = $request->percentage;
         $offer->image           = $image_url;
         $offer->module_id       = $request->module_id;
+        $offer->store_id        = $request->store_id;
         $offer->save();
 
         return redirect('offers')->with('success', 'Offer updated!');

@@ -1,17 +1,16 @@
 <div class="row">
     <div class="col-md-6">
+        <div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">
+            {!! Form::label('category_id', 'Category', ['class' => 'control-label']) !!}
+            {!! Form::select('category_id', $categories, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+            {!! $errors->first('category_id', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
+    <div class="col-md-6">
         <div class="form-group {{ $errors->has('sub_category_id') ? 'has-error' : ''}}">
             {!! Form::label('sub_category_id', 'Sub Category', ['class' => 'control-label']) !!}
             {!! Form::select('sub_category_id', $subcategories, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
             {!! $errors->first('sub_category_id', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
-    <div class="col-md-6">
-
-        <div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
-            {!! Form::label('status', 'Status', ['class' => 'control-label']) !!}
-            {!! Form::select('status', (['1'=>'Active', '0'=>'Deactive']), null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
-            {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
 </div>
@@ -51,11 +50,18 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div class="form-group {{ $errors->has('description') ? 'has-error' : ''}}">
             {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}
             {!! Form::textarea('description', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'rows' => '4', 'cols' => '5'] : ['class' => 'form-control', 'rows' => '4', 'cols' => '5']) !!}
             {!! $errors->first('description', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
+            {!! Form::label('status', 'Status', ['class' => 'control-label']) !!}
+            {!! Form::select('status', (['1'=>'Active', '0'=>'Deactive']), null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+            {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
 </div>
