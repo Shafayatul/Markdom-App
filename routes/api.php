@@ -42,6 +42,8 @@ Route::get('get-product-by-sub-sub-category/{id}', 'Api\ProductsController@get_p
 
 Route::get('get-service-type-price', 'Api\WorkerServiceCostsController@get_service_type_price');
 
+Route::get('get-review-by-store/{store_id}', 'Api\ReviewsController@get_review_by_store_id');
+
 
 
 Route::group(['middleware' => ['auth:api']], function() {
