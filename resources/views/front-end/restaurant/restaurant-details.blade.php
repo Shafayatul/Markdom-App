@@ -24,6 +24,13 @@
     </div>
     <div class="restaurant-details-div">
       <h1 class="text-left">Restaurant Details</h1>
+      <p>
+        @if(app()->getLocale() == 'en')
+          {{ $store->description }}
+        @else
+          {{ $store->arabic_description }}
+        @endif
+      </p>
       <div class="restaurant-details-mother">
         @foreach($multiple_images as $multiple_image)
         <div class="restaurant-details-box">
