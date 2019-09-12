@@ -13,18 +13,26 @@
               <a href="#" class="sliding-category-box-a"> <span class="sliding-category-name">All</span> </a>
             </div>
           </div>
+          @foreach($sub_categories as $sub_category)
           <div class="sliding-div">
+            <div class="sliding-category-box">
+              <span class="sliding-category-name">
+                @if(app()->getLocale() == 'en')
+                  {{ $sub_category->name }}
+                @else
+                  {{ $sub_category->name_arabic }}
+                @endif
+              </span>
+            </div>
+          </div>
+          @endforeach
+{{--           <div class="sliding-div">
             <div class="sliding-category-box">
               <a href="#" class="sliding-category-box-a"> <span class="sliding-category-name">Per Marker</span> </a>
             </div>
           </div>
           <div class="sliding-div">
             <div class="sliding-category-box">
-              <span class="sliding-category-name">Restaurants</span>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
               <span class="sliding-category-name">Gifts</span>
             </div>
           </div>
@@ -37,7 +45,7 @@
             <div class="sliding-category-box">
               <span class="sliding-category-name">Gifts</span>
             </div>
-          </div>
+          </div> --}}
       </div>
     </div>
     <div class="rectangle-div">
