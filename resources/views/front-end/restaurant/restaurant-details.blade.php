@@ -34,9 +34,9 @@
       <div class="store-location">
         <p class="text-left">
           @if(app()->getLocale() == 'en')
-            {{-- {{ $store->location }} --}}
+            {{ $store->location }}
           @else
-            {{-- {{ $store->location_arabic }} --}}
+            {{ $store->arabic_location }}
           @endif
         </p>
         <p class="text-left">2.05 Km</p>
