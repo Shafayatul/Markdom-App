@@ -1,7 +1,7 @@
 <div class="header">
   <div class="container">
     <div class="logo">
-      <a href="index.html"><span>Re</span>sale</a>
+      <a href="{{ url('/') }}"><span>Mkh</span>dom</a>
     </div>
     <div class="header-right">
     {{-- <a class="account" href="login.html">Restorant</a>
