@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\SubCategory;
 use App\Category;
+use App\Module;
 use Illuminate\Http\Request;
 
 class SubCategoriesController extends Controller
@@ -42,7 +43,8 @@ class SubCategoriesController extends Controller
     public function create()
     {
         $category = Category::pluck('name','id');
-        return view('sub-categories.create',compact('category'));
+        $modules = Module::pluck('name', 'id');
+        return view('sub-categories.create',compact('category', 'modules'));
     }
 
     /**
@@ -100,8 +102,8 @@ class SubCategoriesController extends Controller
     {
         $subcategory = SubCategory::findOrFail($id);
         $category = Category::pluck('name','id');
-
-        return view('sub-categories.edit', compact('subcategory','category'));
+        $modules = Module::pluck('name', 'id');
+        return view('sub-categories.edit', compact('subcategory','category', 'modules'));
     }
 
     /**

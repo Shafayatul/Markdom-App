@@ -33,6 +33,7 @@ Offers
                                 <tr>
                                     <th>#</th>
                                     <th>Module</th>
+                                    <th>Store</th>
                                     <th>Title</th>
                                     <th>Title Arabic</th>
                                     <th>Type</th>
@@ -46,6 +47,11 @@ Offers
                                     <td>
                                         @if(isset($modules[$item->module_id]))
                                             {{ $modules[$item->module_id] }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(isset($stores[$item->store_id]))
+                                            {{ $stores[$item->store_id] }}
                                         @endif
                                     </td>
                                     <td>{{ $item->title }}</td>

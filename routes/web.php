@@ -55,6 +55,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 
 	Route::resource('categories', 'CategoriesController');
+	Route::get('get-categories-list', 'AjaxController@getCategoryList');
+	Route::get('get-subcategories-list', 'AjaxController@getSubCategoryList');
 	Route::resource('sub-categories', 'SubCategoriesController');
 	Route::resource('sub-sub-categories', 'SubSubCategoriesController');
 	Route::resource('stores', 'StoresController');

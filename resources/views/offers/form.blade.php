@@ -3,6 +3,12 @@
     {!! Form::select('module_id', $modules, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
     {!! $errors->first('module_id', '<p class="help-block">:message</p>') !!}
 </div>
+<div class="form-group {{ $errors->has('store_id') ? 'has-error' : ''}}">
+    {!! Form::label('store_id', 'Store', ['class' => 'control-label']) !!}
+    {!! Form::select('store_id', $stores, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+    {!! $errors->first('store_id', '<p class="help-block">:message</p>') !!}
+</div>
+
 <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
     {!! Form::label('title', 'Title', ['class' => 'control-label']) !!}
     {!! Form::text('title', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
