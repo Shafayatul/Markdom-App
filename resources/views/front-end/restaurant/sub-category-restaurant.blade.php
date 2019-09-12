@@ -50,7 +50,29 @@
     </div>
     <div class="rectangle-div">
       <div id="grid">
-        <a href="{{ route('restaurant-details') }}" class="rectangle-box-a">
+        @foreach($stores as $store)
+        <a href="{{ route('restaurant-details', ['id' => $store->id]) }}" class="rectangle-box-a">
+          <div class="rectangle-box shadow">
+            <div class="logo-box">
+              <img src="{{ asset($store->preview_image) }}" alt="">
+            </div>
+            <div class="name-location-div">
+                @if(app()->getLocale() == 'en')
+                  <span class="name">{{ $store->name }}</span>
+                  {{-- <span class="location">{{ $store->location }}</span> --}}
+                @else
+                  <span class="name">{{ $store->name }}</span>
+                  {{-- <span class="location">{{ $store->location }}</span> --}}
+                @endif
+
+            </div>
+            <div class="kilometer-div">
+              <span class="kilometer">2.05 KM</span>
+            </div>
+          </div>
+        </a>
+        @endforeach
+{{--         <a href="{{ route('restaurant-details') }}" class="rectangle-box-a">
           <div class="rectangle-box shadow">
             <div class="logo-box">
               <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
@@ -119,21 +141,7 @@
               <span class="kilometer">2.05 KM</span>
             </div>
           </div>
-        </a>
-        <a href="{{ route('restaurant-details') }}" class="rectangle-box-a">
-          <div class="rectangle-box shadow">
-            <div class="logo-box">
-              <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-            </div>
-            <div class="name-location-div">
-              <span class="name">Store Name</span>
-              <span class="location">Store Best Location</span>
-            </div>
-            <div class="kilometer-div">
-              <span class="kilometer">2.05 KM</span>
-            </div>
-          </div>
-        </a>
+        </a> --}}
       </div>
     </div>
   </div>

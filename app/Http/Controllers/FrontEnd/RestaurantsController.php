@@ -20,7 +20,12 @@ class RestaurantsController extends Controller
       $url            = env('MAIN_HOST_URL').'api/get-subcategories-by-category/'.$id;
       $method         = 'GET';
       $sub_categories = $this->callApi($method, $url);
-      return view('front-end.restaurant.sub-category-restaurant', compact('sub_categories'));
+
+      $url    = env('MAIN_HOST_URL').'api/get-store-by-category/'.$id;
+      $method = 'GET';
+      $stores = $this->callApi($method, $url);
+
+      return view('front-end.restaurant.sub-category-restaurant', compact('sub_categories', 'stores'));
     }
 
     public function restaurantDetails()
