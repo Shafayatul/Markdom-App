@@ -6,7 +6,13 @@
 <div class="restaurant text-center">
   <div class="container">
     <div class="restaurant-top-box">
-      <span class="restaurant-name">Restaurant Name</span>
+      <span class="restaurant-name">
+        @if(app()->getLocale() == 'en')
+          {{ $store->name }}
+        @else
+          {{ $store->name_arabic }}
+        @endif
+      </span>
       <span class="store-rate-title">Store Rate</span>
       <span class="store-rating">
         @for ($i=0; $i < 3; $i++)
@@ -28,9 +34,9 @@
       <div class="store-location">
         <p class="text-left">
           @if(app()->getLocale() == 'en')
-            {{ $store->location }}
+            {{-- {{ $store->location }} --}}
           @else
-            {{ $store->location_arabic }}
+            {{-- {{ $store->location_arabic }} --}}
           @endif
         </p>
         <p class="text-left">2.05 Km</p>
