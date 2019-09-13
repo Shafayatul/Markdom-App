@@ -75,6 +75,7 @@ class ProductsController extends Controller
         $product->name                  = $request->name;
         $product->name_arabic           = $request->name_arabic;
         $product->description           = $request->description;
+        $product->description_arabic    = $request->description_arabic;
         $product->preview_image         = $image_url;
         $product->price                 = $request->price;
         $product->save();
@@ -142,6 +143,7 @@ class ProductsController extends Controller
         $product->name                  = $request->name;
         $product->name_arabic           = $request->name_arabic;
         $product->description           = $request->description;
+        $product->description_arabic    = $request->description_arabic;
         $product->preview_image         = $image_url;
         $product->price                 = $request->price;
         $product->save();
