@@ -44,8 +44,11 @@ class RestaurantsController extends Controller
       $method   = 'GET';
       $products = $this->callApi($method, $url);
 
+      $url      = env('MAIN_HOST_URL').'api/get-review-by-store/'.$id;
+      $method   = 'GET';
+      $review   = $this->callApi($method, $url);
 
-      return view('front-end.restaurant.restaurant-details', compact('store', 'products'));
+      return view('front-end.restaurant.restaurant-details', compact('store', 'products', 'review'));
     }
 
 }

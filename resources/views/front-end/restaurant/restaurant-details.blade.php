@@ -15,11 +15,12 @@
       </span>
       <span class="store-rate-title">Store Rate</span>
       <span class="store-rating">
-        @for ($i=0; $i < 3; $i++)
+        @for ($i=0; $i < $review; $i++)
         <i class="fa fa-star"></i>
         @endfor
+        @for ($i=5; $i > $review; $i--)
         <i class="fa fa-star text-success"></i>
-        <i class="fa fa-star text-success"></i>
+        @endfor
       </span>
     </div>
     <div class="restaurant-details-div">
