@@ -60,12 +60,18 @@
         <p class="text-left">2.05 Km</p>
       </div>
       <div class="store-status text-left">
-        <i class="fa fa-circle online"></i>
+
+        @if($is_available)
+          <i class="fa fa-circle online"></i>
+        @else
+          <i class="fa fa-circle offline"></i>
+        @endif
+        
         <span class="store-status-text">
           @if($is_available)
-            @lang('content.Store is Open')
+            @lang('content.store_is_open')
           @else
-            @lang('content.Store is Closed')
+            @lang('content.store_is_closed')
           @endif
         </span>
       </div>
