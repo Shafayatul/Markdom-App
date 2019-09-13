@@ -51,11 +51,8 @@
     <div class="rectangle-div">
       <div id="grid">
         @foreach($stores as $store)
-        <a href="{{ route('restaurant-details', ['id' => $store->id]) }}" class="rectangle-box-a" store-sub-cat-id="{{ $store->sub_category_id }}">
+        <a href="{{ route('restaurant-details', ['id' => $store->id]) }}" class="rectangle-box-a" store-sub-cat-id="{{ $store->sub_category_id }}" style="background-image: url('{{ asset($store->preview_image) }}');">
           <div class="rectangle-box shadow">
-            <div class="logo-box">
-              <img src="{{ asset($store->preview_image) }}" alt="">
-            </div>
             <div class="name-location-div">
                 @if(app()->getLocale() == 'en')
                   <span class="name">{{ $store->name }}</span>
