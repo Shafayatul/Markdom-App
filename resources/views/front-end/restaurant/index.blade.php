@@ -32,30 +32,24 @@
     </div>
     <div class="rectangle-div">
       <div id="grid">
-        <div class="rectangle-box shadow">
-          <span class="title">Store Name</span>
-          <span class="number">150 SR</span>
-        </div>
-        <div class="rectangle-box shadow">
-          <span class="title">Store Name</span>
-          <span class="number">150 SR</span>
-        </div>
-        <div class="rectangle-box shadow">
-          <span class="title">Store Name</span>
-          <span class="number">150 SR</span>
-        </div>
-        <div class="rectangle-box shadow">
-          <span class="title">Store Name</span>
-          <span class="number">150 SR</span>
-        </div>
-        <div class="rectangle-box shadow">
-          <span class="title">Store Name</span>
-          <span class="number">150 SR</span>
-        </div>
-        <div class="rectangle-box shadow">
-          <span class="title">Store Name</span>
-          <span class="number">150 SR</span>
-        </div>
+        @foreach($offers as $offer)
+          <div class="rectangle-box shadow">
+            <span class="title">
+              @if(app()->getLocale() == 'en')
+                {{ $offer->title }}
+              @else
+                {{ $offer->title_arabic }}
+              @endif
+            </span>
+            <span class="number">
+              @if($offer->is_amount == 1)
+                {{ $offer->amount }} SR
+              @else
+                {{ $offer->percentage }}%
+              @endif
+            </span>
+          </div>
+        @endforeach
       </div>
     </div>
   </div>

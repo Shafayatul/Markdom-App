@@ -9,10 +9,16 @@ class RestaurantsController extends Controller
 {
     public function index()
     {
+
       $url        = env('MAIN_HOST_URL').'api/get-categories-by-module/1';
       $method     = 'GET';
       $categories = $this->callApi($method, $url);
-      return view('front-end.restaurant.index', compact('categories'));
+
+      $url        = env('MAIN_HOST_URL').'api/get-offers-by-module/1';
+      $method     = 'GET';
+      $offers     = $this->callApi($method, $url);
+
+      return view('front-end.restaurant.index', compact('categories', 'offers'));
     }
 
     public function subCategoryRestaurant($id)
