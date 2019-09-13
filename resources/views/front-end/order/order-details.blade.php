@@ -8,19 +8,32 @@
 <div class="restaurant text-center">
   <div class="container">
     <div class="order-details-div">
-      <form class="order-details-form" action="" method="post">
+      {{-- <form class="order-details-form" action="" method="post"> --}}
+        <h1>
+          @if(app()->getLocale() == 'en')
+            {{ $product->name }}
+          @else
+            {{ $product->name_arabic }}
+          @endif
+        </h1>
         <p>Order Details</p>
-        <textarea class="text-left" name="message"></textarea>
-        <div class="get-promo-code">
+        <p>
+          @if(app()->getLocale() == 'en')
+            {{ $product->description }}
+          @else
+            {{ $product->description_arabic }}
+          @endif
+        </p>
+        {{-- <div class="get-promo-code">
           <p>Get Promo Code</p>
           <span class="promo-code-input-span">
             <input type="text" name="" value="">
           </span>
           <span class="promo-code-button-span"> <button class="apply-button btn">Apply</button> </span>
-        </div>
+        </div> --}}
         <input type="file" class="custom-file-input">
         <p>Select Delivery Date: <br> <input type="text" id="datepicker"></p>
-      </form>
+      {{-- </form> --}}
     </div>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
