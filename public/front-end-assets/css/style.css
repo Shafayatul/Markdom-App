@@ -25,6 +25,14 @@ input[type="button"],input[type="submit"]{
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
 }
+.hr-line {
+	width: 100%;
+	border-top: .5px solid #f0f0f0;
+	height: 1px;
+	margin: 5px auto;
+	display: block;
+	opacity: 0.75;
+}
 h1,h2,h3,h4,h5,h6{
 	margin:0;
 	font-weight:400;
@@ -187,7 +195,9 @@ li.dropdown-header {
 }
 .header {
     padding: 0px 0;
-    background-color: #FDFDFD;
+    /* background-color: #FDFDFD; */
+		display: block;
+		overflow: hidden;
 }
 .logo {
     float: left;
@@ -4089,14 +4099,19 @@ label {
 		font-size: 45px;
 	}
 	.logo {
-		float: none;
-		width: 100%;
-		text-align: center;
+		/* float: none;
+		width: 100%; */
+		width: 50%;
+		float: left;
+		text-align: left;
 	}
 	.header-right {
-		width: 90%;
+		/* width: 90%;
 		text-align: center;
-		margin: 0 auto;
+		margin: 0 auto; */
+		width: 50%;
+		float: left;
+		text-align: right;
 	}
 	.header {
 		padding: 0px 0 5px;
@@ -4393,7 +4408,10 @@ label {
 }
 @media (max-width: 414px){
 	.header-right {
-		width: 95%;
+		/* width: 95%; */
+		width: 50%;
+		float: left;
+		text-align: right;
 	}
 	.header {
 		padding: 3px 0 5px;
@@ -4530,7 +4548,10 @@ label {
 		font-size: 14px;
 	}
 	.header-right {
-		width: 100%;
+		/* width: 100%; */
+		width: 50%;
+		float: left;
+		text-align: right;
 	}
 	.btn-primary {
 		padding: 0 0 0 12px;

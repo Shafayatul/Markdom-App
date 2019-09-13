@@ -20,37 +20,37 @@
     </div>
     <div class="rectangle-div">
       <div id="grid">
-        <a href="{{ route('sub-sub-category-worker') }}" class="rectangle-box-a">
+        <a href="{{ url('sub-sub-category-worker') }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
           <div class="rectangle-box shadow">
             <span class="title">Sub Category</span>
             <span class="number">150 SR</span>
           </div>
         </a>
-        <a href="{{ route('sub-sub-category-worker') }}" class="rectangle-box-a">
+        <a href="{{ url('sub-sub-category-worker') }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
           <div class="rectangle-box shadow">
             <span class="title">Sub Category</span>
             <span class="number">150 SR</span>
           </div>
         </a>
-        <a href="{{ route('sub-sub-category-worker') }}" class="rectangle-box-a">
+        <a href="{{ url('sub-sub-category-worker') }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
           <div class="rectangle-box shadow">
             <span class="title">Sub Category</span>
             <span class="number">150 SR</span>
           </div>
         </a>
-        <a href="{{ route('sub-sub-category-worker') }}" class="rectangle-box-a">
+        <a href="{{ url('sub-sub-category-worker') }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
           <div class="rectangle-box shadow">
             <span class="title">Sub Category</span>
             <span class="number">150 SR</span>
           </div>
         </a>
-        <a href="{{ route('sub-sub-category-worker') }}" class="rectangle-box-a">
+        <a href="{{ url('sub-sub-category-worker') }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
           <div class="rectangle-box shadow">
             <span class="title">Sub Category</span>
             <span class="number">150 SR</span>
           </div>
         </a>
-        <a href="{{ route('sub-sub-category-worker') }}" class="rectangle-box-a">
+        <a href="{{ url('sub-sub-category-worker') }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
           <div class="rectangle-box shadow">
             <span class="title">Sub Category</span>
             <span class="number">150 SR</span>

@@ -5,8 +5,7 @@
 
 @section('main-content')
 <div class="store text-center">
-    <div class="container">
-        <div class="restaurant-top-box">
+        <div class="restaurant-top-box" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
             <span class="restaurant-name">Store Name</span>
             <span class="store-rate-title">Store Rate</span>
             <span class="store-rating">
@@ -18,7 +17,7 @@
         </div>
         <div class="restaurant-details-div">
             <h1 class="text-left">Store Details</h1>
-            <div class="restaurant-details-mother">
+            {{-- <div class="restaurant-details-mother">
                 <div class="restaurant-details-box">
                     <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
                 </div>
@@ -28,6 +27,56 @@
                 <div class="restaurant-details-box">
                     <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
                 </div>
+            </div> --}}
+
+            <div class="sliding-category">
+              <div class="slider-area slider">
+                  <div class="sliding-div">
+                    <a href="" class="sliding-div-a" >
+                      <div class="sliding-category-box">
+                        <div class="sliding-category-img">
+                          <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="sliding-div">
+                    <a href="" class="sliding-div-a" >
+                      <div class="sliding-category-box">
+                        <div class="sliding-category-img">
+                          <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="sliding-div">
+                    <a href="" class="sliding-div-a" >
+                      <div class="sliding-category-box">
+                        <div class="sliding-category-img">
+                          <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="sliding-div">
+                    <a href="" class="sliding-div-a" >
+                      <div class="sliding-category-box">
+                        <div class="sliding-category-img">
+                          <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="sliding-div">
+                    <a href="" class="sliding-div-a" >
+                      <div class="sliding-category-box">
+                        <div class="sliding-category-img">
+                          <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+              </div>
             </div>
 
             <div class="product-div">
@@ -107,12 +156,35 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>
 @endsection
 
 @section('front-additional-js')
 <script type="text/javascript">
-
+if ($(window).width() < 480 ) {
+  $(".slider-area").slick({
+      dots: false,
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      centerMode: true
+  });
+}else if ($(window).width() < 767) {
+  $(".slider-area").slick({
+      dots: false,
+      infinite: true,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      centerMode: true
+  });
+}else {
+  $(".slider-area").slick({
+      dots: false,
+      infinite: true,
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      centerMode: true
+  });
+}
 </script>
 @endsection

@@ -1,290 +1,208 @@
 @extends('layouts.front-end.master-layout')
-
+@section('front-additional-css')
+  <link rel="stylesheet" href="{{ asset('front-end-assets/custom-css/search-box.css') }}">
+  <link rel="stylesheet" href="{{ asset('front-end-assets/custom-css/new-home.css') }}">
+@endsection
 @section('main-content')
-  @include('layouts.front-end.include.banner')
-  <!-- content-starts-here -->
   <div class="content">
-    <div class="categories">
-      <div class="container">
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-mobile"></i></div>
-                <h4 class="clrchg">Mobiles</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab2">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-laptop"></i></div>
-                <h4 class="clrchg"> Electronics & Appliances</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab3">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-car"></i></div>
-                <h4 class="clrchg">Cars</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab4">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-motorcycle"></i></div>
-                <h4 class="clrchg">Bikes</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab5">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-wheelchair"></i></div>
-                <h4 class="clrchg">Furnitures</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab6">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-paw"></i></div>
-                <h4 class="clrchg">Pets</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab7">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-book"></i></div>
-                <h4 class="clrchg">Books, Sports & Hobbies</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab8">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-asterisk"></i></div>
-                <h4 class="clrchg">Fashion</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab9">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-gamepad"></i></div>
-                <h4 class="clrchg">Kids</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab10">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-shield"></i></div>
-                <h4 class="clrchg">Services</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab11">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-at"></i></div>
-                <h4 class="clrchg">Jobs</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 focus-grid">
-          <a href="categories.html#parentVerticalTab12">
-            <div class="focus-border">
-              <div class="focus-layout">
-                <div class="focus-image"><i class="fa fa-home"></i></div>
-                <h4 class="clrchg">Real Estate</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-    </div>
-    <div class="trending-ads">
-      <div class="container">
-      <!-- slider -->
-      <div class="trend-ads">
-        <h2>Trending Ads</h2>
-            <ul id="flexiselDemo3">
-              <li>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="{{ asset('front-end-assets/images/p1.jpg')}}"/>
-                    <span class="price">&#36; 450</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>There are many variations of passages</h5>
-                    <span>1 hour ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="{{ asset('front-end-assets/images/p2.jpg')}}"/>
-                    <span class="price">&#36; 399</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>Lorem Ipsum is simply dummy</h5>
-                    <span>3 hour ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="{{ asset('front-end-assets/images/p3.jpg')}}"/>
-                    <span class="price">&#36; 199</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>It is a long established fact that a reader</h5>
-                    <span>8 hour ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="{{ asset('front-end-assets/images/p4.jpg')}}"/>
-                    <span class="price">&#36; 159</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>passage of Lorem Ipsum you need to be</h5>
-                    <span>19 hour ago</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="{{ asset('front-end-assets/images/p5.jpg')}}"/>
-                    <span class="price">&#36; 1599</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>There are many variations of passages</h5>
-                    <span>1 hour ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="{{ asset('front-end-assets/images/p6.jpg')}}"/>
-                    <span class="price">&#36; 1099</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>passage of Lorem Ipsum you need to be</h5>
-                    <span>1 day ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="{{ asset('front-end-assets/images/p7.jpg')}}"/>
-                    <span class="price">&#36; 109</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>It is a long established fact that a reader</h5>
-                    <span>9 hour ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="{{ asset('front-end-assets/images/p8.jpg')}}"/>
-                    <span class="price">&#36; 189</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>Lorem Ipsum is simply dummy</h5>
-                    <span>3 hour ago</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="{{ asset('front-end-assets/images/p9.jpg')}}"/>
-                    <span class="price">&#36; 2599</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>Lorem Ipsum is simply dummy</h5>
-                    <span>3 hour ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="{{ asset('front-end-assets/images/p10.jpg')}}"/>
-                    <span class="price">&#36; 3999</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>It is a long established fact that a reader</h5>
-                    <span>9 hour ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="{{ asset('front-end-assets/images/p11.jpg')}}"/>
-                    <span class="price">&#36; 2699</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>passage of Lorem Ipsum you need to be</h5>
-                    <span>1 day ago</span>
-                  </div>
-                </div>
-                <div class="col-md-3 biseller-column">
-                  <a href="single.html">
-                    <img src="{{ asset('front-end-assets/images/p12.jpg')}}"/>
-                    <span class="price">&#36; 899</span>
-                  </a>
-                  <div class="ad-info">
-                    <h5>There are many variations of passages</h5>
-                    <span>1 hour ago</span>
-                  </div>
-                </div>
-              </li>
-          </ul>
-        </div>
-    </div>
-    <!-- //slider -->
-    </div>
-    <div class="mobile-app">
-      <div class="container">
-        <div class="col-md-5 app-left">
-          <a href="mobileapp.html"><img src="{{ asset('front-end-assets/images/app.png')}}" alt=""></a>
-        </div>
-        <div class="col-md-7 app-right">
-          <h3>Resale App is the <span>Easiest</span> way for Selling and buying second-hand goods</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor Sed bibendum varius euismod. Integer eget turpis sit amet lorem rutrum ullamcorper sed sed dui. vestibulum odio at elementum. Suspendisse et condimentum nibh.</p>
-          <div class="app-buttons">
-            <div class="app-button">
-              <a href="#"><img src="{{ asset('front-end-assets/images/1.png')}}" alt=""></a>
-            </div>
-            <div class="app-button">
-              <a href="#"><img src="{{ asset('front-end-assets/images/2.png')}}" alt=""></a>
-            </div>
-            <div class="clearfix"> </div>
+
+    <div class="search-wrapper shadow">
+        <div class="search-bar">
+          <div class="search-icon search-icon-left">
+            <i class="fa fa-search"></i>
+          </div>
+          <div class="search-field">
+            <input class="search-field-input" type="text" maxLength="5" placeholder="Search Item"/>
+          </div>
+          <div class="search-icon search-icon-right">
+            <i class="fa fa-filter"></i>
           </div>
         </div>
-        <div class="clearfix"></div>
+      </div>
+
+    <div class="hr-line"></div>
+
+    <div class="sliding-category">
+      <div class="slider-area slider">
+          <div class="sliding-div">
+            <a href="#" class="sliding-div-a" >
+              <div class="sliding-category-box shadow">
+                <div class="sliding-category-img">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+              <p class="sliding-category-name">Name</p>
+            </a>
+          </div>
+          <div class="sliding-div">
+            <a href="#" class="sliding-div-a" >
+              <div class="sliding-category-box shadow">
+                <div class="sliding-category-img">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+              <p class="sliding-category-name">Name</p>
+            </a>
+          </div>
+          <div class="sliding-div">
+            <a href="#" class="sliding-div-a" >
+              <div class="sliding-category-box shadow">
+                <div class="sliding-category-img">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+              <p class="sliding-category-name">Name</p>
+            </a>
+          </div>
+          <div class="sliding-div">
+            <a href="#" class="sliding-div-a" >
+              <div class="sliding-category-box shadow">
+                <div class="sliding-category-img">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+              <p class="sliding-category-name">Name</p>
+            </a>
+          </div>
+          <div class="sliding-div">
+            <a href="#" class="sliding-div-a" >
+              <div class="sliding-category-box shadow">
+                <div class="sliding-category-img">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+              <p class="sliding-category-name">Name</p>
+            </a>
+          </div>
+          <div class="sliding-div">
+            <a href="#" class="sliding-div-a" >
+              <div class="sliding-category-box shadow">
+                <div class="sliding-category-img">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+              <p class="sliding-category-name">Name</p>
+            </a>
+          </div>
+          <div class="sliding-div">
+            <a href="#" class="sliding-div-a" >
+              <div class="sliding-category-box shadow">
+                <div class="sliding-category-img">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+              <p class="sliding-category-name">Name</p>
+            </a>
+          </div>
+          <div class="sliding-div">
+            <a href="#" class="sliding-div-a" >
+              <div class="sliding-category-box shadow">
+                <div class="sliding-category-img">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+              <p class="sliding-category-name">Name</p>
+            </a>
+          </div>
+      </div>
+    </div>
+
+    <div class="hr-line"></div>
+
+    <div class="rectangle-div">
+      <div id="grid">
+        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
+          <span class="title">Signature</span>
+          <span class="title-2">Juices</span>
+          <span class="number">Average</span>
+          <span class="number-2">30-35 mins</span>
+        </div>
+        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
+          <span class="title">Signature</span>
+          <span class="title-2">Juices</span>
+          <span class="number">Average</span>
+          <span class="number-2">30-35 mins</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sliding-category-2">
+      <div class="sliding-category-title">
+        <h1 class="text-center">Featured On Carriage</h1>
+      </div>
+      <div class="slider-area-2 slider">
+          <div class="sliding-div-2">
+            <a href="#" class="sliding-div-2-a" >
+              <div class="sliding-category-box-2">
+                <div class="sliding-category-img-2">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="sliding-div-2">
+            <a href="#" class="sliding-div-2-a" >
+              <div class="sliding-category-box-2">
+                <div class="sliding-category-img-2">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="sliding-div-2">
+            <a href="#" class="sliding-div-2-a" >
+              <div class="sliding-category-box-2">
+                <div class="sliding-category-img-2">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="sliding-div-2">
+            <a href="#" class="sliding-div-2-a" >
+              <div class="sliding-category-box-2">
+                <div class="sliding-category-img-2">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="sliding-div-2">
+            <a href="#" class="sliding-div-2-a" >
+              <div class="sliding-category-box-2">
+                <div class="sliding-category-img-2">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="sliding-div-2">
+            <a href="#" class="sliding-div-2-a" >
+              <div class="sliding-category-box-2">
+                <div class="sliding-category-img-2">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="sliding-div-2">
+            <a href="#" class="sliding-div-2-a" >
+              <div class="sliding-category-box-2">
+                <div class="sliding-category-img-2">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="sliding-div-2">
+            <a href="#" class="sliding-div-2-a" >
+              <div class="sliding-category-box-2">
+                <div class="sliding-category-img-2">
+                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                </div>
+              </div>
+            </a>
+          </div>
       </div>
     </div>
   </div>
@@ -345,6 +263,57 @@
         },
         quickList: ['en', 'hi', 'he', 'ml', 'ta', 'fr'] //FIXME
       } );
+
+      if ($(window).width() < 480 ) {
+        $(".slider-area").slick({
+            dots: false,
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            centerMode: true
+        });
+      }else if ($(window).width() < 767) {
+        $(".slider-area").slick({
+            dots: false,
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            centerMode: true
+        });
+      }else {
+        $(".slider-area").slick({
+            dots: false,
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 1
+        });
+      }
+
+      if ($(window).width() < 550 ) {
+        $(".slider-area-2").slick({
+            dots: false,
+            infinite: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            centerMode: true
+        });
+      }else if ($(window).width() < 767) {
+        $(".slider-area-2").slick({
+            dots: false,
+            infinite: true,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            centerMode: true
+        });
+      }else {
+        $(".slider-area-2").slick({
+            dots: false,
+            infinite: true,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            centerMode: true
+        });
+      }
 
     });
   </script>

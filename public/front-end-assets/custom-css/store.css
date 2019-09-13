@@ -59,7 +59,10 @@
 
 .rectangle-box {
   position: relative;
-  background-color: #27ae60 !important;
+  /* background-color: #27ae60 !important; */
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
 
 .title {

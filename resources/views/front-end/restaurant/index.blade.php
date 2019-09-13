@@ -5,11 +5,8 @@
 
 @section('main-content')
 <div class="restaurant text-center">
-  <div class="container">
     <div class="sliding-category">
       <div class="slider-area slider">
-
-
         @foreach($categories as $category)
           <div class="sliding-div">
             <a href="{{ route('sub-category-restaurant', ['id'=>$category->id]) }}" class="sliding-div-a">
@@ -32,33 +29,28 @@
     </div>
     <div class="rectangle-div">
       <div id="grid">
-        <div class="rectangle-box shadow">
+        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b2.jpg') }}');">
           <span class="title">Store Name</span>
           <span class="number">150 SR</span>
         </div>
-        <div class="rectangle-box shadow">
+        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b2.jpg') }}');">
           <span class="title">Store Name</span>
           <span class="number">150 SR</span>
         </div>
-        <div class="rectangle-box shadow">
+        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b2.jpg') }}');">
           <span class="title">Store Name</span>
           <span class="number">150 SR</span>
         </div>
-        <div class="rectangle-box shadow">
+        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b2.jpg') }}');">
           <span class="title">Store Name</span>
           <span class="number">150 SR</span>
         </div>
-        <div class="rectangle-box shadow">
-          <span class="title">Store Name</span>
-          <span class="number">150 SR</span>
-        </div>
-        <div class="rectangle-box shadow">
+        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b2.jpg') }}');">
           <span class="title">Store Name</span>
           <span class="number">150 SR</span>
         </div>
       </div>
     </div>
-  </div>
 </div>
 @endsection
 
@@ -68,8 +60,8 @@
     $(".slider-area").slick({
         dots: false,
         infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 3
+        slidesToShow: 4,
+        slidesToScroll: 1
     });
   }else if ($(window).width() < 767) {
     $(".slider-area").slick({

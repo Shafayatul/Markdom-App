@@ -46,7 +46,10 @@
   text-align: center;
   border-radius: 16px;
   position: relative;
-  background-color: #2ecc71 !important;
+  /* background-color: #2ecc71 !important; */
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
 
 .logo-box {

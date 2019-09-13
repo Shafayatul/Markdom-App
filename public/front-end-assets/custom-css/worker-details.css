@@ -1,5 +1,5 @@
 .worker {
-  margin-top: 30px;
+  margin: 30px 0px;
 }
 
 .worker-image-box {
@@ -48,7 +48,10 @@
 
 .rectangle-box-a {
   position: relative;
-  background-color: #27ae60 !important;
+  /* background-color: #2ecc71 !important; */
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
 
 .title {

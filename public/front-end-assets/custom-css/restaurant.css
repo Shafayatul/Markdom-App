@@ -10,8 +10,12 @@
   margin-top: 20px;
 }
 
-.shadow {
+/* .shadow {
   box-shadow: 0 5px 30px rgba(0.30,0.30,0.30,0.30), 0 5px 5px rgba(0.30,0.30,0.30,0.30);
+} */
+
+.shadow {
+  box-shadow: 0 2px 8px rgba(0.30,0.30,0.30,0.30), 0 2px 5px rgba(0.30,0.30,0.30,0.30);
 }
 
 .sliding-category-name {
@@ -50,7 +54,7 @@
   grid-gap: 3vw;
   }
 #grid > div {
-  height: 150px;
+  height: 200px;
   background: #fff;
   text-align: center;
   border-radius: 16px;
@@ -58,7 +62,10 @@
 
 .rectangle-box {
   position: relative;
-  background-color: #27ae60 !important;
+  /* background-color: #27ae60 !important; */
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
 
 .title {
@@ -81,13 +88,19 @@
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+  .container {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
   #grid {
     grid-template-columns: 1fr;
   }
 
   .sliding-category-box {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
   }
 
   .sliding-category-name {
@@ -96,6 +109,33 @@
 }
 
 @media only screen and (min-device-width : 481px) and (max-device-width : 767px) {
+
+  .container {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  #grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sliding-category-box {
+    width: 90px;
+    height: 90px;
+  }
+
+  .sliding-category-name {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+
+  .container {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+
   #grid {
     grid-template-columns: 1fr 1fr;
   }

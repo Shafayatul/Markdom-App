@@ -24,27 +24,27 @@
     </div>
     <div class="rectangle-div">
       <div id="grid">
-        <div class="rectangle-box shadow">
+        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
           <span class="title">Store Name</span>
           <span class="number">150 SR</span>
         </div>
-        <div class="rectangle-box shadow">
+        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
           <span class="title">Store Name</span>
           <span class="number">150 SR</span>
         </div>
-        <div class="rectangle-box shadow">
+        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
           <span class="title">Store Name</span>
           <span class="number">150 SR</span>
         </div>
-        <div class="rectangle-box shadow">
+        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
           <span class="title">Store Name</span>
           <span class="number">150 SR</span>
         </div>
-        <div class="rectangle-box shadow">
+        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
           <span class="title">Store Name</span>
           <span class="number">150 SR</span>
         </div>
-        <div class="rectangle-box shadow">
+        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
           <span class="title">Store Name</span>
           <span class="number">150 SR</span>
         </div>
