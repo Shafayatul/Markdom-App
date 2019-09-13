@@ -1,6 +1,6 @@
 @extends('layouts.front-end.master-layout')
 @section('front-additional-css')
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="{{ asset('front-end-assets/custom-css/order-details.css') }}">
 @endsection
 
@@ -16,7 +16,7 @@
             {{ $product->name_arabic }}
           @endif
         </h1>
-        <p>Order Details</p>
+        <p>{{ __('content.order_details') }}</p>
         <p>
           @if(app()->getLocale() == 'en')
             {{ $product->description }}
@@ -31,8 +31,12 @@
           </span>
           <span class="promo-code-button-span"> <button class="apply-button btn">Apply</button> </span>
         </div> --}}
-        <input type="file" class="custom-file-input">
-        <p>Select Delivery Date: <br> <input type="text" id="datepicker"></p>
+        @if(app()->getLocale() == 'ar')
+          <input type="file" class="custom-arabic-file-input">
+        @else
+          <input type="file" class="custom-file-input">
+        @endif
+        <p>{{ __('content.select_delivery_date') }}: <br> <input type="text" id="datepicker"></p>
       {{-- </form> --}}
     </div>
     <!-- Button trigger modal -->
@@ -67,8 +71,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success pull-left" data-dismiss="modal">Accept</button>
-            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Decline</button>
+            <button type="button" class="btn btn-success pull-left" data-dismiss="modal">{{ __('content.accept') }}</button>
+            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">{{ __('content.decline') }}</button>
           </div>
         </div>
       </div>

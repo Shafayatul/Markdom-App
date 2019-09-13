@@ -9,12 +9,12 @@
     <div class="delivery-option">
       <a href="#">
         <div class="in-service">
-          <h1 class="in-service-h1">In service provider shop</h1>
+          <h1 class="in-service-h1">{{ __('content.service_provider_shop') }}</h1>
         </div>
       </a>
       <a href="#">
         <div class="in-customer">
-            <h1 class="in-customer-h1">In customer place</h1>
+            <h1 class="in-customer-h1">{{ __('content.customer_place') }}</h1>
         </div>
       </a>
 
