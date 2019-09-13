@@ -81,7 +81,7 @@ class ProductsController extends Controller
             foreach($multi_images as $image)
             {
                 $multi_image_name = uniqid().'.'.strtolower($image->getClientOriginalExtension());
-                $multi_image_path = 'product-images/';
+                $multi_image_path = 'product-image/';
                 $multi_image_url  = $multi_image_path.$multi_image_name;
                 $image->move($multi_image_path, $multi_image_name);
                 $data[] = $multi_image_url;  
