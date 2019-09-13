@@ -152,7 +152,7 @@ class OrdersController extends Controller
         return redirect('orders')->with('success', 'Order deleted!');
     }
 
-    public function orderDetails()
+    public function orderDetails($id)
     {
       return view('front-end.order.order-details');
     }

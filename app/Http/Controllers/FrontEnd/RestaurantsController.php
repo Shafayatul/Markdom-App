@@ -34,9 +34,12 @@ class RestaurantsController extends Controller
       $method = 'GET';
       $store  = $this->callApi($method, $url);
 
-      $multiple_images = explode(',', $store->multiple_images);
+      $url      = env('MAIN_HOST_URL').'api/get-product-by-store/'.$id;
+      $method   = 'GET';
+      $products = $this->callApi($method, $url);
 
-      return view('front-end.restaurant.restaurant-details', compact('store', 'multiple_images'));
+
+      return view('front-end.restaurant.restaurant-details', compact('store', 'products'));
     }
 
     public function callApi($method, $url, $parameters=[], $headers=[]){

@@ -32,10 +32,19 @@
         @endif
       </div>
       <div class="restaurant-details-mother">
-        @foreach($multiple_images as $multiple_image)
+        {{-- @foreach($multiple_images as $multiple_image)
         <div class="restaurant-details-box">
           <img src="{{ asset($multiple_image) }}" alt="">
         </div>
+        @endforeach --}}
+        @foreach($products as $product)
+        
+          <div class="restaurant-details-box">
+            <a href="{{ route('order-details', ['id' => $product->id] ) }}">
+              <img src="{{ asset($product->preview_image) }}" alt="">
+            </a>
+          </div>
+        
         @endforeach
       </div>
       <div class="store-location">
@@ -51,9 +60,9 @@
       <div class="store-status text-left">
         <i class="fa fa-circle online"></i><span class="store-status-text">Store is Open (working time)</span>
       </div>
-      <div class="order-button text-center">
+      {{-- <div class="order-button text-center">
         <a href="{{ route('order-details') }}"><button class="btn btn-success" type="button" name="button">Order Menu</button></a>
-      </div>
+      </div> --}}
     </div>
   </div>
 </div>
