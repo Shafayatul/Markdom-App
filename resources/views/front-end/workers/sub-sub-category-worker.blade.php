@@ -10,7 +10,7 @@
       <div class="slider-area slider">
           <div class="sliding-div">
             <div class="sliding-category-box">
-              <span class="sliding-category-name">All</span>
+              <span class="sliding-category-name">{{ __('content.all') }}</span>
             </div>
           </div>
           <div class="sliding-div">

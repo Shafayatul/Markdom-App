@@ -11,16 +11,6 @@ use GuzzleHttp\Client;
 class WorkerController extends Controller
 {
 
-  public function callApi($method, $url, $parameters=[], $headers=[]){
-    $client = new \GuzzleHttp\Client();
-    $response = $client->request($method, $url, [
-      'form_params' => $parameters,
-      'headers'     => $headers
-    ]);
-    $return_value       = json_decode($response->getBody());
-    return $return_value;
-  }
-
     public function index()
     {
       $url = env('MAIN_HOST_URL').'api/get-categories-by-module/2';

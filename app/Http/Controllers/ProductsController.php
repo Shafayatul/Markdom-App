@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Store;
 use App\SubSubCategory;
+use App\ServiceCategory;
+use App\ServiceSubCategory;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -35,7 +37,9 @@ class ProductsController extends Controller
         }
         $stores = Store::pluck('name', 'id');
         $subsubcategories = SubSubCategory::pluck('name', 'id');
-        return view('products.index', compact('products', 'stores', 'subsubcategories'));
+        $service_categories = ServiceCategory::pluck('name', 'id');
+        $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
+        return view('products.index', compact('products', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories'));
     }
 
     /**
@@ -47,7 +51,9 @@ class ProductsController extends Controller
     {
         $stores = Store::pluck('name', 'id');
         $subsubcategories = SubSubCategory::pluck('name', 'id');
-        return view('products.create', compact('stores', 'subsubcategories'));
+        $service_categories = ServiceCategory::pluck('name', 'id');
+        $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
+        return view('products.create', compact('stores', 'subsubcategories', 'service_categories', 'service_sub_categories'));
     }
 
     /**
@@ -69,14 +75,38 @@ class ProductsController extends Controller
             $image_url  = null;
         }
 
-        $product                        = new Product();
-        $product->store_id              = $request->store_id;
-        $product->sub_sub_category_id   = $request->sub_sub_category_id;
-        $product->name                  = $request->name;
-        $product->name_arabic           = $request->name_arabic;
-        $product->description           = $request->description;
-        $product->preview_image         = $image_url;
-        $product->price                 = $request->price;
+        if($request->hasFile('multiple_images')){
+            $multi_images      = $request->file('multiple_images');
+
+            foreach($multi_images as $image)
+            {
+                $multi_image_name = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+                $multi_image_path = 'product-image/';
+                $multi_image_url  = $multi_image_path.$multi_image_name;
+                $image->move($multi_image_path, $multi_image_name);
+                $data[] = $multi_image_url;  
+            }
+        }else{
+            $data[]  = null;
+        }
+
+        $product                            = new Product();
+        $product->store_id                  = $request->store_id;
+        $product->sub_sub_category_id       = $request->sub_sub_category_id;
+        $product->service_category_id       = $request->service_category_id;
+        $product->service_sub_category_id   = $request->service_sub_category_id;
+        $product->name                      = $request->name;
+        $product->name_arabic               = $request->name_arabic;
+        $product->description               = $request->description;
+        $product->description_arabic        = $request->description_arabic;
+        $product->preview_image             = $image_url;
+        if($data[0] == null){
+            $data_img = null;
+        }else{
+            $data_img = implode(',', $data);
+        }
+        $product->multiple_images           = $data_img;
+        $product->price                     = $request->price;
         $product->save();
 
         return redirect('products/create')->with('success', 'Product added!');
@@ -94,7 +124,9 @@ class ProductsController extends Controller
         $product = Product::findOrFail($id);
         $stores = Store::pluck('name', 'id');
         $subsubcategories = SubSubCategory::pluck('name', 'id');
-        return view('products.show', compact('product', 'stores', 'subsubcategories'));
+        $service_categories = ServiceCategory::pluck('name', 'id');
+        $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
+        return view('products.show', compact('product', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories'));
     }
 
     /**
@@ -109,7 +141,9 @@ class ProductsController extends Controller
         $product = Product::findOrFail($id);
         $stores = Store::pluck('name', 'id');
         $subsubcategories = SubSubCategory::pluck('name', 'id');
-        return view('products.edit', compact('product', 'stores', 'subsubcategories'));
+        $service_categories = ServiceCategory::pluck('name', 'id');
+        $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
+        return view('products.edit', compact('product', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories'));
     }
 
     /**
@@ -137,13 +171,45 @@ class ProductsController extends Controller
             $image_url  = $product->preview_image;
         }
 
-        $product->store_id              = $request->store_id;
-        $product->sub_sub_category_id   = $request->sub_sub_category_id;
-        $product->name                  = $request->name;
-        $product->name_arabic           = $request->name_arabic;
-        $product->description           = $request->description;
-        $product->preview_image         = $image_url;
-        $product->price                 = $request->price;
+
+        if($request->hasFile('multiple_images')){
+            $multi_images      = $request->file('multiple_images');
+
+            foreach($multi_images as $image)
+            {
+                $multi_image_name = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+                $multi_image_path = 'product-image/';
+                $multi_image_url  = $multi_image_path.$multi_image_name;
+                $image->move($multi_image_path, $multi_image_name);
+                $data[] = $multi_image_url;  
+            }
+            if($store->multiple_images != null){
+                $multiple_img = explode(',', $store->multiple_images);
+                foreach($multiple_img as $img)
+                {
+                    unlink($img);
+                }
+            }
+        }else{
+            $data[]  = $store->multiple_images;
+        }
+
+        $product->store_id                  = $request->store_id;
+        $product->sub_sub_category_id       = $request->sub_sub_category_id;
+        $product->service_category_id       = $request->service_category_id;
+        $product->service_sub_category_id   = $request->service_sub_category_id;
+        $product->name                      = $request->name;
+        $product->name_arabic               = $request->name_arabic;
+        $product->description               = $request->description;
+        $product->description_arabic        = $request->description_arabic;
+        $product->preview_image             = $image_url;
+        if($data[0] == null){
+            $data_img = null;
+        }else{
+            $data_img = implode(',', $data);
+        }
+        $product->multiple_images           = $data_img;
+        $product->price                     = $request->price;
         $product->save();
 
         return redirect('products')->with('success', 'Product updated!');
@@ -161,6 +227,13 @@ class ProductsController extends Controller
         $product = Product::findOrFail($id);
         if($product->preview_image != null){
             unlink($product->preview_image);
+        }
+        if($product->multiple_images != null){
+            $multiple_img = explode(',', $product->multiple_images);
+            foreach($multiple_img as $img)
+            {
+                unlink($img);
+            }
         }
         Product::destroy($id);
 

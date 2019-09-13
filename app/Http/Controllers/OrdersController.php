@@ -152,9 +152,12 @@ class OrdersController extends Controller
         return redirect('orders')->with('success', 'Order deleted!');
     }
 
-    public function orderDetails()
+    public function orderDetails($id)
     {
-      return view('front-end.order.order-details');
+      $url      = env('MAIN_HOST_URL').'api/get-product-detail/'.$id;
+      $method   = 'GET';
+      $product  = $this->callApi($method, $url);
+      return view('front-end.order.order-details', compact('product'));
     }
     public function orderNotification()
     {
@@ -169,4 +172,7 @@ class OrdersController extends Controller
     {
       return view('front-end.order.place-order');
     }
+
+
+
 }

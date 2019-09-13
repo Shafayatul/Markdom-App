@@ -53,6 +53,22 @@ Product {{ $product->id }}
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th> Service Category</th>
+                                    <td>
+                                        @if(isset($service_categories[$product->service_category_id])) 
+                                            {{ $service_categories[$product->service_category_id] }}
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th> Service Sub Category</th>
+                                    <td>
+                                        @if(isset($service_sub_categories[$product->service_sub_category_id])) 
+                                            {{ $service_sub_categories[$product->service_sub_category_id] }}
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th> Sub Sub Category </th>
                                     <td>
                                         @if(isset($subsubcategories[$product->sub_sub_category_id])) 
@@ -73,9 +89,27 @@ Product {{ $product->id }}
                                     <td> {!! $product->description !!} </td>
                                 </tr>
                                 <tr>
+                                    <th> Description Arabic </th>
+                                    <td> {!! $product->description_arabic !!} </td>
+                                </tr>
+                                <tr>
                                     <th> Image </th>
                                     <td> 
                                         <img src="{{ asset($product->preview_image) }}" alt="{{ $product->name }}" style="width: 200px; height: 200px;" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>Multiple Images</th>
+                                    <td>
+                                        @if(isset($product->multiple_images))
+                                            @php
+                                                $images = explode(',', $product->multiple_images);
+                                            @endphp
+                                            @foreach($images as $image)
+                                                <img src="{{ asset($image) }}" alt="" style="width: 100px; height: 100px;">
+                                            @endforeach
+                                        @endif
                                     </td>
                                 </tr>
                             </tbody>

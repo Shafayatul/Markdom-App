@@ -28,9 +28,9 @@ class ReviewsController extends Controller
 
     public function get_review_by_store_id($store_id)
     {
-        $reviews        = Review::where('store_id', $store_id)->get();
-        $avg_reviews     = $reviews->avg('star');
-        $avg_review     = ceil($avg_reviews);
+        $reviews     = Review::where('store_id', $store_id)->get();
+        $avg_reviews = $reviews->avg('star');
+        $avg_review  = ceil($avg_reviews);
         return response()->json($avg_review);
     }
 }

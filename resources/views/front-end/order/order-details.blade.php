@@ -1,6 +1,6 @@
 @extends('layouts.front-end.master-layout')
 @section('front-additional-css')
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="{{ asset('front-end-assets/custom-css/order-details.css') }}">
 @endsection
 
@@ -8,19 +8,36 @@
 <div class="restaurant text-center">
   <div class="container">
     <div class="order-details-div">
-      <form class="order-details-form" action="" method="post">
-        <p>Order Details</p>
-        <textarea class="text-left" name="message"></textarea>
-        <div class="get-promo-code">
+      {{-- <form class="order-details-form" action="" method="post"> --}}
+        <h1>
+          @if(app()->getLocale() == 'en')
+            {{ $product->name }}
+          @else
+            {{ $product->name_arabic }}
+          @endif
+        </h1>
+        <p>{{ __('content.order_details') }}</p>
+        <p>
+          @if(app()->getLocale() == 'en')
+            {{ $product->description }}
+          @else
+            {{ $product->description_arabic }}
+          @endif
+        </p>
+        {{-- <div class="get-promo-code">
           <p>Get Promo Code</p>
           <span class="promo-code-input-span">
             <input type="text" name="" value="">
           </span>
           <span class="promo-code-button-span"> <button class="apply-button btn">Apply</button> </span>
-        </div>
-        <input type="file" class="custom-file-input">
-        <p>Select Delivery Date: <br> <input type="text" id="datepicker"></p>
-      </form>
+        </div> --}}
+        @if(app()->getLocale() == 'ar')
+          <input type="file" class="custom-arabic-file-input">
+        @else
+          <input type="file" class="custom-file-input">
+        @endif
+        <p>{{ __('content.select_delivery_date') }}: <br> <input type="text" id="datepicker"></p>
+      {{-- </form> --}}
     </div>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
@@ -54,8 +71,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success pull-left" data-dismiss="modal">Accept</button>
-            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Decline</button>
+            <button type="button" class="btn btn-success pull-left" data-dismiss="modal">{{ __('content.accept') }}</button>
+            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">{{ __('content.decline') }}</button>
           </div>
         </div>
       </div>

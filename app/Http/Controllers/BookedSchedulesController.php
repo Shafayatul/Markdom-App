@@ -55,7 +55,11 @@ class BookedSchedulesController extends Controller
         } else {
             $today = Carbon::today()->format('l');
             $day = Day::where('name', $today)->first();
-            $schedules = Schedule::where('day_id', $day->id)->latest()->paginate($perPage);
+            if(isset($day->id)){
+                $schedules = Schedule::where('day_id', $day->id)->latest()->paginate($perPage);
+            }else{
+                $schedules = Schedule::latest()->paginate($perPage);
+            }
             $bookedschedule_ids = BookedSchedule::where('date',Carbon::today()->format('Y-m-d'))->pluck('schedule_id')->toArray();
             $stores = Store::where('store_owner_id', Auth::user()->id)->pluck('name', 'id');
         }

@@ -10,7 +10,7 @@
       <div class="slider-area slider">
           <div class="sliding-div">
             <div class="sliding-category-box">
-              <a href="#" class="sliding-category-box-a show-all"> <span class="sliding-category-name">All</span> </a>
+              <a href="#" class="sliding-category-box-a show-all"> <span class="sliding-category-name">{{ __('content.all') }}</span> </a>
             </div>
           </div>
           @foreach($sub_categories as $sub_category)

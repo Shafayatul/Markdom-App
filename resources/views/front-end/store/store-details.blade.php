@@ -7,7 +7,7 @@
 <div class="store text-center">
         <div class="restaurant-top-box" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
             <span class="restaurant-name">Store Name</span>
-            <span class="store-rate-title">Store Rate</span>
+            <span class="store-rate-title">{{ __('content.store_rate') }}</span>
             <span class="store-rating">
                 @for ($i=0; $i < 3; $i++) <i class="fa fa-star"></i>
                     @endfor
@@ -16,8 +16,8 @@
             </span>
         </div>
         <div class="restaurant-details-div">
-            <h1 class="text-left">Store Details</h1>
-            {{-- <div class="restaurant-details-mother">
+            <h1 class="text-left">{{ __('content.store_details') }}</h1>
+            <div class="restaurant-details-mother">
                 <div class="restaurant-details-box">
                     <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
                 </div>
@@ -90,7 +90,7 @@
                         </div>
                         <div class="price-button">
                           <p class="pull-left">Price</p>
-                          <button class="btn btn-success pull-right add-cart-button" type="button" name="button">Add Cart</button>
+                          <button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button>
                         </div>
                     </div>
                     <div class="product-box shadow">
@@ -102,7 +102,7 @@
                         </div>
                         <div class="price-button">
                           <p class="pull-left">Price</p>
-                          <button class="btn btn-success pull-right add-cart-button" type="button" name="button">Add Cart</button>
+                          <button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button>
                         </div>
                     </div>
                     <div class="product-box shadow">
@@ -114,7 +114,7 @@
                         </div>
                         <div class="price-button">
                           <p class="pull-left">Price</p>
-                          <button class="btn btn-success pull-right add-cart-button" type="button" name="button">Add Cart</button>
+                          <button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button>
                         </div>
                     </div>
                     <div class="product-box shadow">
@@ -126,7 +126,7 @@
                         </div>
                         <div class="price-button">
                           <p class="pull-left">Price</p>
-                          <button class="btn btn-success pull-right add-cart-button" type="button" name="button">Add Cart</button>
+                          <button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button>
                         </div>
                     </div>
                     <div class="product-box shadow">
@@ -138,7 +138,7 @@
                         </div>
                         <div class="price-button">
                           <p class="pull-left">Price</p>
-                          <button class="btn btn-success pull-right add-cart-button" type="button" name="button">Add Cart</button>
+                          <button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button>
                         </div>
                     </div>
                     <div class="product-box shadow">
@@ -150,7 +150,7 @@
                         </div>
                         <div class="price-button">
                           <p class="pull-left">Price</p>
-                          <button class="btn btn-success pull-right add-cart-button" type="button" name="button">Add Cart</button>
+                          <button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button>
                         </div>
                     </div>
                 </div>

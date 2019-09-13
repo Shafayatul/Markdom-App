@@ -29,8 +29,8 @@ class StatesController extends Controller
         } else {
             $states = State::latest()->paginate($perPage);
         }
-
-        return view('states.index', compact('states'));
+        $countries = Country::pluck('name', 'id');
+        return view('states.index', compact('states', 'countries'));
     }
 
     /**

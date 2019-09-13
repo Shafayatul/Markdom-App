@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class ServiceSubCategory extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'products';
+    protected $table = 'service_sub_categories';
 
     /**
     * The database primary key value.
@@ -25,7 +25,7 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = ['store_id', 'name', 'name_arabic', 'description', 'description_arabic', 'preview_image', 'price', 'sub_sub_category_id'];
+    protected $fillable = ['user_id', 'service_category_id', 'name', 'name_arabic'];
 
     
 }

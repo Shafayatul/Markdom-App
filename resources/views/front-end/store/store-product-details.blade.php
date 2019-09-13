@@ -38,7 +38,7 @@
         </div>
 
         <div class="add-cart-button-div">
-          <button class="btn btn-success add-cart-button" type="button" name="button">Add Cart</button>
+          <button class="btn btn-success add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button>
         </div>
     </div>
 </div>
