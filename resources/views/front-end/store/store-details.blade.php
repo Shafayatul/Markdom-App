@@ -17,20 +17,26 @@
         </div>
         <div class="restaurant-details-div">
             <h1 class="text-left">{{ __('content.store_details') }}</h1>
-            <div class="restaurant-details-mother">
-                <div class="restaurant-details-box">
-                    <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
-                </div>
-                <div class="restaurant-details-box">
-                    <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
-                </div>
-                <div class="restaurant-details-box">
-                    <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
-                </div>
-            </div> --}}
-
             <div class="sliding-category">
               <div class="slider-area slider">
+                  <div class="sliding-div">
+                    <a href="" class="sliding-div-a" >
+                      <div class="sliding-category-box">
+                        <div class="sliding-category-img">
+                          <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="sliding-div">
+                    <a href="" class="sliding-div-a" >
+                      <div class="sliding-category-box">
+                        <div class="sliding-category-img">
+                          <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
+                        </div>
+                      </div>
+                    </a>
+                  </div>
                   <div class="sliding-div">
                     <a href="" class="sliding-div-a" >
                       <div class="sliding-category-box">
@@ -166,7 +172,7 @@ if ($(window).width() < 480 ) {
       dots: false,
       infinite: true,
       slidesToShow: 3,
-      slidesToScroll: 3,
+      slidesToScroll: 1,
       centerMode: true
   });
 }else if ($(window).width() < 767) {
