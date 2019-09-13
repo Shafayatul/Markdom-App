@@ -73,6 +73,10 @@ Product {{ $product->id }}
                                     <td> {!! $product->description !!} </td>
                                 </tr>
                                 <tr>
+                                    <th> Description Arabic </th>
+                                    <td> {!! $product->description_arabic !!} </td>
+                                </tr>
+                                <tr>
                                     <th> Image </th>
                                     <td> 
                                         <img src="{{ asset($product->preview_image) }}" alt="{{ $product->name }}" style="width: 200px; height: 200px;" />

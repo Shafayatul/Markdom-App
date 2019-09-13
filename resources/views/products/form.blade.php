@@ -25,6 +25,11 @@
     {!! $errors->first('description', '<p class="help-block">:message</p>') !!}
 </div>
 
+<div class="form-group {{ $errors->has('description_arabic') ? 'has-error' : ''}}">
+    {!! Form::label('description_arabic', 'Description Arabic', ['class' => 'control-label']) !!}
+    {!! Form::textarea('description_arabic', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'rows' => '3', 'cols' => '5'] : ['class' => 'form-control', 'rows' => '3', 'cols' => '5']) !!}
+    {!! $errors->first('description_arabic', '<p class="help-block">:message</p>') !!}
+</div>
 
 <div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
     {!! Form::label('price', 'Price', ['class' => 'control-label']) !!}
