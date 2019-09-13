@@ -54,7 +54,16 @@ input[type=text] {
 .custom-file-input {
   color: transparent;
 }
+
+.custom-arabic-file-input {
+  color: transparent;
+}
+
 .custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.custom-arabic-file-input::-webkit-file-upload-button {
   visibility: hidden;
 }
 .custom-file-input::before {
@@ -73,13 +82,45 @@ input[type=text] {
   /* font-weight: 700; */
   font-size: 10pt;
 }
+
+.custom-arabic-file-input::before {
+  content: 'تحميل الصور';
+  color: black;
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid rgb(169, 169, 169);
+  border-radius: 16px;
+  padding: 10px 55px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  /* font-weight: 700; */
+  font-size: 10pt;
+}
+
 .custom-file-input:hover::before {
   border-color: black;
 }
+
+.custom-arabic-file-input:hover::before {
+  border-color: black;
+}
+
 .custom-file-input:active {
   outline: 0;
 }
+
+.custom-arabic-file-input:active {
+  outline: 0;
+}
+
 .custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.custom-arabic-file-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 
