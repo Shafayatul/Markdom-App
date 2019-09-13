@@ -42,14 +42,4 @@ class RestaurantsController extends Controller
       return view('front-end.restaurant.restaurant-details', compact('store', 'products'));
     }
 
-    public function callApi($method, $url, $parameters=[], $headers=[]){
-      $client = new \GuzzleHttp\Client();
-      $response = $client->request($method, $url, [
-        'form_params' => $parameters,
-        'headers'     => $headers
-      ]);
-      $return_value       = json_decode($response->getBody());
-      return $return_value;
-    }
-
 }

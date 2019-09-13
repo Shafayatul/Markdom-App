@@ -12,15 +12,7 @@ use App\Http\Controllers\Controller;
 class StoreController extends Controller
 {
 
-  public function callApi($method, $url, $parameters=[], $headers=[]){
-    $client = new \GuzzleHttp\Client();
-    $response = $client->request($method, $url, [
-      'form_params' => $parameters,
-      'headers'     => $headers
-    ]);
-    $return_value       = json_decode($response->getBody());
-    return $return_value;
-  }
+
 
     public function index()
     {

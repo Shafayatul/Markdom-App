@@ -31,6 +31,7 @@
           {{ $store->arabic_description }}
         @endif
       </div>
+      <h1 class="text-left">Menu</h1>
       <div class="restaurant-details-mother">
         {{-- @foreach($multiple_images as $multiple_image)
         <div class="restaurant-details-box">
