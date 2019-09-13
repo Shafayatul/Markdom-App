@@ -15,11 +15,12 @@
       </span>
       <span class="store-rate-title">{{ __('content.store_rate') }}</span>
       <span class="store-rating">
-        @for ($i=0; $i < 3; $i++)
+        @for ($i=0; $i < $review; $i++)
         <i class="fa fa-star"></i>
         @endfor
+        @for ($i=5; $i > $review; $i--)
         <i class="fa fa-star text-success"></i>
-        <i class="fa fa-star text-success"></i>
+        @endfor
       </span>
     </div>
     <div class="restaurant-details-div">
@@ -61,8 +62,11 @@
       <div class="store-status text-left">
         <i class="fa fa-circle online"></i>
         <span class="store-status-text">
-          {{ __('content.store_is_open') }}
-          {{ __('content.store_is_closed') }}
+          @if($is_available)
+            @lang('content.Store is Open')
+          @else
+            @lang('content.Store is Closed')
+          @endif
         </span>
       </div>
       {{-- <div class="order-button text-center">
