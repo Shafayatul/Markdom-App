@@ -1,4 +1,4 @@
-.main-ul {
+/* .main-ul {
   list-style: none;
   margin-top: 10px;
   height: auto;
@@ -76,6 +76,7 @@
   .hamburger {
     display: block;
     position: relative;
+    padding-top: 15px;
   }
   .main-ul {
     display: none;
@@ -168,4 +169,51 @@
     text-align: center;
     padding-left: 10px;
   }
+} */
+
+
+nav {
+  margin-top: 0px;
+  box-shadow: 5px 4px 5px #000;
+}
+
+.navbar-inverse {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+nav {
+    margin-top: 0px;
+    box-shadow: 5px 4px 5px transparent;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+    color: #000000;
+    font-size: 20px;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: #01a185;
+    /* transform: scale(1.2); */
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: #000000;
+}
+
+.navbar-toggle {
+    margin-top: 20px;
+}
+
+.navbar-right {
+  padding-top: 15px;
+}
+
+.navbar-inverse .navbar-toggle:hover {
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    color: #01a185;
+    background-color: transparent;
 }
