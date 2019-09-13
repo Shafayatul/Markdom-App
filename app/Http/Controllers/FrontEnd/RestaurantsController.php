@@ -4,6 +4,9 @@ namespace App\Http\Controllers\FrontEnd;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use DateTime;
+use DateTimeZone;
 
 class RestaurantsController extends Controller
 {
@@ -36,9 +39,13 @@ class RestaurantsController extends Controller
 
     public function restaurantDetails($id)
     {
-      $url    = env('MAIN_HOST_URL').'api/get-store-detail/'.$id;
-      $method = 'GET';
-      $store  = $this->callApi($method, $url);
+
+      $current_date = Carbon::now()->format('Y-m-d');
+      $current_time = time();
+
+      $url      = env('MAIN_HOST_URL').'api/get-store-detail/'.$id;
+      $method   = 'GET';
+      $store    = $this->callApi($method, $url);
 
       $url      = env('MAIN_HOST_URL').'api/get-product-by-store/'.$id;
       $method   = 'GET';
@@ -48,7 +55,28 @@ class RestaurantsController extends Controller
       $method   = 'GET';
       $review   = $this->callApi($method, $url);
 
-      return view('front-end.restaurant.restaurant-details', compact('store', 'products', 'review'));
+      $url      = env('MAIN_HOST_URL').'api/get-workinghours/'.$id.'/'.$current_date;
+      $method   = 'GET';
+      $slot     = $this->callApi($method, $url);
+
+      $is_available = false;
+      foreach ($slot as $row) {
+        $time_ary = explode('-', $row->timespan);
+
+        $d1 = new DateTime($time_ary[0].':00', new DateTimeZone('Asia/Riyadh'));
+        $t1 = $d1->getTimestamp();
+
+        $d2 = new DateTime($time_ary[1].':00', new DateTimeZone('Asia/Riyadh'));
+        $t2 = $d2->getTimestamp();
+
+        if (($t1 <= $current_time) && ($t2 > $current_time)) {
+          if ($row->is_booked == 0) {
+            $is_available = true;
+          }
+        }
+      }
+
+      return view('front-end.restaurant.restaurant-details', compact('store', 'products', 'review', 'is_available'));
     }
 
 }

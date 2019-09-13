@@ -60,7 +60,14 @@
         <p class="text-left">2.05 Km</p>
       </div>
       <div class="store-status text-left">
-        <i class="fa fa-circle online"></i><span class="store-status-text">Store is Open (working time)</span>
+        <i class="fa fa-circle online"></i>
+        <span class="store-status-text">
+          @if($is_available)
+            @lang('Store is Open')
+          @else
+            @lang('Store is Closed')
+          @endif
+        </span>
       </div>
       {{-- <div class="order-button text-center">
         <a href="{{ route('order-details') }}"><button class="btn btn-success" type="button" name="button">Order Menu</button></a>
