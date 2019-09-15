@@ -31,7 +31,7 @@
     <div class="rectangle-div">
       <div id="grid">
         @foreach($offers as $offer)
-          <div class="rectangle-box shadow" style="background-image: url('{{ asset($offer->image) }}');">
+          <div class="rectangle-box shadow" style="background-image: url('{{ asset(env('MAIN_HOST_URL').$offer->image) }}');">
             <span class="title">
               @if(app()->getLocale() == 'en')
                 {{ $offer->title }}

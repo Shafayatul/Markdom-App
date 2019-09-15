@@ -14,9 +14,15 @@
             </div>
           </div>
           @foreach ($subCategories as $subCategory)
-            <div class="sliding-div">
+            <div class="sliding-div show-specific" sub-cat-id="{{ $subCategory->id }}">
               <div class="sliding-category-box">
-                <a href="#" class="sliding-category-box-a"> <span class="sliding-category-name">{{ $subCategory->name }}</span> </a>
+                <span class="sliding-category-name">
+                  @if(app()->getLocale() == 'en')
+                    {{ $subCategory->name }}
+                  @else
+                    {{ $subCategory->name_arabic }}
+                  @endif
+                </span>
               </div>
             </div>
           @endforeach
@@ -26,7 +32,7 @@
       <div id="grid">
 
         @foreach($stores as $store)
-        <a href="{{ route('worker-details', ['id' => $store->id]) }}" class="rectangle-box-a" store-sub-cat-id="{{ $store->sub_category_id }}" style="background-image: url('{{ asset($store->preview_image) }}');">
+        <a href="{{ route('worker-details', ['id' => $store->id]) }}" class="rectangle-box-a" store-sub-cat-id="{{ $store->sub_category_id }}" style="background-image: url('{{ asset(env('MAIN_HOST_URL').$store->preview_image) }}');">
           <div class="rectangle-box shadow">
             <div class="name-location-div">
                 @if(app()->getLocale() == 'en')
@@ -135,6 +141,24 @@
 
 @section('front-additional-js')
 <script type="text/javascript">
+
+  $(document).ready(function(){
+    $('.show-all').click(function(){
+      $('.rectangle-box-a').show(500);
+    });
+    $('.show-specific').click(function(){
+      $('.rectangle-box-a').hide(500);
+      var subCatId = $(this).attr('sub-cat-id');
+      $('.rectangle-box-a').each(function(){
+        if ($(this).attr('store-sub-cat-id') == subCatId) {
+          $(this).show(500);
+        }
+        
+      })
+    });
+    
+  });
+  
   if ($(window).width() < 480 ) {
     $(".slider-area").slick({
         dots: false,

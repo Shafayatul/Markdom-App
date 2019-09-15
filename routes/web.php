@@ -30,7 +30,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/worker', 'FrontEnd\WorkerController@index')->name('worker');
 	Route::get('/sub-category-worker/{id}', 'FrontEnd\WorkerController@subCategoryWorker');
 	Route::get('/sub-sub-category-worker/{id}', 'FrontEnd\WorkerController@subSubCategoryWorker');
-	Route::get('/worker-details', 'FrontEnd\WorkerController@workerDetails');
+	Route::get('/worker-details/{id}', 'FrontEnd\WorkerController@workerDetails')->name('worker-details');
+	Route::get('/service-sub-category-worker/{id}', 'FrontEnd\WorkerController@serviceSubCategoryWorker')->name('service-sub-category-worker');
+	Route::get('product-by-service-sub-category/{id}', 'FrontEnd\WorkerController@productByServiceSubCategory')->name('product-by-service-sub-category');
+	Route::get('/worker-product-details/{id}', 'FrontEnd\WorkerController@workerProductDetails')->name('worker-product-details');
 	Route::get('/worker-service-delivery', 'FrontEnd\WorkerController@workerServiceDelivery')->name('worker-service-delivery');
 	Route::get('/order-delivery-time', 'OrdersController@orderDeliveryTime')->name('order-delivery-time');
 	Route::get('/place-order', 'OrdersController@placeOrder')->name('place-order');
