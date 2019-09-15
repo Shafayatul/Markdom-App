@@ -24,7 +24,26 @@
     </div>
     <div class="rectangle-div">
       <div id="grid">
-        <a href="{{ url('worker-details') }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
+
+        @foreach($stores as $store)
+        <a href="{{ route('worker-details', ['id' => $store->id]) }}" class="rectangle-box-a" store-sub-cat-id="{{ $store->sub_category_id }}" style="background-image: url('{{ asset($store->preview_image) }}');">
+          <div class="rectangle-box shadow">
+            <div class="name-location-div">
+                @if(app()->getLocale() == 'en')
+                  <span class="name">{{ $store->name }}</span>
+                  <span class="location">{{ $store->location }}</span>
+                @else
+                  <span class="name">{{ $store->name_arabic }}</span>
+                  <span class="location">{{ $store->arabic_location }}</span>
+                @endif
+            </div>
+            <div class="kilometer-div">
+              <span class="kilometer">2.05 KM</span>
+            </div>
+          </div>
+        </a>
+        @endforeach  
+        {{-- <a href="{{ url('worker-details') }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
           <div class="rectangle-box shadow">
             <div class="logo-box">
               <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
@@ -107,7 +126,7 @@
               <span class="kilometer">2.05 KM</span>
             </div>
           </div>
-        </a>
+        </a> --}}
       </div>
     </div>
   </div>

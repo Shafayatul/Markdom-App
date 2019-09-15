@@ -17,7 +17,11 @@ class WorkerController extends Controller
       $method = 'GET';
       $categories = $this->callApi($method, $url);
 
-      return view('front-end.workers.index', compact('categories'));
+      $url        = env('MAIN_HOST_URL').'api/get-offers-by-module/2';
+      $method     = 'GET';
+      $offers     = $this->callApi($method, $url);
+
+      return view('front-end.workers.index', compact('categories', 'offers'));
     }
 
     public function subCategoryWorker($id)
@@ -26,7 +30,11 @@ class WorkerController extends Controller
       $method_category = 'GET';
       $subCategories = $this->callApi($method_category, $url_category);
 
-      return view('front-end.workers.sub-category-worker', compact('subCategories'));
+      $url    = env('MAIN_HOST_URL').'api/get-store-by-category/'.$id;
+      $method = 'GET';
+      $stores = $this->callApi($method, $url);
+
+      return view('front-end.workers.sub-category-worker', compact('subCategories', 'stores'));
     }
 
     public function workerDetails()
