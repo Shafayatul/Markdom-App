@@ -14,7 +14,7 @@
           </div>
         </div>
         @foreach ($subCategories as $subCategory)
-          <div class="sliding-div">
+          <div class="sliding-div show-specific" sub-cat-id="{{ $subCategory->id }}">
             <div class="sliding-category-box">
               <a href="#" class="sliding-category-box-a">  <span class="sliding-category-name">{{ $subCategory->name }}</span> </a>
             </div>
@@ -24,90 +24,28 @@
     </div>
     <div class="rectangle-div">
       <div id="grid">
-        <a href="{{ route('store-details') }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <div class="rectangle-box shadow">
-            <div class="logo-box">
-              <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
+        @foreach ($stores as $store)
+
+          <a href="{{ route('store-details', ['id' => $store->id]) }}" class="rectangle-box-a" store-sub-cat-id="{{ $store->sub_category_id }}" style="background-image: url('{{ env('MAIN_HOST_URL').$store->preview_image }}');">
+            <div class="rectangle-box shadow">
+              <div class="logo-box">
+                <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
+              </div>
+              <div class="name-location-div">
+                @if(app()->getLocale() == 'en')
+                  <span class="name">{{ $store->name }}</span>
+                  <span class="location">{{ $store->location }}</span>
+                @else
+                  <span class="name">{{ $store->name_arabic }}</span>
+                  <span class="location">{{ $store->arabic_location }}</span>
+                @endif
+              </div>
+              <div class="kilometer-div">
+                <span class="kilometer">2.05 KM</span>
+              </div>
             </div>
-            <div class="name-location-div">
-              <span class="name">Store Name</span>
-              <span class="location">Store Best Location</span>
-            </div>
-            <div class="kilometer-div">
-              <span class="kilometer">2.05 KM</span>
-            </div>
-          </div>
-        </a>
-        <a href="{{ route('store-details') }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <div class="rectangle-box shadow">
-            <div class="logo-box">
-              <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-            </div>
-            <div class="name-location-div">
-              <span class="name">Store Name</span>
-              <span class="location">Store Best Location</span>
-            </div>
-            <div class="kilometer-div">
-              <span class="kilometer">2.05 KM</span>
-            </div>
-          </div>
-        </a>
-        <a href="{{ route('store-details') }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <div class="rectangle-box shadow">
-            <div class="logo-box">
-              <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-            </div>
-            <div class="name-location-div">
-              <span class="name">Store Name</span>
-              <span class="location">Store Best Location</span>
-            </div>
-            <div class="kilometer-div">
-              <span class="kilometer">2.05 KM</span>
-            </div>
-          </div>
-        </a>
-        <a href="{{ route('store-details') }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <div class="rectangle-box shadow">
-            <div class="logo-box">
-              <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-            </div>
-            <div class="name-location-div">
-              <span class="name">Store Name</span>
-              <span class="location">Store Best Location</span>
-            </div>
-            <div class="kilometer-div">
-              <span class="kilometer">2.05 KM</span>
-            </div>
-          </div>
-        </a>
-        <a href="{{ route('store-details') }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <div class="rectangle-box shadow">
-            <div class="logo-box">
-              <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-            </div>
-            <div class="name-location-div">
-              <span class="name">Store Name</span>
-              <span class="location">Store Best Location</span>
-            </div>
-            <div class="kilometer-div">
-              <span class="kilometer">2.05 KM</span>
-            </div>
-          </div>
-        </a>
-        <a href="{{ route('store-details') }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <div class="rectangle-box shadow">
-            <div class="logo-box">
-              <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-            </div>
-            <div class="name-location-div">
-              <span class="name">Store Name</span>
-              <span class="location">Store Best Location</span>
-            </div>
-            <div class="kilometer-div">
-              <span class="kilometer">2.05 KM</span>
-            </div>
-          </div>
-        </a>
+          </a>
+        @endforeach
       </div>
     </div>
   </div>
@@ -116,6 +54,23 @@
 
 @section('front-additional-js')
 <script type="text/javascript">
+
+$(document).ready(function(){
+  $('.show-all').click(function(){
+    $('.rectangle-box-a').show(500);
+  });
+  $('.show-specific').click(function(){
+    $('.rectangle-box-a').hide(500);
+    var subCatId = $(this).attr('sub-cat-id');
+    $('.rectangle-box-a').each(function(){
+      if ($(this).attr('store-sub-cat-id') == subCatId) {
+        $(this).show(500);
+      }
+
+    })
+  });
+
+});
 
   if ($(window).width() < 480 ) {
     $(".slider-area").slick({

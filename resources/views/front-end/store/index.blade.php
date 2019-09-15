@@ -24,30 +24,18 @@
     </div>
     <div class="rectangle-div">
       <div id="grid">
-        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <span class="title">Store Name</span>
-          <span class="number">150 SR</span>
+        @foreach ($categories_offer as $single_categories_offer)
+          <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
+          <span class="title">{{ $single_categories_offer->title }}</span>
+          <span class="number">
+            @if ($single_categories_offer->amount != null)
+              {{ $single_categories_offer->amount }}
+            @else
+              {{ $single_categories_offer->percentage }}
+            @endif
+          </span>
         </div>
-        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <span class="title">Store Name</span>
-          <span class="number">150 SR</span>
-        </div>
-        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <span class="title">Store Name</span>
-          <span class="number">150 SR</span>
-        </div>
-        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <span class="title">Store Name</span>
-          <span class="number">150 SR</span>
-        </div>
-        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <span class="title">Store Name</span>
-          <span class="number">150 SR</span>
-        </div>
-        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <span class="title">Store Name</span>
-          <span class="number">150 SR</span>
-        </div>
+        @endforeach
       </div>
     </div>
   </div>

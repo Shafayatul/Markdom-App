@@ -7,9 +7,14 @@ use App\Http\Controllers\Controller;
 
 class FrontEndController extends Controller
 {
+
     public function index()
     {
-      return view('front-end.home');
+      $url        = env('MAIN_HOST_URL').'api/get-modules';
+      $method     = 'GET';
+      $models     = $this->callApi($method, $url);
+
+      return view('front-end.home', compact('models'));
     }
 
     public function userLogin()
