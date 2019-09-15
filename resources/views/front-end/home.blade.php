@@ -24,86 +24,23 @@
 
     <div class="sliding-category">
       <div class="slider-area slider">
+        @foreach ($models as $model)
+          <?php $url_link = strtolower($model->name); ?>
           <div class="sliding-div">
-            <a href="#" class="sliding-div-a" >
+            <a href="{{ url('/'.$url_link) }}" class="sliding-div-a" >
               <div class="sliding-category-box shadow">
                 <div class="sliding-category-img">
                   <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
                 </div>
               </div>
-              <p class="sliding-category-name">Name</p>
+              @if(app()->getLocale() == 'en')
+                <p class="sliding-category-name">{{ $model->name }}</p>
+              @else
+                <p class="sliding-category-name">{{ $model->name_arabic }}</p>
+              @endif
             </a>
           </div>
-          <div class="sliding-div">
-            <a href="#" class="sliding-div-a" >
-              <div class="sliding-category-box shadow">
-                <div class="sliding-category-img">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-              <p class="sliding-category-name">Name</p>
-            </a>
-          </div>
-          <div class="sliding-div">
-            <a href="#" class="sliding-div-a" >
-              <div class="sliding-category-box shadow">
-                <div class="sliding-category-img">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-              <p class="sliding-category-name">Name</p>
-            </a>
-          </div>
-          <div class="sliding-div">
-            <a href="#" class="sliding-div-a" >
-              <div class="sliding-category-box shadow">
-                <div class="sliding-category-img">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-              <p class="sliding-category-name">Name</p>
-            </a>
-          </div>
-          <div class="sliding-div">
-            <a href="#" class="sliding-div-a" >
-              <div class="sliding-category-box shadow">
-                <div class="sliding-category-img">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-              <p class="sliding-category-name">Name</p>
-            </a>
-          </div>
-          <div class="sliding-div">
-            <a href="#" class="sliding-div-a" >
-              <div class="sliding-category-box shadow">
-                <div class="sliding-category-img">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-              <p class="sliding-category-name">Name</p>
-            </a>
-          </div>
-          <div class="sliding-div">
-            <a href="#" class="sliding-div-a" >
-              <div class="sliding-category-box shadow">
-                <div class="sliding-category-img">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-              <p class="sliding-category-name">Name</p>
-            </a>
-          </div>
-          <div class="sliding-div">
-            <a href="#" class="sliding-div-a" >
-              <div class="sliding-category-box shadow">
-                <div class="sliding-category-img">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-              <p class="sliding-category-name">Name</p>
-            </a>
-          </div>
+        @endforeach
       </div>
     </div>
 
