@@ -52,6 +52,12 @@ Module {{ $module->id }}
                                     <th> Name Arabic </th>
                                     <td> {{ $module->name_arabic }} </td>
                                 </tr>
+                                <tr>
+                                    <th> Image </th>
+                                    <td> 
+                                        <img src="{{ asset($module->preview_image) }}" alt="" style="width: 200px; height: 200px;">
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

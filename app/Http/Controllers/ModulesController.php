@@ -51,9 +51,21 @@ class ModulesController extends Controller
     public function store(Request $request)
     {
         
-        $requestData = $request->all();
+        if($request->hasFile('preview_image')){
+            $image          = $request->file('preview_image');
+            $image_name     = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+            $image_path     = 'module-images/';
+            $image_url      = $image_path.$image_name;
+            $image->move($image_path, $image_name);
+        }else{
+            $image_url = null;
+        }
         
-        Module::create($requestData);
+        $module                 = new Module();
+        $module->name           = $request->name;
+        $module->name_arabic    = $request->name_arabic;
+        $module->preview_image  = $image_url;
+        $module->save();
 
         return redirect('modules')->with('success', 'Module added!');
     }
@@ -96,11 +108,24 @@ class ModulesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $module                 = Module::findOrFail($id);
+        if($request->hasFile('preview_image')){
+            $image              = $request->file('preview_image');
+            $image_name         = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+            $image_path         = 'module-images/';
+            $image_url          = $image_path.$image_name;
+            $image->move($image_path, $image_name);
+            if($module->preview_image != null){
+                unlink($module->preview_image);
+            }
+        }else{
+            $image_url          = $module->preview_image;
+        }
         
-        $requestData = $request->all();
-        
-        $module = Module::findOrFail($id);
-        $module->update($requestData);
+        $module->name           = $request->name;
+        $module->name_arabic    = $request->name_arabic;
+        $module->preview_image  = $image_url;
+        $module->save();
 
         return redirect('modules')->with('success', 'Module updated!');
     }
@@ -114,6 +139,10 @@ class ModulesController extends Controller
      */
     public function destroy($id)
     {
+        $module = Module::findOrFail($id);
+        if($module->preview_image != null){
+            unlink($module->preview_image);
+        }
         Module::destroy($id);
 
         return redirect('modules')->with('success', 'Module deleted!');

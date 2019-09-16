@@ -48,9 +48,9 @@ Route::get('get-service-category-by-store/{store_id}', 'Api\ServicesController@g
 
 Route::get('get-service-sub-category-by-service-category/{service_category_id}', 'Api\ServicesController@get_service_sub_category_by_service_category_id');
 
-Route::get('get-product-by-service-sub-category/{service_sub_category_id}', 'Api\ServicesController@get_product_by_service_sub_category_id');
+Route::get('get-products-by-service-sub-category/{service_sub_category_id}', 'Api\ServicesController@get_products_by_service_sub_category_id');
 
-
+Route::get('get-service-sub-sub-category-by-service-sub-category/{service_sub_category_id}', 'Api\ServicesController@get_service_sub_sub_category_by_service_sub_category_id');
 
 Route::group(['middleware' => ['auth:api']], function() {
 

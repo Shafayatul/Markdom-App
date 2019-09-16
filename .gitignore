@@ -16,3 +16,7 @@ yarn-error.log
 /public/product-image
 /public/order-image
 /public/offer-image
+/public/services-category-images
+/public/services-sub-category-images
+/public/services-sub-sub-category-images
+/public/module-images
