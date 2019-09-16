@@ -8,36 +8,24 @@
   <div class="container">
     <div class="sliding-category">
       <div class="slider-area slider">
+        <div class="sliding-div">
+          <div class="sliding-category-box">
+            <span class="sliding-category-name">{{ __('content.all') }}</span>
+          </div>
+        </div>
+        @foreach($service_sub_sub_categories as $item)
           <div class="sliding-div">
             <div class="sliding-category-box">
-              <span class="sliding-category-name">{{ __('content.all') }}</span>
+              <span class="sliding-category-name">
+                @if(app()->getLocale == 'en')
+                  {{ $item->name }}
+                @else
+                  {{ $item->name_arabic }}
+                @endif
+              </span>
             </div>
           </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Per Marker</span>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Restaurants</span>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Gifts</span>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Workers</span>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Gifts</span>
-            </div>
-          </div>
+        @endforeach
       </div>
     </div>
     <div class="rectangle-div">

@@ -87,8 +87,12 @@ class WorkerController extends Controller
       $url      = env('MAIN_HOST_URL').'api/get-product-by-service-sub-category/'.$id;
       $method   = 'GET';
       $services = $this->callApi($method, $url);
-      // dd($services);
-      return view('front-end.workers.product-view-by-service-sub-category', compact('services'));
+
+      $url      = env('MAIN_HOST_URL').'api/get-service-sub-sub-category-by-service-sub-category/'.$id;
+      $method   = 'GET';
+      $service_sub_sub_categories = $this->callApi($method, $url);
+      dd($service_sub_sub_categories);
+      return view('front-end.workers.product-view-by-service-sub-category', compact('services', 'service_sub_sub_categories'));
     }
 
     public function workerProductDetails($id)
