@@ -69,6 +69,14 @@ Product {{ $product->id }}
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th> Service Sub Sub Category </th>
+                                    <td>
+                                        @if(isset($service_sub_sub_categories[$product->service_sub_sub_category_id])) 
+                                            {{ $service_sub_sub_categories[$product->service_sub_sub_category_id] }}
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th> Sub Sub Category </th>
                                     <td>
                                         @if(isset($subsubcategories[$product->sub_sub_category_id])) 

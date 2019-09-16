@@ -17,7 +17,7 @@
           <div class="sliding-div">
             <div class="sliding-category-box">
               <span class="sliding-category-name">
-                @if(app()->getLocale == 'en')
+                @if(app()->getLocale() == 'en')
                   {{ $item->name }}
                 @else
                   {{ $item->name_arabic }}
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="rectangle-div">
-      {{-- <div id="grid">
+      <div id="grid">
 
         @foreach($services as $service)
         <a href="{{ route('worker-product-details', ['id' => $service->id]) }}" class="rectangle-box-a" style="background-image: url('{{ asset(env('MAIN_HOST_URL').$service->preview_image) }}');">
@@ -50,7 +50,7 @@
         </a>
         @endforeach
         
-      </div> --}}
+      </div>
     </div>
   </div>
 </div>
