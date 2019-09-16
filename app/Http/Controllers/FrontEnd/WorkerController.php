@@ -40,6 +40,37 @@ class WorkerController extends Controller
       return view('front-end.workers.sub-category-worker', compact('subCategories', 'stores'));
     }
 
+    public function workerServiceTime($id){
+
+      $current_date           = Carbon::now()->format('Y-m-d');
+      $current_time           = time();
+
+      $url_workinghours       = env('MAIN_HOST_URL').'api/get-workinghours/'.$id.'/'.$current_date;
+      $method_workinghours    = 'GET';
+      $slot                   = $this->callApi($method_workinghours, $url_workinghours);
+
+      dd($slot);
+
+      $is_available = false;
+      foreach ($slot as $row) {
+        $time_ary = explode('-', $row->timespan);
+
+        $d1 = new DateTime($time_ary[0].':00', new DateTimeZone('Asia/Riyadh'));
+        $t1 = $d1->getTimestamp();
+
+        $d2 = new DateTime($time_ary[1].':00', new DateTimeZone('Asia/Riyadh'));
+        $t2 = $d2->getTimestamp();
+
+        if (($t1 <= $current_time) && ($t2 > $current_time)) {
+          if ($row->is_booked == 0) {
+            $is_available = true;
+          }
+        }
+      }
+
+
+    }
+
     public function workerDetails($id)
     {
     
