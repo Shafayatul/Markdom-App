@@ -30,7 +30,7 @@
             <a href="{{ url('/'.$url_link) }}" class="sliding-div-a" >
               <div class="sliding-category-box shadow">
                 <div class="sliding-category-img">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
+                  <img src="{{ asset(env('MAIN_HOST_URL').$model->preview_image) }}" alt="">
                 </div>
               </div>
               @if(app()->getLocale() == 'en')
