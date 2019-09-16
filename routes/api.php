@@ -21,6 +21,7 @@ use Illuminate\Http\Request;
 Route::get('country-list', 'Api\CountriesController@index');
 Route::get('get-state/{country_id}', 'Api\CountriesController@state');
 Route::get('get-city/{state_id}', 'Api\CountriesController@city');
+Route::get('get-all-schedule-type-by-lang/{lang}', 'Api\WorkingHoursController@get_all_schedule_type_by_lang');
 
 Route::get('get-modules', 'Api\ModulesController@get_modules');
 Route::get('get-categories-by-module/{id}', 'Api\CategoriesController@get_categories_by_module_id');

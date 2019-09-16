@@ -45,11 +45,17 @@ class WorkerController extends Controller
       $current_date           = Carbon::now()->format('Y-m-d');
       $current_time           = time();
 
+      $lang = app()->getLocale();
+
       $url_workinghours       = env('MAIN_HOST_URL').'api/get-workinghours/'.$id.'/'.$current_date;
       $method_workinghours    = 'GET';
       $slot                   = $this->callApi($method_workinghours, $url_workinghours);
 
-      dd($slot);
+      $url_schedule           = env('MAIN_HOST_URL').'api/get-all-schedule-type-by-lang/'.$lang;
+      $method_schedule        = 'GET';
+      $schedules              = $this->callApi($method_schedule, $url_schedule);
+
+      dd($schedules);
 
       // schedule type api call
       

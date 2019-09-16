@@ -38,5 +38,17 @@ class WorkingHoursController extends Controller
     	return response()->json($working_schedule);
     }
 
+    public function get_all_schedule_type_by_lang($lang)
+    {
+        if($lang == 'en'){
+            $schedule_type = ScheduleType::pluck('name', 'id');
+        }else{
+            $schedule_type = ScheduleType::pluck('name_arabic', 'id');
+        }
+        
+        return response()->json($schedule_type);
+        
+    }
+
 
 }
