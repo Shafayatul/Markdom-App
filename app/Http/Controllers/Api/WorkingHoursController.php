@@ -35,5 +35,5 @@ class WorkingHoursController extends Controller
     	return response()->json($working_schedule);
     }
 
-    
+
 }
