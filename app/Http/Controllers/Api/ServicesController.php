@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ServiceCategory;
 use App\ServiceSubCategory;
+use App\ServiceSubSubCategory;
 use App\Product;
 
 class ServicesController extends Controller
@@ -22,9 +23,15 @@ class ServicesController extends Controller
     	return response()->json($service_sub_categories);
     }
 
-    public function get_product_by_service_sub_category_id($service_sub_category_id)
+    public function get_service_sub_sub_category_by_service_sub_category_id($service_sub_category_id)
     {
-    	$products = Product::where('service_sub_category_id', $service_sub_category_id)->get();
-    	return response()->json($products);
+        $service_sub_sub_categories = ServiceSubSubCategory::where('service_sub_category_id', $service_sub_category_id)->get();
+        return response()->json($service_sub_sub_categories);
+    }
+
+    public function get_products_by_service_sub_category_id($service_sub_category_id)
+    {
+        $products = Product::where('service_sub_category_id', $service_sub_category_id)->get();
+        return response()->json($products);
     }
 }

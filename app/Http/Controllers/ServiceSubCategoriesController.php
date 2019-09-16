@@ -55,12 +55,21 @@ class ServiceSubCategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        
+        if($request->hasFile('preview_image')){
+            $image          = $request->file('preview_image');
+            $image_name     = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+            $image_path     = 'services-sub-category-images/';
+            $image_url      = $image_path.$image_name;
+            $image->move($image_path, $image_name);
+        }else{
+            $image_url = null;
+        }
         $servicesubcategory                         = new ServiceSubCategory();
         $servicesubcategory->user_id                = Auth::id();
         $servicesubcategory->service_category_id    = $request->service_category_id;
         $servicesubcategory->name                   = $request->name;
         $servicesubcategory->name_arabic            = $request->name_arabic;
+        $servicesubcategory->preview_image          = $image_url;
         $servicesubcategory->save();
 
         return redirect('service-sub-categories')->with('success', 'ServiceSubCategory added!');
@@ -105,10 +114,23 @@ class ServiceSubCategoriesController extends Controller
     public function update(Request $request, $id)
     {
         $servicesubcategory                         = ServiceSubCategory::findOrFail($id);
+        if($request->hasFile('preview_image')){
+            $image          = $request->file('preview_image');
+            $image_name     = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+            $image_path     = 'services-sub-category-images/';
+            $image_url      = $image_path.$image_name;
+            $image->move($image_path, $image_name);
+            if($servicesubcategory->preview_image != null){
+                unlink($servicesubcategory->preview_image);
+            }
+        }else{
+            $image_url = $servicesubcategory->preview_image;
+        }
         $servicesubcategory->user_id                = Auth::id();
         $servicesubcategory->service_category_id    = $request->service_category_id;
         $servicesubcategory->name                   = $request->name;
         $servicesubcategory->name_arabic            = $request->name_arabic;
+        $servicesubcategory->preview_image          = $image_url;
         $servicesubcategory->save();
 
         return redirect('service-sub-categories')->with('success', 'ServiceSubCategory updated!');
@@ -123,6 +145,10 @@ class ServiceSubCategoriesController extends Controller
      */
     public function destroy($id)
     {
+        $servicesubcategory = ServiceSubCategory::findOrFail($id);
+        if($servicesubcategory->preview_image != null){
+            unlink($servicesubcategory->preview_image);
+        }
         ServiceSubCategory::destroy($id);
 
         return redirect('service-sub-categories')->with('success', 'ServiceSubCategory deleted!');

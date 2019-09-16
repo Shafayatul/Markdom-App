@@ -38,7 +38,7 @@ ServiceCategory {{ $servicecategory->id }}
                     <br/>
 
                     <div class="table-responsive">
-                        <table class="table table-borderless">
+                        <table class="table table-bordered">
                             <tbody>
                                 <tr>
                                     <th>ID</th>
@@ -59,6 +59,12 @@ ServiceCategory {{ $servicecategory->id }}
                                 <tr>
                                     <th> Name Arabic </th>
                                     <td> {{ $servicecategory->name_arabic }} </td>
+                                </tr>
+                                <tr>
+                                    <th> Image </th>
+                                    <td> 
+                                        <img src="{{ asset($servicecategory->preview_image) }}" alt="" style="width: 200px; height: 200px;">
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
