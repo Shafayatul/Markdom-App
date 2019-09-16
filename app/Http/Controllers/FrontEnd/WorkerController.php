@@ -51,23 +51,8 @@ class WorkerController extends Controller
 
       dd($slot);
 
-      $is_available = false;
-      foreach ($slot as $row) {
-        $time_ary = explode('-', $row->timespan);
-
-        $d1 = new DateTime($time_ary[0].':00', new DateTimeZone('Asia/Riyadh'));
-        $t1 = $d1->getTimestamp();
-
-        $d2 = new DateTime($time_ary[1].':00', new DateTimeZone('Asia/Riyadh'));
-        $t2 = $d2->getTimestamp();
-
-        if (($t1 <= $current_time) && ($t2 > $current_time)) {
-          if ($row->is_booked == 0) {
-            $is_available = true;
-          }
-        }
-      }
-
+      // schedule type api call
+      
 
     }
 
