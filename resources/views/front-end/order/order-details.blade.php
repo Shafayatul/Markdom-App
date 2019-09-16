@@ -8,15 +8,15 @@
 <div class="restaurant text-center">
   <div class="container">
     <div class="order-details-div">
-      {{-- <form class="order-details-form" action="" method="post"> --}}
-        <h1>
+      <form class="order-details-form" action="" method="post">
+        <h1 class="text-center">
           @if(app()->getLocale() == 'en')
             {{ $product->name }}
           @else
             {{ $product->name_arabic }}
           @endif
         </h1>
-        <p>{{ __('content.order_details') }}</p>
+        <p><b>{{ __('content.order_details') }}</b></p>
         <p>
           @if(app()->getLocale() == 'en')
             {{ $product->description }}
@@ -24,20 +24,13 @@
             {{ $product->description_arabic }}
           @endif
         </p>
-        {{-- <div class="get-promo-code">
-          <p>Get Promo Code</p>
-          <span class="promo-code-input-span">
-            <input type="text" name="" value="">
-          </span>
-          <span class="promo-code-button-span"> <button class="apply-button btn">Apply</button> </span>
-        </div> --}}
         @if(app()->getLocale() == 'ar')
           <input type="file" class="custom-arabic-file-input">
         @else
           <input type="file" class="custom-file-input">
         @endif
         <p>{{ __('content.select_delivery_date') }}: <br> <input type="text" id="datepicker"></p>
-      {{-- </form> --}}
+      </form>
     </div>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">

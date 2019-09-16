@@ -53,6 +53,7 @@ input[type=text] {
 
 .custom-file-input {
   color: transparent;
+  margin: 0 auto;
 }
 
 .custom-arabic-file-input {
@@ -70,7 +71,7 @@ input[type=text] {
   content: 'Upload Image';
   color: black;
   display: inline-block;
-  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  /*background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);*/
   border: 1px solid rgb(169, 169, 169);
   border-radius: 16px;
   padding: 10px 55px;
@@ -87,10 +88,11 @@ input[type=text] {
   content: 'تحميل الصور';
   color: black;
   display: inline-block;
-  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  /*background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);*/
   border: 1px solid rgb(169, 169, 169);
+  width: 100%;
   border-radius: 16px;
-  padding: 10px 55px;
+  padding: 10px 100%;
   outline: none;
   white-space: nowrap;
   -webkit-user-select: none;
