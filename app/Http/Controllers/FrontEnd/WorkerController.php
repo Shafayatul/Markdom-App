@@ -10,6 +10,7 @@ use GuzzleHttp\Client;
 use Carbon\Carbon;
 use DateTime;
 use DateTimeZone;
+use Session;
 
 class WorkerController extends Controller
 {
@@ -40,9 +41,14 @@ class WorkerController extends Controller
       return view('front-end.workers.sub-category-worker', compact('subCategories', 'stores'));
     }
 
-    public function workerServiceTime($id){
+    public function workerServiceTime($id, $date = null){
 
-      $current_date           = Carbon::now()->format('Y-m-d');
+      if($date == null){
+        $current_date           = Carbon::now()->format('Y-m-d');
+      }else{
+        $current_date           = $date;
+      }
+
       $current_time           = time();
 
       $lang = app()->getLocale();
@@ -54,8 +60,8 @@ class WorkerController extends Controller
       $url_schedule           = env('MAIN_HOST_URL').'api/get-all-schedule-type-by-lang/'.$lang;
       $method_schedule        = 'GET';
       $schedules              = $this->callApi($method_schedule, $url_schedule);
-
-      dd($schedules);
+      // dd($slot);
+      return view('front-end.workers.worker-delivery-time', compact('id', 'slot', 'schedules', 'current_date'));
 
       // schedule type api call
       
@@ -119,10 +125,23 @@ class WorkerController extends Controller
 
     public function workerProductDetails($id)
     {
+
+      Session::put('service_selected_product_id', $id);
       $url      = env('MAIN_HOST_URL').'api/get-product-detail/'.$id;
       $method   = 'GET';
-      $service = $this->callApi($method, $url);
+      $service  = $this->callApi($method, $url);
+
+      $url_service_type_price     = env('MAIN_HOST_URL').'api/get-service-type-price';
+      $method_service_type_price  = 'GET';
+      $service_type_prices        = $this->callApi($method_service_type_price, $url_service_type_price);
       // dd($service);
-      return view('front-end.workers.worker-service-delivery', compact('service'));
+      return view('front-end.workers.worker-service-delivery', compact('service', 'service_type_prices'));
+    }
+
+    public function workerSaveServiceType($id)
+    {
+      $product_id = Session::get('service_selected_product_id');
+      Session::put('selected_service_type_id', $id);
+      return redirect('/worker-service-time/'.$product_id);
     }
 }

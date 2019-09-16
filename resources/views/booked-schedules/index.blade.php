@@ -58,7 +58,11 @@ Bookedschedules
                                     <td>
                                         {{ $item->timespan }}
                                     </td>
-                                    <td>{{ $stores[$item->store_id] }}</td>
+                                    <td>
+                                        @isset($stores[$item->store_id])
+                                            {{ $stores[$item->store_id] }}
+                                        @endisset
+                                    </td>
                                     <td>{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</td>
                                     <td>
                                         @if(in_array($item->id, $bookedschedule_ids))

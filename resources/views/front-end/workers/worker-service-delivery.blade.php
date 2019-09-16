@@ -7,16 +7,24 @@
 <div class="worker text-center">
   <div class="container">
     <div class="delivery-option">
-      <a href="#">
+      @foreach($service_type_prices as $service_type_price)
+      <a href="{{ route('worker-save-service-type', ['id' => $service_type_price->id]) }}">
         <div class="in-service">
-          <h1 class="in-service-h1">{{ __('content.service_provider_shop') }}</h1>
+          <h1 class="in-service-h1">
+              @if(app()->getLocale() == 'en')
+                  {{ $service_type_price->name }}
+              @else
+                {{ $service_type_price->name_arabic }}
+              @endif
+          </h1>
         </div>
       </a>
-      <a href="#">
+      @endforeach
+      {{-- <a href="#">
         <div class="in-customer">
             <h1 class="in-customer-h1">{{ __('content.customer_place') }}</h1>
         </div>
-      </a>
+      </a> --}}
 
     </div>
   </div>

@@ -10,7 +10,7 @@ class WorkerServiceCostsController extends Controller
 {
     public function get_service_type_price()
     {
-    	$worker_prices = WorkerServiceCost::latest()->get();
+    	$worker_prices = WorkerServiceCost::get();
     	return response()->json($worker_prices); 
     }
 }

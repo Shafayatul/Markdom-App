@@ -28,7 +28,10 @@
     border-radius: 50%;
     padding-top: 4px;
 }
-
+.selected_date{
+  background-color: #2ecc71;
+  color: #ffffff;
+}
 .morning-div, .afternoon-div, .evening-div {
   margin-top: 40px;
 }

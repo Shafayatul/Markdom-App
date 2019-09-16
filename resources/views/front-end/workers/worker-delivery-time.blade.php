@@ -20,24 +20,42 @@
     <div class="sliding-category">
       <div class="slider-area slider" id="slider-area">
         @for($i=1; $i<35; $i++)
+        @php
+          $date = Carbon\Carbon::now()->addDay($i-1)->format('Y-m-d');
+        @endphp
+        <a href="{{ url('/worker-service-time/'.$id.'/'.$date) }}">
           <div class="sliding-div" id=sliding-div>
             <div class="day-name" id="day-name-{{$i}}"></div>
-            <div class="day-number" id="day-number-{{$i}}"></div>
+            <div class="day-number @if($date == $current_date) selected_date @endif" id="day-number-{{$i}}"></div>
           </div>
+        </a>
         @endfor
       </div>
     </div>
 
+    @foreach($schedules as $key=>$value)
     <div class="morning-div">
       <div class="morning-timing-title-box text-left">
         <span class="icon"><i class="fa fa-check"></i></span>
-        <span class="morning-title"><h2>Morning</h2></span>
+        <span class="morning-title">
+          <h2>
+            {{ $value }}
+          </h2>
+        </span>
       </div>
       <div class="morning-time-schedule-box">
-        <div class="morning-slider-area slider" id="morning-slider-area">
-          <span>09:00 - 10:00</span>
-        </div>
-        <div class="morning-slider-area slider" id="morning-slider-area">
+        @foreach($slot as $item)
+          @if($item->schedule_type_id == $key)
+          <div class="morning-slider-area slider" id="morning-slider-area">
+            @if($item->is_booked == 1)
+              <span class="@if($item->is_booked == 1) selected_date @endif">{{ $item->timespan }}</span>
+            @else
+              <a href=""><span>{{ $item->timespan }}</span></a>
+            @endif
+          </div>
+          @endif
+        @endforeach
+        {{-- <div class="morning-slider-area slider" id="morning-slider-area">
           <span>10:00 - 11:00</span>
         </div>
         <div class="morning-slider-area slider" id="morning-slider-area">
@@ -45,11 +63,11 @@
         </div>
         <div class="morning-slider-area slider" id="morning-slider-area">
           <span>12:00 - 13:00</span>
-        </div>
+        </div> --}}
       </div>
     </div>
-
-    <div class="afternoon-div">
+    @endforeach
+    {{-- <div class="afternoon-div">
       <div class="afternoon-timing-title-box text-left">
         <span class="icon"><i class="fa fa-check"></i></span>
         <span class="afternoon-title"><h2>Afternoon</h2></span>
@@ -89,7 +107,8 @@
           <span>20:00 - 21:00</span>
         </div>
       </div>
-    </div>
+    </div> --}}
+
   </div>
 </div>
 @endsection
@@ -163,17 +182,17 @@
     // console.log('Year: '+myDate.getFullYear()+' Month: '+months[myDate.getMonth()]+' Date: '+myDate.getDate()+' Day: '+days[myDate.getDay()]);
   }
 
-  $(document).on('click', '.day-number', function(){
-    $('.day-number').css('background-color', '#ffffff');
-    $('.day-number').css('color', '#000000');
-    var curMonth = $(this).attr('month');
-    var curYear = $(this).attr('year');
-    $(this).css('background-color', '#2ecc71');
-    $(this).css('color', '#ffffff');
-    $("#year-span").html( curYear);
-    $("#month-span").html( curMonth);
+  // $(document).on('click', '.day-number', function(){
+  //   $('.day-number').css('background-color', '#ffffff');
+  //   $('.day-number').css('color', '#000000');
+  //   var curMonth = $(this).attr('month');
+  //   var curYear = $(this).attr('year');
+  //   $(this).css('background-color', '#2ecc71');
+  //   $(this).css('color', '#ffffff');
+  //   $("#year-span").html( curYear);
+  //   $("#month-span").html( curMonth);
 
-  });
+  // });
 
 </script>
 @endsection
