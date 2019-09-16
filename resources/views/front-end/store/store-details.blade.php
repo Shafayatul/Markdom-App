@@ -45,8 +45,8 @@
             <div class="product-div">
                 <div id="grid">
                   @foreach ($product_details as $product)
-                    <a href="{{ route('store-product-details', ['id'=>$product->id]) }}" class="rectangle-box-a">
                       <div class="product-box shadow">
+                        <a href="{{ route('store-product-details', ['id'=>$product->id]) }}" class="rectangle-box-a">
                           <div class="product-image-box">
                             <img src="{{ env('MAIN_HOST_URL').$product->preview_image}}" alt="">
                           </div>
@@ -59,10 +59,10 @@
                           </div>
                           <div class="price-button">
                             <p class="pull-left">{{ $product->price }}</p>
-                            <button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button>
                           </div>
+                        </a>
+                        <button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button>
                       </div>
-                    </a>
                   @endforeach
                 </div>
             </div>
