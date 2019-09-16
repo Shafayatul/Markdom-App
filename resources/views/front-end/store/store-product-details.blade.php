@@ -11,20 +11,40 @@
             <div class="fill_height">
                 <div class="sliding_box">
                     <ul class="rslides" id="slider1">
-                        <li><img src="{{ asset('front-end-assets/responsive-slider/1.jpg') }}" alt=""></li>
-                        <li><img src="{{ asset('front-end-assets/responsive-slider/2.jpg') }}" alt=""></li>
-                        <li><img src="{{ asset('front-end-assets/responsive-slider/3.jpg') }}" alt=""></li>
+                      <?php
+                        $multiple_image   = $product_details->multiple_images;
+                        $multiple_images  = explode(",",$multiple_image);
+                      ?>
+                      @foreach ($multiple_images as $single_image)
+                        <li><img src="{{ env('MAIN_HOST_URL').$single_image}}" alt=""></li>
+                      @endforeach
                     </ul>
                 </div>
             </div>
         </div>
         <div class="product-details">
           <div class="product-title">
-            <div class="left text-left"> <p>Product Name</p></div>
-            <div class="right text-right"> <p>Product Price</p></div>
+            <div class="left text-left">
+              <p>
+                @if(app()->getLocale() == 'en')
+                  {{ $product_details->name }}
+                @else
+                  {{ $product_details->name_arabic }}
+                @endif
+              </p>
+            </div>
+            <div class="right text-right"> <p>{{ $product_details->price }}</p></div>
           </div>
           <div class="product-description">
-            <div class="left text-left"> <p>Product Description Text</p></div>
+            <div class="left text-left">
+              <p>
+                @if(app()->getLocale() == 'en')
+                  {{ $product_details->description }}
+                @else
+                  {{ $product_details->description_arabic }}
+                @endif
+              </p>
+            </div>
             <div class="right text-right"> <p>
               @for ($i=0; $i <5; $i++)
                 <i class="fa fa-star"></i>
