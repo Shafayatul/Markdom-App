@@ -22,7 +22,7 @@ Route::get('country-list', 'Api\CountriesController@index');
 Route::get('get-state/{country_id}', 'Api\CountriesController@state');
 Route::get('get-city/{state_id}', 'Api\CountriesController@city');
 
-
+Route::get('get-modules', 'Api\ModulesController@get_modules');
 Route::get('get-categories-by-module/{id}', 'Api\CategoriesController@get_categories_by_module_id');
 Route::get('get-offers-by-module/{id}', 'Api\OffersController@get_offers_by_module_id');
 
@@ -48,9 +48,9 @@ Route::get('get-service-category-by-store/{store_id}', 'Api\ServicesController@g
 
 Route::get('get-service-sub-category-by-service-category/{service_category_id}', 'Api\ServicesController@get_service_sub_category_by_service_category_id');
 
-Route::get('get-product-by-service-sub-category/{service_sub_category_id}', 'Api\ServicesController@get_product_by_service_sub_category_id');
+Route::get('get-products-by-service-sub-category/{service_sub_category_id}', 'Api\ServicesController@get_products_by_service_sub_category_id');
 
-
+Route::get('get-service-sub-sub-category-by-service-sub-category/{service_sub_category_id}', 'Api\ServicesController@get_service_sub_sub_category_by_service_sub_category_id');
 
 Route::group(['middleware' => ['auth:api']], function() {
 

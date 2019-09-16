@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use Carbon\Carbon;
+use DateTime;
+use DateTimeZone;
 
 class WorkerController extends Controller
 {
@@ -17,7 +20,11 @@ class WorkerController extends Controller
       $method = 'GET';
       $categories = $this->callApi($method, $url);
 
-      return view('front-end.workers.index', compact('categories'));
+      $url        = env('MAIN_HOST_URL').'api/get-offers-by-module/2';
+      $method     = 'GET';
+      $offers     = $this->callApi($method, $url);
+
+      return view('front-end.workers.index', compact('categories', 'offers'));
     }
 
     public function subCategoryWorker($id)
@@ -26,12 +33,31 @@ class WorkerController extends Controller
       $method_category = 'GET';
       $subCategories = $this->callApi($method_category, $url_category);
 
-      return view('front-end.workers.sub-category-worker', compact('subCategories'));
+      $url    = env('MAIN_HOST_URL').'api/get-store-by-category/'.$id;
+      $method = 'GET';
+      $stores = $this->callApi($method, $url);
+      // dd($stores);
+      return view('front-end.workers.sub-category-worker', compact('subCategories', 'stores'));
     }
 
-    public function workerDetails()
+    public function workerDetails($id)
     {
-      return view('front-end.workers.worker-details');
+    
+      $url      = env('MAIN_HOST_URL').'api/get-store-detail/'.$id;
+      $method   = 'GET';
+      $store    = $this->callApi($method, $url);
+
+      
+
+      $url      = env('MAIN_HOST_URL').'api/get-review-by-store/'.$id;
+      $method   = 'GET';
+      $review   = $this->callApi($method, $url);
+
+      $url                = env('MAIN_HOST_URL').'api/get-service-category-by-store/'.$id;
+      $method             = 'GET';
+      $service_categories = $this->callApi($method, $url);
+
+      return view('front-end.workers.worker-details', compact('store', 'review', 'service_categories'));
     }
 
     public function subSubCategoryWorker($id)
@@ -46,5 +72,35 @@ class WorkerController extends Controller
     public function workerServiceDelivery()
     {
       return view('front-end.workers.worker-service-delivery');
+    }
+
+    public function serviceSubCategoryWorker($id)
+    {
+      $url                        = env('MAIN_HOST_URL').'api/get-service-sub-category-by-service-category/'.$id;
+      $method                     = 'GET';
+      $service_sub_categories     = $this->callApi($method, $url);
+      return view('front-end.workers.service-sub-category-worker', compact('service_sub_categories'));
+    }
+
+    public function productByServiceSubCategory($id)
+    {
+      $url      = env('MAIN_HOST_URL').'api/get-products-by-service-sub-category/'.$id;
+      $method   = 'GET';
+      $services = $this->callApi($method, $url);
+
+      $url      = env('MAIN_HOST_URL').'api/get-service-sub-sub-category-by-service-sub-category/'.$id;
+      $method   = 'GET';
+      $service_sub_sub_categories = $this->callApi($method, $url);
+      // dd($service_sub_sub_categories);
+      return view('front-end.workers.product-view-by-service-sub-category', compact('services', 'service_sub_sub_categories'));
+    }
+
+    public function workerProductDetails($id)
+    {
+      $url      = env('MAIN_HOST_URL').'api/get-product-detail/'.$id;
+      $method   = 'GET';
+      $service = $this->callApi($method, $url);
+      // dd($service);
+      return view('front-end.workers.worker-service-delivery', compact('service'));
     }
 }

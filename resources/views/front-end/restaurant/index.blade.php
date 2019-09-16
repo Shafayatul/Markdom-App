@@ -12,7 +12,7 @@
             <a href="{{ route('sub-category-restaurant', ['id'=>$category->id]) }}" class="sliding-div-a">
               <div class="sliding-category-box shadow">
                 <div class="sliding-category-img">
-                  <img src="{{ asset($category->image) }}" alt="">
+                  <img src="{{ asset(env('MAIN_HOST_URL').$category->image) }}" alt="">
                 </div>
               </div>
               <p class="sliding-category-name">
@@ -30,7 +30,7 @@
     <div class="rectangle-div">
       <div id="grid">
         @foreach($offers as $offer)
-          <div class="rectangle-box shadow" style="background-image: url('{{ asset($offer->image) }}');">
+          <div class="rectangle-box shadow" style="background-image: url('{{ asset(env('MAIN_HOST_URL').$offer->image) }}');">
             <span class="title">
               @if(app()->getLocale() == 'en')
                 {{ $offer->title }}

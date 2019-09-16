@@ -34,6 +34,10 @@
 }
 
 .sliding-category-name {
+  text-decoration: none;
+}
+
+.sliding-category-name {
   position: relative;
   color: #fff;
   top: 25%;

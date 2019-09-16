@@ -10,6 +10,7 @@ use App\Store;
 use App\SubSubCategory;
 use App\ServiceCategory;
 use App\ServiceSubCategory;
+use App\ServiceSubSubCategory;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -39,7 +40,8 @@ class ProductsController extends Controller
         $subsubcategories = SubSubCategory::pluck('name', 'id');
         $service_categories = ServiceCategory::pluck('name', 'id');
         $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
-        return view('products.index', compact('products', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories'));
+        $service_sub_sub_categories = ServiceSubSubCategory::pluck('name', 'id');
+        return view('products.index', compact('products', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories', 'service_sub_sub_categories'));
     }
 
     /**
@@ -53,7 +55,8 @@ class ProductsController extends Controller
         $subsubcategories = SubSubCategory::pluck('name', 'id');
         $service_categories = ServiceCategory::pluck('name', 'id');
         $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
-        return view('products.create', compact('stores', 'subsubcategories', 'service_categories', 'service_sub_categories'));
+        $service_sub_sub_categories = ServiceSubSubCategory::pluck('name', 'id');
+        return view('products.create', compact('stores', 'subsubcategories', 'service_categories', 'service_sub_categories', 'service_sub_sub_categories'));
     }
 
     /**
@@ -90,16 +93,17 @@ class ProductsController extends Controller
             $data[]  = null;
         }
 
-        $product                            = new Product();
-        $product->store_id                  = $request->store_id;
-        $product->sub_sub_category_id       = $request->sub_sub_category_id;
-        $product->service_category_id       = $request->service_category_id;
-        $product->service_sub_category_id   = $request->service_sub_category_id;
-        $product->name                      = $request->name;
-        $product->name_arabic               = $request->name_arabic;
-        $product->description               = $request->description;
-        $product->description_arabic        = $request->description_arabic;
-        $product->preview_image             = $image_url;
+        $product                                = new Product();
+        $product->store_id                      = $request->store_id;
+        $product->sub_sub_category_id           = $request->sub_sub_category_id;
+        $product->service_category_id           = $request->service_category_id;
+        $product->service_sub_category_id       = $request->service_sub_category_id;
+        $product->service_sub_sub_category_id   = $request->service_sub_sub_category_id;
+        $product->name                          = $request->name;
+        $product->name_arabic                   = $request->name_arabic;
+        $product->description                   = $request->description;
+        $product->description_arabic            = $request->description_arabic;
+        $product->preview_image                 = $image_url;
         if($data[0] == null){
             $data_img = null;
         }else{
@@ -126,7 +130,8 @@ class ProductsController extends Controller
         $subsubcategories = SubSubCategory::pluck('name', 'id');
         $service_categories = ServiceCategory::pluck('name', 'id');
         $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
-        return view('products.show', compact('product', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories'));
+        $service_sub_sub_categories = ServiceSubSubCategory::pluck('name', 'id');
+        return view('products.show', compact('product', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories', 'service_sub_sub_categories'));
     }
 
     /**
@@ -143,7 +148,8 @@ class ProductsController extends Controller
         $subsubcategories = SubSubCategory::pluck('name', 'id');
         $service_categories = ServiceCategory::pluck('name', 'id');
         $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
-        return view('products.edit', compact('product', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories'));
+        $service_sub_sub_categories = ServiceSubSubCategory::pluck('name', 'id');
+        return view('products.edit', compact('product', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories', 'service_sub_sub_categories'));
     }
 
     /**
@@ -183,26 +189,27 @@ class ProductsController extends Controller
                 $image->move($multi_image_path, $multi_image_name);
                 $data[] = $multi_image_url;  
             }
-            if($store->multiple_images != null){
-                $multiple_img = explode(',', $store->multiple_images);
+            if($product->multiple_images != null){
+                $multiple_img = explode(',', $product->multiple_images);
                 foreach($multiple_img as $img)
                 {
                     unlink($img);
                 }
             }
         }else{
-            $data[]  = $store->multiple_images;
+            $data[]  = $product->multiple_images;
         }
 
-        $product->store_id                  = $request->store_id;
-        $product->sub_sub_category_id       = $request->sub_sub_category_id;
-        $product->service_category_id       = $request->service_category_id;
-        $product->service_sub_category_id   = $request->service_sub_category_id;
-        $product->name                      = $request->name;
-        $product->name_arabic               = $request->name_arabic;
-        $product->description               = $request->description;
-        $product->description_arabic        = $request->description_arabic;
-        $product->preview_image             = $image_url;
+        $product->store_id                      = $request->store_id;
+        $product->sub_sub_category_id           = $request->sub_sub_category_id;
+        $product->service_category_id           = $request->service_category_id;
+        $product->service_sub_category_id       = $request->service_sub_category_id;
+        $product->service_sub_sub_category_id   = $request->service_sub_sub_category_id;
+        $product->name                          = $request->name;
+        $product->name_arabic                   = $request->name_arabic;
+        $product->description                   = $request->description;
+        $product->description_arabic            = $request->description_arabic;
+        $product->preview_image                 = $image_url;
         if($data[0] == null){
             $data_img = null;
         }else{

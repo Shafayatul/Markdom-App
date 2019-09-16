@@ -30,7 +30,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/worker', 'FrontEnd\WorkerController@index')->name('worker');
 	Route::get('/sub-category-worker/{id}', 'FrontEnd\WorkerController@subCategoryWorker');
 	Route::get('/sub-sub-category-worker/{id}', 'FrontEnd\WorkerController@subSubCategoryWorker');
-	Route::get('/worker-details', 'FrontEnd\WorkerController@workerDetails');
+	Route::get('/worker-details/{id}', 'FrontEnd\WorkerController@workerDetails')->name('worker-details');
+	Route::get('/service-sub-category-worker/{id}', 'FrontEnd\WorkerController@serviceSubCategoryWorker')->name('service-sub-category-worker');
+	Route::get('product-by-service-sub-category/{id}', 'FrontEnd\WorkerController@productByServiceSubCategory')->name('product-by-service-sub-category');
+	Route::get('/worker-product-details/{id}', 'FrontEnd\WorkerController@workerProductDetails')->name('worker-product-details');
 	Route::get('/worker-service-delivery', 'FrontEnd\WorkerController@workerServiceDelivery')->name('worker-service-delivery');
 	Route::get('/order-delivery-time', 'OrdersController@orderDeliveryTime')->name('order-delivery-time');
 	Route::get('/place-order', 'OrdersController@placeOrder')->name('place-order');
@@ -38,8 +41,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	// Store Route
 	Route::get('/store', 'FrontEnd\StoreController@index')->name('store');
 	Route::get('/sub-category-store/{id}', 'FrontEnd\StoreController@subCategoryStore');
-	Route::get('/store-details', 'FrontEnd\StoreController@storeDetails')->name('store-details');
-	Route::get('/store-product-details', 'FrontEnd\StoreController@storeProductDetails')->name('store-product-details');
+	Route::get('/store-details/{id}', 'FrontEnd\StoreController@storeDetails')->name('store-details');
+	Route::get('/store-product-details/{id}', 'FrontEnd\StoreController@storeProductDetails')->name('store-product-details');
 	Route::get('/store-cart', 'FrontEnd\StoreController@storeCart')->name('store-cart');
 	Route::get('/store-place-order', 'FrontEnd\StoreController@storePlaceOrder')->name('store-place-order');
 
@@ -100,4 +103,6 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('order-activities', 'OrderActivitiesController');
 	Route::resource('service-categories', 'ServiceCategoriesController');
 	Route::resource('service-sub-categories', 'ServiceSubCategoriesController');
+	Route::resource('service-sub-sub-categories', 'ServiceSubSubCategoriesController');
 });
+

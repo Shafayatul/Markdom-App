@@ -40,24 +40,25 @@ class RestaurantsController extends Controller
     public function restaurantDetails($id)
     {
 
-      $current_date = Carbon::now()->format('Y-m-d');
-      $current_time = time();
+      $current_date           = Carbon::now()->format('Y-m-d');
+      $current_time           = time();
 
-      $url      = env('MAIN_HOST_URL').'api/get-store-detail/'.$id;
-      $method   = 'GET';
-      $store    = $this->callApi($method, $url);
+      $url_store              = env('MAIN_HOST_URL').'api/get-store-detail/'.$id;
+      $method_method          = 'GET';
+      $store                  = $this->callApi($method_method, $url_store);
 
-      $url      = env('MAIN_HOST_URL').'api/get-product-by-store/'.$id;
-      $method   = 'GET';
-      $products = $this->callApi($method, $url);
+      $url_product            = env('MAIN_HOST_URL').'api/get-product-by-store/'.$id;
+      $method_product         = 'GET';
+      $products               = $this->callApi($method_product, $url_product);
 
-      $url      = env('MAIN_HOST_URL').'api/get-review-by-store/'.$id;
-      $method   = 'GET';
-      $review   = $this->callApi($method, $url);
+      $url_review             = env('MAIN_HOST_URL').'api/get-review-by-store/'.$id;
+      $method_review          = 'GET';
+      $review                 = $this->callApi($method_review, $url_review);
 
-      $url      = env('MAIN_HOST_URL').'api/get-workinghours/'.$id.'/'.$current_date;
-      $method   = 'GET';
-      $slot     = $this->callApi($method, $url);
+      $url_workinghours       = env('MAIN_HOST_URL').'api/get-workinghours/'.$id.'/'.$current_date;
+      $method_workinghours    = 'GET';
+      $slot                   = $this->callApi($method_workinghours, $url_workinghours);
+      dd($slot);
 
       $is_available = false;
       foreach ($slot as $row) {

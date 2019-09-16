@@ -26,36 +26,13 @@
             </div>
           </div>
           @endforeach
-{{--           <div class="sliding-div">
-            <div class="sliding-category-box">
-              <a href="#" class="sliding-category-box-a"> <span class="sliding-category-name">Per Marker</span> </a>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Gifts</span>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Restaurants</span>
-            </div>
-          </div>
-          <div class="sliding-div">
-            <div class="sliding-category-box">
-              <span class="sliding-category-name">Gifts</span>
-            </div>
-          </div> --}}
       </div>
     </div>
     <div class="rectangle-div">
       <div id="grid">
         @foreach($stores as $store)
-        <a href="{{ route('restaurant-details', ['id' => $store->id]) }}" class="rectangle-box-a" store-sub-cat-id="{{ $store->sub_category_id }}">
+        <a href="{{ route('restaurant-details', ['id' => $store->id]) }}" class="rectangle-box-a" store-sub-cat-id="{{ $store->sub_category_id }}" style="background-image: url('{{ asset(env('MAIN_HOST_URL').$store->preview_image) }}');">
           <div class="rectangle-box shadow">
-            <div class="logo-box">
-              <img src="{{ asset($store->preview_image) }}" alt="">
-            </div>
             <div class="name-location-div">
                 @if(app()->getLocale() == 'en')
                   <span class="name">{{ $store->name }}</span>
@@ -71,76 +48,6 @@
           </div>
         </a>
         @endforeach
-{{--         <a href="{{ route('restaurant-details') }}" class="rectangle-box-a">
-          <div class="rectangle-box shadow">
-            <div class="logo-box">
-              <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-            </div>
-            <div class="name-location-div">
-              <span class="name">Store Name</span>
-              <span class="location">Store Best Location</span>
-            </div>
-            <div class="kilometer-div">
-              <span class="kilometer">2.05 KM</span>
-            </div>
-          </div>
-        </a>
-        <a href="{{ route('restaurant-details') }}" class="rectangle-box-a">
-          <div class="rectangle-box shadow">
-            <div class="logo-box">
-              <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-            </div>
-            <div class="name-location-div">
-              <span class="name">Store Name</span>
-              <span class="location">Store Best Location</span>
-            </div>
-            <div class="kilometer-div">
-              <span class="kilometer">2.05 KM</span>
-            </div>
-          </div>
-        </a>
-        <a href="{{ route('restaurant-details') }}" class="rectangle-box-a">
-          <div class="rectangle-box shadow">
-            <div class="logo-box">
-              <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-            </div>
-            <div class="name-location-div">
-              <span class="name">Store Name</span>
-              <span class="location">Store Best Location</span>
-            </div>
-            <div class="kilometer-div">
-              <span class="kilometer">2.05 KM</span>
-            </div>
-          </div>
-        </a>
-        <a href="{{ route('restaurant-details') }}" class="rectangle-box-a">
-          <div class="rectangle-box shadow">
-            <div class="logo-box">
-              <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-            </div>
-            <div class="name-location-div">
-              <span class="name">Store Name</span>
-              <span class="location">Store Best Location</span>
-            </div>
-            <div class="kilometer-div">
-              <span class="kilometer">2.05 KM</span>
-            </div>
-          </div>
-        </a>
-        <a href="{{ route('restaurant-details') }}" class="rectangle-box-a">
-          <div class="rectangle-box shadow">
-            <div class="logo-box">
-              <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
-            </div>
-            <div class="name-location-div">
-              <span class="name">Store Name</span>
-              <span class="location">Store Best Location</span>
-            </div>
-            <div class="kilometer-div">
-              <span class="kilometer">2.05 KM</span>
-            </div>
-          </div>
-        </a> --}}
       </div>
     </div>
   </div>
@@ -161,10 +68,10 @@
         if ($(this).attr('store-sub-cat-id') == subCatId) {
           $(this).show(500);
         }
-        
+
       })
     });
-    
+
   });
 
 

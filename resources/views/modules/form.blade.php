@@ -9,6 +9,18 @@
     {!! $errors->first('name_arabic', '<p class="help-block">:message</p>') !!}
 </div>
 
+<div class="form-group {{ $errors->has('preview_image') ? 'has-error' : ''}}">
+    {!! Form::label('preview_image', 'Image', ['class' => 'control-label']) !!}
+    {!! Form::file('preview_image', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+    {!! $errors->first('preview_image', '<p class="help-block">:message</p>') !!}
+</div>
+
+@if($formMode == 'edit')
+	<div class="form-group">
+		<img src="{{ asset($module->preview_image) }}" alt="" style="width: 100px; height: 100px;">
+	</div>
+@endif
+
 
 <div class="form-group">
     {!! Form::submit($formMode === 'edit' ? 'Update' : 'Create', ['class' => 'btn btn-primary']) !!}

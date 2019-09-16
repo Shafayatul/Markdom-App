@@ -55,11 +55,21 @@ class ServiceCategoriesController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->hasFile('preview_image')){
+            $image          = $request->file('preview_image');
+            $image_name     = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+            $image_path     = 'services-category-images/';
+            $image_url      = $image_path.$image_name;
+            $image->move($image_path, $image_name);
+        }else{
+            $image_url = null;
+        }
         $servicecategory                = new ServiceCategory();
         $servicecategory->store_id      = $request->store_id;
         $servicecategory->user_id       = Auth::id();
         $servicecategory->name          = $request->name;
         $servicecategory->name_arabic   = $request->name_arabic;
+        $servicecategory->preview_image = $image_url;
         $servicecategory->save();
 
         return redirect('service-categories')->with('success', 'ServiceCategory added!');
@@ -104,10 +114,23 @@ class ServiceCategoriesController extends Controller
     public function update(Request $request, $id)
     {
         $servicecategory = ServiceCategory::findOrFail($id);
+        if($request->hasFile('preview_image')){
+            $image          = $request->file('preview_image');
+            $image_name     = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+            $image_path     = 'services-category-images/';
+            $image_url      = $image_path.$image_name;
+            $image->move($image_path, $image_name);
+            if($servicecategory->preview_image != null){
+                unlink($servicecategory->preview_image);
+            }
+        }else{
+            $image_url = $servicecategory->preview_image;
+        }
         $servicecategory->store_id      = $request->store_id;
         $servicecategory->user_id       = Auth::id();
         $servicecategory->name          = $request->name;
         $servicecategory->name_arabic   = $request->name_arabic;
+        $servicecategory->preview_image = $image_url;
         $servicecategory->save();
 
         return redirect('service-categories')->with('success', 'ServiceCategory updated!');
@@ -122,6 +145,10 @@ class ServiceCategoriesController extends Controller
      */
     public function destroy($id)
     {
+        $servicecategory = ServiceCategory::findOrFail($id);
+        if($servicecategory->preview_image != null){
+            unlink($servicecategory->preview_image);
+        }
         ServiceCategory::destroy($id);
 
         return redirect('service-categories')->with('success', 'ServiceCategory deleted!');

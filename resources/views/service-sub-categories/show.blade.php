@@ -60,6 +60,12 @@ ServiceSubCategory {{ $servicesubcategory->id }}
                                         <th> Name Arabic </th>
                                         <td> {{ $servicesubcategory->name_arabic }} </td>
                                     </tr>
+                                    <tr>
+                                        <th> Image </th>
+                                        <td> 
+                                            <img src="{{ asset($servicesubcategory->preview_image) }}" alt="" style="width: 200px; height: 200px;">
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
