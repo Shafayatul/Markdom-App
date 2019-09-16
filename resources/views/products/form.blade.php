@@ -17,6 +17,12 @@
     {!! $errors->first('service_sub_category_id', '<p class="help-block">:message</p>') !!}
 </div>
 
+<div class="form-group {{ $errors->has('service_sub_sub_category_id') ? 'has-error' : ''}}">
+    {!! Form::label('service_sub_sub_category_id', 'Service Sub Category', ['class' => 'control-label']) !!}
+    {!! Form::select('service_sub_sub_category_id', $service_sub_sub_categories, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'placeholder' => '--Select Service Sub Sub Category--'] : ['class' => 'form-control', 'placeholder' => '--Select Service Sub Sub Category--']) !!}
+    {!! $errors->first('service_sub_sub_category_id', '<p class="help-block">:message</p>') !!}
+</div>
+
 <div class="form-group {{ $errors->has('sub_sub_category_id') ? 'has-error' : ''}}">
     {!! Form::label('sub_sub_category_id', 'Sub Sub Category', ['class' => 'control-label']) !!}
     {!! Form::select('sub_sub_category_id', $subsubcategories, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
