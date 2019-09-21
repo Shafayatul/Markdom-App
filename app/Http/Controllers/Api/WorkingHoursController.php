@@ -34,7 +34,7 @@ class WorkingHoursController extends Controller
 
     		array_push($working_schedule, $row);
     	}
-
+        
     	return response()->json($working_schedule);
     }
 

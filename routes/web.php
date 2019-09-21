@@ -38,8 +38,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/worker-save-service-type/{id}', 'FrontEnd\WorkerController@workerSaveServiceType')->name('worker-save-service-type');
 
 	Route::get('/worker-service-time/{id}/{date?}', 'FrontEnd\WorkerController@workerServiceTime')->name('worker-service-time');
+	Route::get('/worker-cart', 'FrontEnd\WorkerController@workercart')->name('worker-cart');
+	Route::get('/worker-place-holder', 'FrontEnd\WorkerController@workerPlaceOrder')->name('worker-place-holder');
+
 	Route::get('/order-delivery-time', 'OrdersController@orderDeliveryTime')->name('order-delivery-time');
 	Route::get('/place-order', 'OrdersController@placeOrder')->name('place-order');
+	Route::get('/worker-notification', 'FrontEnd\WorkerController@workerNotification')->name('worker-notification');
 
 	// Store Route
 	Route::get('/store', 'FrontEnd\StoreController@index')->name('store');

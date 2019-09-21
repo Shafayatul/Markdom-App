@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use DateTime;
 use DateTimeZone;
 use Session;
+use Log;
 
 class WorkerController extends Controller
 {
@@ -56,7 +57,7 @@ class WorkerController extends Controller
       $url_workinghours       = env('MAIN_HOST_URL').'api/get-workinghours/'.$id.'/'.$current_date;
       $method_workinghours    = 'GET';
       $slot                   = $this->callApi($method_workinghours, $url_workinghours);
-
+      
       $url_schedule           = env('MAIN_HOST_URL').'api/get-all-schedule-type-by-lang/'.$lang;
       $method_schedule        = 'GET';
       $schedules              = $this->callApi($method_schedule, $url_schedule);
@@ -143,5 +144,20 @@ class WorkerController extends Controller
       $product_id = Session::get('service_selected_product_id');
       Session::put('selected_service_type_id', $id);
       return redirect('/worker-service-time/'.$product_id);
+    }
+
+    public function workercart()
+    {
+      return view('front-end.workers.worker-cart');
+    }
+
+    public function workerPlaceOrder()
+    {
+      return view('front-end.workers.worker-place-order');
+    }
+
+    public function workerNotification()
+    {
+      return view('front-end.workers.worker-notification');
     }
 }
