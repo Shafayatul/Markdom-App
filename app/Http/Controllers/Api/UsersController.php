@@ -7,20 +7,21 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
 use Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
     public function signup(Request $request)
     {
-        // $validator = Validator::make($request, [
-        //     'name'      => 'required',
-        //     'email'     => 'required|unique:users',
-        //     'password'  => 'required',
-        // ]);
+        $validator = Validator::make($request, [
+            'name'      => 'required',
+            'email'     => 'required|unique:users',
+            'password'  => 'required',
+        ]);
 
-        // if ($validator->fails()) {
-        //     return response()->json($validator->messages(), 200);
-        // }
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), 200);
+        }
 
         User::create([
             'name' => $request->name,
