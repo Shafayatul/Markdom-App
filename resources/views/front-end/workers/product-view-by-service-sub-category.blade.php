@@ -10,11 +10,11 @@
       <div class="slider-area slider">
         <div class="sliding-div">
           <div class="sliding-category-box">
-            <span class="sliding-category-name">{{ __('content.all') }}</span>
+            <a href="#" class="sliding-category-box-a show-all"><span class="sliding-category-name">{{ __('content.all') }}</span></a>
           </div>
         </div>
         @foreach($service_sub_sub_categories as $item)
-          <div class="sliding-div">
+          <div class="sliding-div show-specific" service-sub-sub-cat-id="{{ $item->id }}">
             <div class="sliding-category-box">
               <span class="sliding-category-name">
                 @if(app()->getLocale() == 'en')
@@ -35,7 +35,7 @@
           <div id="grid">
             @foreach ($services as $service)
                 <div class="product-box shadow">
-                  <a href="{{ route('worker-product-details', ['id'=>$service->id]) }}" class="rectangle-box-a">
+                  <a href="{{ route('worker-product-details', ['id'=>$service->id]) }}" class="rectangle-box-a" service-sub-sub-category-id="{{ $service->service_sub_sub_category_id }}">
                     <div class="product-image-box">
                       <img src="{{ env('MAIN_HOST_URL').$service->preview_image}}" alt="">
                     </div>
@@ -50,7 +50,7 @@
                       <p class="pull-left">{{ $service->price }}</p>
                     </div>
                   </a>
-                  <button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button>
+                  <a href="{{ route('add-to-cart-service', ['id' => $service->id]) }}"><button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button></a>
                 </div>
             @endforeach
           </div>
@@ -88,6 +88,25 @@
 
 @section('front-additional-js')
 <script type="text/javascript">
+
+    $(document).ready(function(){
+    $('.show-all').click(function(){
+      $('.rectangle-box-a').show(500);
+    });
+    $('.show-specific').click(function(){
+      $('.rectangle-box-a').hide(500);
+      var serviceSubSubCatId = $(this).attr('service-sub-sub-cat-id');
+      $('.rectangle-box-a').each(function(){
+        if ($(this).attr('service-sub-sub-category-id') == serviceSubSubCatId) {
+          $(this).show(500);
+        }
+        
+      })
+    });
+    
+  });
+
+
   if ($(window).width() < 480 ) {
     $(".slider-area").slick({
         dots: false,

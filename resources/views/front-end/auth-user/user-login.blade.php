@@ -17,7 +17,8 @@
           <p><a href="#">Forgot Password</a> </p>
           <div class="clearfix"> </div>
         </div>
-        <form action="" method="post">
+        <form action="{{ url('/user-login') }}" method="post">
+          @csrf
         <div class="log-input">
           <div class="log-input-left">
              <input type="text" class="user email" name="email" value="" placeholder="Your Email"/>

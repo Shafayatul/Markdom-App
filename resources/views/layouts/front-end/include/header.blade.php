@@ -22,9 +22,13 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">@lang('header.my_account') <b class="caret"></b></a>
                   <ul class="dropdown-menu">
+                    @guest
                     <li><a href="{{ route('user-login') }}">@lang('header.login')</a></li>
                     <li class="divider"></li>
                     <li><a href="{{ route('user-signup') }}" class="sub-li-a">@lang('header.signup')</a></li>
+                    @else
+                    <li><a href="{{ url('user-signup') }}" class="sub-li-a">@lang('header.signup')</a></li>
+                    @endguest
                   </ul>
                 </li>
 

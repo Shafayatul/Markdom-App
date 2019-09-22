@@ -15,8 +15,15 @@
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function()
 {
 	Route::get('/', 'FrontEnd\FrontEndController@index');
+
+	//User Login
 	Route::get('/user-login', 'FrontEnd\FrontEndController@userLogin')->name('user-login');
+	Route::post('/user-login', 'FrontEnd\FrontEndController@userLoginSubmit');
+	Route::get('/user-logout', 'FrontEnd\FrontEndController@logout');
+
+	//User Signup
 	Route::get('/user-signup', 'FrontEnd\FrontEndController@userSignup')->name('user-signup');
+	Route::post('/signup-form', 'FrontEnd\FrontEndController@singupForm');
 
 	Route::get('/chat', 'FrontEnd\FrontEndController@chat')->name('chat');
 
@@ -40,6 +47,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/worker-service-time/{id}/{date?}', 'FrontEnd\WorkerController@workerServiceTime')->name('worker-service-time');
 	Route::get('/worker-cart', 'FrontEnd\WorkerController@workercart')->name('worker-cart');
 	Route::get('/worker-place-holder', 'FrontEnd\WorkerController@workerPlaceOrder')->name('worker-place-holder');
+
+	Route::get('/add-to-cart-service/{id}', 'FrontEnd\WorkerController@addToCartService')->name('add-to-cart-service');
 
 	Route::get('/order-delivery-time', 'OrdersController@orderDeliveryTime')->name('order-delivery-time');
 	Route::get('/place-order', 'OrdersController@placeOrder')->name('place-order');

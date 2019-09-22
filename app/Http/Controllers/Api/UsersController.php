@@ -10,6 +10,37 @@ use Hash;
 
 class UsersController extends Controller
 {
+    public function signup(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name'      => 'required',
+            'email'     => 'required|unique:users',
+            'password'  => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), 200);
+        }
+
+        $user=User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        return response()->json([
+                'message' => 'Signup is successful'
+            ]);
+
+        // if ($user){
+        //     $user           = User::find($user->id);
+        //     $user->phone    = $request->input('phone');
+        //     $user->gender   = $request->input('gender');
+        //     $user->status   = 1;
+        //     $user->save();
+            
+        // }
+    }
+
     public function user_details()
     {
     	$id = Auth::id();
