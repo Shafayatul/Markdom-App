@@ -148,7 +148,11 @@ class WorkerController extends Controller
 
     public function workercart()
     {
-      return view('front-end.workers.worker-cart');
+      $url      = env('MAIN_HOST_URL').'api/view-cart';
+      $method   = 'GET';
+      $carts    = $this->callApi($method, $url);
+      dd($carts);
+      return view('front-end.workers.worker-cart', compact('carts'));
     }
 
     public function workerPlaceOrder()

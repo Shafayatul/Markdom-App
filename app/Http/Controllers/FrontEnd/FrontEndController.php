@@ -28,6 +28,7 @@ class FrontEndController extends Controller
 
     public function userLoginSubmit(Request $request)
     {
+     
       if($this->autoLogin($request->email, $request->password)){
         return redirect('/');
       }else{

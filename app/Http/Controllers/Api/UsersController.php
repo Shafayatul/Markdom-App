@@ -13,7 +13,7 @@ class UsersController extends Controller
 {
     public function signup(Request $request)
     {
-        $validator = Validator::make($request, [
+        $validator = Validator::make($request->all(), [
             'name'      => 'required',
             'email'     => 'required|unique:users',
             'password'  => 'required',
@@ -27,6 +27,7 @@ class UsersController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'status' => 1,
         ]);
         return response()->json([
                 'message' => 'Signup is successful'

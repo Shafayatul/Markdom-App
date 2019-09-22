@@ -22,13 +22,14 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">@lang('header.my_account') <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    @guest
+                    @if (Session::has('access_token'))
+                    <li><a href="{{ url('/user-logout') }}" class="sub-li-a">Logout</a></li>
+                    @endif
+                    @if (!Session::has('access_token'))
                     <li><a href="{{ route('user-login') }}">@lang('header.login')</a></li>
                     <li class="divider"></li>
                     <li><a href="{{ route('user-signup') }}" class="sub-li-a">@lang('header.signup')</a></li>
-                    @else
-                    <li><a href="{{ url('/user-logout') }}" class="sub-li-a">Logout</a></li>
-                    @endguest
+                    @endif
                   </ul>
                 </li>
 
