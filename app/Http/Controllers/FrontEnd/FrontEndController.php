@@ -46,7 +46,7 @@ class FrontEndController extends Controller
           'password'  => $request->password
       ];
       $response = $this->callApi($method, $url, $parameters);
-      dd($response);
+      
       if ($response->message == "Signup is successful")
       {
         if($this->autoLogin($request->email, $request->password)){

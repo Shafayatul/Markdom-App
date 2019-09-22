@@ -27,7 +27,7 @@
                     <li class="divider"></li>
                     <li><a href="{{ route('user-signup') }}" class="sub-li-a">@lang('header.signup')</a></li>
                     @else
-                    <li><a href="{{ url('user-signup') }}" class="sub-li-a">@lang('header.signup')</a></li>
+                    <li><a href="{{ url('/user-logout') }}" class="sub-li-a">Logout</a></li>
                     @endguest
                   </ul>
                 </li>
