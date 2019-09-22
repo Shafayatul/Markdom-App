@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use DateTime;
+use DateTimeZone;
+use Session;
+use Log;
 
 class StoreController extends Controller
 {
@@ -59,11 +64,70 @@ class StoreController extends Controller
 
     public function storeCart()
     {
-      return view('front-end.store.store-cart');
+      if ($this->check_expiration()) {
+        $url = env('MAIN_HOST_URL').'api/view-cart';
+        $method = 'GET';
+        $headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+          ];
+        $body = $this->callApi($method, $url, [], $headers);
+
+        return view('front-end.store.store-cart', compact('body'));
+      }else{
+        return redirect('/user-login');
+      }
     }
 
     public function storePlaceOrder()
     {
-      return view('front-end.store.store-place-order');
+      if ($this->check_expiration()) {
+        $url = env('MAIN_HOST_URL').'api/view-cart';
+        $method = 'GET';
+        $headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+          ];
+        $body = $this->callApi($method, $url, [], $headers);
+        $user_url     = env('MAIN_HOST_URL').'api/user-details';
+        $user_method  = 'GET';
+        $user_headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+          ];
+        $user = $this->callApi($user_method, $user_url, [], $user_headers);
+
+        return view('front-end.store.store-place-order', compact('body', 'user'));
+      }else{
+        return redirect('/user-login');
+      }
+    }
+
+    public function addToCartStore($id)
+    {
+      if ($this->check_expiration()) {
+        $url      = env('MAIN_HOST_URL').'api/add-to-cart';
+        $method   = 'POST';
+        $headers  = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+          ];
+        $parameters = [
+          'product_id'      => $id,
+          'quantity'        => '1'
+        ];
+        $body = $this->callApi($method, $url, $parameters, $headers);
+        return redirect('/store-cart');
+      }else{
+        return redirect('/user-login');
+      }
+    }
+
+    public function check_expiration(){
+      $remaining_time = Session::get('expires_at')-time();
+      if ($remaining_time>0) {
+        return true;
+      }
+      return false;
     }
 }

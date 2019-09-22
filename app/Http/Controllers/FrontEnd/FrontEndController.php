@@ -114,4 +114,35 @@ class FrontEndController extends Controller
       Session::flush();
       return redirect('/');
     }
+
+    public function ajaxUpdateQuantityCart(Request $request)
+    {
+      if ($this->check_expiration())
+      {
+        $url_cart = env('MAIN_HOST_URL').'/api/update-quantity';
+        $method_cart = 'POST';
+        $parameters = [
+            'cart_id'      => $request->cart_id,
+            'new_quantity' => $request->new_quantity
+        ];
+        $headers = [
+          'Authorization' => 'Bearer ' . Session::get('access_token'),
+          'Accept'        => 'application/json',
+        ];
+        $update_quantity = $this->callApi($method_cart, $url_cart, $parameters, $headers);
+
+        return response()->json(array('msg'=>$update_quantity), 200);
+      }else
+      {
+        return response()->json(array('msg'=>'Error'), 200);
+      }
+    }
+
+    public function check_expiration(){
+      $remaining_time = Session::get('expires_at')-time();
+      if ($remaining_time>0) {
+        return true;
+      }
+      return false;
+    }
 }

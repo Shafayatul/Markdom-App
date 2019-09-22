@@ -148,16 +148,32 @@ class WorkerController extends Controller
 
     public function workercart()
     {
-      $url      = env('MAIN_HOST_URL').'api/view-cart';
-      $method   = 'GET';
-      $carts    = $this->callApi($method, $url);
-      dd($carts);
-      return view('front-end.workers.worker-cart', compact('carts'));
+      //
     }
 
     public function workerPlaceOrder()
     {
-      return view('front-end.workers.worker-place-order');
+      if ($this->check_expiration()) {
+        $url = env('MAIN_HOST_URL').'api/view-cart';
+        $method = 'GET';
+        $headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+          ];
+        $body = $this->callApi($method, $url, [], $headers);
+
+        $user_url     = env('MAIN_HOST_URL').'api/user-details';
+        $user_method  = 'GET';
+        $user_headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+          ];
+        $user = $this->callApi($user_method, $user_url, [], $user_headers);
+
+        return view('front-end.workers.worker-place-order', compact('body', 'user'));
+      }else{
+        return redirect('/user-login');
+      }
     }
 
     public function workerNotification()
@@ -179,7 +195,7 @@ class WorkerController extends Controller
           'quantity'        => '1'
         ];
         $body = $this->callApi($method, $url, $parameters, $headers);
-        return redirect('/worker-cart');
+        return redirect('/worker-place-holder');
       }else{
         return redirect('/user-login');
       }

@@ -61,7 +61,7 @@
                             <p class="pull-left">{{ $product->price }}</p>
                           </div>
                         </a>
-                        <button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button>
+                        <a href="{{ route('add-to-cart-store', ['id' => $product->id]) }}"><button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button></a>
                       </div>
                   @endforeach
                 </div>

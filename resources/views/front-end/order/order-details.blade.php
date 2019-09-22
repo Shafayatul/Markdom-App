@@ -1,6 +1,7 @@
 @extends('layouts.front-end.master-layout')
 @section('front-additional-css')
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> --}}
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
 <link rel="stylesheet" href="{{ asset('front-end-assets/custom-css/order-details.css') }}">
 @endsection
 
@@ -9,27 +10,31 @@
   <div class="container">
     <div class="order-details-div">
       <form class="order-details-form" action="" method="post">
-        <h1 class="text-center">
-          @if(app()->getLocale() == 'en')
-            {{ $product->name }}
-          @else
-            {{ $product->name_arabic }}
-          @endif
-        </h1>
-        <p><b>{{ __('content.order_details') }}</b></p>
-        <p>
-          @if(app()->getLocale() == 'en')
-            {{ $product->description }}
-          @else
-            {{ $product->description_arabic }}
-          @endif
-        </p>
-        @if(app()->getLocale() == 'ar')
-          <input type="file" class="custom-arabic-file-input">
-        @else
-          <input type="file" class="custom-file-input">
-        @endif
-        <p>{{ __('content.select_delivery_date') }}: <br> <input type="text" id="datepicker"></p>
+        <p>Order Details</p>
+        <textarea class="text-left" name="message"></textarea>
+        <div class="get-promo-code">
+          <p>Get Promo Code</p>
+          <span class="promo-code-input-span">
+            <input type="text" name="" value="">
+          </span>
+          <span class="promo-code-button-span"> <button class="apply-button btn">Apply</button> </span>
+        </div>
+        <input type="file" class="custom-file-input" style="display: inline-block !important;">
+        {{-- <p>Select Delivery Date: <br> <input type="text" class="delivery_time" id="datepicker"></p> --}}
+        {{-- <div class="container"> --}}
+          <div class="row">
+              <div class='col-sm-6'>
+                  <div class="form-group">
+                      <div class='input-group date' id='datepicker'>
+                          <input type='text' class="form-control" />
+                          <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        {{-- </div> --}}
       </form>
     </div>
     <!-- Button trigger modal -->
@@ -75,10 +80,13 @@
 @endsection
 
 @section('front-additional-js')
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript">
   $( function() {
-    $( "#datepicker" ).datepicker();
+     $('#datepicker').datetimepicker();
   });
   $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
