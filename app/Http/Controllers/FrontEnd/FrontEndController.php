@@ -4,6 +4,10 @@ namespace App\Http\Controllers\FrontEnd;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
+use Auth;
+use Session;
 
 class FrontEndController extends Controller
 {
