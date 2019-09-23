@@ -54,6 +54,7 @@ Route::get('get-products-by-service-sub-category/{service_sub_category_id}', 'Ap
 Route::get('get-service-sub-sub-category-by-service-sub-category/{service_sub_category_id}', 'Api\ServicesController@get_service_sub_sub_category_by_service_sub_category_id');
 
 Route::post('signup', 'Api\UsersController@signup');
+Route::post('forgot/password', 'Api\ForgotPasswordController');
 
 Route::group(['middleware' => ['auth:api']], function() {
 
