@@ -62,10 +62,10 @@ class StoreController extends Controller
       return view('front-end.store.store-product-details', compact('product_details'));
     }
 
-    public function storeCart()
+    public function storeCart($module_id)
     {
       if ($this->check_expiration()) {
-        $url = env('MAIN_HOST_URL').'api/view-cart';
+        $url = env('MAIN_HOST_URL').'api/view-cart/'.$module_id;
         $method = 'GET';
         $headers = [
               'Authorization' => 'Bearer ' . Session::get('access_token'),
@@ -73,22 +73,23 @@ class StoreController extends Controller
           ];
         $body = $this->callApi($method, $url, [], $headers);
 
-        return view('front-end.store.store-cart', compact('body'));
+        return view('front-end.store.store-cart', compact('body', 'module_id'));
       }else{
         return redirect('/user-login');
       }
     }
 
-    public function storePlaceOrder()
+    public function storePlaceOrder($module_id)
     {
       if ($this->check_expiration()) {
-        $url = env('MAIN_HOST_URL').'api/view-cart';
+        $url = env('MAIN_HOST_URL').'api/view-cart/'.$module_id;
         $method = 'GET';
         $headers = [
               'Authorization' => 'Bearer ' . Session::get('access_token'),
               'Accept'        => 'application/json',
           ];
         $body = $this->callApi($method, $url, [], $headers);
+        
         $user_url     = env('MAIN_HOST_URL').'api/user-details';
         $user_method  = 'GET';
         $user_headers = [
@@ -105,6 +106,7 @@ class StoreController extends Controller
 
     public function addToCartStore($id)
     {
+      $product = Product::where('id', $id)->first();
       if ($this->check_expiration()) {
         $url      = env('MAIN_HOST_URL').'api/add-to-cart';
         $method   = 'POST';
@@ -114,10 +116,11 @@ class StoreController extends Controller
           ];
         $parameters = [
           'product_id'      => $id,
-          'quantity'        => '1'
+          'quantity'        => '1',
+          'module_id'       => $product->module_id
         ];
         $body = $this->callApi($method, $url, $parameters, $headers);
-        return redirect('/store-cart');
+        return redirect('/store-cart/'.$product->module_id);
       }else{
         return redirect('/user-login');
       }

@@ -48,7 +48,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
 	Route::get('/worker-service-time/{id}/{date?}', 'FrontEnd\WorkerController@workerServiceTime')->name('worker-service-time');
 	Route::get('/worker-cart', 'FrontEnd\WorkerController@workercart')->name('worker-cart');
-	Route::get('/worker-place-holder', 'FrontEnd\WorkerController@workerPlaceOrder')->name('worker-place-holder');
+	Route::get('/worker-place-holder/{id}', 'FrontEnd\WorkerController@workerPlaceOrder')->name('worker-place-holder');
 
 	Route::get('/add-to-cart-service/{id}', 'FrontEnd\WorkerController@addToCartService')->name('add-to-cart-service');
 
@@ -61,9 +61,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/sub-category-store/{id}', 'FrontEnd\StoreController@subCategoryStore');
 	Route::get('/store-details/{id}', 'FrontEnd\StoreController@storeDetails')->name('store-details');
 	Route::get('/store-product-details/{id}', 'FrontEnd\StoreController@storeProductDetails')->name('store-product-details');
-	Route::get('/store-cart', 'FrontEnd\StoreController@storeCart')->name('store-cart');
+	Route::get('/store-cart/{id}', 'FrontEnd\StoreController@storeCart')->name('store-cart');
 	Route::get('/add-to-cart-store/{id}', 'FrontEnd\StoreController@addToCartStore')->name('add-to-cart-store');
-	Route::get('/store-place-order', 'FrontEnd\StoreController@storePlaceOrder')->name('store-place-order');
+	Route::get('/store-place-order/{id}', 'FrontEnd\StoreController@storePlaceOrder')->name('store-place-order');
 
 	// Cart
 	Route::post('/ajax-update-quantity-cart', 'FrontEnd\FrontEndController@ajaxUpdateQuantityCart');
