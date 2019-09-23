@@ -68,7 +68,7 @@ class CartsController extends Controller
             $data['msg'] = 'Failed';
             $data['status'] = 0; 
         }
-        return response()->json($module_id);
+        return response()->json($data);
     }
 
     public function update_quantity_cart(Request $request)

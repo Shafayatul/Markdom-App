@@ -202,7 +202,7 @@ class WorkerController extends Controller
           'module_id'       => $product->module_id
         ];
         $body = $this->callApi($method, $url, $parameters, $headers);
-        dd($body);
+        // dd($body);
         return redirect('/worker-place-holder');
       }else{
         return redirect('/user-login');
