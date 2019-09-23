@@ -129,7 +129,6 @@ class WorkerController extends Controller
 
     public function workerProductDetails($id)
     {
-      // dd($id);
       $product = Product::where('id', $id)->first();
       if ($this->check_expiration()) {
         $url      = env('MAIN_HOST_URL').'api/add-to-cart';
