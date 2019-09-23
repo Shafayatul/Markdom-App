@@ -36,7 +36,6 @@ class CartsController extends Controller
     	$user_id        = Auth::id();
         $product_id     = $request->input('product_id');
         $module_id      = $request->input('module_id');
-
         $count = Cart::where('user_id', Auth::id())->where('is_cart', '1')->where('product_id', $product_id)->count();
 
         $current_product = Product::where('id', $request->input('product_id'))->first();

@@ -11,6 +11,7 @@ use DateTime;
 use DateTimeZone;
 use Session;
 use Log;
+use App\Product;
 
 class StoreController extends Controller
 {
