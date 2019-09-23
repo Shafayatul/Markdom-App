@@ -40,7 +40,8 @@ class StoresController extends Controller
         }
         $subcategories = SubCategory::pluck('name', 'id');
         $categories = Category::pluck('name', 'id');
-        return view('stores.index', compact('stores', 'subcategories', 'categories'));
+        $modules = Module::pluck('name', 'id');
+        return view('stores.index', compact('stores', 'subcategories', 'categories', 'modules'));
     }
 
     /**
@@ -93,6 +94,7 @@ class StoresController extends Controller
         $store                          = new Store();
         $store->sub_category_id         = $request->sub_category_id;
         $store->category_id             = $request->category_id;
+        $store->module_id               = $request->module_id;
         $store->name                    = $request->name;
         $store->name_arabic             = $request->name_arabic;
         $store->description             = $request->description;
@@ -128,7 +130,8 @@ class StoresController extends Controller
         $store = Store::findOrFail($id);
         $subcategories = SubCategory::pluck('name', 'id');
         $categories = Category::pluck('name', 'id');
-        return view('stores.show', compact('store', 'subcategories', 'categories'));
+        $modules = Module::pluck('name', 'id');
+        return view('stores.show', compact('store', 'subcategories', 'categories', 'modules'));
     }
 
     /**
@@ -196,6 +199,7 @@ class StoresController extends Controller
 
         $store->sub_category_id         = $store->sub_category_id;
         $store->category_id             = $store->category_id;
+        $store->module_id             = $store->module_id;
         $store->name                    = $request->name;
         $store->name_arabic             = $request->name_arabic;
         $store->description             = $request->description;

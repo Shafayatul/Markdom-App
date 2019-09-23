@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Store;
 use App\SubSubCategory;
+use App\SubCategory;
+use App\Category;
+use App\Module;
 use App\ServiceCategory;
 use App\ServiceSubCategory;
 use App\ServiceSubSubCategory;
@@ -36,12 +39,16 @@ class ProductsController extends Controller
         } else {
             $products = Product::latest()->paginate($perPage);
         }
-        $stores = Store::pluck('name', 'id');
-        $subsubcategories = SubSubCategory::pluck('name', 'id');
-        $service_categories = ServiceCategory::pluck('name', 'id');
-        $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
+        $stores                     = Store::pluck('name', 'id');
+        $modules                    = Module::pluck('name', 'id');
+        $categories                 = Category::pluck('name', 'id');
+        $subcategories              = SubCategory::pluck('name', 'id');
+        $subsubcategories           = SubSubCategory::pluck('name', 'id');
+        $service_categories         = ServiceCategory::pluck('name', 'id');
+        $service_sub_categories     = ServiceSubCategory::pluck('name', 'id');
         $service_sub_sub_categories = ServiceSubSubCategory::pluck('name', 'id');
-        return view('products.index', compact('products', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories', 'service_sub_sub_categories'));
+
+        return view('products.index', compact('products', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories', 'service_sub_sub_categories', 'modules', 'categories', 'subcategories'));
     }
 
     /**
@@ -51,12 +58,15 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        $stores = Store::pluck('name', 'id');
-        $subsubcategories = SubSubCategory::pluck('name', 'id');
-        $service_categories = ServiceCategory::pluck('name', 'id');
-        $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
+        $stores                     = Store::pluck('name', 'id');
+        $modules                    = Module::pluck('name', 'id');
+        $categories                 = Category::pluck('name', 'id');
+        $subcategories              = SubCategory::pluck('name', 'id');
+        $subsubcategories           = SubSubCategory::pluck('name', 'id');
+        $service_categories         = ServiceCategory::pluck('name', 'id');
+        $service_sub_categories     = ServiceSubCategory::pluck('name', 'id');
         $service_sub_sub_categories = ServiceSubSubCategory::pluck('name', 'id');
-        return view('products.create', compact('stores', 'subsubcategories', 'service_categories', 'service_sub_categories', 'service_sub_sub_categories'));
+        return view('products.create', compact('stores', 'subsubcategories', 'service_categories', 'service_sub_categories', 'service_sub_sub_categories', 'modules', 'categories', 'subcategories'));
     }
 
     /**
@@ -95,6 +105,9 @@ class ProductsController extends Controller
 
         $product                                = new Product();
         $product->store_id                      = $request->store_id;
+        $product->module_id                     = $request->module_id;
+        $product->category_id                   = $request->category_id;
+        $product->sub_category_id               = $request->sub_category_id;
         $product->sub_sub_category_id           = $request->sub_sub_category_id;
         $product->service_category_id           = $request->service_category_id;
         $product->service_sub_category_id       = $request->service_sub_category_id;
@@ -125,13 +138,16 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $product = Product::findOrFail($id);
-        $stores = Store::pluck('name', 'id');
-        $subsubcategories = SubSubCategory::pluck('name', 'id');
-        $service_categories = ServiceCategory::pluck('name', 'id');
-        $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
+        $product                    = Product::findOrFail($id);
+        $stores                     = Store::pluck('name', 'id');
+        $modules                    = Module::pluck('name', 'id');
+        $categories                 = Category::pluck('name', 'id');
+        $subcategories              = SubCategory::pluck('name', 'id');
+        $subsubcategories           = SubSubCategory::pluck('name', 'id');
+        $service_categories         = ServiceCategory::pluck('name', 'id');
+        $service_sub_categories     = ServiceSubCategory::pluck('name', 'id');
         $service_sub_sub_categories = ServiceSubSubCategory::pluck('name', 'id');
-        return view('products.show', compact('product', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories', 'service_sub_sub_categories'));
+        return view('products.show', compact('product', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories', 'service_sub_sub_categories', 'modules', 'categories', 'subcategories'));
     }
 
     /**
@@ -143,13 +159,16 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::findOrFail($id);
-        $stores = Store::pluck('name', 'id');
-        $subsubcategories = SubSubCategory::pluck('name', 'id');
-        $service_categories = ServiceCategory::pluck('name', 'id');
-        $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
+        $product                    = Product::findOrFail($id);
+        $stores                     = Store::pluck('name', 'id');
+        $modules                    = Module::pluck('name', 'id');
+        $categories                 = Category::pluck('name', 'id');
+        $subcategories              = SubCategory::pluck('name', 'id');
+        $subsubcategories           = SubSubCategory::pluck('name', 'id');
+        $service_categories         = ServiceCategory::pluck('name', 'id');
+        $service_sub_categories     = ServiceSubCategory::pluck('name', 'id');
         $service_sub_sub_categories = ServiceSubSubCategory::pluck('name', 'id');
-        return view('products.edit', compact('product', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories', 'service_sub_sub_categories'));
+        return view('products.edit', compact('product', 'stores', 'subsubcategories', 'service_categories', 'service_sub_categories', 'service_sub_sub_categories', 'modules', 'categories', 'subcategories'));
     }
 
     /**
@@ -200,11 +219,14 @@ class ProductsController extends Controller
             $data[]  = $product->multiple_images;
         }
 
-        $product->store_id                      = $request->store_id;
-        $product->sub_sub_category_id           = $request->sub_sub_category_id;
-        $product->service_category_id           = $request->service_category_id;
-        $product->service_sub_category_id       = $request->service_sub_category_id;
-        $product->service_sub_sub_category_id   = $request->service_sub_sub_category_id;
+        $product->store_id                      = $product->store_id;
+        $product->module_id                     = $product->module_id;
+        $product->category_id                   = $product->category_id;
+        $product->sub_category_id               = $product->sub_category_id;
+        $product->sub_sub_category_id           = $product->sub_sub_category_id;
+        $product->service_category_id           = $product->service_category_id;
+        $product->service_sub_category_id       = $product->service_sub_category_id;
+        $product->service_sub_sub_category_id   = $product->service_sub_sub_category_id;
         $product->name                          = $request->name;
         $product->name_arabic                   = $request->name_arabic;
         $product->description                   = $request->description;

@@ -8,6 +8,7 @@ use Auth;
 use App\Cart;
 use App\User;
 use App\Product;
+use App\Module;
 
 class CartsController extends Controller
 {
@@ -25,7 +26,6 @@ class CartsController extends Controller
             $single_data['preview_image']          	= $product->preview_image;
             $single_data['total_price']             = $cart->quantity*$cart->unit_price; 
             $single_data['quantity']                = $cart->quantity;
-
             array_push($data, $single_data);
         }
         return response()->json($data);

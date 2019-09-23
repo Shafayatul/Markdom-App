@@ -45,6 +45,14 @@ Product {{ $product->id }}
                                     <td>{{ $product->id }}</td>
                                 </tr>
                                 <tr>
+                                    <th> Module </th>
+                                    <td>
+                                        @if(isset($modules[$product->module_id])) 
+                                            {{ $modules[$product->module_id] }}
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th> Store </th>
                                     <td>
                                         @if(isset($stores[$product->store_id])) 
@@ -77,6 +85,20 @@ Product {{ $product->id }}
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th> Category </th>
+                                    <td>
+                                        @if(isset($categories[$product->category_id])) 
+                                            {{ $categories[$product->category_id] }}
+                                        @endif
+                                    </td>
+                                </tr><tr>
+                                    <th> Sub Category </th>
+                                    <td>
+                                        @if(isset($subcategories[$product->sub_category_id])) 
+                                            {{ $subcategories[$product->sub_category_id] }}
+                                        @endif
+                                    </td>
+                                </tr><tr>
                                     <th> Sub Sub Category </th>
                                     <td>
                                         @if(isset($subsubcategories[$product->sub_sub_category_id])) 

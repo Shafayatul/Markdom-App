@@ -53,6 +53,14 @@ ServiceCategory {{ $servicecategory->id }}
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th> Module </th>
+                                    <td>
+                                        @isset($modules[$servicecategory->module_id])
+                                            {{ $modules[$servicecategory->module_id] }}
+                                        @endisset
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th> Name </th>
                                     <td> {{ $servicecategory->name }} </td>
                                 </tr>

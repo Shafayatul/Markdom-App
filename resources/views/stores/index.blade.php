@@ -31,6 +31,7 @@ Stores
                                 <tr>
                                     <th>#</th>
                                     <th>Image</th>
+                                    <th>Module</th>
                                     <th>Category</th>
                                     <th>Sub Category</th>
                                     <th>Name</th>
@@ -44,6 +45,11 @@ Stores
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         <img src="{{ asset($item->preview_image) }}" alt="" style="width: 100px; height: 100px;">
+                                    </td>
+                                    <td>
+                                        @isset($modules[$item->module_id])
+                                          {{ $modules[$item->module_id] }}
+                                        @endisset
                                     </td>
                                     <td>
                                         @isset($categories[$item->category_id])

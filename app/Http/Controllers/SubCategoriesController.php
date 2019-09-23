@@ -32,7 +32,8 @@ class SubCategoriesController extends Controller
             $subcategories = SubCategory::latest()->paginate($perPage);
         }
         $category = Category::pluck('name','id');
-        return view('sub-categories.index', compact('subcategories','category'));
+        $modules = Module::pluck('name', 'id');
+        return view('sub-categories.index', compact('subcategories','category', 'modules'));
     }
 
     /**
@@ -68,6 +69,7 @@ class SubCategoriesController extends Controller
         }
 
         $subcategory               = new SubCategory();
+        $subcategory->module_id    = $request->module_id;
         $subcategory->category_id  = $request->category_id;
         $subcategory->name         = $request->name;
         $subcategory->name_arabic  = $request->name_arabic;
@@ -88,7 +90,8 @@ class SubCategoriesController extends Controller
     {
         $subcategory = SubCategory::findOrFail($id);
         $category = Category::pluck('name','id');
-        return view('sub-categories.show', compact('subcategory','category'));
+        $modules = Module::pluck('name', 'id');
+        return view('sub-categories.show', compact('subcategory','category', 'modules'));
     }
 
     /**
@@ -131,7 +134,8 @@ class SubCategoriesController extends Controller
             $image_url  = $subcategory->image;
         }
 
-        $subcategory->category_id  = $request->category_id;
+        $subcategory->module_id    = $subcategory->module_id;
+        $subcategory->category_id  = $subcategory->category_id;
         $subcategory->name         = $request->name;
         $subcategory->name_arabic  = $request->name_arabic;
         $subcategory->image        = $image_url;

@@ -45,8 +45,29 @@ SubSubCategory {{ $subsubcategory->id }}
                                     <td>{{ $subsubcategory->id }}</td>
                                 </tr>
                                 <tr>
+                                    <th> Module </th>
+                                    <td> 
+                                        @isset($modules[$subsubcategory->module_id])
+                                          {{ $modules[$subsubcategory->module_id] }}
+                                        @endisset
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th> Category </th>
+                                    <td> 
+                                        @isset($categories[$subsubcategory->category_id])
+                                          {{ $categories[$subsubcategory->category_id] }}
+                                        @endisset
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th> Sub Category </th>
-                                    <td> {{ $subcategories[$subsubcategory->sub_category_id] }} </td>
+                                    <td> 
+                                        @isset($subcategories[$subsubcategory->sub_category_id])
+                                          {{ $subcategories[$subsubcategory->sub_category_id] }}
+                                        @endisset
+                                        {{ $subcategories[$subsubcategory->sub_category_id] }} 
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th> Name </th>

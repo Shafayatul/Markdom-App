@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\ServiceSubSubCategory;
 use App\ServiceSubCategory;
 use App\ServiceCategory;
+use App\Store;
+use App\Module;
 use Illuminate\Http\Request;
 
 class ServiceSubSubCategoriesController extends Controller
@@ -33,9 +35,11 @@ class ServiceSubSubCategoriesController extends Controller
         } else {
             $servicesubsubcategories = ServiceSubSubCategory::latest()->paginate($perPage);
         }
+        $stores = Store::pluck('name', 'id');
+        $modules = Module::pluck('name', 'id');
         $service_categories = ServiceCategory::pluck('name', 'id');
         $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
-        return view('service-sub-sub-categories.index', compact('servicesubsubcategories', 'service_categories', 'service_sub_categories'));
+        return view('service-sub-sub-categories.index', compact('servicesubsubcategories', 'service_categories', 'service_sub_categories', 'stores', 'modules'));
     }
 
     /**
@@ -47,7 +51,9 @@ class ServiceSubSubCategoriesController extends Controller
     {
         $service_categories = ServiceCategory::pluck('name', 'id');
         $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
-        return view('service-sub-sub-categories.create', compact('service_categories', 'service_sub_categories'));
+        $stores = Store::pluck('name', 'id');
+        $modules = Module::pluck('name', 'id');
+        return view('service-sub-sub-categories.create', compact('service_categories', 'service_sub_categories', 'stores', 'modules'));
     }
 
     /**
@@ -72,6 +78,8 @@ class ServiceSubSubCategoriesController extends Controller
        $servicesubsubcategory                           = new ServiceSubSubCategory();
        $servicesubsubcategory->service_category_id      = $request->service_category_id;
        $servicesubsubcategory->service_sub_category_id  = $request->service_sub_category_id;
+       $servicesubsubcategory->store_id                 = $request->store_id;
+       $servicesubsubcategory->module_id                = $request->module_id;
        $servicesubsubcategory->name                     = $request->name;
        $servicesubsubcategory->name_arabic              = $request->name_arabic;
        $servicesubsubcategory->preview_image            = $image_url;
@@ -92,7 +100,9 @@ class ServiceSubSubCategoriesController extends Controller
         $servicesubsubcategory = ServiceSubSubCategory::findOrFail($id);
         $service_categories = ServiceCategory::pluck('name', 'id');
         $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
-        return view('service-sub-sub-categories.show', compact('servicesubsubcategory', 'service_categories', 'service_sub_categories'));
+        $stores = Store::pluck('name', 'id');
+        $modules = Module::pluck('name', 'id');
+        return view('service-sub-sub-categories.show', compact('servicesubsubcategory', 'service_categories', 'service_sub_categories', 'stores', 'modules'));
     }
 
     /**
@@ -107,7 +117,9 @@ class ServiceSubSubCategoriesController extends Controller
         $servicesubsubcategory = ServiceSubSubCategory::findOrFail($id);
         $service_categories = ServiceCategory::pluck('name', 'id');
         $service_sub_categories = ServiceSubCategory::pluck('name', 'id');
-        return view('service-sub-sub-categories.edit', compact('servicesubsubcategory', 'service_categories', 'service_sub_categories'));
+        $stores = Store::pluck('name', 'id');
+        $modules = Module::pluck('name', 'id');
+        return view('service-sub-sub-categories.edit', compact('servicesubsubcategory', 'service_categories', 'service_sub_categories', 'stores', 'modules'));
     }
 
     /**
@@ -136,6 +148,8 @@ class ServiceSubSubCategoriesController extends Controller
 
         $servicesubsubcategory->service_category_id      = $request->service_category_id;
         $servicesubsubcategory->service_sub_category_id  = $request->service_sub_category_id;
+        $servicesubsubcategory->store_id                 = $request->store_id;
+        $servicesubsubcategory->module_id                = $request->module_id;
         $servicesubsubcategory->name                     = $request->name;
         $servicesubsubcategory->name_arabic              = $request->name_arabic;
         $servicesubsubcategory->preview_image            = $image_url;
