@@ -131,16 +131,32 @@ class WorkerController extends Controller
     {
       // dd($id);
       $product = Product::where('id', $id)->first();
-      // dd($product);
-
-      Session::put('selected_store_id', $product->store_id);
-      Session::put('selected_product_id', $id);
+      if ($this->check_expiration()) {
+        $url      = env('MAIN_HOST_URL').'api/add-to-cart';
+        $method   = 'POST';
+        $headers  = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+          ];
+        $parameters = [
+          'product_id'      => $id,
+          'quantity'        => '1',
+          'module_id'       => $product->module_id
+        ];
+        $body = $this->callApi($method, $url, $parameters, $headers);
+        Session::put('selected_store_id', $product->store_id);
+        Session::put('selected_product_id', $id);
 
       $url_service_type_price     = env('MAIN_HOST_URL').'api/get-service-type-price';
       $method_service_type_price  = 'GET';
       $service_type_prices        = $this->callApi($method_service_type_price, $url_service_type_price);
       // dd($service);
       return view('front-end.workers.worker-service-delivery', compact('service_type_prices', 'product'));
+      }else{
+        return redirect('/user-login');
+      }
+
+      
     }
 
     public function workerSaveServiceType($id)
@@ -186,28 +202,28 @@ class WorkerController extends Controller
       return view('front-end.workers.worker-notification');
     }
 
-    public function addToCartService($id)
-    {
-      $product = Product::where('id', $id)->first();
-      if ($this->check_expiration()) {
-        $url      = env('MAIN_HOST_URL').'api/add-to-cart';
-        $method   = 'POST';
-        $headers  = [
-              'Authorization' => 'Bearer ' . Session::get('access_token'),
-              'Accept'        => 'application/json',
-          ];
-        $parameters = [
-          'product_id'      => $id,
-          'quantity'        => '1',
-          'module_id'       => $product->module_id
-        ];
-        $body = $this->callApi($method, $url, $parameters, $headers);
-        // dd($body);
-        return redirect('/worker-place-holder');
-      }else{
-        return redirect('/user-login');
-      }
-    }
+    // public function addToCartService($id)
+    // {
+    //   $product = Product::where('id', $id)->first();
+    //   if ($this->check_expiration()) {
+    //     $url      = env('MAIN_HOST_URL').'api/add-to-cart';
+    //     $method   = 'POST';
+    //     $headers  = [
+    //           'Authorization' => 'Bearer ' . Session::get('access_token'),
+    //           'Accept'        => 'application/json',
+    //       ];
+    //     $parameters = [
+    //       'product_id'      => $id,
+    //       'quantity'        => '1',
+    //       'module_id'       => $product->module_id
+    //     ];
+    //     $body = $this->callApi($method, $url, $parameters, $headers);
+    //     // dd($body);
+    //     return redirect('/worker-place-holder/'.$id);
+    //   }else{
+    //     return redirect('/user-login');
+    //   }
+    // }
 
     public function check_expiration(){
       $remaining_time = Session::get('expires_at')-time();
