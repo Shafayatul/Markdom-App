@@ -42,6 +42,7 @@ Subcategories
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Module</th>
                                     <th>Category</th>
                                     <th>Name</th>
                                     <th>Name Arabic</th>
@@ -53,9 +54,16 @@ Subcategories
                             @foreach($subcategories as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td> @isset($category[$item->category_id])
-                                      {{ $category[$item->category_id] }}
-                                    @endisset</td>
+                                    <td> 
+                                        @isset($modules[$item->module_id])
+                                          {{ $modules[$item->module_id] }}
+                                        @endisset
+                                    </td>
+                                    <td> 
+                                        @isset($category[$item->category_id])
+                                          {{ $category[$item->category_id] }}
+                                        @endisset
+                                    </td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->name_arabic }}</td>
                                     <td><img src="{{ $item->image }}" alt="" style="width: 80px; height: 80px;"></td>

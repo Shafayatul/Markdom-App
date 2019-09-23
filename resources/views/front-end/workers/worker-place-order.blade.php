@@ -9,22 +9,30 @@
   <div class="container">
     <div class="wrapper">
       <div class="product-details-div shadow">
+        
+        @foreach($body as $cart)
         <div class="product-details-box shadow">
           <div class="product-image-box shadow">
-            <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
+            <img src="{{ asset(env('MAIN_HOST_URL').$cart->preview_image) }}" alt="">
           </div>
-          <span class="service-name text-left">Service Name <br>{{ __('content.available_unit') }} 10 </span>
-          <span class="total-amount">3</span>
-          <span class="product-amount">30SR</span>
+          <span class="service-name">{{ $cart->product_name }}</span>
+          <div class="product-amount shadow">
+            {{-- <span class="plus"><i class="fa fa-plus-circle"></i></span> --}}
+            <span class="total-product">{{ $cart->quantity }}</span>
+            {{-- <span class="minus"><i class="fa fa-minus-circle"></i></span> --}}
+          </div>
         </div>
-        <div class="product-details-box shadow">
+        @endforeach
+
+        {{-- <div class="product-details-box shadow">
           <div class="product-image-box shadow">
             <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
           </div>
           <span class="service-name">Service Name <br>{{ __('content.available_unit') }} 10 </span>
           <span class="total-amount">3</span>
           <span class="product-amount">30SR</span>
-        </div>
+        </div> --}}
+
       </div>
       <div class="payment-details-div shadow">
         <div class="payment-details-box">

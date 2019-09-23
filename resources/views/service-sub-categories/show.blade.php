@@ -45,6 +45,22 @@ ServiceSubCategory {{ $servicesubcategory->id }}
                                         <td>{{ $servicesubcategory->id }}</td>
                                     </tr>
                                     <tr>
+                                        <th> Module </th>
+                                        <td>
+                                            @isset($modules[$servicesubcategory->module_id]) 
+                                                {{ $modules[$servicesubcategory->module_id] }}
+                                            @endisset 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Store </th>
+                                        <td>
+                                            @isset($stores[$servicesubcategory->store_id]) 
+                                                {{ $stores[$servicesubcategory->store_id] }}
+                                            @endisset 
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th> Service Category </th>
                                         <td>
                                             @isset($service_categories[$servicesubcategory->service_category_id]) 

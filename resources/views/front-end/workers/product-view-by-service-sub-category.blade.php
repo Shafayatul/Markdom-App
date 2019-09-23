@@ -50,7 +50,7 @@
                       <p class="pull-left">{{ $service->price }}</p>
                     </div>
                   </a>
-                  <a href="{{ route('add-to-cart-service', ['id' => $service->id]) }}"><button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button></a>
+                  <a href="{{ route('worker-product-details', ['id' => $service->id]) }}"><button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button></a>
                 </div>
             @endforeach
           </div>

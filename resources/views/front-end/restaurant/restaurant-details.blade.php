@@ -56,15 +56,15 @@
                 <i class="fa fa-circle online"></i>
                 <span class="store-status-text">
                     @if($is_available)
-                      @lang('content.Store is Open')
+                      @lang('content.store_is_open')
                     @else
-                      @lang('content.Store is Closed')
+                      @lang('content.store_is_closed')
                     @endif
                 </span>
             </div>
-            {{-- <div class="order-button text-center">
-        <a href="{{ route('order-details') }}"><button class="btn btn-success" type="button" name="button">Order Menu</button></a>
-        </div> --}}
+            <div class="order-button text-center">
+        {{-- <a href="{{ route('order-details', ['id' => $product->id]) }}"><button class="btn btn-success" type="button" name="button">Order Now</button></a> --}}
+        </div>
     </div>
 </div>
 </div>

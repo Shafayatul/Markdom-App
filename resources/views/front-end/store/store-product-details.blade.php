@@ -58,7 +58,7 @@
         </div>
 
         <div class="add-cart-button-div">
-          <button class="btn btn-success add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button>
+          <a href="{{ route('add-to-cart-store', ['id' => $product_details->id]) }}"><button class="btn btn-success add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button></a>
         </div>
     </div>
 </div>

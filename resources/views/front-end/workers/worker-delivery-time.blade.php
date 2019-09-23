@@ -50,7 +50,7 @@
             @if($item->is_booked == 1)
               <span class="@if($item->is_booked == 1) selected_date @endif">{{ $item->timespan }}</span>
             @else
-              <a href="{{ route('worker-cart') }}"><span>{{ $item->timespan }}</span></a>
+              <a href="{{ route('worker-place-holder', ['id' => $product_id]) }}"><span>{{ $item->timespan }}</span></a>
             @endif
           </div>
           @endif

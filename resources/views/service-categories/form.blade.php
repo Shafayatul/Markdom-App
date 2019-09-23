@@ -1,3 +1,8 @@
+<div class="form-group {{ $errors->has('module_id') ? 'has-error' : ''}}">
+    {!! Form::label('module_id', 'Module', ['class' => 'control-label']) !!}
+    {!! Form::select('module_id', $modules, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'placeholder' => '--Select Module--'] : ['class' => 'form-control', 'placeholder' => '--Select Module--']) !!}
+    {!! $errors->first('module_id', '<p class="help-block">:message</p>') !!}
+</div>
 <div class="form-group {{ $errors->has('store_id') ? 'has-error' : ''}}">
     {!! Form::label('store_id', 'Store', ['class' => 'control-label']) !!}
     {!! Form::select('store_id', $stores, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'placeholder' => '--Select Store--'] : ['class' => 'form-control', 'placeholder' => '--Select Store--']) !!}

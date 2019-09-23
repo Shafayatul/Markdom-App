@@ -33,7 +33,7 @@ Products
                                 <tr>
                                     <th>#</th>
                                     <th>Store</th>
-                                    <th>Sub Sub Category</th>
+                                    <th>Module</th>
                                     <th>Name</th>
                                     <th>Name Arabic</th>
                                     <th>Actions</th>
@@ -49,8 +49,8 @@ Products
                                         @endif
                                     </td>
                                     <td>
-                                        @if(isset($subsubcategories[$item->sub_sub_category_id])) 
-                                            {{ $subsubcategories[$item->sub_sub_category_id] }}
+                                        @if(isset($modules[$item->module_id])) 
+                                            {{ $modules[$item->module_id] }}
                                         @endif
                                     </td>
                                     <td>{{ $item->name }}</td>

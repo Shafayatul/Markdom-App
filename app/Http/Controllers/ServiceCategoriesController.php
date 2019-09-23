@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\ServiceCategory;
 use App\Store;
+use App\Module;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -32,7 +33,8 @@ class ServiceCategoriesController extends Controller
             $servicecategories = ServiceCategory::latest()->paginate($perPage);
         }
         $stores = Store::where('store_owner_id', Auth::id())->pluck('name', 'id');
-        return view('service-categories.index', compact('servicecategories', 'stores'));
+        $modules = Module::pluck('name', 'id');
+        return view('service-categories.index', compact('servicecategories', 'stores', 'modules'));
     }
 
     /**
@@ -43,7 +45,8 @@ class ServiceCategoriesController extends Controller
     public function create()
     {
         $stores = Store::where('store_owner_id', Auth::id())->pluck('name', 'id');
-        return view('service-categories.create', compact('stores'));
+        $modules = Module::pluck('name', 'id');
+        return view('service-categories.create', compact('stores', 'modules'));
     }
 
     /**
@@ -66,6 +69,7 @@ class ServiceCategoriesController extends Controller
         }
         $servicecategory                = new ServiceCategory();
         $servicecategory->store_id      = $request->store_id;
+        $servicecategory->module_id     = $request->module_id;
         $servicecategory->user_id       = Auth::id();
         $servicecategory->name          = $request->name;
         $servicecategory->name_arabic   = $request->name_arabic;
@@ -86,7 +90,8 @@ class ServiceCategoriesController extends Controller
     {
         $servicecategory = ServiceCategory::findOrFail($id);
         $stores = Store::where('store_owner_id', Auth::id())->pluck('name', 'id');
-        return view('service-categories.show', compact('servicecategory', 'stores'));
+        $modules = Module::pluck('name', 'id');
+        return view('service-categories.show', compact('servicecategory', 'stores', 'modules'));
     }
 
     /**
@@ -100,7 +105,8 @@ class ServiceCategoriesController extends Controller
     {
         $servicecategory = ServiceCategory::findOrFail($id);
         $stores = Store::where('store_owner_id', Auth::id())->pluck('name', 'id');
-        return view('service-categories.edit', compact('servicecategory', 'stores'));
+        $modules = Module::pluck('name', 'id');
+        return view('service-categories.edit', compact('servicecategory', 'stores', 'modules'));
     }
 
     /**

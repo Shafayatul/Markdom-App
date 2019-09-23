@@ -46,6 +46,14 @@ Store {{ $store->id }}
                                         <td>{{ $store->id }}</td>
                                     </tr>
                                     <tr>
+                                        <th> Module </th>
+                                        <td>
+                                            @isset($modules[$store->module_id])
+                                          {{ $modules[$store->module_id] }}
+                                        @endisset
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th> Category </th>
                                         <td>
                                             @isset($categories[$store->category_id]) 

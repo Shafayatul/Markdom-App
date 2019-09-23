@@ -8,12 +8,13 @@ use Auth;
 use App\Cart;
 use App\User;
 use App\Product;
+use App\Module;
 
 class CartsController extends Controller
 {
-	public function index(){
+	public function index($module_id){
         $data = [];
-        $carts=Cart::where('user_id', Auth::id())->where('is_cart', '1')->latest()->get();
+        $carts=Cart::where('user_id', Auth::id())->where('is_cart', '1')->where('module_id', $module_id)->latest()->get();
         foreach ($carts as $cart) {
             $product = Product::where('id', $cart->product_id)->first();
 
@@ -25,7 +26,6 @@ class CartsController extends Controller
             $single_data['preview_image']          	= $product->preview_image;
             $single_data['total_price']             = $cart->quantity*$cart->unit_price; 
             $single_data['quantity']                = $cart->quantity;
-
             array_push($data, $single_data);
         }
         return response()->json($data);
@@ -33,8 +33,9 @@ class CartsController extends Controller
 
     public function store(Request $request)
     {
-    	$user_id = Auth::id();
-        $product_id = $request->input('product_id');
+    	$user_id        = Auth::id();
+        $product_id     = $request->input('product_id');
+        $module_id      = $request->input('module_id');
 
         $count = Cart::where('user_id', Auth::id())->where('is_cart', '1')->where('product_id', $product_id)->count();
 
@@ -53,6 +54,7 @@ class CartsController extends Controller
             $Cart = new Cart;
             $Cart->user_id                   	= $user_id;
             $Cart->product_id               	= $product_id;
+            $Cart->module_id                    = $module_id;
             $Cart->quantity                  	= $request->input('quantity');
             $Cart->unit_price                   = $product_price;
             $Cart->is_cart                   	= 1;

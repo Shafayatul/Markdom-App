@@ -1,7 +1,30 @@
+<div class="form-group {{ $errors->has('module_id') ? 'has-error' : ''}}">
+    {!! Form::label('module_id', 'Module', ['class' => 'control-label']) !!}
+    {!! Form::select('module_id', $modules, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'placeholder' => '--Select Module--'] : ['class' => 'form-control', 'placeholder' => '--Select Module--']) !!}
+    {!! $errors->first('module_id', '<p class="help-block">:message</p>') !!}
+</div>
+
+<div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">
+    {!! Form::label('category_id', 'Category', ['class' => 'control-label']) !!}
+    {!! Form::select('category_id', $categories, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'placeholder' => '--Select Category--'] : ['class' => 'form-control', 'placeholder' => '--Select Category--']) !!}
+    {!! $errors->first('category_id', '<p class="help-block">:message</p>') !!}
+</div>
+
+<div class="form-group {{ $errors->has('sub_category_id') ? 'has-error' : ''}}">
+    {!! Form::label('sub_category_id', 'Sub Category', ['class' => 'control-label']) !!}
+    {!! Form::select('sub_category_id', $subcategories, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'placeholder' => '--Select Sub Category--'] : ['class' => 'form-control', 'placeholder' => '--Select Sub Category--']) !!}
+    {!! $errors->first('sub_sub_category_id', '<p class="help-block">:message</p>') !!}
+</div>
+
+<div class="form-group {{ $errors->has('sub_sub_category_id') ? 'has-error' : ''}}">
+    {!! Form::label('sub_sub_category_id', 'Sub Sub Category', ['class' => 'control-label']) !!}
+    {!! Form::select('sub_sub_category_id', $subsubcategories, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'placeholder' => '--Select Sub Sub Category--'] : ['class' => 'form-control', 'placeholder' => '--Select Sub Sub Category--']) !!}
+    {!! $errors->first('sub_sub_category_id', '<p class="help-block">:message</p>') !!}
+</div>
 
 <div class="form-group {{ $errors->has('store_id') ? 'has-error' : ''}}">
     {!! Form::label('store_id', 'Store', ['class' => 'control-label']) !!}
-    {!! Form::select('store_id', $stores, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+    {!! Form::select('store_id', $stores, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'placeholder' => '--Select Store--'] : ['class' => 'form-control', 'placeholder' => '--Select Store--']) !!}
     {!! $errors->first('store_id', '<p class="help-block">:message</p>') !!}
 </div>
 
@@ -21,12 +44,6 @@
     {!! Form::label('service_sub_sub_category_id', 'Service Sub Category', ['class' => 'control-label']) !!}
     {!! Form::select('service_sub_sub_category_id', $service_sub_sub_categories, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'placeholder' => '--Select Service Sub Sub Category--'] : ['class' => 'form-control', 'placeholder' => '--Select Service Sub Sub Category--']) !!}
     {!! $errors->first('service_sub_sub_category_id', '<p class="help-block">:message</p>') !!}
-</div>
-
-<div class="form-group {{ $errors->has('sub_sub_category_id') ? 'has-error' : ''}}">
-    {!! Form::label('sub_sub_category_id', 'Sub Sub Category', ['class' => 'control-label']) !!}
-    {!! Form::select('sub_sub_category_id', $subsubcategories, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
-    {!! $errors->first('sub_sub_category_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
     {!! Form::label('name', 'Name', ['class' => 'control-label']) !!}

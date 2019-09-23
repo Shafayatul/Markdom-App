@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth:api']], function() {
 	Route::post('logout','Api\UsersController@logoutApi');
 
 	//Carts Section
-	Route::get('view-cart','Api\CartsController@index');
+	Route::get('view-cart/{module_id}','Api\CartsController@index');
 	Route::post('add-to-cart','Api\CartsController@store');
 	Route::post('update-quantity','Api\CartsController@update_quantity_cart');
 	Route::post('delete-cart','Api\CartsController@destroy');
