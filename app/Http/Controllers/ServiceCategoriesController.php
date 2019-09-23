@@ -133,6 +133,7 @@ class ServiceCategoriesController extends Controller
             $image_url = $servicecategory->preview_image;
         }
         $servicecategory->store_id      = $request->store_id;
+        $servicecategory->module_id     = $request->module_id;
         $servicecategory->user_id       = Auth::id();
         $servicecategory->name          = $request->name;
         $servicecategory->name_arabic   = $request->name_arabic;
