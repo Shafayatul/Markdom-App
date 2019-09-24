@@ -52,8 +52,8 @@
         <div class="payment-details-box">
           <div class="delivery-title"> <h1>{{ __('content.delivery_method') }}</h1> </div>
           <div class="delivery-description"> 
-            {{-- <p class="font-p">Customer Location</p> --}}
-            @foreach ($address as $show_address)
+            <p class="font-p">Customer Location</p>
+            {{-- @foreach ($address as $show_address)
             <a href="{{ url('/product-summary/'.$show_address->id) }}" style="text-decoration: none;">
               <div class="address-box effect">
                 <p>{{ $show_address->flat_no }},{{ $show_address->location }}, {{ $show_address->state->name }}, {{ $show_address->city->name }}, {{ $show_address->country->name }},</p>
@@ -61,13 +61,15 @@
                 <a class="delete-icon" href="{{ URL::to('/delete-address/'.$show_address->id) }}" ><i class="fa fa-trash"></i></a>
               </div>
             </a>
-            @endforeach
+            @endforeach --}}
           </div>
           <div class="delivery-cost"> <p class="font-p">20SR</p></div>
         </div>
         <div class="payment-details-box">
           <div class="payment-title"> <h1>{{ __('content.date') }}</h1> </div>
-          <div class="payment-description"> <p class="font-p">20/10/2019</p> </div>
+          <div class="payment-description"> <p class="font-p">
+            {{ Carbon\Carbon::today()->format('d/m/Y') }}
+          </p> </div>
         </div>
         <div class="payment-details-box">
           <div class="payment-title"> <h1>{{ __('content.time') }}</h1> </div>
