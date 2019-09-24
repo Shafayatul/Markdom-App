@@ -81,7 +81,7 @@
           <div class="promo-button"> <button class="btn btn-success" type="button" name="button">{{ __('content.apply') }}</button> </div>
         </div>
         <div class="place-order-button-div">
-          <button class="btn btn-success place-order-button" type="button" name="button">{{ __('content.add_cart') }}</button>
+          <button class="btn btn-success place-order-button" type="button" name="button">{{ __('content.place_order') }}</button>
         </div>
       </div>
     </div>
