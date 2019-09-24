@@ -37,7 +37,7 @@
         </div> --}}
 
         <div class="place-order-button-div">
-          <a href="{{ route('store-place-order', ['id' => $module_id]) }}"><button class="btn btn-success place-order-button" type="button" name="button">{{ __('content.place_order') }}</button></a>
+          <a href="{{ url('/address') }}"><button class="btn btn-success place-order-button" type="button" name="button">Add Delivery Address</button></a>
         </div>
       </div>
     </div>

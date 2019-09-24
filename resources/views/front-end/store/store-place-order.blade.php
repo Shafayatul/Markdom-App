@@ -18,7 +18,10 @@
             $cart_string = implode(",",$cart_array);
           ?>
         @foreach($body as $cart)
-        <div class="product-details-box shadow">
+        <div class="product-details-box shadow {{ 'rem'.$cart->cart_id }}">
+          <button id = "x" class="{{ 'close'.$cart->cart_id }} shadow remove_cart" cart_id="{{$cart->cart_id}}">
+            X
+          </button>
           <div class="product-image-box shadow">
             <img src="{{ asset(env('MAIN_HOST_URL').$cart->preview_image) }}" alt="">
           </div>
@@ -48,7 +51,18 @@
         </div>
         <div class="payment-details-box">
           <div class="delivery-title"> <h1>{{ __('content.delivery_method') }}</h1> </div>
-          <div class="delivery-description"> <p class="font-p">Customer Location</p></div>
+          <div class="delivery-description"> 
+            {{-- <p class="font-p">Customer Location</p> --}}
+            @foreach ($address as $show_address)
+            <a href="{{ url('/product-summary/'.$show_address->id) }}" style="text-decoration: none;">
+              <div class="address-box effect">
+                <p>{{ $show_address->flat_no }},{{ $show_address->location }}, {{ $show_address->state->name }}, {{ $show_address->city->name }}, {{ $show_address->country->name }},</p>
+                <p>{{ $show_address->phone_no }},</p>
+                <a class="delete-icon" href="{{ URL::to('/delete-address/'.$show_address->id) }}" ><i class="fa fa-trash"></i></a>
+              </div>
+            </a>
+            @endforeach
+          </div>
           <div class="delivery-cost"> <p class="font-p">20SR</p></div>
         </div>
         <div class="payment-details-box">
@@ -78,6 +92,38 @@
 <script type="text/javascript">
   var cart_string = "{{ $cart_string }}";
   var cart_array = cart_string.split(",");
+
+
+  if (cart_array != null) {
+      $.each(cart_array, function(index, value) {
+          $('.close' + value).on('click', function(c) {
+              $('.rem' + value).fadeOut('slow', function(c) {
+                  $('.rem' + value).remove();
+              });
+          });
+      });
+  }
+
+  $(".remove_cart").click(function() {
+
+      var cart_id = $(this).attr('cart_id');
+
+      $.ajax({
+          type: 'POST',
+          url: "{{ url('/ajax-delete-cart') }}",
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          data: {
+              'cart_id': cart_id
+          },
+          success: function(data) {
+              console.log("Cart Item Deleted");
+          }
+
+      });
+  });
+
 
   var new_quantity;
 

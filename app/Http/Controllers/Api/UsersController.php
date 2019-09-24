@@ -45,10 +45,20 @@ class UsersController extends Controller
 
     public function user_details()
     {
-    	$id = Auth::id();
-    	$user = User::find($id);
+    	$user = User::where('id', Auth::id())->first();
     	return response()->json($user);
 
+    }
+
+    public function get_current_user_data(Request $request){
+        $fcm_token = $request->input('fcm_token');
+        if (($fcm_token != '') || ($fcm_token != null)) {
+            $user            = User::find(Auth::id());
+            $user->fcm_token = $fcm_token;
+            $user->save();
+        }
+        $user = User::where('id', Auth::id())->first();
+        return response()->json($user);
     }
 
     public function change_password(Request $request)

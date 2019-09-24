@@ -108,6 +108,7 @@ class StoreController extends Controller
     public function addToCartStore($id)
     {
       $product = Product::where('id', $id)->first();
+      Session::put('module_id', $product->module_id);
       if ($this->check_expiration()) {
         $url      = env('MAIN_HOST_URL').'api/add-to-cart';
         $method   = 'POST';

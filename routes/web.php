@@ -65,8 +65,16 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/add-to-cart-store/{id}', 'FrontEnd\StoreController@addToCartStore')->name('add-to-cart-store');
 	Route::get('/store-place-order/{id}', 'FrontEnd\StoreController@storePlaceOrder')->name('store-place-order');
 
+	Route::get('/address', 'FrontEnd\FrontEndController@addressesView');
+	Route::get('/add-address', 'FrontEnd\FrontEndController@addressView');
+	Route::post('/address-submit', 'FrontEnd\FrontEndController@addressSubmit');
+
 	// Cart
 	Route::post('/ajax-update-quantity-cart', 'FrontEnd\FrontEndController@ajaxUpdateQuantityCart');
+	Route::post('/ajax-delete-cart', 'FrontEnd\FrontEndController@ajaxDeleteCart');
+
+	Route::post('/ajax-state-list','FrontEnd\FrontEndController@ajaxStateList');
+	Route::post('/ajax-city-list','FrontEnd\FrontEndController@ajaxCityList');
 
 });
 
