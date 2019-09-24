@@ -80,9 +80,11 @@ class StoreController extends Controller
       }
     }
 
-    public function storePlaceOrder($module_id)
+    public function storePlaceOrder($address_id)
     {
+      Session::put('current_user_address',$address_id);
       if ($this->check_expiration()) {
+        $module_id = Session::get('module_id');
         $url = env('MAIN_HOST_URL').'api/view-cart/'.$module_id;
         $method = 'GET';
         $headers = [
@@ -99,7 +101,15 @@ class StoreController extends Controller
           ];
         $user = $this->callApi($user_method, $user_url, [], $user_headers);
 
-        return view('front-end.store.store-place-order', compact('body', 'user'));
+        $single_addres_url = env('MAIN_HOST_URL').'api/get-single-address/'.$address_id;
+        $single_addres_method = 'GET';
+        $single_addres_headers = [
+          'Authorization' => 'Bearer ' . Session::get('access_token'),
+          'Accept'        => 'application/json',
+        ];
+        $single_address = $this->callApi($single_addres_method, $single_addres_url, [], $single_addres_headers);
+
+        return view('front-end.store.store-place-order', compact('body', 'user', 'single_address'));
       }else{
         return redirect('/user-login');
       }

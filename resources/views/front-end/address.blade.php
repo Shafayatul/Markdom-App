@@ -15,7 +15,7 @@
 	          <div class="delivery-description"> 
 	            {{-- <p class="font-p">Customer Location</p> --}}
 	            @foreach ($address as $show_address)
-	            <a href="{{ route('store-place-order',['id' => $module_id]) }}" style="text-decoration: none;">
+	            <a href="{{ route('store-place-order',['id' => $show_address->id]) }}" style="text-decoration: none;">
 	              <div class="address-box effect">
 	                <p>{{ $show_address->flat_no }},{{ $show_address->location }}, {{ $show_address->state->name }}, {{ $show_address->city->name }}, {{ $show_address->country->name }},</p>
 	                <p>{{ $show_address->phone_no }},</p>
