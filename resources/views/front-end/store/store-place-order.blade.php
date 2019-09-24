@@ -19,7 +19,7 @@
           ?>
         @foreach($body as $cart)
         <div class="product-details-box shadow {{ 'rem'.$cart->cart_id }}">
-          <button id = "x" class="{{ 'close'.$cart->cart_id }} shadow remove_cart" cart_id="{{$cart->cart_id}}">
+          <button id="x" class="{{ 'close'.$cart->cart_id }} shadow remove_cart" cart_id="{{$cart->cart_id}}">
             X
           </button>
           <div class="product-image-box shadow">
