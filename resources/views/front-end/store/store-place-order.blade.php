@@ -54,7 +54,7 @@
               <ul>
                 <li>Sub Total <span>SR {{ $cnt }}</span></li>
                 <li>Shipping <span>SR {{ $shipping_charge }}</span></li>
-                <li id="discount_toggle"> @lang('product.discount') <span class="discount"></span></li>
+                {{-- <li id="discount_toggle"> @lang('product.discount') <span class="discount"></span></li> --}}
                 <li>Grand Total <span id="gnd_total">SR {{ $grand_total }}</span></li>
               </ul>
             </div>
