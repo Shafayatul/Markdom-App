@@ -2,6 +2,7 @@
 @section('front-additional-css')
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="{{ asset('front-end-assets/custom-css/store-place-order.css') }}">
+<link rel="stylesheet" href="{{ asset('front-end-assets/custom-css/product-summary.css') }}">
 @endsection
 
 @section('main-content')
@@ -26,6 +27,7 @@
             <img src="{{ asset(env('MAIN_HOST_URL').$cart->preview_image) }}" alt="">
           </div>
           <span class="service-name">{{ $cart->product_name }}</span>
+          <span class="product-amount">SR {{ $cart->price }}</span>
           <div class="product-amount shadow">
             <span class="plus" cart_id="{{$cart->cart_id}}"><i class="fa fa-plus-circle"></i></span>
             <span class="total-product value new_quantity">{{ $cart->quantity }}</span>
@@ -33,6 +35,32 @@
           </div>
         </div>
         @endforeach
+        <div class="product-details-box shadow">
+          <div class="payment-summary-box">
+            <div class="payment-summary-title">
+              <h3>Product Summary</h3>
+            </div>
+            <hr>
+            <?php
+              $cnt = 0;
+              foreach ($body as $cart) {
+                $cnt = $cnt + $cart->total_price;
+              }
+
+              //$shipping_charge = $single_address->city->delivery_fees; --}}
+              $grand_total = $cnt ;
+            ?>
+            <div class="payment-summary-content">
+              <ul>
+                <li>Sub Total <span>SR {{ $cnt }}</span></li>
+                {{-- <li>Shipping <span>SR {{ $shipping_charge }}</span></li> --}}
+                {{-- <li id="discount_toggle"> @lang('product.discount') <span class="discount"></span></li> --}}
+                <li>Grand Total <span id="gnd_total">SR {{ $grand_total }}</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
 
         {{-- <div class="product-details-box shadow">
           <div class="product-image-box shadow">

@@ -27,6 +27,7 @@ class CartsController extends Controller
             $single_data['preview_image']          	= $product->preview_image;
             $single_data['total_price']             = $cart->quantity*$cart->unit_price; 
             $single_data['quantity']                = $cart->quantity;
+            $single_data['price']                   = $cart->unit_price;
             array_push($data, $single_data);
         }
         return response()->json($data);

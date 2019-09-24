@@ -1,0 +1,76 @@
+.payment-summary-box {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+
+.payment-summary-content ul{
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.payment-summary-content ul li {
+  /* background: #E6E4DF; */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  color: #696763;
+  margin-top: 10px;
+  padding: 7px 20px;
+}
+.payment-summary-content ul li:last-child {
+  width: 100%;
+  float:right;
+  margin-bottom: 20px;
+}
+
+.payment-summary-content span {
+  float: right;
+}
+
+/*.shop_now_button {
+  width: 220px;
+}
+
+.shop_now_button a:hover {
+  color: #fff;
+}*/
+
+/* Responsive CSS */
+@media (min-width: 320px) and (max-width: 480px) {
+  .product_summary_section_container {
+    margin-top: 60px;
+  }
+  #close {
+    right: -11px;
+  }
+  .form__field {
+    width: 290px;
+  }
+  .btn--inside {
+    margin-left: calc((100% - 110px) / 2);
+    margin-top: 15px;
+  }
+  .payment-summary-content ul li:last-child {
+    width: 100%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .product_summary_section_container {
+    margin-top: 100px;
+  }
+  #close {
+    right: -11px;
+  }
+  .btn--inside {
+    margin-left: calc((100% - 110px) / 2);
+    margin-top: 15px;
+  }
+  .payment-summary-content ul li:last-child {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .product_summary_section_container {
+    margin-top: 60px;
+  }
+}
