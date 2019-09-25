@@ -80,16 +80,14 @@
         <div class="payment-details-box">
           <div class="delivery-title"> <h1>{{ __('content.delivery_method') }}</h1> </div>
           <div class="delivery-description"> 
-            <p class="font-p">Customer Location</p>
-            {{-- @foreach ($address as $show_address)
-            <a href="{{ url('/product-summary/'.$show_address->id) }}" style="text-decoration: none;">
+            {{-- <p class="font-p">Customer Location</p> --}}
+            <a href="#" style="text-decoration: none;">
               <div class="address-box effect">
-                <p>{{ $show_address->flat_no }},{{ $show_address->location }}, {{ $show_address->state->name }}, {{ $show_address->city->name }}, {{ $show_address->country->name }},</p>
-                <p>{{ $show_address->phone_no }},</p>
-                <a class="delete-icon" href="{{ URL::to('/delete-address/'.$show_address->id) }}" ><i class="fa fa-trash"></i></a>
+                <p>{{ $single_address->flat_no }},{{ $single_address->location }}, {{ $single_address->state->name }}, {{ $single_address->city->name }}, {{ $single_address->country->name }},</p>
+                <p>{{ $single_address->phone_no }},</p>
+                {{-- <a class="delete-icon" href="{{ URL::to('/delete-address/'.$single_address->id) }}" ><i class="fa fa-trash"></i></a> --}}
               </div>
             </a>
-            @endforeach --}}
           </div>
           <div class="delivery-cost"> <p class="font-p">20SR</p></div>
         </div>
