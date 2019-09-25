@@ -83,9 +83,15 @@
             {{-- <p class="font-p">Customer Location</p> --}}
             <a href="#" style="text-decoration: none;">
               <div class="address-box effect">
+                @if(app()->getLocale() == 'en')
                 <p>{{ $user->name }}</p>
                 <p>{{ $single_address->flat_no }},{{ $single_address->location }}, {{ $single_address->state->name }}, {{ $single_address->city->name }}, {{ $single_address->country->name }},</p>
                 <p>{{ $single_address->phone_no }},</p>
+                @else
+                  <p>{{ $user->name }}</p>
+                  <p>{{ $single_address->flat_no }},{{ $single_address->location }}, {{ $single_address->state->name_arabic }}, {{ $single_address->city->name_arabic }}, {{ $single_address->country->name_arabic }},</p>
+                  <p>{{ $single_address->phone_no }},</p>
+                @endif
                 {{-- <a class="delete-icon" href="{{ URL::to('/delete-address/'.$single_address->id) }}" ><i class="fa fa-trash"></i></a> --}}
               </div>
             </a>
