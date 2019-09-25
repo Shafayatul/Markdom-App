@@ -83,6 +83,7 @@
             {{-- <p class="font-p">Customer Location</p> --}}
             <a href="#" style="text-decoration: none;">
               <div class="address-box effect">
+                <p>{{ $user->name }}</p>
                 <p>{{ $single_address->flat_no }},{{ $single_address->location }}, {{ $single_address->state->name }}, {{ $single_address->city->name }}, {{ $single_address->country->name }},</p>
                 <p>{{ $single_address->phone_no }},</p>
                 {{-- <a class="delete-icon" href="{{ URL::to('/delete-address/'.$single_address->id) }}" ><i class="fa fa-trash"></i></a> --}}
@@ -107,7 +108,7 @@
           <div class="promo-button"> <button class="btn btn-success" type="button" name="button">{{ __('content.apply') }}</button> </div>
         </div>
         <div class="place-order-button-div">
-          <button class="btn btn-success place-order-button" type="button" name="button">{{ __('content.place_order') }}</button>
+          <button class="btn btn-success place-order-button" type="button" name="button">{{ 'Continue To Payment' }}</button>
         </div>
       </div>
     </div>
