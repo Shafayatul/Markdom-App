@@ -76,6 +76,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::post('/ajax-state-list','FrontEnd\FrontEndController@ajaxStateList');
 	Route::post('/ajax-city-list','FrontEnd\FrontEndController@ajaxCityList');
 
+	//Payment
+	Route::get('/payment-method', 'PaymentsController@payment_method_view');
+
 });
 
 //FrontEnd Route Ends Here
