@@ -48,7 +48,7 @@
               }
 
               $shipping_charge = $single_address->city->delivery_fees;
-              $grand_total = $cnt ;
+              $grand_total = $cnt + $shipping_charge;
             ?>
             <div class="payment-summary-content">
               <ul>
@@ -89,7 +89,7 @@
               </div>
             </a>
           </div>
-          <div class="delivery-cost"> <p class="font-p">20SR</p></div>
+          <div class="delivery-cost"> <p class="font-p">SR {{ $shipping_charge }}</p></div>
         </div>
         <div class="payment-details-box">
           <div class="payment-title"> <h1>{{ __('content.date') }}</h1> </div>
