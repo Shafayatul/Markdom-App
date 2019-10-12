@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\DriverOrder;
 use App\Order;
+use App\Store;
+use App\Module;
+use App\Category;
+use Auth;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -40,7 +45,16 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        $id = Auth::id();
+        $module = Module::where('name', 'Restuarant')->first();
+
+        if(isset($module) != null){
+            $stores     = Store::where('module_id', $module->id)->where('store_owner_id', $id)->pluck('name', 'id');
+        }else{
+            $stores     = [];
+        }
+        
+        return view('orders.create', compact('stores'));
     }
 
     /**
@@ -62,8 +76,9 @@ class OrdersController extends Controller
             $image_url  = null;
         }
 
-        $order                  = new Order();
+        $order                  = new DriverOrder();
         $order->order_details   = $request->order_details;
+        $order->user_id   = Auth::id();
         $order->promo_code      = $request->promo_code;
         $order->delivery_time   = $request->delivery_time;
         $order->image           = $image_url;

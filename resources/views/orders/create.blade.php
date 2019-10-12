@@ -2,6 +2,14 @@
 @section('title')
 Create New Order
 @endsection
+@section('header-script')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .removeBtn{
+            margin-top: 25px;
+        }
+    </style>
+@endsection
 @section('content')
 <div id="page-wrapper">
     <div class="row">
@@ -42,4 +50,38 @@ Create New Order
         </div>
     </div>
 </div>
+@endsection
+@section('footer-script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<script type="text/javascript">
+    $('.product').select2({});
+
+
+    $(document).ready(function(){
+        $("#store_id").change(function(){
+            var store_id = $("#store_id").val();
+            if(store_id){
+
+                $.ajax({
+                    type:"GET",
+                    url:"{{url('get-products-list')}}?store_id="+store_id,
+                    success:function(res){
+                        if(res){
+                            $(".product").empty();
+                            $(".product").append('<option>Select Product</option>');
+                            $.each(res,function(key,value){
+                                $(".product").append('<option value="'+key+'">'+value+'</option>');
+                            });
+
+                        }else{
+                        $(".product").empty();
+                        }
+                    }
+                });
+            }else{
+                $(".product").empty();
+            }
+        });
+    });
+</script>
 @endsection
