@@ -15,4 +15,5 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('front-end-assets/slick/slick.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('front-end-assets/slick/slick-theme.css')}}">
 
-<link href="{{ asset('front-end-assets/custom-css/main-menu.css') }}" rel="stylesheet"/>
+{{-- <link href="{{ asset('front-end-assets/custom-css/main-menu.css') }}" rel="stylesheet"/> --}}
+<link href="{{ asset('front-end-assets/custom-css/menu.css') }}" rel="stylesheet" media="all" />

@@ -12,6 +12,7 @@
 <script src="{{ asset('front-end-assets/js/jquery.uls.core.js') }}"></script>
 <script type="text/javascript" src="{{ asset('front-end-assets/js/jquery.flexisel.js')}}"></script>
 <script src="{{ asset('front-end-assets/slick/slick.js')}}"></script>
+<script src="{{ asset('front-end-assets/custom-js/menu.js') }}"></script>
 <script type="text/javascript">
   $(document).ready(function(){
     $('ul.nav li.dropdown').hover(function() {

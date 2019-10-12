@@ -1,0 +1,81 @@
+@media only screen and (min-device-width : 320px) and (max-device-width : 1024px) {
+  #menu-collapse{
+    font-size:30px;
+    cursor:pointer;
+    padding-top: 15px;
+    float: right;
+  }
+
+  .overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-y: hidden;
+    transition: 0.5s;
+  }
+
+  .overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    text-align: center;
+  }
+
+  .overlay a:hover, .overlay a:focus {
+    color: #818181;;
+  }
+
+  .overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 25%;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 50%;
+    padding: 5px 5px;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    /* background-color: #fff; */
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  }
+
+  .dropdown-menu li a{
+    color: #818181;
+  }
+  .dropdown-menu li a{
+    color: #262626;
+    text-decoration: none;
+  }
+}

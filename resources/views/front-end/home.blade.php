@@ -6,21 +6,21 @@
 @section('main-content')
   <div class="content">
 
-    <div class="search-wrapper shadow">
-        <div class="search-bar">
-          <div class="search-icon search-icon-left">
-            <i class="fa fa-search"></i>
-          </div>
-          <div class="search-field">
-            <input class="search-field-input" type="text" maxLength="5" placeholder="Search Item"/>
-          </div>
-          <div class="search-icon search-icon-right">
-            <i class="fa fa-filter"></i>
-          </div>
+    {{-- <div class="search-wrapper shadow">
+      <div class="search-bar">
+        <div class="search-icon search-icon-left">
+          <i class="fa fa-search"></i>
+        </div>
+        <div class="search-field">
+          <input class="search-field-input" type="text" maxLength="5" placeholder="Search Item"/>
+        </div>
+        <div class="search-icon search-icon-right">
+          <i class="fa fa-filter"></i>
         </div>
       </div>
+    </div> --}}
 
-    <div class="hr-line"></div>
+    {{-- <div class="hr-line"></div> --}}
 
     <div class="sliding-category">
       <div class="slider-area slider">
