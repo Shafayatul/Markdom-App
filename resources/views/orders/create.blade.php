@@ -159,6 +159,8 @@ Create New Order
     $(document).on('click', ".removeBtn", function(){
         var serial = $(this).attr('serial');
         $('#product-section'+serial).remove();
+        sub_total_price();
+        grand_total_price();
     });
     
     function sub_total_price(){
@@ -171,6 +173,58 @@ Create New Order
         });
         $("#sub_total_price").val(price);
         $("#grand_total_price").val(price);
+    }
+
+    $(document).on('keyup', "#promo_code", function(){
+        var code = $(this).val();
+       check_promo_code(code);
+    });
+
+    function check_promo_code(code){
+        if(code){
+
+            $.ajax({
+                type:"GET",
+                url:"{{url('get-discount-data')}}?code="+code,
+                success:function(res){
+                    if(res){
+                        if(res.msg != 'Not Found'){
+                            if(res.code.type == 'Percent'){
+                                var sub_total_price = $("#sub_total_price").val();
+                                var percent = res.code.percent;
+                                var percent_result = parseInt(percent)/100;
+                                var final_discount = sub_total_price*percent_result;
+                                $("#discount").val(final_discount);
+                                grand_total_price();
+                            }else{
+                                var sub_total_price = $("#sub_total_price").val();
+                                var amount = res.code.amount;
+                                $("#discount").val(amount);
+                                grand_total_price();
+                            }  
+                        }else{
+                            $("#discount").val('');
+                            grand_total_price();
+                        }
+                        
+                    }else{
+                        $("#discount").val('');
+                        grand_total_price();
+                    }
+                }
+            });
+        }else{
+            $("#discount").val('');
+            grand_total_price();
+        }
+    }
+
+
+    function grand_total_price(){
+        var sub_total_price = $("#sub_total_price").val();
+        var discount = $("#discount").val();
+        var grand_total_price = sub_total_price-discount;
+        $("#grand_total_price").val(grand_total_price);
     }
     
 </script>

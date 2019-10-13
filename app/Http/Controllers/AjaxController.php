@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\SubCategory;
 use App\Product;
+use App\PromoCode;
+use App\DriverOrder;
+use Auth;
 
 
 class AjaxController extends Controller
@@ -37,5 +40,24 @@ class AjaxController extends Controller
        $product = Product::where('id',$request->product_id)->first();
 
         return response()->json($product); 
+    }
+
+    public function getDiscountData(Request $request)
+    {
+        // $data = [];
+        $id = Auth::id();
+        $count_code_by_user = DriverOrder::where('user_id', $id)->where('promo_code', $request->code)->count();
+        if($count_code_by_user == 0){
+            $code = PromoCode::where('code', $request->code)->first();
+            if($code != null){
+                $data['code'] = $code; 
+            }else{
+                $data['msg'] = 'Not Found'; 
+            }
+        }else{
+            $data['msg'] = 'You already used it'; 
+        }
+        
+        return response()->json($data);
     }
 }
