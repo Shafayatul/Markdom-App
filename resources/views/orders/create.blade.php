@@ -54,13 +54,42 @@ Create New Order
 @section('footer-script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
 <script type="text/javascript">
-    $('.product').select2({});
+    var rowCount = 1;
+    function addMore(frm){
+        
 
+        rowCount++;
+        html = '<div id="product-section'+rowCount+'"><div class="row"><div class="col-md-3"><div class="form-group"><label class="control-label">Product</label><select id="product_'+rowCount+'" name="product_id[]" class="form-control product" serial="'+rowCount+'"></select></div></div><div class="col-md-2"><div class="form-group"><label class="control-label">Price</label><input type="text" name="price[]" class="form-control price" id="price_'+rowCount+'" serial="'+rowCount+'" readonly></div></div><div class="col-md-2"><div class="form-group"><label class="control-label">Qty</label><input type="number" name="qty[]" class="form-control qty" id="qty_'+rowCount+'" serial="'+rowCount+'"></div></div><div class="col-md-2"><div class="form-group"><label class="control-label">Total Price</label><input type="text" name="total_price[]" class="form-control total_price" id="total_price_'+rowCount+'" serial="'+rowCount+'" readonly></div></div><div class="col-md-3"><div class="form-group"><button class="btn btn-sm btn-danger removeBtn" serial="'+rowCount+'"><i class="fa fa-trash"></i></button></div></div></div></div>';
+        $("#itemRows").append(html);
+
+        var selectedStore = $('#store_id :selected').val();
+        if(selectedStore){
+
+            $.ajax({
+                type:"GET",
+                url:"{{url('get-products-list')}}?store_id="+selectedStore,
+                success:function(res){
+                    if(res){
+                        $("#product_"+rowCount).empty();
+                        $("#product_"+rowCount).append('<option>Select Product</option>');
+                        $.each(res,function(key,value){
+                            $("#product_"+rowCount).append('<option value="'+key+'">'+value+'</option>');
+                        });
+
+                    }else{
+                    $("#product_"+rowCount).empty();
+                    }
+                }
+            });
+        }else{
+            $("#product_"+rowCount).empty();
+        }
+    }
 
     $(document).ready(function(){
         $("#store_id").change(function(){
             var store_id = $("#store_id").val();
-            if(store_id){
+            if(store_id != ''){
 
                 $.ajax({
                     type:"GET",
@@ -68,20 +97,81 @@ Create New Order
                     success:function(res){
                         if(res){
                             $(".product").empty();
+                            $(".price").val('');
+                            $(".qty").val('');
+                            $(".total_price").val('');
                             $(".product").append('<option>Select Product</option>');
                             $.each(res,function(key,value){
                                 $(".product").append('<option value="'+key+'">'+value+'</option>');
                             });
 
                         }else{
-                        $(".product").empty();
+                            $(".product").empty();
+                            $(".price").val('');
+                            $(".qty").val('');
+                            $(".total_price").val('');
                         }
                     }
                 });
             }else{
                 $(".product").empty();
+                $(".price").val('');
+                $(".qty").val('');
+                $(".total_price").val('');
             }
         });
     });
+    $(document).on('change', ".product", function(){
+        var product_id = $(this).val();
+        var serial = $(this).attr('serial');
+        if(product_id){
+
+            $.ajax({
+                type:"GET",
+                url:"{{url('get-product-data')}}?product_id="+product_id,
+                success:function(res){
+                    console.log(res);
+                    if(res){
+                        $("#price_"+serial).val(res.price);
+                    }else{
+                        $("#price_"+serial).empty();
+                    }
+                }
+            });
+        }else{
+            $("#price_"+serial).empty();
+        }
+    });
+
+    $(document).on('keyup', ".qty", function(){
+        var serial = $(this).attr('serial');
+        total_price(serial);
+        sub_total_price();
+    });
+
+    function total_price(serial){
+        var qty = $("#qty_"+serial).val();
+        var price = $("#price_"+serial).val();
+        var total_price = parseInt(price)*parseInt(qty);
+        $("#total_price_"+serial).val(total_price);
+    }
+
+    $(document).on('click', ".removeBtn", function(){
+        var serial = $(this).attr('serial');
+        $('#product-section'+serial).remove();
+    });
+    
+    function sub_total_price(){
+        var price = 0;
+        $(".total_price").each(function(){
+            if(!isNaN($(this).val())){
+               price += parseInt($(this).val()); 
+            }
+            
+        });
+        $("#sub_total_price").val(price);
+        $("#grand_total_price").val(price);
+    }
+    
 </script>
 @endsection

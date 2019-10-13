@@ -92,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('get-categories-list', 'AjaxController@getCategoryList');
 	Route::get('get-subcategories-list', 'AjaxController@getSubCategoryList');
 	Route::get('get-products-list', 'AjaxController@getProductsList');
+	Route::get('get-product-data', 'AjaxController@getProductData');
 	Route::resource('sub-categories', 'SubCategoriesController');
 	Route::resource('sub-sub-categories', 'SubSubCategoriesController');
 	Route::resource('stores', 'StoresController');
