@@ -21,7 +21,7 @@ Create New Order
     <!-- /.row -->
     @include('layouts.admin_partial.alert')
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
 
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -162,18 +162,6 @@ Create New Order
         sub_total_price();
         grand_total_price();
     });
-    
-    function sub_total_price(){
-        var price = 0;
-        $(".total_price").each(function(){
-            if(!isNaN($(this).val())){
-               price += parseInt($(this).val()); 
-            }
-            
-        });
-        $("#sub_total_price").val(price);
-        $("#grand_total_price").val(price);
-    }
 
     $(document).on('keyup', "#promo_code", function(){
         var code = $(this).val();
@@ -187,8 +175,9 @@ Create New Order
                 type:"GET",
                 url:"{{url('get-discount-data')}}?code="+code,
                 success:function(res){
+                    console.log(res);
                     if(res){
-                        if(res.msg != 'Not Found'){
+                        if(res.msg == 'Found'){
                             if(res.code.type == 'Percent'){
                                 var sub_total_price = $("#sub_total_price").val();
                                 var percent = res.code.percent;
@@ -202,19 +191,28 @@ Create New Order
                                 $("#discount").val(amount);
                                 grand_total_price();
                             }  
-                        }else{
+                        }else if(res.msg == 'Not Found'){
+                            alert(res.msg);
                             $("#discount").val('');
+                            sub_total_price();
+                            grand_total_price();
+                        }else{
+                            alert(res.msg);
+                            $("#discount").val('');
+                            sub_total_price();
                             grand_total_price();
                         }
                         
                     }else{
                         $("#discount").val('');
+                        sub_total_price();
                         grand_total_price();
                     }
                 }
             });
         }else{
             $("#discount").val('');
+            sub_total_price();
             grand_total_price();
         }
     }
@@ -225,6 +223,18 @@ Create New Order
         var discount = $("#discount").val();
         var grand_total_price = sub_total_price-discount;
         $("#grand_total_price").val(grand_total_price);
+    }
+
+    function sub_total_price(){
+        var price = 0;
+        $(".total_price").each(function(){
+            if(!isNaN($(this).val())){
+               price += parseInt($(this).val()); 
+            }
+            
+        });
+        $("#sub_total_price").val(price);
+        $("#grand_total_price").val(price);
     }
     
 </script>

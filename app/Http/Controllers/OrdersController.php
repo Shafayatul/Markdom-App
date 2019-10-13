@@ -6,10 +6,13 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\DriverOrder;
+use App\DriverOrderData;
 use App\Order;
 use App\Store;
 use App\Module;
 use App\Category;
+use App\Product;
+use App\PromoCode;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -64,6 +67,23 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
+
+    public function check_promo_code($code){
+        $id = Auth::id();
+        $count_code_by_user = DriverOrder::where('user_id', $id)->where('promo_code', $code)->count();
+        if($count_code_by_user == 0){
+            $code = PromoCode::where('code', $code)->first();
+            if($code != null){
+                return $code;
+            }else{
+
+                return 'not_found'; 
+            }
+        }else{
+            return 'used';
+        }
+    }
+
     public function store(Request $request)
     {
         if($request->hasFile('image')){
@@ -76,13 +96,68 @@ class OrdersController extends Controller
             $image_url  = null;
         }
 
-        $order                  = new DriverOrder();
-        $order->order_details   = $request->order_details;
-        $order->user_id   = Auth::id();
-        $order->promo_code      = $request->promo_code;
-        $order->delivery_time   = $request->delivery_time;
-        $order->image           = $image_url;
+        $count_product = count($request->product_id);
+        $sub_total_price = 0;
+        $total_price = [];
+        for ($i=0; $i < $count_product; $i++) { 
+            $product = Product::where('id', $request->product_id[$i])->first();
+            $sub_total_price += $product->price*$request->qty[$i];
+
+            array_push($total_price, $product->price*$request->qty[$i]);
+        }
+
+        if($request->promo_code != null){
+            $promo_code = $this->check_promo_code($request->promo_code);
+            
+            if ($promo_code == 'not_found' || $promo_code == 'used') {
+                if($promo_code == 'not_found'){
+                    return redirect()->back()->with('error', 'Promo Code not found!');
+                }
+
+                if($promo_code == 'used'){
+                    return redirect()->back()->with('error', 'Promo Code is already Used!');
+                }
+            }
+
+            if($promo_code->type == 'Percent'){
+                $percent_amount = $promo_code->percent/100;
+                $percent_result = $sub_total_price*$percent_amount;
+            }else{
+                $percent_result = $promo_code->amount;
+            }
+
+        }else{
+            $percent_result = 0;
+        }
+        
+
+        $grand_total_price = $sub_total_price-$percent_result;
+
+
+
+        $order                    = new DriverOrder();
+        $order->order_details     = $request->order_details;
+        $order->user_id           = Auth::id();
+        $order->store_id          = $request->store_id;
+        $order->sub_total_price   = $sub_total_price;
+        $order->grand_total_price = $grand_total_price;
+        $order->discount          = $percent_result;
+        $order->promo_code        = $request->promo_code;
+        $order->delivery_time     = $request->delivery_time;
+        $order->image             = $image_url;
+        $order->order_status_id   = "1";
+        $order->payment_method    = "COD";
         $order->save();
+
+        foreach ($request->product_id as $key => $value) {
+            $order_data                  = new DriverOrderData();
+            $order_data->driver_order_id = $order->id;
+            $order_data->product_id      = $value;
+            $order_data->qty             = $request->qty[$key];
+            $order_data->price           = $request->price[$key];
+            $order_data->total_price     = $total_price[$key];
+            $order_data->save();
+        }
 
 
         return redirect('orders')->with('success', 'Order added!');

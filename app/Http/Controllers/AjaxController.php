@@ -50,12 +50,15 @@ class AjaxController extends Controller
         if($count_code_by_user == 0){
             $code = PromoCode::where('code', $request->code)->first();
             if($code != null){
+                $data['msg'] = 'Found';
                 $data['code'] = $code; 
             }else{
-                $data['msg'] = 'Not Found'; 
+                $data['msg'] = 'Not Found';
+                $data['code'] = ''; 
             }
         }else{
             $data['msg'] = 'You already used it'; 
+            $data['code'] = ''; 
         }
         
         return response()->json($data);
