@@ -16,10 +16,11 @@ class CreateDriverOrdersTable extends Migration
         Schema::create('driver_orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('store_id')->nullable();
-            $table->string('product_ids')->nullable();
             $table->longText('order_details')->nullable();
             $table->integer('user_id')->nullable();
-            $table->string('total_price')->nullable();
+            $table->string('sub_total_price')->nullable();
+            $table->string('grand_total_price')->nullable();
+            $table->string('promo_code')->nullable();
             $table->string('discount')->nullable();
             $table->integer('order_status_id')->nullable();
             $table->string('image')->nullable();

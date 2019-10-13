@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('title')
-Create New Offer
+Create New Promo Codes
 @endsection
 @section('content')
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Offer</h1>
+            <h1 class="page-header">Promo Codes</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -17,10 +17,10 @@ Create New Offer
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                   Create New Offer
+                   Create New Promo Codes
                 </div>
                 <div class="panel-body">
-                    <a href="{{ url('/offers') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                    <a href="{{ url('/promo-codes') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                     <br />
                     <br />
 
@@ -32,9 +32,9 @@ Create New Offer
                         </ul>
                     @endif
 
-                    {!! Form::open(['url' => '/offers', 'files' => true]) !!}
+                    {!! Form::open(['url' => '/promo-codes', 'files' => true]) !!}
 
-                    @include ('offers.form', ['formMode' => 'create'])
+                    @include ('promo-codes.form', ['formMode' => 'create'])
 
                     {!! Form::close() !!}
                 </div>
@@ -45,24 +45,17 @@ Create New Offer
 @endsection
 @section('footer-script')
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#amount-div").hide();
-        $("#percentage-div").hide();
-        $('#type').change(function(){
-            var type = $("#type").find(":selected").val();
-            if(type == ''){
-                $("#amount-div").hide(500);
-                $("#percentage-div").hide(500);
-            }else if(type == 1){
-                $("#amount-div").show(500);
-                $("#percentage-div").hide(500);
-            }else{
-                $("#amount-div").hide(500);
-                $("#percentage-div").show(500);
-            }
-        });
+    document.getElementById("amount").style.display="none";
+    var promo_code_select = document.getElementById("promo_code_select");
+    $(promo_code_select).change(function(){
+        var select_promo_code_value= promo_code_select.options[promo_code_select.selectedIndex].value;
+        if(select_promo_code_value == "Percent"){
+            $("#percentage").show(500);
+            $("#amount").hide(500);
+        }else if(select_promo_code_value == "Amount"){
+            $("#amount").show(500);
+            $("#percentage").hide(500);
+        }
     });
-
-    
 </script>
 @endsection

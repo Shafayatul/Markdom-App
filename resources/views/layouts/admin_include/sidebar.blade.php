@@ -28,6 +28,20 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Promo Codes<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('promo-codes/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('promo-codes') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Service-Sub-Sub-Category<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">

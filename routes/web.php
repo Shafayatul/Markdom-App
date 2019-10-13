@@ -137,5 +137,6 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('service-categories', 'ServiceCategoriesController');
 	Route::resource('service-sub-categories', 'ServiceSubCategoriesController');
 	Route::resource('service-sub-sub-categories', 'ServiceSubSubCategoriesController');
+	Route::resource('promo-codes', 'PromoCodesController');
 });
 
