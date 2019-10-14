@@ -20,9 +20,9 @@ Driver Order {{ $driverorder->id }}
                    Driver Order {{ $driverorder->id }}
                 </div>
                 <div class="panel-body">
-                    <a href="{{ url('/driver-orders') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                    {{-- <a href="{{ url('/driver-orders') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a> --}}
                     {{-- <a href="{{ url('/orders/' . $order->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a> --}}
-                    {!! Form::open([
+                    {{-- {!! Form::open([
                         'method'=>'DELETE',
                         'url' => ['driver-order-delete', $driverorder->id],
                         'style' => 'display:inline'
@@ -33,9 +33,7 @@ Driver Order {{ $driverorder->id }}
                                 'title' => 'Delete Order',
                                 'onclick'=>'return confirm("Confirm delete?")'
                         ))!!}
-                    {!! Form::close() !!}
-                    <br/>
-                    <br/>
+                    {!! Form::close() !!} --}}
 
                     <div class="table-responsive">
                         <table class="table table-bordered">

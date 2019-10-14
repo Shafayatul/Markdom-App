@@ -102,6 +102,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('driver-order/{id}', 'DriverOrdersController@show');
 	Route::delete('driver-order-delete/{id}', 'DriverOrdersController@destroy');
 
+	Route::get('order-in-store/{id}', 'StoresController@orderShowByStoreId');
+
 
 	Route::resource('products', 'ProductsController');
 	Route::resource('service-types', 'ServiceTypesController');

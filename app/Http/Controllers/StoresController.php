@@ -9,6 +9,9 @@ use App\Store;
 use App\SubCategory;
 use App\Category;
 use App\Module;
+use App\DriverOrder;
+use App\DriverOrderData;
+use App\Product;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -42,6 +45,13 @@ class StoresController extends Controller
         $categories = Category::pluck('name', 'id');
         $modules = Module::pluck('name', 'id');
         return view('stores.index', compact('stores', 'subcategories', 'categories', 'modules'));
+    }
+
+    public function orderShowByStoreId($id)
+    {
+        $perPage = 25;
+        $driverorders = DriverOrder::where('store_id', $id)->latest()->paginate($perPage);
+        return view('stores.order-list', compact('driverorders'));
     }
 
     /**

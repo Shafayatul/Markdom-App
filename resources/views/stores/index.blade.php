@@ -65,8 +65,13 @@ Stores
                                     <td>{{ $item->name_arabic }}</td>
                                     <td>
                                         <a href="{{ url('/schedule/' . $item->id) }}" title="View Store"><button class="btn btn-success btn-sm"><i class="fa fa-clock-o" aria-hidden="true"></i> Slot</button></a>
+
                                         <a href="{{ url('/stores/' . $item->id) }}" title="View Store"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+
                                         <a href="{{ url('/stores/' . $item->id . '/edit') }}" title="Edit Store"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                        
+                                        <a href="{{ url('/order-in-store/' . $item->id) }}" title="View Store"><button class="btn btn-sm" style="background-color: black; color: white;"><i class="fa fa-list" aria-hidden="true"></i> Order List</button></a>
+
                                         {!! Form::open([
                                             'method'=>'DELETE',
                                             'url' => ['/stores', $item->id],

@@ -160,7 +160,7 @@ class OrdersController extends Controller
         }
 
 
-        return redirect('orders')->with('success', 'Order added!');
+        return redirect('driver-orders')->with('success', 'Order added!');
     }
 
     /**
