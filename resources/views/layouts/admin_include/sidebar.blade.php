@@ -295,6 +295,10 @@
             </li>
 
             <li>
+                <a href="{{ url('/driver-orders') }}"><i class="fa fa-dashboard fa-fw"></i> Driver Orders</a>
+            </li>
+
+            <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Days<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

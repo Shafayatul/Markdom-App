@@ -98,6 +98,10 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('sub-sub-categories', 'SubSubCategoriesController');
 	Route::resource('stores', 'StoresController');
 
+	Route::get('driver-orders', 'DriverOrdersController@index');
+	Route::get('driver-order/{id}', 'DriverOrdersController@show');
+	Route::delete('driver-order-delete/{id}', 'DriverOrdersController@destroy');
+
 
 	Route::resource('products', 'ProductsController');
 	Route::resource('service-types', 'ServiceTypesController');
