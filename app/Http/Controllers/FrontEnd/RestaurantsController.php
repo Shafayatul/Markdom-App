@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use DateTime;
 use DateTimeZone;
+use App\RestuarentCustomerOrder;
+use App\Store;
 
 class RestaurantsController extends Controller
 {
@@ -75,8 +77,35 @@ class RestaurantsController extends Controller
           }
         }
       }
-
+      // dd($store);
       return view('front-end.restaurant.restaurant-details', compact('store', 'products', 'review', 'is_available'));
+    }
+
+    public function customerOrder(Request $request)
+    {
+        if($request->hasFile('image')){
+            $image              = $request->file('image');
+            $image_name         = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+            $path               = 'customer-order-image/';
+            $image_url          = $path.$image_name;
+            $image->move($path,$image_name);
+        }else{
+            $image_url  = null;
+        }
+
+        $url_store    = env('MAIN_HOST_URL').'api/get-store-detail/'.$request->store_id;
+        $method_store = 'GET';
+        $store        = $this->callApi($method_store, $url_store);
+        
+        $restuarent_customer_order                = new RestuarentCustomerOrder();
+        $restuarent_customer_order->user_id       = $request->user_id;
+        $restuarent_customer_order->store_id      = $request->store_id;
+        $restuarent_customer_order->order_details = $request->order_details;
+        $restuarent_customer_order->image         = $image_url;
+        $restuarent_customer_order->is_accepted   = 0;
+        $restuarent_customer_order->save();
+
+        return view('front-end.chat.waiting', compact('restuarent_customer_order', 'store'));
     }
 
 }

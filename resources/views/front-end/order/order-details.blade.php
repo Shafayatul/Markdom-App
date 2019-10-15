@@ -9,20 +9,21 @@
 <div class="restaurant text-center">
   <div class="container">
     <div class="order-details-div">
-      <form class="order-details-form" action="" method="post">
+      <form class="order-details-form" action="{{ url('customer-order') }}" method="post" enctype="multipart/form-data">
+        @csrf
         <p>Order Details</p>
-        <textarea class="text-left" name="message"></textarea>
-        <div class="get-promo-code">
+        <textarea class="text-left" name="order_details"></textarea>
+        {{-- <div class="get-promo-code">
           <p>Get Promo Code</p>
           <span class="promo-code-input-span">
             <input type="text" name="" value="">
           </span>
           <span class="promo-code-button-span"> <button class="apply-button btn">Apply</button> </span>
-        </div>
-        <input type="file" class="custom-file-input" style="display: inline-block !important;">
+        </div> --}}
+        <input type="file" name="image" class="custom-file-input" style="display: inline-block !important;">
         {{-- <p>Select Delivery Date: <br> <input type="text" class="delivery_time" id="datepicker"></p> --}}
         {{-- <div class="container"> --}}
-          <div class="row">
+          {{-- <div class="row">
               <div class='col-sm-6'>
                   <div class="form-group">
                       <div class='input-group date' id='datepicker'>
@@ -33,14 +34,22 @@
                       </div>
                   </div>
               </div>
-          </div>
+          </div> --}}
         {{-- </div> --}}
+        <input type="hidden" name="store_id" value="{{ $store_id }}">
+        <input type="hidden" name="user_id" value="{{ $user_id }}">
+        <button class="btn btn-success btn-block" type="submit" name="button">
+            <p>Next</p>
+        </button>
+
       </form>
     </div>
+
+
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+   {{--  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
       Launch demo modal
-    </button>
+    </button> --}}
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

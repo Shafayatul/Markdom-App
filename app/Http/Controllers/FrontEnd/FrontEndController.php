@@ -69,7 +69,7 @@ class FrontEndController extends Controller
 
     public function chat()
     {
-      return view('front-end.chat.chat');
+      return view('front-end.chat.waiting');
     }
 
     public function autoLogin($email, $password)
@@ -90,10 +90,17 @@ class FrontEndController extends Controller
         $body_login            = json_decode($response_login->getBody());
         if ($body_login)
         {
+          $user = User::where('id', Auth::id())->first();
+          if($user->hasRole('driver')){
+            $is_driver = 1;
+          }else{
+            $is_driver = 0;
+          }
           Session::put('token_type', (string)$body_login->token_type);
           Session::put('expires_at', (string)$body_login->expires_in+time()-50000);
           Session::put('access_token', (string)$body_login->access_token);
           Session::put('refresh_token', (string)$body_login->refresh_token);
+          Session::put('is_driver', (string)$is_driver);
         }
         return true;
       }else{

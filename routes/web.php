@@ -26,6 +26,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::post('/signup-form', 'FrontEnd\FrontEndController@singupForm');
 
 	Route::get('/chat', 'FrontEnd\FrontEndController@chat')->name('chat');
+	// Route::get('/waiting', 'FrontEnd\FrontEndController@waiting')->name('waiting');
 
 	Route::get('/restaurant', 'FrontEnd\RestaurantsController@index')->name('restaurant');
 	Route::get('/sub-category/restaurant/{id}', 'FrontEnd\RestaurantsController@subCategoryRestaurant')->name('sub-category-restaurant');
@@ -33,7 +34,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
 	Route::get('/add-to-cart-restuarent/{id}', 'FrontEnd\RestaurantsController@addToCartRestaurant')->name('add-to-cart-restuarent');
 
-	Route::get('/order-details/{id}','OrdersController@orderDetails')->name('order-details');
+	Route::post('customer-order', 'FrontEnd\RestaurantsController@customerOrder');
+	Route::get('/order-details/{user_id}/{store_id}','OrdersController@orderDetails')->name('order-details');
 	Route::get('/order-notification','OrdersController@orderNotification')->name('order-notification');
 
 	Route::get('/worker', 'FrontEnd\WorkerController@index')->name('worker');
@@ -147,3 +149,5 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('promo-codes', 'PromoCodesController');
 });
 
+
+Route::resource('restuarent-customer-orders', 'RestuarentCustomerOrdersController');

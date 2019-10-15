@@ -36,7 +36,7 @@
 }
 
 .rectangle-div {
-  margin-top: 50px;
+  margin-top: 0px;
   margin-bottom: 40px;
 }
 
@@ -46,14 +46,15 @@
 
 #grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 3vw;
   }
 #grid > div {
-  height: 150px;
+  height: 231px;;
   background: #fff;
   text-align: center;
-  border-radius: 16px;
+  width: 100%;
+
 }
 
 .rectangle-box {
@@ -63,13 +64,16 @@
   background-repeat: no-repeat !important;
   background-size: cover !important;
 }
-
 .title {
-  position: absolute;
-  top: 5%;
-  left: 5%;
-  color: #fff;
-  font-size: 20px;
+    position: absolute;
+    top: 90%;
+    left: 0;
+    color: #fff;
+    font-size: 18px;
+    background: #D85CCA;
+    border-radius: 5px;
+    padding-right: 9px;
+    padding-left: 15px;
 }
 
 .number {
@@ -80,12 +84,121 @@
   font-size: 20px;
 }
 
+.rectangle-box-body{
+ position: absolute;
+top: 100%;
+background: #fff;
+width: 100%;
+height: auto;
+box-shadow: 0 5px 30px rgba(0.30,0.30,0.30,0.30), 0 5px 5px rgba(0.30,0.30,0.30,0.30);
+}
+
+.brand {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+.brand_left {
+  width: calc(100% - 100px);
+  float: left;
+  padding-top: 25px;
+  padding-left: 10px;
+  text-align: left;
+}
+.brand_right {
+  width: 100px;
+  float: left;
+}
+
+.brand_right img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.rectangle-box-body .rectangle-box-body-header .brand p{
+  font-size: 14px;
+  color: #454545;
+}
+.brand-logo{
+ display: inline-grid;
+}
+
+.brand-logo .column {
+  float: left;
+  width: 45%;
+  padding: 5px;
+  padding-left: 15px;
+}
+
+/* Clearfix (clear floats) */
+.brand-logo .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+
+
+
 /* Responsive CSS */
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .container {
+    padding-right: 3px;
+    padding-left: 3px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.rectangle-box-body{
+background: #FDFDFD;
+
+
+}
+.rectangle-box-body .rectangle-box-body-header{
+  padding-top: 10px;
+}
+.rectangle-box-body .rectangle-box-body-header .brand{
+  
+}
+
+.brand-logo{
+ display: inline-grid;
+}
+
+.brand-logo .column {
+  float: left;
+  width: 45%;
+  padding: 5px;
+  padding-left: 15px;
+}
+
+/* Clearfix (clear floats) */
+.brand-logo .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
   #grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .sliding-category-box {
@@ -94,7 +207,7 @@
   }
 
   .sliding-category-name {
-    font-size: 15px;
+    font-size: 12px;
   }
 }
 

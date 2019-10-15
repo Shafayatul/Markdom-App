@@ -242,12 +242,12 @@ class OrdersController extends Controller
         return redirect('orders')->with('success', 'Order deleted!');
     }
 
-    public function orderDetails($id)
+    public function orderDetails($user_id, $store_id)
     {
-      $url      = env('MAIN_HOST_URL').'api/get-product-detail/'.$id;
-      $method   = 'GET';
-      $product  = $this->callApi($method, $url);
-      return view('front-end.order.order-details', compact('product'));
+      // $url      = env('MAIN_HOST_URL').'api/get-product-detail/'.$id;
+      // $method   = 'GET';
+      // $product  = $this->callApi($method, $url);
+      return view('front-end.order.order-details', compact('user_id', 'store_id'));
     }
     public function orderNotification()
     {

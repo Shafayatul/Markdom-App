@@ -36,7 +36,7 @@
             <div class="restaurant-details-mother">
                 @foreach($products as $product)
                 <div class="restaurant-details-box">
-                    <a href="{{ route('order-details', ['id' => $product->id] ) }}">
+                    <a href="#">
                         <img src="{{ asset($product->preview_image) }}" alt="">
                     </a>
                 </div>
@@ -63,11 +63,31 @@
                 </span>
             </div>
             <div class="order-button text-center">
-        {{-- <a href="{{ route('order-details', ['id' => $product->id]) }}"><button class="btn btn-success" type="button" name="button">Order Now</button></a> --}}
+                <a href="{{ route('order-details', ['user_id' => Auth::id(), 'store_id' => $store->id]) }}">
+                    <button class="btn btn-success btn-block" type="button" name="button">
+                        <p>Order Now</p>
+                        <p class="badge badge-light">100% off</p> on delivery up to 10.0 SAR
+                    </button>
+                    
+                </a> 
+        {{-- <a href="#" id="order-place-by-customer">
+            <button class="btn btn-success btn-block" type="button" name="button">
+                <p>Order Now</p>
+                <p class="badge badge-light">100% off</p> on delivery up to 10.0 SAR
+            </button>
+            
+        </a> --}}
         </div>
     </div>
 </div>
 </div>
+
+{{-- <input type="hidden" id="hidden-user-id" name="hidden-user-id" value="{{ Auth::id() }}">
+<input type="hidden" id="hidden-store-id" name="hidden-store-id" value="{{ $store->id }}">
+<input type="hidden" id="hidden-lat" name="hidden-lat" value="{{ $store->lat }}">
+<input type="hidden" id="hidden-lon" name="hidden-lon" value="{{ $store->lan }}"> --}}
+{{-- <input type="hidden" id="hidden-redirect-url" value="{{ url() }}"> --}}
+
 @endsection
 @section('front-additional-js')
 <script type="text/javascript">

@@ -28,7 +28,9 @@
         @endforeach
       </div>
     </div>
-    <div class="rectangle-div">
+
+
+    {{-- <div class="rectangle-div">
       <div id="grid">
         @foreach($offers as $offer)
           <div class="rectangle-box shadow" style="background-image: url('{{ asset(env('MAIN_HOST_URL').$offer->image) }}');">
@@ -49,7 +51,121 @@
           </div>
         @endforeach
       </div>
+    </div> --}}
+
+    <div class="rectangle-div">
+      <div id="grid">
+        @foreach($offers as $offer)        
+          <div class="rectangle-box shadow" style="background-image: url('{{ asset(env('MAIN_HOST_URL').$offer->image) }}');">
+            <span class="title">
+              @if(app()->getLocale() == 'en')
+                {{ $offer->title }}
+              @else
+                {{ $offer->title_arabic }}
+              @endif
+            </span>
+            <span class="number">
+              @if($offer->is_amount == 1)
+                {{ $offer->amount }} SR
+              @else
+                {{ $offer->percentage }}%
+              @endif
+            </span>
+             <div class="rectangle-box-body">
+              <div class="rectangle-box-body-header">
+              <div class="brand">
+                
+                <div class="brand_left">
+                  
+                <h3>Brand name</h3>                
+                 <p>Brand  description</p>
+                </div>
+                <div class="brand_right">
+                <img class="img" src="{{ asset('front-end-assets/images/mas1.jpg') }}">
+                </div>
+              </div>             
+              </div>
+             <div class="brand-logo">
+              <div class="row">
+                 <div class="column"> 
+              <img src="{{ asset('front-end-assets/images/mas.jpg') }}">
+            </div>
+              <div class="column">
+               <img src="{{ asset('front-end-assets/images/mas1.jpg') }}">
+             </div>
+             </div>
+             <div class="row">
+              <div class="column">
+                <img src="{{ asset('front-end-assets/images/mas2.jpg') }}">
+                </div>
+                <div class="column">
+                 <img src="{{ asset('front-end-assets/images/mas3.jpg') }}">
+               </div>
+               </div>  
+            </div>
+            </div>
+            
+          </div>
+
+        
+            
+          <div class="rectangle-box shadow" style="background-image: url('{{ asset(env('MAIN_HOST_URL').$offer->image) }}');">
+            <span class="title">
+              @if(app()->getLocale() == 'en')
+                {{ $offer->title }}
+              @else
+                {{ $offer->title_arabic }}
+              @endif
+            </span>
+            <span class="number">
+              @if($offer->is_amount == 1)
+                {{ $offer->amount }} SR
+              @else
+                {{ $offer->percentage }}%
+              @endif
+            </span>
+             <div class="rectangle-box-body">
+              <div class="rectangle-box-body-header">
+              <div class="brand">
+                
+                <div class="brand_left">
+                  
+                <h3>Brand name</h3>                
+                 <p>Brand  description</p>
+                </div>
+                <div class="brand_right">
+                <img class="img" src="{{ asset('front-end-assets/images/mas1.jpg') }}">
+                </div>
+              </div>             
+              </div>
+             <div class="brand-logo">
+              <div class="row">
+                 <div class="column"> 
+              <img src="{{ asset('front-end-assets/images/mas.jpg') }}">
+            </div>
+              <div class="column">
+               <img src="{{ asset('front-end-assets/images/mas1.jpg') }}">
+             </div>
+             </div>
+             <div class="row">
+              <div class="column">
+                <img src="{{ asset('front-end-assets/images/mas2.jpg') }}">
+                </div>
+                <div class="column">
+                 <img src="{{ asset('front-end-assets/images/mas3.jpg') }}">
+               </div>
+               </div>  
+            </div>
+            </div>
+            
+          </div>
+
+        
+        @endforeach
+      </div>
     </div>
+
+
   </div>
 </div>
 @endsection
