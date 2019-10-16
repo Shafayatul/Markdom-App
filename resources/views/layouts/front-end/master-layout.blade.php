@@ -18,6 +18,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   @yield('main-content')
 
 
+<<<<<<< HEAD
 <input type="hidden" name="hidden-is-driver" id="hidden-is-driver" value="0">
 {{-- driver modal --}}
 <div class="hover_bkgr_fricc">
@@ -62,6 +63,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>  
 	</div>
 </div>  
+<input type="hidden" name="hidden-is-driver" id="hidden-is-driver" value="0">
 
   {{-- @include('layouts.front-end.include.footer') --}}
 </div>
