@@ -3,6 +3,7 @@
 {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> --}}
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
 <link rel="stylesheet" href="{{ asset('front-end-assets/custom-css/order-details.css') }}">
+
 @endsection
 
 @section('main-content')
@@ -13,6 +14,10 @@
         @csrf
         <p>Order Details</p>
         <textarea class="text-left" name="order_details"></textarea>
+        <br/>
+        <br/>
+        <input type="text" name="customer-latitude" id="latitude" readonly>
+        <input type="text" name="customer-longitude" id="longitude" readonly>
         {{-- <div class="get-promo-code">
           <p>Get Promo Code</p>
           <span class="promo-code-input-span">
@@ -100,5 +105,20 @@
   $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
 })
+
+// function getLocation() {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(showPosition);
+//   } else {
+//     x.innerHTML = "Geolocation is not supported by this browser.";
+//   }
+// }
+
+navigator.geolocation.getCurrentPosition(showPosition);
+
+function showPosition(position) {
+  $("#latitude").val(position.coords.latitude);
+  $("#longitude").val(position.coords.longitude);
+}
 </script>
 @endsection

@@ -37,7 +37,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/add-to-cart-restuarent/{id}', 'FrontEnd\RestaurantsController@addToCartRestaurant')->name('add-to-cart-restuarent');
 
 	Route::post('customer-order', 'FrontEnd\RestaurantsController@customerOrder');
-	Route::get('/order-details/{user_id}/{store_id}','OrdersController@orderDetails')->name('order-details');
+	Route::get('order-details/{user_id}/{store_id}','OrdersController@orderDetails')->name('order-details');
 	Route::get('/order-notification','OrdersController@orderNotification')->name('order-notification');
 	Route::get('see-order-detail-by-driver/{driver_id}', 'FrontEnd\RestaurantsController@see_order_detail_by_driver');
 
