@@ -18,11 +18,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   @yield('main-content')
 
 
-  @if(session()->has('is_driver') == '1')
-  <input type="hidden" name="hidden-is-driver" id="hidden-is-driver" value="1">
-@else
-  <input type="hidden" name="hidden-is-driver" id="hidden-is-driver" value="0">
-@endif
+	@if(session()->has('is_driver') == '1')
+	  <input type="hidden" name="hidden-is-driver" id="hidden-is-driver" value="1">
+	@else
+	  <input type="hidden" name="hidden-is-driver" id="hidden-is-driver" value="0">
+	@endif
 
   {{-- @include('layouts.front-end.include.footer') --}}
 </div>

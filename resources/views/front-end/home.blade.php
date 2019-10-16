@@ -253,6 +253,33 @@
       }
 
     });
+
+    $.ajaxSetup({
+
+          headers: {
+
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+          }
+
+      });
+
+    $.ajax({
+
+           type:'POST',
+
+           url:'/ajax-is-driver',
+
+           success:function(data){
+
+              console.log(data);
+
+           }
+
+        });
+
   </script>
+
+
 
 @endsection
