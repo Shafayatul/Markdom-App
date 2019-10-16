@@ -63,7 +63,7 @@
                 </span>
             </div>
             <div class="order-button text-center">
-                <a href="{{ route('order-details', ['user_id' => Auth::id(), 'store_id' => $store->id]) }}">
+                <a href="{{ route('order-details', ['user_id' => $user->id, 'store_id' => $store->id]) }}">
                     <button class="btn btn-success btn-block" type="button" name="button">
                         <p>Order Now</p>
                         <p class="badge badge-light">100% off</p> on delivery up to 10.0 SAR

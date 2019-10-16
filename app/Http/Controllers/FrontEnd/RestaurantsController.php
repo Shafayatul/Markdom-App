@@ -62,6 +62,14 @@ class RestaurantsController extends Controller
       $method_workinghours    = 'GET';
       $slot                   = $this->callApi($method_workinghours, $url_workinghours);
 
+      $headers = [
+            'Authorization' => 'Bearer ' . Session::get('access_token'),
+            'Accept'        => 'application/json',
+        ];
+        $url    = env('MAIN_HOST_URL').'api/user-details';
+        $method = 'GET';
+        $user = $this->callApi($method, $url, [], $headers);
+
       $is_available           = false;
       foreach ($slot as $row) {
         $time_ary             = explode('-', $row->timespan);
@@ -79,7 +87,7 @@ class RestaurantsController extends Controller
         }
       }
       // dd($store);
-      return view('front-end.restaurant.restaurant-details', compact('store', 'products', 'review', 'is_available'));
+      return view('front-end.restaurant.restaurant-details', compact('user','store', 'products', 'review', 'is_available'));
     }
 
     public function customerOrder(Request $request)
