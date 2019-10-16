@@ -268,7 +268,7 @@
 
            type:'POST',
 
-           url:'/ajax-is-driver',
+           url:'{{ url("/ajax-is-driver") }}',
 
            success:function(data){
 

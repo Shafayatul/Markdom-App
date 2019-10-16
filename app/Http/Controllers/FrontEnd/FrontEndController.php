@@ -84,7 +84,7 @@ class FrontEndController extends Controller
 
     public function chat()
     {
-      return view('front-end.chat.waiting');
+      return view('front-end.chat.chat');
     }
 
     public function autoLogin($email, $password)
