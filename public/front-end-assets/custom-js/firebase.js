@@ -50,12 +50,50 @@ $(document).ready(function(){
 	});
 
 	/**
-	* See detail by client
+	* See detail by driver 
 	*/
 	$(document).on('click', '#see-order-detail-by-driver', function(){
 		var newHref = baseUrl+'see-order-detail-by-driver/'+$(this).attr("restuarent_customer_order_id");
 		window.location.href = newHref;
 	});
+
+	/**
+	* send-offer-by-driver to customer
+	*/
+	$(document).on('click', '#send-offer-by-driver', function(){
+		var driver_id = $("#driver_id").val();
+		var driver_name = $("#driver_name").val();
+		var customer_id = $("#customer_id").val();
+		var customer_name = $("#customer_name").val();
+		var restuarent_customer_order_id = $("#restuarent_customer_order_id").val();
+		var offer_price_by_driver = $("#offer_price_by_driver").val();
+
+		var unique_chat_id = 'rco'+restuarent_customer_order_id+'d'+driver_id;
+
+		// chat list according to restuarent offer customer id
+		// only insert if it is not there
+		firebase.database().ref('chat_list').child(restuarent_customer_order_id).orderByChild("unique_chat_id").equalTo(unique_chat_id).once("value",snapshot => {
+		    if (!snapshot.exists()){
+				firebase.database().ref('chat_list').child(restuarent_customer_order_id).push({
+					unique_chat_id: unique_chat_id
+				});
+		    }
+		});
+		// chat detail
+		firebase.database().ref('chat_detail').child(unique_chat_id).set({
+			driver_id: driver_id,
+			driver_name: driver_name,
+			customer_id: customer_id,
+			customer_name: customer_name,
+			restuarent_customer_order_id: restuarent_customer_order_id,
+			offer_price_by_driver: offer_price_by_driver
+		});	
+
+		// message
+		firebase.database().ref('message').child(unique_chat_id).push({
+			'msg': offer_price_by_driver
+		});
+	});	
 
 
 	/**
