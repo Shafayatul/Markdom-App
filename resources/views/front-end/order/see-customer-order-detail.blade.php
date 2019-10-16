@@ -18,8 +18,13 @@
           <img src="{{ asset($restuarant_customer_order->image) }}" alt="" style="width: 300px; height: 300px;">
           <input type="hidden" name="image" value="{{ $restuarant_customer_order->image }}">
         @endif
+
         <input type="hidden" id="restuarent_customer_order_id" name="restuarent_customer_order_id" value="{{ $id }}">
-        <input type="hidden" id="driver_id" name="driver_id" value="{{ Auth::id() }}">
+        <input type="hidden" id="driver_id" name="driver_id" value="{{ $driver->id }}">
+        <input type="hidden" id="driver_name" name="driver_name" value="{{ $driver->name }}">
+        <input type="hidden" id="customer_id" name="customer_id" value="{{ $customer->id }}">
+        <input type="hidden" id="customer_name" name="customer_name" value="{{ $customer->name }}">
+
         <div class="col-md-12">
           <p class="text-center">Customer Order Details</p>
         </div>
@@ -42,19 +47,13 @@
         <div class="col-md-12">
           <div class="form-group">
             <label for="pwd">Price:</label>
-            <input type="text" name="offer_price" class="form-control" id="pwd">
+            <input type="text" id="offer_price_by_driver" class="form-control" id="pwd">
           </div>
         </div>
-        <button class="btn btn-success btn-block" type="submit" name="button">
+        <button class="btn btn-success btn-block" id="send-offer-by-driver" type="submit" name="button">
             <p>Sent Offer</p>
         </button>
     </div>
   </div>
 </div>
-@endsection
-@section('front-additional-js')
-<script type="text/javascript">
-  var driver_id = $("#driver_id").val();
-  var restuarent_customer_order_id = $("#restuarent_customer_order_id").val();
-</script>
 @endsection

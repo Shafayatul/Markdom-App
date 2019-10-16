@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use DateTime;
+use Session;
 use DateTimeZone;
 use App\RestuarentCustomerOrder;
 use App\Store;
@@ -110,19 +111,28 @@ class RestaurantsController extends Controller
 
     public function see_order_detail_by_driver($id)
     {
-        $url_restuarant_customer_order    = env('MAIN_HOST_URL').'api/restuarant-customer-order-detail/'.$id;
-        $method_restuarant_customer_order = 'GET';
-        $restuarant_customer_order        = $this->callApi($method_restuarant_customer_order, $url_restuarant_customer_order);
+        $url                       = env('MAIN_HOST_URL').'api/restuarant-customer-order-detail/'.$id;
+        $method                    = 'GET';
+        $restuarant_customer_order = $this->callApi($method, $url);
 
-        $url_customer    = env('MAIN_HOST_URL').'api/customer-detail/'.$restuarant_customer_order->user_id;
-        $method_customer = 'GET';
-        $customer        = $this->callApi($method_customer, $url_customer);
+
+        $url      = env('MAIN_HOST_URL').'api/customer-detail/'.$restuarant_customer_order->user_id;
+        $method   = 'GET';
+        $customer = $this->callApi($method, $url);
+
+        $headers = [
+            'Authorization' => 'Bearer ' . Session::get('access_token'),
+            'Accept'        => 'application/json',
+        ];
+        $url    = env('MAIN_HOST_URL').'api/user-details';
+        $method = 'GET';
+        $driver = $this->callApi($method, $url, [], $headers);
 
         
-        $url_store    = env('MAIN_HOST_URL').'api/get-store-detail/'.$restuarant_customer_order->store_id;
-        $method_store = 'GET';
-        $store        = $this->callApi($method_store, $url_store);
-      return view('front-end.order.see-customer-order-detail', compact('customer', 'store', 'id', 'restuarant_customer_order'));
+        $url    = env('MAIN_HOST_URL').'api/get-store-detail/'.$restuarant_customer_order->store_id;
+        $method = 'GET';
+        $store        = $this->callApi($method, $url);
+        return view('front-end.order.see-customer-order-detail', compact('customer', 'store', 'id', 'restuarant_customer_order', 'driver'));
     }
 
 }
