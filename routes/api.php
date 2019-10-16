@@ -71,6 +71,8 @@ Route::group(['middleware' => ['auth:api']], function() {
 	Route::post('change-language', 'Api\UsersController@change_language');
 	Route::post('update-user-info', 'Api\UsersController@update_user_info');
 	Route::post('logout','Api\UsersController@logoutApi');
+	
+	Route::post('check-driver','Api\UsersController@checkDriver');
 
 	//Carts Section
 	Route::get('view-cart/{module_id}','Api\CartsController@index');

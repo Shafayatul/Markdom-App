@@ -43,6 +43,26 @@ class UsersController extends Controller
         // }
     }
 
+    public function checkDriver()
+    {
+        if (!Auth::check()) {
+            return response()->json([
+                'message' => 0
+            ]);
+        }else{
+            $user = User::where('id', Auth::id())->first();
+            if ($user->hasRole('driver')) {
+                $is_driver = 1;
+            }else{
+                $is_driver = 0;
+            }
+            return response()->json([
+                'message' => $is_driver
+            ]);            
+        }
+    }
+
+
     public function user_details()
     {
     	$user = User::where('id', Auth::id())->first();

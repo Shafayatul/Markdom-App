@@ -21,6 +21,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::post('/user-login', 'FrontEnd\FrontEndController@userLoginSubmit');
 	Route::get('/user-logout', 'FrontEnd\FrontEndController@logout');
 
+	Route::post('/ajax-is-driver', 'FrontEnd\FrontEndController@isDriver');
+
 	//User Signup
 	Route::get('/user-signup', 'FrontEnd\FrontEndController@userSignup')->name('user-signup');
 	Route::post('/signup-form', 'FrontEnd\FrontEndController@singupForm');

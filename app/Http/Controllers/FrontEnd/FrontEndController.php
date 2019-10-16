@@ -21,6 +21,21 @@ class FrontEndController extends Controller
       return view('front-end.home', compact('models'));
     }
 
+    public function isDriver()
+    {
+      $url = env('MAIN_HOST_URL').'api/check-driver';
+      $method = 'POST';
+      $headers = [
+            'Authorization' => 'Bearer ' . Session::get('access_token'),
+            'Accept'        => 'application/json',
+        ];
+      $is_driver = $this->callApi($method, $url, [], $headers)->message;
+      return response()->json([
+        'is_driver' => $is_driver
+      ]);
+    }
+
+
     public function userLogin()
     {
       return view('front-end.auth-user.user-login');
