@@ -58,6 +58,9 @@ Route::post('forgot/password', 'Api\ForgotPasswordController');
 
 Route::get('get-promo-codes', 'Api\PromoCodesController@get_promo_codes');
 
+Route::get('customer-detail/{id}', 'Api\UsersController@customer_detail');
+Route::get('restuarant-customer-order-detail/{id}', 'Api\OrdersController@restuarant_customer_order_detail');
+
 Route::group(['middleware' => ['auth:api']], function() {
 
 	// Route::get('/test', 'Api\TestController@index');
@@ -65,6 +68,7 @@ Route::group(['middleware' => ['auth:api']], function() {
 	//Users Section
 
 	Route::get('user-details', 'Api\UsersController@user_details');
+
 	Route::post('get-current-user-data','Api\UsersController@get_current_user_data');
 
 	Route::post('change-password', 'Api\UsersController@change_password');

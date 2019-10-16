@@ -13,6 +13,7 @@ use App\Country;
 use App\Cart;
 use App\OrderStatus;
 use App\OrderActivity;
+use App\RestuarentCustomerOrder;
 use Auth;
 
 class OrdersController extends Controller
@@ -140,5 +141,11 @@ class OrdersController extends Controller
         $data['status']                 = $order_status_data;
         $data['activity']               = OrderActivity::where('order_id', $order_id)->get();;
         return response()->json($data);
+    }
+
+    public function restuarant_customer_order_detail($id)
+    {
+        $restuarant_customer_order = RestuarentCustomerOrder::where('id', $id)->first();
+        return response()->json($restuarant_customer_order);
     }
 }

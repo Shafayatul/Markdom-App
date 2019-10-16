@@ -70,6 +70,13 @@ class UsersController extends Controller
 
     }
 
+    public function customer_detail($id)
+    {
+        $user = User::where('id', $id)->first();
+        return response()->json($user);
+
+    }
+
     public function get_current_user_data(Request $request){
         $fcm_token = $request->input('fcm_token');
         if (($fcm_token != '') || ($fcm_token != null)) {
