@@ -251,32 +251,23 @@
             centerMode: true
         });
       }
+      $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+      $.ajax({
+             type:'POST',
+             url:'/ajax-is-driver',
+             success:function(data){
+                console.log(data);
+                $(".hidden-is-driver").val(data.is_driver);
+             }
+          });
     });
 
-    $.ajaxSetup({
 
-          headers: {
-
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-
-          }
-
-      });
-
-    $.ajax({
-
-           type:'POST',
-
-           url:'/ajax-is-driver',
-
-           success:function(data){
-
-              console.log(data);
-
-           }
-
-        });
 
   </script>
 

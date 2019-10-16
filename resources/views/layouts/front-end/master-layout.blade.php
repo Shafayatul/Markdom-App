@@ -14,21 +14,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 <body>
 <div class="container">
+	<input type="hidden" class="hidden-is-driver" value="0">
   @include('layouts.front-end.include.header')
   @yield('main-content')
 
 
-<<<<<<< HEAD
-<input type="hidden" name="hidden-is-driver" id="hidden-is-driver" value="0">
 {{-- driver modal --}}
-<div class="hover_bkgr_fricc">
+<div class="modal driver-new-order-popup" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
 	<div class="container">       
 		<span class="helper"></span>
 		<div>  
 			<div class="user-profile">
 				<div class="offer-list">
 					<div class="sent"> 
-						<h4>Sent Offers</h4>
+						<h4>New offer</h4>
 					</div>
 					<span>11 Offers <strong class="one">1</strong></span>
 				</div> 
@@ -57,13 +58,57 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</ul> 
 				<form class="button-gruop">
 					<input class="button " type="button" value="Cancel Order" name="">
-					<input class="button " type="button" value="Accept offer" name="">
+					<input class="button" id="see-order-detail-by-driver" restuarent_customer_order_id="" type="button" value="check Detail" name="">
 				</form>
 			</div>
 		</div>  
 	</div>
-</div>  
-<input type="hidden" name="hidden-is-driver" id="hidden-is-driver" value="0">
+    </div>
+  </div>
+</div>
+{{-- <div class="driver-new-order-popup" style="display: none;">
+	<div class="container">       
+		<span class="helper"></span>
+		<div>  
+			<div class="user-profile">
+				<div class="offer-list">
+					<div class="sent"> 
+						<h4>New offer</h4>
+					</div>
+					<span>11 Offers <strong class="one">1</strong></span>
+				</div> 
+				<div class="profile">           
+					<img class="avatar" src="{{ asset('front-end-assets/images/user-profile.png') }}" alt="Ash" />               
+					<div class="description">
+						<h4 class="username">Name</h4> 
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+					</div>  
+				</div> 
+
+				<ul class="data">
+					<li>
+						<span> 2.7km</span>
+					</li>
+					<li>
+						<span>11.01 SAR</span>
+					</li>
+					<li>
+						<span>1 hour</span>
+					</li>
+				</ul> 
+				<form class="button-gruop">
+					<input class="button " type="button" value="Cancel Order" name="">
+					<input class="button" id="see-order-detail-by-driver" restuarent_customer_order_id="" type="button" value="check Detail" name="">
+				</form>
+			</div>
+		</div>  
+	</div>
+</div>  --}} 
+
 
   {{-- @include('layouts.front-end.include.footer') --}}
 </div>
