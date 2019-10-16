@@ -28,12 +28,17 @@ firebase.analytics();
 var isDriver = $("#hidden-is-driver").val();
 var starCountRef = firebase.database().ref('driver-pop-up');
 starCountRef.on('child_changed', function(snapshot) {
-// for now showing pop up for all driver
-alert("Driver pop up");
 if (isDriver == 1) {
-// code to show 
-
+	// code to show 
+	$('.hover_bkgr_fricc').show();
 }
+
+$('.hover_bkgr_fricc').click(function(){
+	$('.hover_bkgr_fricc').hide();
+});
+$('.button').click(function(){
+	$('.hover_bkgr_fricc').hide();
+});
 
 // here we need to calculate the distance and show pop up
 // var changedLat = '';
