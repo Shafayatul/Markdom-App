@@ -12,14 +12,14 @@
 <div class="restaurant text-center">
   <div class="container">
     <div class="order-details-div">
-      <form class="order-details-form" action="#" method="post" enctype="multipart/form-data">
-        @csrf
+      
         
         @if(isset($restuarant_customer_order->image) != null)
           <img src="{{ asset($restuarant_customer_order->image) }}" alt="" style="width: 300px; height: 300px;">
           <input type="hidden" name="image" value="{{ $restuarant_customer_order->image }}">
         @endif
-        
+        <input type="hidden" id="restuarent_customer_order_id" name="restuarent_customer_order_id" value="{{ $id }}">
+        <input type="hidden" id="driver_id" name="driver_id" value="{{ Auth::id() }}">
         <div class="col-md-12">
           <p class="text-center">Customer Order Details</p>
         </div>
@@ -48,9 +48,13 @@
         <button class="btn btn-success btn-block" type="submit" name="button">
             <p>Sent Offer</p>
         </button>
-
-      </form>
     </div>
   </div>
 </div>
+@endsection
+@section('front-additional-js')
+<script type="text/javascript">
+  var driver_id = $("#driver_id").val();
+  var restuarent_customer_order_id = $("#restuarent_customer_order_id").val();
+</script>
 @endsection
