@@ -12,17 +12,17 @@
 			<th class="Active">
 				<h2>Active Orders</h2>
 			</th>
-			<tbody>
-				<tr class="table_row">			
+			<tbody id="active-offers">
+				{{-- <tr class="table_row">			
 					<td width="10%" class="img">
 						<a href="#"> 
-							<img src="{{ asset('front-end-assets/images/my.jpg') }}" alt=""> karamcafe 
+							<img src="{{ asset('front-end-assets/images/avater.png') }}" alt=""> karamcafe 
 						</a>	
 			        </td>
 			        <td width="20%">
 			        	<a class="offer-code" href="">#57091019</a>
 			        </td>         		 
-				</tr>
+				</tr> --}}
 			</tbody>
 		</table>
 		<div class="waiting">				
@@ -66,6 +66,7 @@
 <input type="hidden" id="hidden-is-accepted" name="hidden-is-accepted" value="{{ $restuarent_customer_order->is_accepted }}">
 <input type="hidden" id="hidden-lat" name="hidden-lat" value="{{ $store->lat }}">
 <input type="hidden" id="hidden-lon" name="hidden-lon" value="{{ $store->lan }}">
+<input type="hidden" id="hidden-waiting-page"  value="yes">
 
 @endsection
 

@@ -18,6 +18,25 @@ $(document).ready(function(){
 	firebase.analytics();
 
 
+	/**
+	* Show active offers in waiting page
+	*/
+	var avatarImage = baseUrl + 'front-end-assets/images/avater.png';
+	if ($("#hidden-waiting-page").val() == "yes") {
+		alert();
+		var activeOfferHtml = '';
+/*		var restuarent_customer_order_id = $("#hidden-restaurant-offer-customer").val();
+		firebase.database().ref('chat_list').child(restuarent_customer_order_id).on("value", function(snapshot) {
+		    console.log(snapshot.val());
+
+			$.each(snapshot.val(), function( index, value ) {
+				console.log(value.unique_chat_id);
+			  // activeOfferHtml = activeOfferHtml+'<tr class="table_row"><td width="10%" class="img"><a href="#"><img src="'+avatarImage+'" alt=""> '+driverName+' </a></td><td width="20%"><a class="offer-code" href="">#57091019</a></td></tr>';
+			});
+		});*/
+		$("#active-offers").html(activeOfferHtml);
+	}
+
 
 
 
@@ -30,7 +49,6 @@ $(document).ready(function(){
 	var starCountRef = firebase.database().ref('driver-pop-up');
 	starCountRef.on('child_changed', function(snapshot) {
 		var isDriver = $(".hidden-is-driver").val();
-		console.log(snapshot.val());
 		if (isDriver == 1) {
 			$('#see-order-detail-by-driver').attr('restuarent_customer_order_id', snapshot.val().restuarent_customer_order_id)
 			$('.driver-new-order-popup').show();
