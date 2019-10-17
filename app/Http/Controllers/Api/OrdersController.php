@@ -157,7 +157,7 @@ class OrdersController extends Controller
         $cart_ids = [];
         $cart=Cart::where('user_id', Auth::id())->where('is_cart', '1')->latest()->get();
         foreach ($cart as $single_cart) {
-            $total_price = $total_price + ($single_cart->quantity*$single_cart->price);
+            $total_price = $total_price + ($single_cart->quantity*$single_cart->unit_price);
             array_push($cart_ids, $single_cart->id);
         }
         $cart_ids = implode(',', $cart_ids);

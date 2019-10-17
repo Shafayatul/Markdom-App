@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cdb8c0bf69f1ddbff65698d8902f10d2",
+    "content-hash": "966ea9760b3d2aa092ee700002511c06",
     "packages": [
         {
             "name": "aloha/twilio",
@@ -1786,6 +1786,42 @@
                 "server"
             ],
             "time": "2019-05-05T09:22:01+00:00"
+        },
+        {
+            "name": "maq89/paytabs-laravel",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maq89/paytabs-laravel.git",
+                "reference": "8edce931ef5102769d410431225ea0e9d29ec864"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maq89/paytabs-laravel/zipball/8edce931ef5102769d410431225ea0e9d29ec864",
+                "reference": "8edce931ef5102769d410431225ea0e9d29ec864",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Damas\\Paytabs": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Musaib Qureshi",
+                    "email": "maq.s89@gmail.com"
+                }
+            ],
+            "description": "Paytabs Laravel",
+            "time": "2018-07-08T09:30:49+00:00"
         },
         {
             "name": "mcamara/laravel-localization",

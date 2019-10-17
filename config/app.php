@@ -170,6 +170,7 @@ return [
         LaravelFCM\FCMServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
+        Damas\Paytabs\PaytabsServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -234,6 +235,7 @@ return [
         'FCM'      => LaravelFCM\Facades\FCM::class,
         'FCMGroup' => LaravelFCM\Facades\FCMGroup::class, // Optional
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'Paytabs' => Damas\Paytabs\Facades\PaytabsFacade::class,
 
     ],
 

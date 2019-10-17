@@ -178,6 +178,7 @@ class StoreController extends Controller
               'Accept'        => 'application/json',
           ];
         $order_summary = $this->callApi($method, $url, [], $headers);
+        
         // \Log::debug($order_summary);
         return response()->json(['msg'=>'Success','order_summary' =>$order_summary]);
       }

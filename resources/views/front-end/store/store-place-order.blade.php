@@ -54,7 +54,7 @@
               <ul>
                 <li>Sub Total <span>SR {{ $cnt }}</span></li>
                 <li>Shipping <span>SR {{ $shipping_charge }}</span></li>
-                <li id="discount_toggle"> @lang('product.discount') <span class="discount"></span></li>
+                <li id="discount_toggle"> Discount <span class="discount"></span></li>
                 <li>Grand Total <span id="gnd_total">SR {{ $grand_total }}</span></li>
               </ul>
             </div>
@@ -101,12 +101,12 @@
         <div class="payment-details-box">
           <div class="payment-title"> <h1>{{ __('content.date') }}</h1> </div>
           <div class="payment-description"> <p class="font-p">
-            {{ Carbon\Carbon::today()->format('d/m/Y') }}
+            <input type="date" name="delivery_date">
           </p> </div>
         </div>
         <div class="payment-details-box">
           <div class="payment-title"> <h1>{{ __('content.time') }}</h1> </div>
-          <div class="payment-description"> <p class="font-p">10am - 12pm</p> </div>
+          <div class="payment-description"> <input type="time" name="delivery_time"> </div>
         </div>
 
         <form>
@@ -256,14 +256,14 @@ $("#promo_btn").click(function(e){
             city_id : city_id
           },
           success:function(data) {
-            console.log(data.code);
+            console.log(data.order_summary);
               if(data.msg != 'Success'){
                   alert('Not Valid Promo Code.Please Insert Valid Promo Code.');
                   window.location.href = "{{url()->current()}}";
                   $("#discount_toggle").hide();
               }else{
                   $("#discount_toggle").show();
-                  $(".discount").html("SR -"+data.order_summary.discount_amount);
+                  $(".discount").html("SR "+data.order_summary.discount_amount);
                   $("#gnd_total").html("SR "+data.order_summary.grand_total);
               }
           }

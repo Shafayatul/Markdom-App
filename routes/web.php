@@ -85,6 +85,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
 	//Payment
 	Route::get('/payment-method', 'PaymentsController@payment_method_view');
+	Route::get('/paytabs-payment', 'PaymentsController@paytabsPayment');
+	Route::post('/paytabs-response', 'PaymentsController@paytabsResponse');
 
 });
 

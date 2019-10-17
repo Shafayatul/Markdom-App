@@ -69,6 +69,7 @@ p {
     width: 300px;
     margin: 0 auto;
     margin-top: 32px;
+    background-color: green;
 }
 
 .payment-method-details-box {
