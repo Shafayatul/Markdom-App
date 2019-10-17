@@ -23,6 +23,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
 	Route::post('/ajax-is-driver', 'FrontEnd\FrontEndController@isDriver');
 
+	Route::post('/check-promo-code', 'FrontEnd\StoreController@checkPromoCode')->name('check-promo-code');
+
 	//User Signup
 	Route::get('/user-signup', 'FrontEnd\FrontEndController@userSignup')->name('user-signup');
 	Route::post('/signup-form', 'FrontEnd\FrontEndController@singupForm');

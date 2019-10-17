@@ -117,8 +117,13 @@ class StoreController extends Controller
 
     public function addToCartStore($id)
     {
-      $product = Product::where('id', $id)->first();
+
+      $url        = env('MAIN_HOST_URL').'api/get-product-detail/'.$id;
+      $method     = 'GET';
+      $product   = $this->callApi($method, $url);
+
       Session::put('module_id', $product->module_id);
+
       if ($this->check_expiration()) {
         $url      = env('MAIN_HOST_URL').'api/add-to-cart';
         $method   = 'POST';
@@ -144,5 +149,37 @@ class StoreController extends Controller
         return true;
       }
       return false;
+    }
+
+    public function checkPromoCode(Request $request)
+    {
+      $promo_code = $request->get('promo_code');
+      $city_id    = $request->get('city_id');
+
+      $url = env('MAIN_HOST_URL').'api/promo-code-validation';
+      $method = 'POST';
+      $headers = [
+            'Authorization' => 'Bearer ' . Session::get('access_token'),
+            'Accept'        => 'application/json',
+      ];
+      $parameters = [
+            'code'      => $promo_code
+      ];
+      $code = $this->callApi($method, $url, $parameters, $headers);
+
+
+      if($code->message == 'Failed'){
+          return response()->json(['msg'=>'Failed']);
+      }else{
+        $url = env('MAIN_HOST_URL').'api/get-order-summary/'.$city_id.'/'.$promo_code;
+        $method = 'GET';
+        $headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+          ];
+        $order_summary = $this->callApi($method, $url, [], $headers);
+        // \Log::debug($order_summary);
+        return response()->json(['msg'=>'Success','order_summary' =>$order_summary]);
+      }
     }
 }

@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth:api']], function() {
 	//Order Section
 	Route::post('place-order','Api\OrdersController@place_order');
 	Route::get('get-order-history','Api\OrdersController@history');
+	Route::get('get-order-summary/{city_id}/{promo_code?}','Api\OrdersController@get_order_summary');
 	Route::get('order-details/{order_id}','Api\OrdersController@order_detail');
 
 	Route::post('promo-code-validation','Api\PromoCodesController@promo_code_validation');

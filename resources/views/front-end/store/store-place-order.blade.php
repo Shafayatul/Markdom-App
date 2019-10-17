@@ -54,7 +54,7 @@
               <ul>
                 <li>Sub Total <span>SR {{ $cnt }}</span></li>
                 <li>Shipping <span>SR {{ $shipping_charge }}</span></li>
-                {{-- <li id="discount_toggle"> @lang('product.discount') <span class="discount"></span></li> --}}
+                <li id="discount_toggle"> @lang('product.discount') <span class="discount"></span></li>
                 <li>Grand Total <span id="gnd_total">SR {{ $grand_total }}</span></li>
               </ul>
             </div>
@@ -108,13 +108,27 @@
           <div class="payment-title"> <h1>{{ __('content.time') }}</h1> </div>
           <div class="payment-description"> <p class="font-p">10am - 12pm</p> </div>
         </div>
-        <div class="payment-details-box">
-          <div class="promo-code"> <h1>{{ __('content.promo_code') }}</h1> </div>
-          <div class="promo-input-div"> <input class="promo-input" type="text" name="" value=""> </div>
-          <div class="promo-button"> <button class="btn btn-success" type="button" name="button">{{ __('content.apply') }}</button> </div>
-        </div>
+
+        <form>
+            <div class="payment-details-box">
+              <div class="promo-code"> <h1>{{ __('content.promo_code') }}</h1> </div>
+              <div class="promo-input-div"> 
+                <input class="promo-input promo_code" id="promo_code" type="text" name="promo_code"> 
+              </div>
+                <input type="hidden" class="city_id" value="{{ $single_address->city->id }}" />
+               
+              <div class="promo-button"> 
+                <button class="btn btn-success" type="button" name="button" id="promo_btn">{{ __('content.apply') }}</button> 
+              </div>
+            </div>
+        </form>
+        
+
         <div class="place-order-button-div">
-          <a href="{{ url('/payment-method') }}"><button class="btn btn-success place-order-button" type="button" name="button">{{ 'Continue To Payment' }}</button></a>
+          @if ($count>0)
+            <a href="{{ url('/store') }}"><button class="btn btn-success place-order-button" type="button" name="button">Continue Shopping</button></a>
+            <a href="{{ url('/payment-method') }}"><button class="btn btn-success place-order-button" type="button" name="button">Continue To Payment</button></a>
+          @endif
         </div>
       </div>
     </div>
@@ -154,6 +168,7 @@
           },
           success: function(data) {
               console.log("Cart Item Deleted");
+              location.reload(true);
           }
 
       });
@@ -165,10 +180,11 @@
   $('.plus').on('click', function() {
       var divUpd = $(this).parent().find('.value'),
 
-          newVal = parseInt(divUpd.text(), 10) + 1;
+      newVal = parseInt(divUpd.text(), 10) + 1;
       divUpd.text(newVal);
 
       new_quantity = newVal;
+      location.reload(true);
       
       var cart_id = $(this).attr('cart_id');
 
@@ -184,8 +200,7 @@
           },
           success: function(data) {
               console.log(data);
-              // $('#cart-id-'+cart_id).html(data.new_quantity);
-
+              $('#cart-id-'+cart_id).html(data.new_quantity);
           }
 
       });
@@ -197,6 +212,7 @@
       if (newVal >= 1) {
           divUpd.text(newVal);
           new_quantity = newVal;
+          location.reload(true);
       }
 
       var cart_id = $(this).attr('cart_id');
@@ -220,5 +236,39 @@
       }
 
   });
+
+$("#discount_toggle").hide();
+$("#promo_btn").click(function(e){
+    e.preventDefault();
+  var promo_code = $(".promo_code").val();
+  var city_id = $(".city_id").val();
+
+  window.localStorage.setItem('promo_code', promo_code);
+
+    $.ajax({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          type:"POST",
+          url: "{{ route('check-promo-code') }}",
+          data: {
+            promo_code : promo_code,
+            city_id : city_id
+          },
+          success:function(data) {
+            console.log(data.code);
+              if(data.msg != 'Success'){
+                  alert('Not Valid Promo Code.Please Insert Valid Promo Code.');
+                  window.location.href = "{{url()->current()}}";
+                  $("#discount_toggle").hide();
+              }else{
+                  $("#discount_toggle").show();
+                  $(".discount").html("SR -"+data.order_summary.discount_amount);
+                  $("#gnd_total").html("SR "+data.order_summary.grand_total);
+              }
+          }
+      });
+});
+
 </script>
 @endsection
