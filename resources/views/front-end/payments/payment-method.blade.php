@@ -276,7 +276,7 @@
         if (data.msg="Success") {
           localStorage.removeItem("address_id");
           localStorage.removeItem("promo_code");
-          var order_id = data.response.order_id;
+          var order_id = data.response.id;
           
           localStorage.setItem('order_id', order_id);
           window.location.href = "{{ url('/order-confirmation') }}"+"/"+order_id;
