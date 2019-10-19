@@ -73,6 +73,7 @@ class StoreController extends Controller
               'Accept'        => 'application/json',
           ];
         $body = $this->callApi($method, $url, [], $headers);
+        // dd($body);
 
         return view('front-end.store.store-cart', compact('body', 'module_id'));
       }else{

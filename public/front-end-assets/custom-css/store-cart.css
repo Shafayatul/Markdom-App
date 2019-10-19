@@ -1,3 +1,122 @@
+.quantity{
+  margin-top: 20px;
+}
+
+.product_name{
+  margin-top: 20px;
+  color: black;
+  font-weight: 700;
+}
+
+.product_price{
+  margin-top: 20px;
+  color: black;
+  font-weight: 700;
+}
+
+.quantity-select .entry.minus {
+    margin-left: 0;
+}
+
+.white{
+  color: white !important;
+}
+
+.value {
+    cursor: default;
+    width: 40px;
+    height: 40px;
+    padding: 8px 0px;
+    color: #000000;
+    line-height: 24px;
+    border: 1px solid #B2B2B2;
+    text-align: center;
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.minus, .plus {
+    height: 40px;
+    line-height: 24px;
+    width: 40px;
+    margin-right: 3px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    border: 1px solid #b2b2b2;
+    vertical-align: bottom;
+}
+
+.quantity-select .entry.minus:before, .quantity-select .entry.plus:before {
+    content: "";
+    width: 13px;
+    height: 2px;
+    /* background: #FDA30E; */
+    background-color: #1fc8db;
+    background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+    left: 50%;
+    margin-left: -7px;
+    top: 50%;
+    margin-top: -0.5px;
+    position: absolute;
+}
+
+.quantity-select .entry.plus:after {
+    content: "";
+    height: 13px;
+    width: 2px;
+    /* background: #FDA30E; */
+    background-color: #1fc8db;
+    background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+    left: 50%;
+    margin-left: -1.4px;
+    top: 50%;
+    margin-top: -6.2px;
+    position: absolute;
+}
+
+.cart-img{
+  width: 80px;
+  height: 80px;
+}
+
+td.invert-image a img {
+    width: 75px;
+    margin: 0 auto;
+}
+
+#close {
+    background: url('../images/close_1.png') no-repeat 0px 0px;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    position: relative;
+    /* right: 42px; */
+    left: 50%;
+    margin-left: -15px;
+    top: 25px;
+    -webkit-transition: color 0.2s ease-in-out;
+    -moz-transition: color 0.2s ease-in-out;
+    -o-transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .store {
   margin-top: 30px;
 }
@@ -78,6 +197,7 @@
 .place-order-button {
   border-radius: 8px;
   padding: 15px 30px;
+  background-color: #337AB7;
 }
 
 @media only screen and (min-device-width : 280px) and (max-device-width : 350px) {

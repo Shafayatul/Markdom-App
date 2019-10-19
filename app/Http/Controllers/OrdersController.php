@@ -15,6 +15,13 @@ use App\Product;
 use App\PromoCode;
 use Auth;
 use Illuminate\Http\Request;
+use App\Address;
+use App\State;
+use App\City;
+use App\Country;
+use App\Cart;
+use App\OrderStatus;
+use App\OrderActivity;
 
 class OrdersController extends Controller
 {
@@ -262,6 +269,8 @@ class OrdersController extends Controller
     {
       return view('front-end.order.place-order');
     }
+
+    
 
 
 

@@ -15,7 +15,8 @@ class PaymentsController extends Controller
 {
     public function payment_method_view()
     {
-    	return view('front-end.payments.payment-method');
+      $result = null;
+    	return view('front-end.payments.payment-method', compact('result'));
     }
 
         public function paytabsPayment()

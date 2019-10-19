@@ -44,8 +44,27 @@ class OrdersController extends Controller
         }
         $cart_ids = implode(',', $cart_ids);
         
+        $promo_code_cnt = PromoCode::where('code', $request->input("promo_code"))->count();
+        if (($request->input("promo_code") !== null) && ($promo_code_cnt > 0)) {
+            $promo_code = PromoCode::where('code', $request->input("promo_code"))->first();
+            $only_promo_code = $promo_code->code;
+            $discount_type = $promo_code->type;
+            $discount_percent = $promo_code->percent;
+            $discount_amount = $promo_code->amount;
 
-        $final_price = $total_price + $shipping_fees;
+            if ($discount_type == "Amount") {
+              $final_price = $total_price - $discount_amount;
+            }else{
+              $final_price = $total_price - (($total_price*$discount_percent)/100);
+            }
+        }else{
+            $final_price = $total_price;
+            $discount_percent = '';
+            $discount_amount = '';
+            $only_promo_code = '';
+        }
+
+        $final_price = $final_price + $shipping_fees;
 
         $cart = Cart::where('user_id', Auth::id())->where('is_cart', '1')->update(['is_cart'=>'0']);
         $order_status = OrderStatus::first()->id;

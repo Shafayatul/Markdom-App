@@ -35,7 +35,9 @@
 	            </a>
 	        </article>
     	</div>
-
+    @if (Session::has('order'))
+      {{ Session::get('order') }}
+    @endif
     	<div class="row image-upload-bank-transfer-div">
 	      	<div class="col-md-6 col-sm-12 offset-md-3">
 		        <h3 class="text-center">Upload Image Of Bank Transfer</h3>
@@ -54,7 +56,7 @@
 	      	</div>
 	    </div>
 
-{{-- 	    @if ($result != null)
+	    @if ($result != null)
 		    <div class="row mada-transfer-form-div">
 		        <div class="col-md-6 offset-3">
 		          <form class="input-group mada-transfer-form" id="mada-transfer-form" action="{{ url('/payment-bank-mada-transfer-submit') }}" method="post">
@@ -64,7 +66,7 @@
 		          </form>
 		        </div>
 		    </div>
-		@endif --}}
+		@endif
 
 
 	    <div class="payment-method-details-box text-center">
@@ -273,7 +275,7 @@
           localStorage.removeItem("address_id");
           localStorage.removeItem("promo_code");
           var order_id = data.response.order_id;
-          // localStorage.setItem('order_id', order_id);
+          localStorage.setItem('order_id', order_id);
           window.location.href = "{{ url('/order-confirmation') }}"+"/"+order_id;
         }
       }

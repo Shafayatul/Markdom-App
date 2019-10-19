@@ -8,6 +8,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Auth;
 use Session;
+use App\Order;
 
 class FrontEndController extends Controller
 {
@@ -248,5 +249,45 @@ class FrontEndController extends Controller
       $method_city = 'GET';
       $cities = $this->callApi($method_city, $url_city);
       return response()->json(array('msg'=> 'Got State Id', 'cities'=>$cities), 200);
+    }
+
+    public function ajaxCodSubmit(Request $request)
+    {
+      if ($this->check_expiration()) {
+        $method = "POST";
+        $url = env("MAIN_HOST_URL")."api/place-order";
+        $parameters = [
+            'address_id'     => $request->address_id,
+            'promo_code'     => $request->promo_code,
+            'payment_method'     => 'COD'
+        ];
+        $headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+        ];
+        $response = $this->callApi($method, $url, $parameters, $headers);
+        return response()->json(['msg'=>'Success','response' =>$response]);
+      }
+    }
+
+    public function orderConfirmation($id=null)
+    {
+      $order = null;
+      if ($id != null) {
+        $order = Order::find($id);
+      }
+      return view('front-end.order.order-confirmation', compact('order'));
+    }
+
+    public function placeOrder(Request $request)
+    {
+      $url = env('MAIN_HOST_URL').'api/place-order';
+      $method = 'POST';
+      $headers = [
+            'Authorization' => 'Bearer ' . Session::get('access_token'),
+            'Accept'        => 'application/json',
+        ];
+      $order = $this->callApi($method, $url, [], $headers);
+      return view('front-end.order.order-confirmation', compact('order'));
     }
 }

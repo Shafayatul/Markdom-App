@@ -25,6 +25,17 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
 	Route::post('/check-promo-code', 'FrontEnd\StoreController@checkPromoCode')->name('check-promo-code');
 
+
+	//Store Section
+	Route::get('/store', 'FrontEnd\StoreController@index')->name('store');
+	Route::get('/sub-category-store/{id}', 'FrontEnd\StoreController@subCategoryStore');
+	Route::get('/store-details/{id}', 'FrontEnd\StoreController@storeDetails')->name('store-details');
+	Route::get('/store-product-details/{id}', 'FrontEnd\StoreController@storeProductDetails')->name('store-product-details');
+	Route::get('/store-cart/{id}', 'FrontEnd\StoreController@storeCart')->name('store-cart');
+	Route::get('/add-to-cart-store/{id}', 'FrontEnd\StoreController@addToCartStore')->name('add-to-cart-store');
+	Route::get('/store-place-order/{id}', 'FrontEnd\StoreController@storePlaceOrder')->name('store-place-order');
+
+
 	//User Signup
 	Route::get('/user-signup', 'FrontEnd\FrontEndController@userSignup')->name('user-signup');
 	Route::post('/signup-form', 'FrontEnd\FrontEndController@singupForm');
@@ -62,15 +73,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/order-delivery-time', 'OrdersController@orderDeliveryTime')->name('order-delivery-time');
 	Route::get('/place-order', 'OrdersController@placeOrder')->name('place-order');
 	Route::get('/worker-notification', 'FrontEnd\WorkerController@workerNotification')->name('worker-notification');
-
-	// Store Route
-	Route::get('/store', 'FrontEnd\StoreController@index')->name('store');
-	Route::get('/sub-category-store/{id}', 'FrontEnd\StoreController@subCategoryStore');
-	Route::get('/store-details/{id}', 'FrontEnd\StoreController@storeDetails')->name('store-details');
-	Route::get('/store-product-details/{id}', 'FrontEnd\StoreController@storeProductDetails')->name('store-product-details');
-	Route::get('/store-cart/{id}', 'FrontEnd\StoreController@storeCart')->name('store-cart');
-	Route::get('/add-to-cart-store/{id}', 'FrontEnd\StoreController@addToCartStore')->name('add-to-cart-store');
-	Route::get('/store-place-order/{id}', 'FrontEnd\StoreController@storePlaceOrder')->name('store-place-order');
+	
 
 	Route::get('/address', 'FrontEnd\FrontEndController@addressesView');
 	Route::get('/add-address', 'FrontEnd\FrontEndController@addressView');
@@ -83,10 +86,16 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::post('/ajax-state-list','FrontEnd\FrontEndController@ajaxStateList');
 	Route::post('/ajax-city-list','FrontEnd\FrontEndController@ajaxCityList');
 
+	Route::post('/ajax-cod-submit', 'FrontEnd\FrontEndController@ajaxCodSubmit')->name('ajax-cod-submit');
+
 	//Payment
 	Route::get('/payment-method', 'PaymentsController@payment_method_view');
 	Route::get('/paytabs-payment', 'PaymentsController@paytabsPayment');
 	Route::post('/paytabs-response', 'PaymentsController@paytabsResponse');
+
+	//Order route
+	Route::get('/order-confirmation/{id?}','FrontEnd\FrontEndController@orderConfirmation');
+	Route::post('/payment-bank-mada-transfer-submit', 'FrontEnd\FrontEndController@placeOrder');
 
 });
 
