@@ -116,7 +116,7 @@ class OrdersController extends Controller
 
 
             $data = [];
-            $data['order_id'] = $order->id;
+            $data['id'] = $order->id;
             $data['estimated_time'] = $estimated_time;
             return response()->json($data);
         }else{

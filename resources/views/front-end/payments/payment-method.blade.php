@@ -121,6 +121,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="{{ asset('front-end-assets/js/categories_custom.js')}}"></script>
 <script type="text/javascript">
+
   $(document).ready(function(){
 
     var place_order_button_id;
@@ -271,10 +272,12 @@
         promo_code : localStorage.getItem("promo_code")
       },
       success:function(data) {
+        console.log(data);
         if (data.msg="Success") {
           localStorage.removeItem("address_id");
           localStorage.removeItem("promo_code");
           var order_id = data.response.order_id;
+          
           localStorage.setItem('order_id', order_id);
           window.location.href = "{{ url('/order-confirmation') }}"+"/"+order_id;
         }
