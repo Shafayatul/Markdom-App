@@ -33,7 +33,7 @@
 
             <div class="place-order-button-div">
               @if ($order !=null)
-                <a href="{{ url('/track-order/'.$order->order_id) }}">
+                <a href="{{ url('/track-order/'.$order->id) }}">
                   <button class="btn btn-success place-order-button" type="button" name="button">Track Your Order Here</button>
                 </a>
               @else
