@@ -286,7 +286,7 @@ class FrontEndController extends Controller
       if ($id != null) {
         $order = Order::find($id);
       }
-      // return view('front-end.order.order-confirmation', compact('order'));
+      return view('front-end.order.order-confirmation', compact('order'));
     }
 
     public function placeOrder(Request $request)
