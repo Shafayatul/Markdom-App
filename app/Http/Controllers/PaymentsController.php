@@ -150,8 +150,8 @@ class PaymentsController extends Controller
       'discount'=>"0",
       "msg_lang" => "en",
       "reference_no" => "1231231",
-      "site_url" => "http://localhost:8000/",
-      'return_url' => "http://localhost:8000/paytabs-response",
+      "site_url" => "http://webencoder.space/demo/demo61/public/",
+      'return_url' => "http://webencoder.space/demo/demo61/public/paytabs-response",
       "cms_with_version" => "API USING PHP"
     ));
     // dd($result);

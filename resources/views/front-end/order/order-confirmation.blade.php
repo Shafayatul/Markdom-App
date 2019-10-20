@@ -27,7 +27,7 @@
 
               <div class="lower-content">
                 <p>Esimated Delivery</p>
-                <p>{{ $order->estimated_time }}</p>
+                <p>{{ $order->order->estimated_time }}</p>
               </div>
             </div>
 

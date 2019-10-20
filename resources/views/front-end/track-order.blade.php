@@ -26,31 +26,31 @@
                 <h3>Order Status</h3>
               </div>
               <div class="order-content">
-                <p>Order No: {{ $order->id }}</p>
-                <p>Order placed : {{ $order->created_at }}</p>
+                <p>Order No: {{ $order_details->order->id }}</p>
+                <p>Order placed : {{ $order_details->order->created_at }}</p>
               </div>
             </div>
             <div class="middle-content">
               <div class="order-status">
                 <ol class="progtrckr" data-progtrckr-steps="4">
-                  @if ($order->order_status == 1)
+                  @if ($order_details->order->order_status_id == 1)
                     <li class="progtrckr-done">Pending</li>
                     <li class="progtrckr-done">On Delivery</li>
                     <li class="progtrckr-done">With SMSA</li>
                     <li class="progtrckr-done">Complete</li>
-                  @elseif ($order->order_status == 2)
+                  @elseif ($order_details->order->order_status_id == 2)
                     <li class="progtrckr-done">Pending</li>
                     <li class="progtrckr-done">On Delivery</li>
                     <li class="progtrckr-done">With SMSA</li>
                     <li class="progtrckr-done">Complete</li>
-                  @elseif ($order->order_status == 3)
+                  @elseif ($order_details->order->order_status_id == 3)
                     <li class="progtrckr-done">Pending</li>
                     <li class="progtrckr-done">On Delivery</li>
                     <li class="progtrckr-done">With SMSA</li>
                     <li class="progtrckr-done">Complete</li>
-                  @elseif ($order->order_status == 4)
+                  @elseif ($order_details->order->order_status_id == 4)
                     <p class="text-danger">{{ 'Sorry The Order Has canceled' }}</p>
-                  @elseif ($order->order_status == 5)
+                  @elseif ($order_details->order->order_status_id == 5)
                     <li class="progtrckr-done">Pending</li>
                     <li class="progtrckr-done">On Delivery</li>
                     <li class="progtrckr-done">With SMSA</li>
@@ -68,15 +68,15 @@
                     <hr>
                   </div>
                   <p>
-                    @if ($order->order_status == 1)
+                    @if ($order_details->order->order_status_id == 1)
                       {{ 'Completed' }}
-                    @elseif ($order->order_status == 2)
+                    @elseif ($order_details->order->order_status_id == 2)
                       {{ 'Pending' }}
-                    @elseif ($order->order_status == 3)
+                    @elseif ($order_details->order->order_status_id == 3)
                       {{ 'On Delivery' }}
-                    @elseif ($order->order_status == 4)
+                    @elseif ($order_details->order->order_status_id == 4)
                       {{ "Cancelled" }}
-                    @elseif ($order->order_status == 5)
+                    @elseif ($order_details->order->order_status_id == 5)
                       {{ "With SMSA" }}
                     @else
                       {{ "----" }}

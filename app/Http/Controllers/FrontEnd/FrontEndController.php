@@ -315,8 +315,16 @@ class FrontEndController extends Controller
               'Authorization' => 'Bearer ' . Session::get('access_token'),
               'Accept'        => 'application/json',
         ];
-        $order = $this->callApi($method, $url, $parameters, $headers);
-        // dd($order);
+
+        $order_details = $this->callApi($method, $url, $parameters, $headers);
+        
+        $url = env('MAIN_HOST_URL').'api/order-details/'.$order_details->id;
+        $method = 'GET';
+        $headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+          ];
+        $order = $this->callApi($method, $url, [], $headers);
 
       return view('front-end.order.order-confirmation', compact('order'));
     }
@@ -430,8 +438,8 @@ class FrontEndController extends Controller
         $url_order_details = env('MAIN_HOST_URL').'api/order-details/'.$id;
         $method_order_details = 'GET';
         $order_details = $this->callApi($method_order_details, $url_order_details, [], $headers);
-        $order = Order::where('id', $id)->first();
-        return view('front-end.track-order', compact('order_details', 'order'));
+        // $order = Order::where('id', $id)->first();
+        return view('front-end.track-order', compact('order_details'));
       }else{
         return redirect()->back();
       }
