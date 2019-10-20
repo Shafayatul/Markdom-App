@@ -91,7 +91,7 @@
                           <div class="p-2">                            
                             <div class="ml-3 d-inline-block align-middle">
                               <h5 class="mb-0"> 
-                                <a href="#" class="text-dark d-inline-block align-middle">Timex Unisex Originals</a>
+                                <a href="{{ route('worker-details', ['id' => $store->id]) }}" class="text-dark d-inline-block align-middle">{{ $store->name }}</a>
                               </h5>
                                  <span  style="font-size: 8px;color: #E4E3E4;">Timex Unisex Originals</span> 
                             </div>
