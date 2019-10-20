@@ -284,7 +284,15 @@ class FrontEndController extends Controller
       // dd($id);
       $order = null;
       if ($id != null) {
-        $order = Order::find($id);
+
+        // $order = Order::find($id);
+        $url = env('MAIN_HOST_URL').'api/order-details/'.$id;
+        $method = 'GET';
+        $headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+          ];
+        $order = $this->callApi($method, $url, [], $headers);
         // dd($order);
       }
       return view('front-end.order.order-confirmation', compact('order'));
@@ -292,106 +300,14 @@ class FrontEndController extends Controller
 
     public function placeOrder(Request $request)
     {
-      // $total_price = 0;
-      // $final_price = 0;
-      // $paytab_transaction_id = null;
-      // $image = '';
-      // $cart_ids = [];
-      // $city_id = Address::where('id', $request->input('address_id'))->first()->city_id;
-      // $city  = City::where('id', $city_id)->first();
-      // $shipping_fees  = $city->delivery_fees;
-      // if($city->cod == 1){
-      //     $time_stamp = time()+(3*24*60*60);
-      //     $estimated_time = date("l", $time_stamp).' '.date('M d,Y', $time_stamp); ;
-      // }else{
-      //     $time_stamp = time()+(5*24*60*60);
-      //     $estimated_time = date("l", $time_stamp).' '.date('M d,Y', $time_stamp); ;
-      // }
-
-      // $cart=Cart::where('user_id', Auth::id())->where('is_cart', '1')->latest()->get();
-      // foreach ($cart as $single_cart) {
-      //   $total_price = $total_price + ($single_cart->quantity*$single_cart->price);
-      //   array_push($cart_ids, $single_cart->id);
-      // }
-      // $cart_ids = implode(',', $cart_ids);
-      // $promo_code_cnt = PromoCode::where('code', $request->input("promo_code"))->count();
-      // if (($request->input("promo_code") !== null) && ($promo_code_cnt > 0)) {
-      //   $promo_code = PromoCode::where('code', $request->input("promo_code"))->first();
-      //   $only_promo_code = $promo_code->code;
-      //   $discount_type = $promo_code->type;
-      //   $discount_percent = $promo_code->percent;
-      //   $discount_amount = $promo_code->amount;
-
-      //   if ($discount_type == "Amount") {
-      //     $final_price = $total_price - $discount_amount;
-      //   }else{
-      //     $final_price = $total_price - (($total_price*$discount_percent)/100);
-      //   }
-      // }else{
-      //   $final_price = $total_price;
-      //   $discount_percent = '';
-      //   $discount_amount = '';
-      //   $only_promo_code = '';
-      // }
-
-      // $final_price = $final_price + $shipping_fees;
-
-      // $cart = Cart::where('user_id', Auth::id())->where('is_cart', '1')->update(['is_cart'=>'0']);
-      // $order_status = OrderStatus::first()->id;
-
-      // if ($request->input("payment_method") == "COD") {
-      //     $payment_method = 'COD';
-      //     $final_price = $final_price+15;
-      // }elseif($request->input("payment_method") == "Paytab"){
-      //     $payment_method = 'Paytab';
-      //     $paytab_transaction_id = $request->input("paytab_transaction_id");
-      // }else{
-      //     if($request->hasFile('image')){
-      //         $image = $request->file('image');
-      //         $image_fullname = uniqid().'.'.strtolower($image->getClientOriginalExtension());
-      //         $path = 'uploads/';
-      //         $image_url = $path.$image_fullname;
-      //         $image->move($path,$image_fullname);
-      //     }else{
-      //         $image_url = "";
-      //     }
-      //     $image = $image_url;
-      //     $payment_method = 'Bank Transfer';
-      // }
-
-      // $order                           = new Order;
-      // $order->user_id                  = Auth::id();
-      // $order->cart_ids                 = $cart_ids;
-      // $order->total_price              = $total_price;
-      // $order->discount_percent         = $discount_percent;
-      // $order->discount_amount          = $discount_amount;
-      // $order->paytab_transation_id     = $paytab_transaction_id;
-      // $order->address_id               = $request->input("address_id");
-      // $order->promo_code               = $only_promo_code;
-      // $order->final_price              = $final_price;
-      // $order->order_status_id          = $order_status;
-      // $order->estimated_time           = $estimated_time;
-      // $order->image                    = $image;
-      // $order->payment_method           = $payment_method;
-      // $order->save();
-
-      // if ($order) {
-
-      // $order_status_obj = OrderStatus::first();
-
-      // $OrderActivity                  = new OrderActivity;
-      // $OrderActivity->order_id        = $order->id;
-      // $OrderActivity->status          = $order_status_obj->order_status;
-      // $OrderActivity->status_arabic   = $order_status_obj->order_status_arabic;
-      // $OrderActivity->save();
-
       if ($this->check_expiration()) {
         $method = "POST";
         $url = env("MAIN_HOST_URL")."api/place-order";
         $parameters = [
             'address_id'     => $request->address_id,
             'promo_code'     => $request->promo_code,
-            'payment_method'     => 'Bank Transfer'
+            'payment_method'     => $request->payment_method,
+            'paytab_transaction_id' => $request->paytab_transaction_id
         ];
         $headers = [
               'Authorization' => 'Bearer ' . Session::get('access_token'),

@@ -74,7 +74,7 @@ class OrdersController extends Controller
             $final_price = $final_price+15;
         }elseif($request->input("payment_method") == "Paytab"){
             $payment_method = 'Paytab';
-            $paytab_transaction_id = $request->input("paytab_transation_id");
+            $paytab_transaction_id = $request->input("paytab_transaction_id");
         }else{
 
             if($request->hasFile('image')){

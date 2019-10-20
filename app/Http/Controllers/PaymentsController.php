@@ -150,8 +150,8 @@ class PaymentsController extends Controller
       'discount'=>"0",
       "msg_lang" => "en",
       "reference_no" => "1231231",
-      "site_url" => "http://webencoder.space/demo/demo58/public/",
-      'return_url' => "http://webencoder.space/demo/demo58/public/paytabs-response",
+      "site_url" => "http://localhost:8000/",
+      'return_url' => "http://localhost:8000/paytabs-response",
       "cms_with_version" => "API USING PHP"
     ));
     // dd($result);
@@ -164,11 +164,11 @@ class PaymentsController extends Controller
 
     public function paytabsResponse(Request $request)
     {
-      $pt = Paytabs::getInstance("skkundu32@gmail.com", "z8tqqURvuIeF4Or0OQhQng1dXReUo9kYiNpJIgecZtR3hj46amWxCXKAOYud8OcrCBakRoxRSoV9I0gSmcqZ9azY94chSoIvZTPR");
+      $pt = Paytabs::getInstance("webencoder32@gmail.com", "sdNT6F26xhReY6xv61rOrwsOgrZoEpN7CB1Ih3PPkH3jNAOUCgI4MbS2CRrhgfoSQpB8trXO807WBWQdczhZK91n0tFhI39ztKIX");
       $result = $pt->verify_payment($request->payment_reference);
 
       if($result->response_code == 100){
-        return view('front-end.payment.payment-method', compact('result'));
+        return view('front-end.payments.payment-method', compact('result'));
       }
       return redirect()->back()->with('msg', 'Payment Not Successfull');
     }

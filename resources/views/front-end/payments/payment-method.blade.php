@@ -61,8 +61,8 @@
 		        <div class="col-md-6 offset-3">
 		          <form class="input-group mada-transfer-form" id="mada-transfer-form" action="{{ url('/payment-bank-mada-transfer-submit') }}" method="post">
 		            @csrf
-		            <input type="hidden" name="payment_method" value="Paytab">
-		              <input type="hidden" name="paytab_transaction_id" value="{{ $result->transaction_id }}">
+		            <input type="text" name="payment_method" value="Paytab">
+		              <input type="text" name="paytab_transaction_id" value="{{ $result->transaction_id }}">
 		          </form>
 		        </div>
 		    </div>
