@@ -206,8 +206,9 @@
       $('.place_order_button').attr("id", place_order_button_id);
 
       localStorage.setItem('place_order_button_id','mada-form-submit');
+      var main_url = '{{ env('MAIN_HOST_URL') }}';
 
-      window.location.href = '/paytabs-payment';
+      window.location.href = main_url+'/paytabs-payment';
 
       return false;
     });
