@@ -16,6 +16,7 @@ use App\OrderActivity;
 use App\PromoCode;
 use App\RestuarentCustomerOrder;
 use Auth;
+use Log;
 
 class OrdersController extends Controller
 {
@@ -79,6 +80,7 @@ class OrdersController extends Controller
 
             if($request->hasFile('image')){
                 $image = $request->file('image');
+                Log::debug($image);
                 $image_fullname = uniqid().'.'.strtolower($image->getClientOriginalExtension());
                 $path = 'uploads/';
                 $image_url = $path.$image_fullname;
