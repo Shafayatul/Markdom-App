@@ -315,7 +315,7 @@ class FrontEndController extends Controller
             $image_url = "";
           }
         }else{
-           $image_url = ""
+           $image_url = "";
         }
 
 
