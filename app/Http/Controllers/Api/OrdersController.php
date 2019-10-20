@@ -103,6 +103,9 @@ class OrdersController extends Controller
         $order->estimated_time      		= $estimated_time;
         $order->image               		= $image;
         $order->payment_method      		= $payment_method;
+        $order->discount_percent            = $discount_percent;
+        $order->discount_amount             = $discount_amount;
+        $order->promo_code                  = $only_promo_code;
 		$order->save();
         if ($order) {
 
@@ -157,6 +160,7 @@ class OrdersController extends Controller
 
         $data = [];
         $data['id']                     = $order->id;
+        $data['order']                  = $order;
         $data['orderDate']              = $order->created_at;
         $data['status']                 = $order_status_data;
         $data['activity']               = OrderActivity::where('order_id', $order_id)->get();;

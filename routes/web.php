@@ -11,6 +11,8 @@
 |
 */
 
+
+Route::get('/add-shipment-to-smsa/{order_id}/{user_id}/{address_id}', 'FrontEnd\FrontEndController@addShipmentToSmsa');
 //FrontEnd Route Starts From Here
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function()
 {
@@ -96,6 +98,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	//Order route
 	Route::get('/order-confirmation/{id?}','FrontEnd\FrontEndController@orderConfirmation');
 	Route::post('/payment-bank-mada-transfer-submit', 'FrontEnd\FrontEndController@placeOrder');
+
+	Route::get('/track-order/{id}', 'FrontEnd\FrontEndController@trackOrder');
 
 });
 
