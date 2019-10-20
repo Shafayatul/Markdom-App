@@ -306,10 +306,11 @@ class FrontEndController extends Controller
         $method = "POST";
         $url = env("MAIN_HOST_URL")."api/place-order";
         $parameters = [
-            'address_id'     => $request->address_id,
-            'promo_code'     => $request->promo_code,
-            'payment_method'     => $request->payment_method,
-            'paytab_transaction_id' => $request->paytab_transaction_id
+            'address_id'            = > $request->address_id,
+            'promo_code'            = > $request->promo_code,
+            'payment_method'        = > $request->payment_method,
+            'paytab_transaction_id' = > $request->paytab_transaction_id,
+            'image'                 = > $request->file('image')
         ];
         $headers = [
               'Authorization' => 'Bearer ' . Session::get('access_token'),
