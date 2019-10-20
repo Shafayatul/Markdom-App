@@ -306,15 +306,16 @@ class FrontEndController extends Controller
         if($request->payment_method == 'Bank Transfer'){
           if($request->hasFile('image')){
               $image = $request->file('image');
+              // dd($image);
               $image_fullname = uniqid().'.'.strtolower($image->getClientOriginalExtension());
               $path = 'uploads/';
-              $image_url = $path.$image_fullname;
+              $bank_image = $path.$image_fullname;
               $image->move($path,$image_fullname);
           }else{
-            $image_url = "";
+            $bank_image = null;
           }
         }else{
-           $image_url = "";
+           $bank_image = null;
         }
 
 
@@ -325,12 +326,11 @@ class FrontEndController extends Controller
             'promo_code'            => $request->promo_code,
             'payment_method'        => $request->payment_method,
             'paytab_transaction_id' => $request->paytab_transaction_id,
-            'image'                 => $image_url
+            'image'                 => $bank_image
         ];
         $headers = [
               'Authorization' => 'Bearer ' . Session::get('access_token'),
               'Accept'        => 'application/json',
-              'Content-Type'  => 'multipart/form-data',
         ];
 
         $order_details = $this->callApi($method, $url, $parameters, $headers);
