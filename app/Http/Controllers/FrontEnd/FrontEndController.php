@@ -303,6 +303,22 @@ class FrontEndController extends Controller
     public function placeOrder(Request $request)
     {
       if ($this->check_expiration()) {
+        if($request->payment_method == 'Bank Transfer'){
+          if($request->hasFile('image')){
+              $image = $request->file('image');
+              Log::debug($image);
+              $image_fullname = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+              $path = 'uploads/';
+              $image_url = $path.$image_fullname;
+              $image->move($path,$image_fullname);
+          }else{
+            $image_url = "";
+          }
+        }else{
+           $image_url = ""
+        }
+
+
         $method = "POST";
         $url = env("MAIN_HOST_URL")."api/place-order";
         $parameters = [
@@ -310,11 +326,12 @@ class FrontEndController extends Controller
             'promo_code'            => $request->promo_code,
             'payment_method'        => $request->payment_method,
             'paytab_transaction_id' => $request->paytab_transaction_id,
-            'image'                 => $request->image
+            'image'                 => $image_url
         ];
         $headers = [
               'Authorization' => 'Bearer ' . Session::get('access_token'),
               'Accept'        => 'application/json',
+              'Content-Type'  => 'multipart/form-data',
         ];
 
         $order_details = $this->callApi($method, $url, $parameters, $headers);

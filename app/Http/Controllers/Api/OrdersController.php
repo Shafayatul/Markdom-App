@@ -77,18 +77,7 @@ class OrdersController extends Controller
             $payment_method = 'Paytab';
             $paytab_transaction_id = $request->input("paytab_transaction_id");
         }else{
-
-            if($request->hasFile('image')){
-                $image = $request->file('image');
-                Log::debug($image);
-                $image_fullname = uniqid().'.'.strtolower($image->getClientOriginalExtension());
-                $path = 'uploads/';
-                $image_url = $path.$image_fullname;
-                $image->move($path,$image_fullname);
-            }else{
-                $image_url = "";
-            }
-            $image = $image_url;
+            
             $payment_method = 'Bank Transfer';
 
         }
@@ -103,7 +92,7 @@ class OrdersController extends Controller
 		$order->final_price 				= $final_price;
 		$order->order_status_id 			= $order_status;
         $order->estimated_time      		= $estimated_time;
-        $order->image               		= $image_url;
+        $order->image               		= $request->input("image");
         $order->payment_method      		= $payment_method;
         $order->discount_percent            = $discount_percent;
         $order->discount_amount             = $discount_amount;
