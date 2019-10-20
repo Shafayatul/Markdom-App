@@ -207,7 +207,7 @@
 
       localStorage.setItem('place_order_button_id','mada-form-submit');
 
-      window.location.href = '/paytabs-payment';
+      window.location.href = env('MAIN_HOST_URL')+'/paytabs-payment';
 
       return false;
     });
