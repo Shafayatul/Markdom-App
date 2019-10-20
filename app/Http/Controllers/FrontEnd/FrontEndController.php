@@ -306,7 +306,6 @@ class FrontEndController extends Controller
         if($request->payment_method == 'Bank Transfer'){
           if($request->hasFile('image')){
               $image = $request->file('image');
-              Log::debug($image);
               $image_fullname = uniqid().'.'.strtolower($image->getClientOriginalExtension());
               $path = 'uploads/';
               $image_url = $path.$image_fullname;
