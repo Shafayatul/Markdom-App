@@ -309,13 +309,13 @@ class FrontEndController extends Controller
               // dd($image);
               $image_fullname = uniqid().'.'.strtolower($image->getClientOriginalExtension());
               $path = 'uploads/';
-              $bank_image = $path.$image_fullname;
+              $image_url = $path.$image_fullname;
               $image->move($path,$image_fullname);
           }else{
-            $bank_image = null;
+            $image_url = null;
           }
         }else{
-           $bank_image = null;
+           $image_url = null;
         }
 
 
@@ -326,7 +326,7 @@ class FrontEndController extends Controller
             'promo_code'            => $request->promo_code,
             'payment_method'        => $request->payment_method,
             'paytab_transaction_id' => $request->paytab_transaction_id,
-            'image'                 => $bank_image
+            'bank_image'                 => $image_url
         ];
         $headers = [
               'Authorization' => 'Bearer ' . Session::get('access_token'),
