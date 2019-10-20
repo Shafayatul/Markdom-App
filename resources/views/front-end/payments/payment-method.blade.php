@@ -245,6 +245,7 @@
 
     $(document).on('click', '#bank-transfer-form-submit', function(){
       var imgVal = $('#image-file').val();
+      // alert(imgVal);
       if ($('#image-file').val() !='') {
         $("#bank-transfer-img-upload-form").submit();
       }else {

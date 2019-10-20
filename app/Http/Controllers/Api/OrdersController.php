@@ -101,7 +101,7 @@ class OrdersController extends Controller
 		$order->final_price 				= $final_price;
 		$order->order_status_id 			= $order_status;
         $order->estimated_time      		= $estimated_time;
-        $order->image               		= $image;
+        $order->image               		= $image_url;
         $order->payment_method      		= $payment_method;
         $order->discount_percent            = $discount_percent;
         $order->discount_amount             = $discount_amount;
