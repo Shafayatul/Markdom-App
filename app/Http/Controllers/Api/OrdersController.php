@@ -273,33 +273,33 @@ class OrdersController extends Controller
         $order_status = OrderStatus::first()->id;
 
 
-        $order                   = new WorkerPlaceOrder;
-        $order->user_id          = Auth::id();
-        $order->cart_ids         = $cart_ids;
-        $order->total_price      = $total_price;
-        $order->address_id       = $request->input("address_id");
-        $order->schedule_time_id = $request->input("schedule_time_id");
-        $order->service_type_id  = $request->input("service_type_id");
-        $order->final_price      = $final_price;
-        $order->order_status_id  = $order_status;
-        $order->estimated_time   = $estimated_time;
-        $order->discount_percent = $discount_percent;
-        $order->discount_amount  = $discount_amount;
-        $order->promo_code       = $only_promo_code;
-        $order->save();
-        if ($order) {
+        $workerorder                   = new WorkerPlaceOrder;
+        $workerorder->user_id          = Auth::id();
+        $workerorder->cart_ids         = $cart_ids;
+        $workerorder->total_price      = $total_price;
+        $workerorder->address_id       = $request->input("address_id");
+        $workerorder->schedule_time_id = $request->input("schedule_time_id");
+        $workerorder->service_type_id  = $request->input("service_type_id");
+        $workerorder->final_price      = $final_price;
+        $workerorder->order_status_id  = $order_status;
+        $workerorder->estimated_time   = $estimated_time;
+        $workerorder->discount_percent = $discount_percent;
+        $workerorder->discount_amount  = $discount_amount;
+        $workerorder->promo_code       = $only_promo_code;
+        $workerorder->save();
+        if ($workerorder) {
 
         $order_status_obj               = OrderStatus::first();
 
         $OrderActivity                  = new OrderActivity;
-        $OrderActivity->order_id        = $order->id;
+        $OrderActivity->order_id        = $workerorder->id;
         $OrderActivity->status          = $order_status_obj->order_status;
         $OrderActivity->status_arabic   = $order_status_obj->order_status_arabic;
         $OrderActivity->save();
 
 
             $data = [];
-            $data['order'] = $order;
+            $data['order'] = $workerorder;
             $data['estimated_time'] = $estimated_time;
             return response()->json($data);
         }else{
