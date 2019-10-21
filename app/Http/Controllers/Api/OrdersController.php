@@ -16,6 +16,7 @@ use App\OrderActivity;
 use App\PromoCode;
 use App\RestuarentCustomerOrder;
 use Auth;
+use App\WorkerPlaceOrder;
 
 class OrdersController extends Controller
 {
@@ -272,7 +273,7 @@ class OrdersController extends Controller
         $order_status = OrderStatus::first()->id;
 
 
-        $order                   = new Order;
+        $order                   = new WorkerPlaceOrder;
         $order->user_id          = Auth::id();
         $order->cart_ids         = $cart_ids;
         $order->total_price      = $total_price;

@@ -33,9 +33,9 @@
           <span class="product-amount">{{ $cart->price }}SR</span>
         </div>
         @endforeach
-        <input type="hidden" name="schedule_time_id" value="{{ $schedule_timspan_id }}">
-        <input type="hidden" name="service_type_id" value="{{ $service_type_id }}">
-        <input type="hidden" class="address_id" value="{{ $single_address->id }}" />
+        <input type="text" name="schedule_time_id" value="{{ $schedule_timspan_id }}">
+        <input type="text" name="service_type_id" value="{{ $service_type_id }}">
+        <input type="text" name="address_id" value="{{ $single_address->id }}" />
       </div>
 
 
@@ -96,7 +96,7 @@
           <div class="payment-description"> <p class="font-p">10am - 12pm</p> </div>
         </div> --}}
 
-    <form>
+
         <div class="payment-details-box">
           <div class="promo-code"> <h1>{{ __('content.promo_code') }}</h1> </div>
           <div class="promo-input-div"> 
@@ -108,7 +108,7 @@
             <button class="btn btn-success" type="button" name="button" id="promo_btn">{{ __('content.apply') }}</button> 
           </div>
         </div>
-    </form>
+
 
         <div class="place-order-button-div">
           <button class="btn btn-success place-order-button" type="submit" name="button">{{ __('content.place_order') }}</button>
