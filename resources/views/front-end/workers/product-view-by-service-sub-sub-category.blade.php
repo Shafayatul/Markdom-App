@@ -35,7 +35,7 @@
           <div id="grid">
             @foreach ($services as $service)
                 <div class="product-box shadow">
-                  <a href="{{ route('worker-product-details', ['id'=>$service->id]) }}" class="rectangle-box-a" service-sub-sub-category-id="{{ $service->service_sub_sub_category_id }}">
+                  <a href="#" class="rectangle-box-a" service-sub-sub-category-id="{{ $service->service_sub_sub_category_id }}">
                     <div class="product-image-box">
                       <img src="{{ env('MAIN_HOST_URL').$service->preview_image}}" alt="">
                     </div>

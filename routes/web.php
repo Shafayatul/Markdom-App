@@ -67,13 +67,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/service-sub-category-worker/{id}', 'FrontEnd\WorkerController@serviceSubCategoryWorker')->name('service-sub-category-worker');
 	Route::get('/service-sub-sub-by-service-sub-category/{id}', 'FrontEnd\WorkerController@serviceSubSubCategoryWorker')->name('service-sub-sub-by-service-sub-category');
 	Route::get('product-by-service-sub-sub-category/{id}', 'FrontEnd\WorkerController@productByServiceSubSubCategory')->name('product-by-service-sub-sub-category');
-	// Route::get('/worker-product-details/{id}', 'FrontEnd\WorkerController@workerProductDetails')->name('worker-product-details');
+	Route::get('/worker-product-details/{id}', 'FrontEnd\WorkerController@workerProductDetails')->name('worker-product-details');
 	// Route::get('/worker-service-delivery', 'FrontEnd\WorkerController@workerServiceDelivery')->name('worker-service-delivery');
-	// Route::get('/worker-save-service-type/{id}', 'FrontEnd\WorkerController@workerSaveServiceType')->name('worker-save-service-type');
+	Route::get('/worker-save-service-type/{id}', 'FrontEnd\WorkerController@workerSaveServiceType')->name('worker-save-service-type');
 
-	// Route::get('/worker-service-time/{id}/{date?}', 'FrontEnd\WorkerController@workerServiceTime')->name('worker-service-time');
+	Route::get('/worker-service-time/{id}/{date?}', 'FrontEnd\WorkerController@workerServiceTime')->name('worker-service-time');
 	// Route::get('/worker-cart', 'FrontEnd\WorkerController@workercart')->name('worker-cart');
-	// Route::get('/worker-place-holder/{id}', 'FrontEnd\WorkerController@workerPlaceOrder')->name('worker-place-holder');
+	Route::get('worker-schedule-time/{id}', 'FrontEnd\FrontEndController@workerScheduleTime')->name('worker-schedule-time');
+	Route::get('/worker-place-holder/{id}', 'FrontEnd\WorkerController@workerPlaceOrder')->name('worker-place-holder');
 
 
 
