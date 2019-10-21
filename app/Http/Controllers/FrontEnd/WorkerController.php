@@ -19,15 +19,15 @@ class WorkerController extends Controller
 
     public function index()
     {
-      $url = env('MAIN_HOST_URL').'api/get-categories-by-module/2';
+      $url = env('MAIN_HOST_URL').'api/get-stores-by-module-id/2';
       $method = 'GET';
-      $categories = $this->callApi($method, $url);
+      $stores = $this->callApi($method, $url);
 
       $url        = env('MAIN_HOST_URL').'api/get-offers-by-module/2';
       $method     = 'GET';
       $offers     = $this->callApi($method, $url);
 
-      return view('front-end.workers.index', compact('categories', 'offers'));
+      return view('front-end.workers.index', compact('stores', 'offers'));
     }
 
     public function subCategoryWorker($id)

@@ -25,51 +25,6 @@
                 </span>
               </div>
             </div>
-            <div class="sliding-div show-specific" sub-cat-id="{{ $subCategory->id }}">
-              <div class="sliding-category-box">
-                <span class="sliding-category-name">
-                  @if(app()->getLocale() == 'en')
-                    {{ $subCategory->name }}
-                  @else
-                    {{ $subCategory->name_arabic }}
-                  @endif
-                </span>
-              </div>
-            </div>
-            <div class="sliding-div show-specific" sub-cat-id="{{ $subCategory->id }}">
-              <div class="sliding-category-box">
-                <span class="sliding-category-name">
-                  @if(app()->getLocale() == 'en')
-                    {{ $subCategory->name }}
-                  @else
-                    {{ $subCategory->name_arabic }}
-                  @endif
-                </span>
-              </div>
-            </div>
-            <div class="sliding-div show-specific" sub-cat-id="{{ $subCategory->id }}">
-              <div class="sliding-category-box">
-                <span class="sliding-category-name">
-                  @if(app()->getLocale() == 'en')
-                    {{ $subCategory->name }}
-                  @else
-                    {{ $subCategory->name_arabic }}
-                  @endif
-                </span>
-              </div>
-            </div>
-            <div class="sliding-div show-specific" sub-cat-id="{{ $subCategory->id }}">
-              <div class="sliding-category-box">
-                <span class="sliding-category-name">
-                  @if(app()->getLocale() == 'en')
-                    {{ $subCategory->name }}
-                  @else
-                    {{ $subCategory->name_arabic }}
-                  @endif
-                </span>
-              </div>
-            </div>
-
           @endforeach
       </div>
     </div>

@@ -29,6 +29,7 @@ Route::get('get-offers-by-module/{id}', 'Api\OffersController@get_offers_by_modu
 
 Route::get('get-subcategories-by-category/{id}', 'Api\CategoriesController@get_subcategories_by_category_id');
 
+Route::get('get-stores-by-module-id/{id}', 'Api\StoresController@get_stores_by_module_id');
 Route::get('get-stores-by-subcategory/{id}', 'Api\StoresController@get_stores_by_subcategory_id');
 Route::get('get-store-detail/{id}', 'Api\StoresController@get_store_detail');
 Route::get('get-store-by-category/{category_id}', 'Api\StoresController@get_stores_by_category_id');

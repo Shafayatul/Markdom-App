@@ -8,19 +8,19 @@
   <div class="container">
     <div class="sliding-category">
       <div class="slider-area slider">
-        @foreach ($categories as $single_category)
+        @foreach ($stores as $single_store)
           <div class="sliding-div">
-            <a href="{{ url('sub-category-worker/'.$single_category->id) }}" class="sliding-div-a" >
+            <a href="{{ url('sub-category-worker/'.$single_store->id) }}" class="sliding-div-a" >
               <div class="sliding-category-box shadow">
                 <div class="sliding-category-img">
-                  <img src="{{ env('MAIN_HOST_URL').$single_category->image }}" alt="">
+                  <img src="{{ env('MAIN_HOST_URL').$single_store->image }}" alt="">
                 </div>
               </div>
               <p class="sliding-category-name">
                 @if(app()->getLocale() == 'en')
-                  {{ $single_category->name }}
+                  {{ $single_store->name }}
                 @else
-                  {{ $single_category->name_arabic }}
+                  {{ $single_store->name_arabic }}
                 @endif
               </p>
             </a>
