@@ -33,9 +33,9 @@
           <span class="product-amount">{{ $cart->price }}SR</span>
         </div>
         @endforeach
-        <input type="text" name="schedule_time_id" value="{{ $schedule_timspan_id }}">
-        <input type="text" name="service_type_id" value="{{ $service_type_id }}">
-        <input type="text" name="address_id" value="{{ $single_address->id }}" />
+        <input type="hidden" name="schedule_time_id" value="{{ $schedule_timspan_id }}">
+        <input type="hidden" name="service_type_id" value="{{ $service_type_id }}">
+          <input type="hidden" name="address_id" value="{{ $single_address->id }}" />
       </div>
 
 
@@ -74,7 +74,7 @@
         </div>
         <div class="payment-details-box">
           <div class="delivery-title"> <h1>Address</h1> </div>
-          <div class="delivery-description"> 
+          <div class="delivery-description">
                 @if(app()->getLocale() == 'en')
                   <p>{{ $user->name }}</p>
                   <p>{{ $single_address->flat_no }}, {{ $single_address->location }}, {{ $single_address->state->name }}, {{ $single_address->city->name }}</p>
@@ -102,7 +102,7 @@
           <div class="promo-input-div"> 
             <input class="promo-input promo_code" id="promo_code" type="text" name="promo_code"> 
           </div>
-            <input type="hidden" class="city_id" value="{{ $single_address->city->id }}" />
+              <input type="hidden" class="city_id" value="{{ $single_address->city->id }}" />
            
           <div class="promo-button"> 
             <button class="btn btn-success" type="button" name="button" id="promo_btn">{{ __('content.apply') }}</button> 

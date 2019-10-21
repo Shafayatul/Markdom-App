@@ -75,12 +75,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	// Route::get('/worker-cart', 'FrontEnd\WorkerController@workercart')->name('worker-cart');
 
 	Route::get('worker-schedule-time/{id}', 'FrontEnd\WorkerController@workerScheduleTime')->name('worker-schedule-time');
-		Route::get('address-select/{address_id}', 'FrontEnd\WorkerController@addressAdd')->name('worker-schedule-time');
+	Route::get('address-select/{address_id}', 'FrontEnd\WorkerController@addressAdd');
 
 	Route::get('/worker-place-holder/{id}', 'FrontEnd\WorkerController@workerPlaceOrder')->name('worker-place-holder');
 
 	Route::post('/worker-order-submit', 'FrontEnd\WorkerController@workerOrderSubmit')->name('worker-order-submit');
-
 	// Worker Address
 	Route::get('/worker-address', 'FrontEnd\WorkerController@addressesView');
 	Route::get('/worker-add-address', 'FrontEnd\WorkerController@addressView');

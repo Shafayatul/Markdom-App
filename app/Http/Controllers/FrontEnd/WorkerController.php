@@ -184,15 +184,14 @@ class WorkerController extends Controller
 
     public function workerScheduleTime($id)
     {
-      $product_id = Session::get('selected_product_id');
       Session::put('selected_service_schedule_id', $id);
-      return redirect('/worker-place-holder/'.$product_id);
+      return redirect('/worker-address');
     }
 
-    public function addressAdd($id)
+    public function addressAdd($address_id)
     {
       $product_id = Session::get('selected_product_id');
-      Session::put('address_id', $id);
+      Session::put('address_id', $address_id);
       return redirect('/worker-place-holder/'.$product_id);
     }
 
@@ -227,14 +226,19 @@ class WorkerController extends Controller
         $user = $this->callApi($user_method, $user_url, [], $user_headers);
         $address_id = Session::get('address_id');
 
-        $single_addres_url = env('MAIN_HOST_URL').'api/get-single-address/'.$address_id;
-        $single_addres_method = 'GET';
-        $single_addres_headers = [
-          'Authorization' => 'Bearer ' . Session::get('access_token'),
-          'Accept'        => 'application/json',
-        ];
-        $single_address = $this->callApi($single_addres_method, $single_addres_url, [], $single_addres_headers);
+        if($address_id != null || $address_id != ''){
+            $single_addres_url = env('MAIN_HOST_URL').'api/get-single-address/'.$address_id;
+            $single_addres_method = 'GET';
+            $single_addres_headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+            ];
+            $single_address = $this->callApi($single_addres_method, $single_addres_url, [], $single_addres_headers);
+        }else{
+          $single_address = null;
+        }
 
+        // dd($single_address);
         $schedule_timspan_id = Session::get('selected_service_schedule_id');
         $service_type_id     = Session::get('selected_service_type_id');
 
