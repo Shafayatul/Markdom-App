@@ -56,19 +56,29 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/order-notification','OrdersController@orderNotification')->name('order-notification');
 	Route::get('see-order-detail-by-driver/{driver_id}', 'FrontEnd\RestaurantsController@see_order_detail_by_driver');
 
-	Route::get('/worker', 'FrontEnd\WorkerController@index')->name('worker');
-	Route::get('/sub-category-worker/{id}', 'FrontEnd\WorkerController@subCategoryWorker');
-	Route::get('/sub-sub-category-worker/{id}', 'FrontEnd\WorkerController@subSubCategoryWorker');
-	Route::get('/worker-details/{id}', 'FrontEnd\WorkerController@workerDetails')->name('worker-details');
-	Route::get('/service-sub-category-worker/{id}', 'FrontEnd\WorkerController@serviceSubCategoryWorker')->name('service-sub-category-worker');
-	Route::get('product-by-service-sub-category/{id}', 'FrontEnd\WorkerController@productByServiceSubCategory')->name('product-by-service-sub-category');
-	Route::get('/worker-product-details/{id}', 'FrontEnd\WorkerController@workerProductDetails')->name('worker-product-details');
-	Route::get('/worker-service-delivery', 'FrontEnd\WorkerController@workerServiceDelivery')->name('worker-service-delivery');
-	Route::get('/worker-save-service-type/{id}', 'FrontEnd\WorkerController@workerSaveServiceType')->name('worker-save-service-type');
 
-	Route::get('/worker-service-time/{id}/{date?}', 'FrontEnd\WorkerController@workerServiceTime')->name('worker-service-time');
-	Route::get('/worker-cart', 'FrontEnd\WorkerController@workercart')->name('worker-cart');
-	Route::get('/worker-place-holder/{id}', 'FrontEnd\WorkerController@workerPlaceOrder')->name('worker-place-holder');
+
+
+	Route::get('/worker', 'FrontEnd\WorkerController@index')->name('worker');
+	Route::get('/service-category-by-worker/{id}', 'FrontEnd\WorkerController@service_category_show_by_store_id');
+	// Route::get('/sub-category-worker/{id}', 'FrontEnd\WorkerController@subCategoryWorker');
+	// Route::get('/sub-sub-category-worker/{id}', 'FrontEnd\WorkerController@subSubCategoryWorker');
+	// Route::get('/worker-details/{id}', 'FrontEnd\WorkerController@workerDetails')->name('worker-details');
+	Route::get('/service-sub-category-worker/{id}', 'FrontEnd\WorkerController@serviceSubCategoryWorker')->name('service-sub-category-worker');
+	Route::get('/service-sub-sub-by-service-sub-category/{id}', 'FrontEnd\WorkerController@serviceSubSubCategoryWorker')->name('service-sub-sub-by-service-sub-category');
+	Route::get('product-by-service-sub-sub-category/{id}', 'FrontEnd\WorkerController@productByServiceSubSubCategory')->name('product-by-service-sub-sub-category');
+	// Route::get('/worker-product-details/{id}', 'FrontEnd\WorkerController@workerProductDetails')->name('worker-product-details');
+	// Route::get('/worker-service-delivery', 'FrontEnd\WorkerController@workerServiceDelivery')->name('worker-service-delivery');
+	// Route::get('/worker-save-service-type/{id}', 'FrontEnd\WorkerController@workerSaveServiceType')->name('worker-save-service-type');
+
+	// Route::get('/worker-service-time/{id}/{date?}', 'FrontEnd\WorkerController@workerServiceTime')->name('worker-service-time');
+	// Route::get('/worker-cart', 'FrontEnd\WorkerController@workercart')->name('worker-cart');
+	// Route::get('/worker-place-holder/{id}', 'FrontEnd\WorkerController@workerPlaceOrder')->name('worker-place-holder');
+
+
+
+
+
 
 	Route::get('/add-to-cart-service/{id}', 'FrontEnd\WorkerController@addToCartService')->name('add-to-cart-service');
 

@@ -10,10 +10,10 @@
       <div class="slider-area slider">
         @foreach ($stores as $single_store)
           <div class="sliding-div">
-            <a href="{{ url('sub-category-worker/'.$single_store->id) }}" class="sliding-div-a" >
+            <a href="{{ url('/service-category-by-worker/'.$single_store->id) }}" class="sliding-div-a" >
               <div class="sliding-category-box shadow">
                 <div class="sliding-category-img">
-                  <img src="{{ env('MAIN_HOST_URL').$single_store->image }}" alt="">
+                  <img src="{{ env('MAIN_HOST_URL').$single_store->preview_image }}" alt="">
                 </div>
               </div>
               <p class="sliding-category-name">
