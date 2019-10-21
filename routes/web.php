@@ -141,6 +141,14 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('driver-order/{id}', 'DriverOrdersController@show');
 	Route::delete('driver-order-delete/{id}', 'DriverOrdersController@destroy');
 
+	Route::get('store-order', 'StoreOrdersController@index');
+	Route::get('store-order/{id}', 'StoreOrdersController@show');
+	Route::delete('//store-order-delete/{id}', 'StoreOrdersController@destroy');
+
+	Route::get('worker-orders', 'WorkerOrdersController@index');
+	Route::get('worker-order/{id}', 'WorkerOrdersController@show');
+	Route::delete('worker-order-delete/{id}', 'WorkerOrdersController@destroy');
+
 	Route::get('order-in-store/{id}', 'StoresController@orderShowByStoreId');
 
 

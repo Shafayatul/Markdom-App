@@ -299,6 +299,14 @@
             </li>
 
             <li>
+                <a href="{{ url('/store-order') }}"><i class="fa fa-dashboard fa-fw"></i> Store Orders</a>
+            </li>
+
+            <li>
+                <a href="{{ url('/worker-orders') }}"><i class="fa fa-dashboard fa-fw"></i> Worker Orders</a>
+            </li>
+
+            <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Days<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
