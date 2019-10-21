@@ -79,6 +79,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
 	Route::get('/worker-place-holder/{id}', 'FrontEnd\WorkerController@workerPlaceOrder')->name('worker-place-holder');
 
+	Route::post('/worker-order-submit', 'FrontEnd\WorkerController@workerOrderSubmit')->name('worker-order-submit');
+
 	// Worker Address
 	Route::get('/worker-address', 'FrontEnd\WorkerController@addressesView');
 	Route::get('/worker-add-address', 'FrontEnd\WorkerController@addressView');

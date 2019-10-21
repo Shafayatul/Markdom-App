@@ -236,8 +236,9 @@ class WorkerController extends Controller
         $single_address = $this->callApi($single_addres_method, $single_addres_url, [], $single_addres_headers);
 
         $schedule_timspan_id = Session::get('selected_service_schedule_id');
+        $service_type_id     = Session::get('selected_service_type_id');
 
-        return view('front-end.workers.worker-place-order', compact('body', 'user', 'schedule_timspan_id', 'single_address', 'address_id'));
+        return view('front-end.workers.worker-place-order', compact('body', 'user', 'schedule_timspan_id', 'single_address', 'address_id', 'service_type_id'));
       }else{
         return redirect('/user-login');
       }
@@ -302,6 +303,7 @@ class WorkerController extends Controller
 
     public function addressSubmit(Request $request)
     {
+      if ($this->check_expiration()) {
       $url = env('MAIN_HOST_URL').'api/add-address';
       $method = 'POST';
       $headers = [
@@ -320,5 +322,31 @@ class WorkerController extends Controller
           ];
       $body = $this->callApi($method, $url, $parameters, $headers);
       return redirect('/worker-address');
+      }else{
+        return redirect('/user-login');
+      }
     }
+
+    public function workerOrderSubmit(Request $request)
+    {
+      if ($this->check_expiration()) {
+      $url = env('MAIN_HOST_URL').'api/worker-place-order';
+      $method = 'POST';
+      $headers = [
+            'Authorization' => 'Bearer ' . Session::get('access_token'),
+            'Accept'        => 'application/json',
+        ];
+      $parameters = [
+            'schedule_time_id' => $request->schedule_time_id,
+            'service_type_id'  => $request->service_type_id,
+            'address_id'       => $request->address_id,
+            'promo_code'       => $request->promo_code
+
+          ];
+      $body = $this->callApi($method, $url, $parameters, $headers);
+      return view('front-end.workers.worker-notification', compact('body'));
+    }else{
+      return redirect('/user-login');
+    }
+  }
 }
