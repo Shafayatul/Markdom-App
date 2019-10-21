@@ -95,6 +95,7 @@ Route::group(['middleware' => ['auth:api']], function() {
 	Route::get('get-single-address/{id}','Api\AddressController@get_single_address');
 
 	//Order Section
+	Route::post('worker-place-order', 'Api\OrdersController@worker_place_order');
 	Route::post('place-order','Api\OrdersController@place_order');
 	Route::get('get-order-history','Api\OrdersController@history');
 	Route::get('get-order-summary/{city_id}/{promo_code?}','Api\OrdersController@get_order_summary');

@@ -23,7 +23,7 @@
           </div>
         </div>
         @endforeach
-
+        <input type="hidden" name="time_slot" value="{{ $schedule_timspan_id }}">
         {{-- <div class="product-details-box shadow">
           <div class="product-image-box shadow">
             <img src="{{ asset('front-end-assets/images/b5.jpg') }}" alt="">
@@ -36,13 +36,27 @@
       </div>
       <div class="payment-details-div shadow">
         <div class="payment-details-box">
-          <div class="payment-title"> <h1>{{ __('content.payment_method') }}</h1> </div>
-          <div class="payment-description"> <p class="font-p">COD</p> </div>
+          <div class="payment-title">  </div>
+          <div class="payment-description"> 
+            <a href="{{ url('/worker-address') }}">
+              <button class="btn btn-success btn-sm">Add Delivery Address</button>
+            </a> 
+          </div>
         </div>
         <div class="payment-details-box">
-          <div class="delivery-title"> <h1>{{ __('content.delivery_method') }}</h1> </div>
-          <div class="delivery-description"> <p class="font-p">Customer Location</p></div>
-          <div class="delivery-cost"> <p class="font-p">20SR</p></div>
+          <div class="delivery-title"> <h1>Address</h1> </div>
+          <div class="delivery-description"> 
+                @if(app()->getLocale() == 'en')
+                  <p>{{ $user->name }}</p>
+                  <p>{{ $single_address->flat_no }}, {{ $single_address->location }}, {{ $single_address->state->name }}, {{ $single_address->city->name }}</p>
+                  <p>Phone No : {{ $single_address->phone_no }}</p>
+                @else
+                  <p>{{ $user->name }}</p>
+                  <p>{{ $single_address->flat_no }}, {{ $single_address->location_arabic }}, {{ $single_address->state->name_arabic }}, {{ $single_address->city->name_arabic }}</p>
+                  <p>Phone No : {{ $single_address->phone_no }}</p>
+                @endif
+          </div>
+          <div class="delivery-cost"> <p class="font-p"></p></div>
         </div>
         <div class="payment-details-box">
           <div class="payment-title"> <h1>{{ __('content.date') }}</h1> </div>

@@ -222,4 +222,89 @@ class OrdersController extends Controller
         return response()->json($data);
 
     }
+
+    public function worker_place_order(Request $request)
+    {
+        $total_price = 0;
+        $final_price = 0;
+        $cart_ids = [];
+        $city_id = Address::where('id', $request->input('address_id'))->first()->city_id;
+        $city  = City::where('id', $city_id)->first();
+        $shipping_fees  = $city->delivery_fees;
+        if($city->cod == 1){
+            $time_stamp = time()+(3*24*60*60);
+            $estimated_time = date("l", $time_stamp).' '.date('M d,Y', $time_stamp); ;
+        }else{
+            $time_stamp = time()+(5*24*60*60);
+            $estimated_time = date("l", $time_stamp).' '.date('M d,Y', $time_stamp); ;
+        }
+
+        $cart=Cart::where('user_id', Auth::id())->where('is_cart', '1')->latest()->get();
+        foreach ($cart as $single_cart) {
+            $total_price = $total_price + ($single_cart->quantity*$single_cart->unit_price);
+            array_push($cart_ids, $single_cart->id);
+        }
+        $cart_ids = implode(',', $cart_ids);
+        
+        $promo_code_cnt = PromoCode::where('code', $request->input("promo_code"))->count();
+        if (($request->input("promo_code") !== null) && ($promo_code_cnt > 0)) {
+            $promo_code = PromoCode::where('code', $request->input("promo_code"))->first();
+            $only_promo_code = $promo_code->code;
+            $discount_type = $promo_code->type;
+            $discount_percent = $promo_code->percent;
+            $discount_amount = $promo_code->amount;
+
+            if ($discount_type == "Amount") {
+              $final_price = $total_price - $discount_amount;
+            }else{
+              $final_price = $total_price - (($total_price*$discount_percent)/100);
+            }
+        }else{
+            $final_price = $total_price;
+            $discount_percent = '';
+            $discount_amount = '';
+            $only_promo_code = '';
+        }
+
+        $final_price = $final_price + $shipping_fees;
+
+        $cart = Cart::where('user_id', Auth::id())->where('is_cart', '1')->update(['is_cart'=>'0']);
+        $order_status = OrderStatus::first()->id;
+
+
+        $order                   = new Order;
+        $order->user_id          = Auth::id();
+        $order->cart_ids         = $cart_ids;
+        $order->total_price      = $total_price;
+        $order->address_id       = $request->input("address_id");
+        $order->schedule_time_id = $request->input("schedule_time_id");
+        $order->service_type_id  = $request->input("service_type_id");
+        $order->final_price      = $final_price;
+        $order->order_status_id  = $order_status;
+        $order->estimated_time   = $estimated_time;
+        $order->discount_percent = $discount_percent;
+        $order->discount_amount  = $discount_amount;
+        $order->promo_code       = $only_promo_code;
+        $order->save();
+        if ($order) {
+
+        $order_status_obj               = OrderStatus::first();
+
+        $OrderActivity                  = new OrderActivity;
+        $OrderActivity->order_id        = $order->id;
+        $OrderActivity->status          = $order_status_obj->order_status;
+        $OrderActivity->status_arabic   = $order_status_obj->order_status_arabic;
+        $OrderActivity->save();
+
+
+            $data = [];
+            $data['order'] = $order;
+            $data['estimated_time'] = $estimated_time;
+            return response()->json($data);
+        }else{
+            return response()->json(
+                ['message' => "Failed"]
+            );
+        }
+    }
 }

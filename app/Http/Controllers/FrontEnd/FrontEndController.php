@@ -444,7 +444,7 @@ class FrontEndController extends Controller
     return back();
   }
 
-      public function trackOrder($id)
+    public function trackOrder($id)
     {
       if ($this->check_expiration()) {
         $headers = [

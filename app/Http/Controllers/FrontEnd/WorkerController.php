@@ -70,7 +70,7 @@ class WorkerController extends Controller
       $url_schedule           = env('MAIN_HOST_URL').'api/get-all-schedule-type-by-lang/'.$lang;
       $method_schedule        = 'GET';
       $schedules              = $this->callApi($method_schedule, $url_schedule);
-      dd($slot);
+      // dd($slot);
 
       $product_id = Session::get('selected_product_id');
       return view('front-end.workers.worker-delivery-time', compact('id', 'slot', 'schedules', 'current_date', 'product_id'));
@@ -189,6 +189,13 @@ class WorkerController extends Controller
       return redirect('/worker-place-holder/'.$product_id);
     }
 
+    public function addressAdd($id)
+    {
+      $product_id = Session::get('selected_product_id');
+      Session::put('address_id', $id);
+      return redirect('/worker-place-holder/'.$product_id);
+    }
+
     // public function workercart()
     // {
     //   //
@@ -218,8 +225,19 @@ class WorkerController extends Controller
               'Accept'        => 'application/json',
           ];
         $user = $this->callApi($user_method, $user_url, [], $user_headers);
+        $address_id = Session::get('address_id');
 
-        return view('front-end.workers.worker-place-order', compact('body', 'user'));
+        $single_addres_url = env('MAIN_HOST_URL').'api/get-single-address/'.$address_id;
+        $single_addres_method = 'GET';
+        $single_addres_headers = [
+          'Authorization' => 'Bearer ' . Session::get('access_token'),
+          'Accept'        => 'application/json',
+        ];
+        $single_address = $this->callApi($single_addres_method, $single_addres_url, [], $single_addres_headers);
+
+        $schedule_timspan_id = Session::get('selected_service_schedule_id');
+
+        return view('front-end.workers.worker-place-order', compact('body', 'user', 'schedule_timspan_id', 'single_address', 'address_id'));
       }else{
         return redirect('/user-login');
       }
@@ -258,5 +276,49 @@ class WorkerController extends Controller
         return true;
       }
       return false;
+    }
+
+    //Address Section
+    public function addressesView()
+    {
+      $module_id = Session::get('module_id');
+      $address_method = 'GET';
+      $address_url = env('MAIN_HOST_URL').'api/get-addresses';
+      $address_headers = [
+            'Authorization' => 'Bearer ' . Session::get('access_token'),
+            'Accept'        => 'application/json',
+        ];
+      $address = $this->callApi($address_method, $address_url, [], $address_headers);
+      return view('front-end.workers.address', compact('address', 'module_id'));
+    }
+
+    public function addressView()
+    {
+      $url_country = env('MAIN_HOST_URL').'api/country-list';
+      $method_country = 'GET';
+      $country = $this->callApi($method_country, $url_country);
+      return view('front-end.workers.add-address', compact('country'));
+    }
+
+    public function addressSubmit(Request $request)
+    {
+      $url = env('MAIN_HOST_URL').'api/add-address';
+      $method = 'POST';
+      $headers = [
+            'Authorization' => 'Bearer ' . Session::get('access_token'),
+            'Accept'        => 'application/json',
+        ];
+      $parameters = [
+            'flat_no'       => $request->flat_no,
+            'location'      => $request->location,
+            'country_id'    => $request->country_id,
+            'state_id'      => $request->state_id,
+            'city_id'       => $request->city_id,
+            'pin_code'      => $request->pin_code,
+            'phone_no'      => $request->phone_no
+
+          ];
+      $body = $this->callApi($method, $url, $parameters, $headers);
+      return redirect('/worker-address');
     }
 }
