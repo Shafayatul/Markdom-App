@@ -45,6 +45,46 @@ Worker Orders
                                     <td>{{ $item->estimated_time }}</td>
                                     <td>
                                         <a href="{{ url('/worker-order/' . $item->id) }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#order_status_{{ $item->id }}"><i class="fa fa-edit"></i> Status</button>
+
+
+                                        <div id="order_status_{{ $item->id }}" class="modal fade" role="dialog">
+                                          <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                             <div class="modal-content">
+                                                <form action="{{route('worker-order-status-change')}}" method="post" class="form-horizontal" name="order-status-form" id="order-form-{{$item->id}}">
+                                                    @csrf
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Status</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="order-status" class="control-label col-md-3">Order Status</label>
+                                                            <div class="col-md-9">
+                                                                <select name="order_status_id" order_id="{{$item->id}}" id="current-order-status-{{$item->id}}" class="form-control" required >
+                                                                    <option value="" >Select Order Status</option>
+                                                                    @foreach($orderstatus as $key => $value)
+                                                                        <option value="{{$key}}">{{$value}}</option>
+                                                                    @endforeach
+                                                                    <input type="hidden" name="order_id" value="{{$item->id}}">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-success save-status-change" order-id="{{$item->id}}" user-id="{{ $item->user_id}}">Save</button>
+                                    
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                            </div> 
+                                        </div>
                                         {{-- <a href="{{ url('/orders/' . $item->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a> --}}
                                         {!! Form::open([
                                             'method'=>'DELETE',
@@ -71,4 +111,17 @@ Worker Orders
         </div>
     </div>
 </div>
+@endsection
+@section('footer-script')
+  <script>
+    $(document).ready(function(){        
+      $('.save-status-change').click(function(){
+        var user_id       = $(this).attr('user-id');
+        var order_id      = $(this).attr('order-id');
+        var notification  = 'Order status changed to ' + $('#current-order-status-'+order_id+' option:selected').text();
+        $("#order-form-"+order_id).submit();
+      });
+
+    });
+  </script>
 @endsection

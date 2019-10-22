@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\WorkerPlaceOrder;
+use App\OrderStatus;
 use Auth;
 
 class WorkerOrdersController extends Controller
@@ -18,7 +19,8 @@ class WorkerOrdersController extends Controller
         $perPage = 25;
         $user_id = Auth::id();
         $workerorders = WorkerPlaceOrder::where('user_id', $user_id)->latest()->paginate($perPage);
-        return view('worker-orders.index', compact('workerorders'));
+        $orderstatus = OrderStatus::pluck('order_status', 'id');
+        return view('worker-orders.index', compact('workerorders', 'orderstatus'));
     }
 
     /**
@@ -51,7 +53,8 @@ class WorkerOrdersController extends Controller
     public function show($id)
     {
         $workerorder = WorkerPlaceOrder::where('id', $id)->first();
-        return view('worker-orders.show', compact('workerorder'));
+        $orderstatus = OrderStatus::pluck('order_status', 'id');
+        return view('worker-orders.show', compact('workerorder', 'orderstatus'));
     }
 
     /**
@@ -88,5 +91,14 @@ class WorkerOrdersController extends Controller
         WorkerPlaceOrder::destroy($id);
 
         return redirect('worker-orders')->with('success', 'Store Orders deleted!');
+    }
+
+    public function workerOrderStatusChange(Request $request)
+    {
+        $id = $request->order_id;
+        $order = WorkerPlaceOrder::where('id',$id)->first();
+        $order->order_status_id = $request->order_status_id;
+        $order->save();
+        return redirect('worker-orders')->with('success', 'Order Status updated!');
     }
 }
