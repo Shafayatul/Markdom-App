@@ -29,6 +29,7 @@ Worker Orders
                                     <th>Total Price</th>
                                     <th>Image</th>
                                     <th>Delivery Time</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -43,6 +44,11 @@ Worker Orders
                                         @endif
                                     </td>
                                     <td>{{ $item->estimated_time }}</td>
+                                    <td>
+                                        @if(isset($orderstatus[$item->order_status_id]))
+                                            {{ $orderstatus[$item->order_status_id] }}
+                                        @endif
+                                    </td>
                                     <td>
                                         <a href="{{ url('/worker-order/' . $item->id) }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
 
