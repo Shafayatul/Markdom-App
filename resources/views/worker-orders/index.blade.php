@@ -13,7 +13,7 @@ Worker Orders
     <!-- /.row -->
     @include('layouts.admin_partial.alert')
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12">
 
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -92,7 +92,8 @@ Worker Orders
                                             </div> 
                                         </div>
                                         {{-- <a href="{{ url('/orders/' . $item->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a> --}}
-                                        {!! Form::open([
+                                        <a href="{{ url('/worker-review/' . $item->user_id) }}" title="Add Review"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Add Review</button></a>
+                                        {{-- {!! Form::open([
                                             'method'=>'DELETE',
                                             'url' => ['/worker-order-delete', $item->id],
                                             'style' => 'display:inline'
@@ -103,7 +104,7 @@ Worker Orders
                                                     'title' => 'Delete Order',
                                                     'onclick'=>'return confirm("Confirm delete?")'
                                             )) !!}
-                                        {!! Form::close() !!}
+                                        {!! Form::close() !!} --}}
                                     </td>
                                 </tr>
                             @endforeach

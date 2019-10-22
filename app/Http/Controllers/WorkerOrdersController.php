@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\WorkerPlaceOrder;
 use App\OrderStatus;
 use Auth;
+use App\Review;
 
 class WorkerOrdersController extends Controller
 {
@@ -100,5 +101,20 @@ class WorkerOrdersController extends Controller
         $order->order_status_id = $request->order_status_id;
         $order->save();
         return redirect('worker-orders')->with('success', 'Order Status updated!');
+    }
+
+    public function reviewCreate($id)
+    {
+        return view('worker-orders.add-review-worker', compact('id'));
+    }
+
+    public function submitReview(Request $request)
+    {
+        $user_id = $request->user_id;
+        $requestData = $request->all();
+        
+        Review::create($requestData + ['user_id'=> $user_id]);
+
+        return redirect('/worker-orders')->with('success', 'Review added!');
     }
 }
