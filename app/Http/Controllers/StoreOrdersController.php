@@ -123,6 +123,8 @@ class StoreOrdersController extends Controller
 
     public function addShipmentToSmsa($order_id, $user_id, $address_id)
     {
+
+
         $user_data          = User::where('id', $user_id)->first();
         $order_data         = Order::where('id', $order_id)->first();
         $address_data       = Address::where('id', $address_id)->first();
@@ -140,14 +142,16 @@ class StoreOrdersController extends Controller
         $name               = $user_data->name;
         $email              = $user_data->email;
         $country            = $country_data->code;
-        $city               = $state_data->state;
+        $city               = $state_data->name;
         $mobile             = $address_data->phone_no;
-        $address1           = "Neighbor ".$city_data->city.", ";
+        $address1           = "Neighbor ".$city_data->name.", ";
         $address2           = "Location: ".$address_data->location.", ".$address_data->pin_code;
         $ship_type          = "DLV";
         $pcs                = 1;
         $weight             = '0.5';
         $item_description   = 'Mobile case';
+        // dd($address1);
+
         Smsa::nullValues('');
         $shipmentData = [
                 'refNo' => $refNo, // shipment reference in your application
@@ -166,13 +170,13 @@ class StoreOrdersController extends Controller
             ];
         $shipment = Smsa::addShipment($shipmentData);
         $awbNumber = $shipment->getAddShipmentResult();
-
+        // dd($awbNumber);
 
         if (is_numeric($awbNumber)) {
 
             $order                  = Order::where('id', $order_id)->first();
             $order->smsa_awab_number = $awbNumber;
-            $order->order_status    = 5;
+            $order->order_status_id    = 5;
             $order->save();
 
         }else{
@@ -182,7 +186,7 @@ class StoreOrdersController extends Controller
 
                 $order                  = Order::where('id', $order_id)->first();
                 $order->smsa_awab_number = $oldawbNumber[1];
-                $order->order_status    = 5;
+                $order->order_status_id    = 5;
                 $order->save();
             }else{
                 dd($awbNumber);
