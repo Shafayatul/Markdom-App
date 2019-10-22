@@ -95,8 +95,8 @@ Store Orders
                                         @if(($item->smsa_awab_number != '') || ($item->smsa_awab_number != null))
                                           <a class="btn btn-success btn-sm" href="http://track.smsaexpress.com/getPDF2.aspx?awbNo={{$item->smsa_awab_number}}" target="_blank">SMSA PDF</a>
                                         @endif
-                                        {{-- <a href="{{ url('/orders/' . $item->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a> --}}
-                                        {!! Form::open([
+                                        <a href="{{ url('/review/' . $item->user_id) }}" title="Add Review"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Add Review</button></a>
+                                        {{-- {!! Form::open([
                                             'method'=>'DELETE',
                                             'url' => ['/store-order-delete', $item->id],
                                             'style' => 'display:inline'
@@ -107,7 +107,7 @@ Store Orders
                                                     'title' => 'Delete Order',
                                                     'onclick'=>'return confirm("Confirm delete?")'
                                             )) !!}
-                                        {!! Form::close() !!}
+                                        {!! Form::close() !!} --}}
                                     </td>
                                 </tr>
                             @endforeach

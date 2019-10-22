@@ -195,6 +195,8 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::post('store-order-status-change', 'StoreOrdersController@storeOrderStatusChange')->name('store-order-status-change');
 	Route::get('/add-shipment-to-smsa/{order_id}/{user_id}/{address_id}', 'StoreOrdersController@addShipmentToSmsa');
+	Route::get('review/{id}', 'StoreOrdersController@reviewCreate');
+	Route::post('/submit-reviews', 'StoreOrdersController@submitReview');
 });
 
 

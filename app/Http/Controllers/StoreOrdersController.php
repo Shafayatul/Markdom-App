@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Storage;
 use Response;
 use App\User;
 use App\Address;
+use App\Review;
 
 use SmsaSDK\Smsa;
 
@@ -195,5 +196,20 @@ class StoreOrdersController extends Controller
         }
 
         return back();
+    }
+
+    public function reviewCreate($id)
+    {
+        return view('store-orders.add-review-store', compact('id'));
+    }
+
+    public function submitReview(Request $request)
+    {
+        $user_id = $request->user_id;
+        $requestData = $request->all();
+        
+        Review::create($requestData + ['user_id'=> $user_id]);
+
+        return redirect('/store-order')->with('success', 'Review added!');
     }
 }
