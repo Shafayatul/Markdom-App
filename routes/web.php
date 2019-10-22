@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/add-shipment-to-smsa/{order_id}/{user_id}/{address_id}', 'FrontEnd\FrontEndController@addShipmentToSmsa');
+
 //FrontEnd Route Starts From Here
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function()
 {
@@ -192,6 +192,9 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('service-sub-categories', 'ServiceSubCategoriesController');
 	Route::resource('service-sub-sub-categories', 'ServiceSubSubCategoriesController');
 	Route::resource('promo-codes', 'PromoCodesController');
+
+	Route::post('store-order-status-change', 'StoreOrdersController@storeOrderStatusChange')->name('store-order-status-change');
+	Route::get('/add-shipment-to-smsa/{order_id}/{user_id}/{address_id}', 'StoreOrdersController@addShipmentToSmsa');
 });
 
 
