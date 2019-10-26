@@ -59,7 +59,7 @@ class OrdersController extends Controller
         $module = Module::where('name', 'Restuarant')->first();
 
         if(isset($module) != null){
-            $stores     = Store::where('module_id', $module->id)->where('store_owner_id', $id)->pluck('name', 'id');
+            $stores     = Store::where('module_id', $module->id)->pluck('name', 'id');
         }else{
             $stores     = [];
         }
