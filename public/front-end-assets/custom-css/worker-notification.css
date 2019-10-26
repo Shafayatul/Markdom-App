@@ -82,6 +82,10 @@ textarea {
   textarea {
     width: 100%;
   }
+
+  .image-div img{
+    width: 50%;
+  }
 }
 
 @media only screen and (min-device-width : 361px) and (max-device-width : 480px) {

@@ -36,7 +36,7 @@
     @foreach($schedules as $key=>$value)
     <div class="morning-div">
       <div class="morning-timing-title-box text-left">
-        <span class="icon"><i class="fa fa-check"></i></span>
+        <span class="icon"><img src="{{ asset('front-end-assets/images/sun.jpg') }}"> </span>
         <span class="morning-title">
           <h2>
             {{ $value }}

@@ -37,7 +37,7 @@
 #grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 3vw;
+  grid-gap: 1vw;
   }
 #grid > a {
   height: 150px;
@@ -52,6 +52,8 @@
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
+  margin-left:5%;
+  margin-right: 5%; 
 }
 
 .title {

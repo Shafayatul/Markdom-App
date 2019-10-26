@@ -12,7 +12,9 @@
       <form action="{{ route('worker-order-submit') }}" method="POST">
         @csrf
       <div class="product-details-div shadow">
-        
+          <div class="shipment">
+            <h3>Shipment</h3>
+          </div> 
         @foreach($body as $cart)
         {{-- <div class="product-details-box shadow">
           <div class="product-image-box shadow">
@@ -24,13 +26,32 @@
             <span class="total-product">{{ $cart->quantity }}</span>
           </div>
         </div> --}}
-        <div class="product-details-box shadow">
+        {{-- <div class="product-details-box shadow">
           <div class="product-image-box shadow">
             <img src="{{ asset(env('MAIN_HOST_URL').$cart->preview_image) }}" alt="">
           </div>
           <span class="service-name">{{ $cart->product_name }} </span>
           <span class="total-amount">{{ $cart->quantity }}</span>
           <span class="product-amount">{{ $cart->price }}SR</span>
+        </div> --}}
+
+        <div id="product-details">
+                  
+          <div class="product-details-box shadow">
+           
+            <div class="product-image-box shadow">
+              <img src="{{ asset(env('MAIN_HOST_URL').$cart->preview_image) }}" alt="">
+            </div>
+            <span class="service-name">{{ $cart->product_name }}
+            <br> 
+               <span class="product-amount">{{ $cart->price }}SR</span>
+
+            </span>
+            
+
+            <span class="total-amount">{{ $cart->quantity }}</span>
+           
+          </div>
         </div>
         @endforeach
         <input type="hidden" name="schedule_time_id" value="{{ $schedule_timspan_id }}">
