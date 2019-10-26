@@ -227,6 +227,9 @@ Route::middleware(['auth'])->group(function () {
 		Route::resource('stores', 'StoresController');
 		Route::get('store-order', 'StoreOrdersController@index');
 		Route::get('store-order/{id}', 'StoreOrdersController@show');
+
+		Route::get('order-in-store/{id}', 'StoresController@orderShowByStoreId');
+
 		Route::resource('days', 'DaysController');
 		Route::resource('schedule-types', 'ScheduleTypesController');
 
