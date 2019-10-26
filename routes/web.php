@@ -127,83 +127,114 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
-	Route::resource('categories', 'CategoriesController');
 	Route::get('get-categories-list', 'AjaxController@getCategoryList');
 	Route::get('get-subcategories-list', 'AjaxController@getSubCategoryList');
 	Route::get('get-products-list', 'AjaxController@getProductsList');
 	Route::get('get-product-data', 'AjaxController@getProductData');
 	Route::get('get-discount-data', 'AjaxController@getDiscountData');
-	Route::resource('sub-categories', 'SubCategoriesController');
-	Route::resource('sub-sub-categories', 'SubSubCategoriesController');
-	Route::resource('stores', 'StoresController');
 
-	Route::get('driver-orders', 'DriverOrdersController@index');
-	Route::get('driver-order/{id}', 'DriverOrdersController@show');
-	Route::delete('driver-order-delete/{id}', 'DriverOrdersController@destroy');
+	Route::group(['middleware' => ['role:admin']], function () {
 
-	Route::get('store-order', 'StoreOrdersController@index');
-	Route::get('store-order/{id}', 'StoreOrdersController@show');
-	Route::delete('//store-order-delete/{id}', 'StoreOrdersController@destroy');
+		Route::resource('categories', 'CategoriesController');
 
-	Route::get('worker-orders', 'WorkerOrdersController@index');
-	Route::get('worker-order/{id}', 'WorkerOrdersController@show');
-	Route::delete('worker-order-delete/{id}', 'WorkerOrdersController@destroy');
-
-	Route::get('order-in-store/{id}', 'StoresController@orderShowByStoreId');
+		Route::resource('sub-categories', 'SubCategoriesController');
+		Route::resource('sub-sub-categories', 'SubSubCategoriesController');
+		Route::resource('stores', 'StoresController');
 
 
-	Route::resource('products', 'ProductsController');
-	Route::resource('service-types', 'ServiceTypesController');
-	Route::resource('reviews', 'ReviewsController');
-	Route::resource('orders', 'OrdersController');
-	Route::resource('offers', 'OffersController');
-	Route::resource('days', 'DaysController');
-	Route::resource('schedule-types', 'ScheduleTypesController');
+
+		Route::get('store-order', 'StoreOrdersController@index');
+		Route::get('store-order/{id}', 'StoreOrdersController@show');
+		Route::delete('/store-order-delete/{id}', 'StoreOrdersController@destroy');
+
+		Route::get('worker-orders', 'WorkerOrdersController@index');
+		Route::get('worker-order/{id}', 'WorkerOrdersController@show');
+		Route::delete('worker-order-delete/{id}', 'WorkerOrdersController@destroy');
+
+		Route::get('order-in-store/{id}', 'StoresController@orderShowByStoreId');
 
 
-	Route::resource('roles', 'RolesController');
-	Route::resource('users', 'UsersController');
-	Route::post('/assign-user', 'UsersController@userAssigned')->name('assign-user');
-	Route::get('/user-active/{id}', 'UsersController@userActivated');
-	Route::get('/user-inactive/{id}', 'UsersController@userInactivated');
-	Route::get('/password-change', 'UsersController@passwordChangeView');
-	Route::post('/password-changed', 'UsersController@passwordChanged')->name('password-change');
-
-	Route::get('/schedule/{id}', 'SchedulesController@index');
-	Route::get('/schedules/{id}/edit', 'SchedulesController@edit');
-	Route::get('/schedules/{day_id}/{store_id}', 'SchedulesController@show');
-	Route::get('/schedules/create', 'SchedulesController@create');
-	Route::post('/schedules', 'SchedulesController@store');
-	Route::delete('/schedules/{id}', 'SchedulesController@destroy');
-
-	// Route::resource('schedules', 'SchedulesController');
-	Route::patch('/schedules/{id}', 'SchedulesController@update');
-	Route::resource('booked-schedules', 'BookedSchedulesController');
-	Route::resource('modules', 'ModulesController');
-	Route::resource('worker-service-costs', 'WorkerServiceCostsController');
-	Route::resource('countries', 'CountriesController');
-	Route::resource('states', 'StatesController');
-	Route::resource('cities', 'CitiesController');
-	Route::resource('addresses', 'AddressesController');
-	Route::resource('payment-types', 'PaymentTypesController');
-	Route::resource('order-status', 'OrderStatusController');
-	Route::resource('order-activities', 'OrderActivitiesController');
-	Route::resource('service-categories', 'ServiceCategoriesController');
-	Route::resource('service-sub-categories', 'ServiceSubCategoriesController');
-	Route::resource('service-sub-sub-categories', 'ServiceSubSubCategoriesController');
-	Route::resource('promo-codes', 'PromoCodesController');
+		Route::resource('products', 'ProductsController');
+		Route::resource('service-types', 'ServiceTypesController');
+		Route::resource('reviews', 'ReviewsController');
+		Route::resource('orders', 'OrdersController');
 
 
-	Route::post('store-order-status-change', 'StoreOrdersController@storeOrderStatusChange')->name('store-order-status-change');
-	Route::get('/add-shipment-to-smsa/{order_id}/{user_id}/{address_id}', 'StoreOrdersController@addShipmentToSmsa');
-	Route::get('review/{id}', 'StoreOrdersController@reviewCreate');
-	Route::post('/submit-reviews', 'StoreOrdersController@submitReview');
+		//Driver Order Section
+		Route::get('driver-orders', 'DriverOrdersController@index');
+		Route::get('driver-order/{id}', 'DriverOrdersController@show');
+		Route::delete('driver-order-delete/{id}', 'DriverOrdersController@destroy');
+
+		Route::resource('offers', 'OffersController');
+		Route::resource('days', 'DaysController');
+		Route::resource('schedule-types', 'ScheduleTypesController');
 
 
-	Route::post('worker-order-status-change', 'WorkerOrdersController@workerOrderStatusChange')->name('worker-order-status-change');
-	Route::get('worker-review/{id}', 'WorkerOrdersController@reviewCreate');
-	Route::post('/worker-submit-reviews', 'WorkerOrdersController@submitReview');
+		Route::resource('roles', 'RolesController');
+		Route::resource('users', 'UsersController');
+
+		Route::post('/assign-user', 'UsersController@userAssigned')->name('assign-user');
+		Route::get('/user-active/{id}', 'UsersController@userActivated');
+		Route::get('/user-inactive/{id}', 'UsersController@userInactivated');
+		Route::get('/password-change', 'UsersController@passwordChangeView');
+		Route::post('/password-changed', 'UsersController@passwordChanged')->name('password-change');
+
+		Route::get('/schedule/{id}', 'SchedulesController@index');
+		Route::get('/schedules/{id}/edit', 'SchedulesController@edit');
+		Route::get('/schedules/{day_id}/{store_id}', 'SchedulesController@show');
+		Route::get('/schedules/create', 'SchedulesController@create');
+		Route::post('/schedules', 'SchedulesController@store');
+		Route::delete('/schedules/{id}', 'SchedulesController@destroy');
+
+		// Route::resource('schedules', 'SchedulesController');
+		Route::patch('/schedules/{id}', 'SchedulesController@update');
+		Route::resource('booked-schedules', 'BookedSchedulesController');
+		Route::resource('modules', 'ModulesController');
+		Route::resource('worker-service-costs', 'WorkerServiceCostsController');
+		Route::resource('countries', 'CountriesController');
+		Route::resource('states', 'StatesController');
+		Route::resource('cities', 'CitiesController');
+		Route::resource('addresses', 'AddressesController');
+		Route::resource('payment-types', 'PaymentTypesController');
+		Route::resource('order-status', 'OrderStatusController');
+		Route::resource('order-activities', 'OrderActivitiesController');
+		Route::resource('service-categories', 'ServiceCategoriesController');
+		Route::resource('service-sub-categories', 'ServiceSubCategoriesController');
+		Route::resource('service-sub-sub-categories', 'ServiceSubSubCategoriesController');
+		Route::resource('promo-codes', 'PromoCodesController');
+
+
+		Route::post('store-order-status-change', 'StoreOrdersController@storeOrderStatusChange')->name('store-order-status-change');
+		Route::get('/add-shipment-to-smsa/{order_id}/{user_id}/{address_id}', 'StoreOrdersController@addShipmentToSmsa');
+		
+
+
+		Route::post('worker-order-status-change', 'WorkerOrdersController@workerOrderStatusChange')->name('worker-order-status-change');
+		
+		Route::resource('restuarent-customer-orders', 'RestuarentCustomerOrdersController');
+
+	});
+	
+	Route::group(['middleware' => ['role:driver']], function () {
+		Route::get('orders/create', 'OrdersController@create');
+		Route::post('orders', 'OrdersController@store');
+
+		Route::get('driver-orders', 'DriverOrdersController@index');
+		Route::get('driver-order/{id}', 'DriverOrdersController@show');
+	});
+
+	Route::group(['middleware' => ['role:store']], function () {
+		Route::resource('stores', 'StoresController');
+		Route::get('store-order', 'StoreOrdersController@index');
+		Route::get('store-order/{id}', 'StoreOrdersController@show');
+	});
+
+	Route::group(['middleware' => ['role:customer']], function () {
+		Route::get('review/{id}', 'StoreOrdersController@reviewCreate');
+		Route::post('/submit-reviews', 'StoreOrdersController@submitReview');
+
+		Route::get('worker-review/{id}', 'WorkerOrdersController@reviewCreate');
+		Route::post('/worker-submit-reviews', 'WorkerOrdersController@submitReview');
+	});
 });
 
-
-Route::resource('restuarent-customer-orders', 'RestuarentCustomerOrdersController');

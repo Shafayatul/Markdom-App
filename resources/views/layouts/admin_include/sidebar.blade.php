@@ -1,6 +1,7 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
+            @hasrole('admin')
             <li>
                 <a href="{{ url('/home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
@@ -199,7 +200,8 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-
+            @endhasrole
+            @hasrole('admin|store')
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Stores<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -212,7 +214,8 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-
+            @endhasrole
+            @hasrole('admin')
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Products<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -225,7 +228,8 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-
+            @endhasrole
+            @hasrole('admin')
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Service Types<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -238,20 +242,21 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-
+            @endhasrole
+            @hasrole('admin')
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Reviews<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li>
+                    {{-- <li>
                         <a href="{{ url('reviews/create') }}">Create</a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="{{ url('reviews') }}">Manage</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-
+            
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Offers<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -293,11 +298,13 @@
             <li>
                 <a href="{{ url('/orders') }}"><i class="fa fa-dashboard fa-fw"></i> Orders</a>
             </li>
-
+            @endhasrole
+            @hasrole('admin|driver')
             <li>
                 <a href="{{ url('/driver-orders') }}"><i class="fa fa-dashboard fa-fw"></i> Driver Orders</a>
             </li>
-
+            @endhasrole
+            @hasrole('admin')
             <li>
                 <a href="{{ url('/store-order') }}"><i class="fa fa-dashboard fa-fw"></i> Store Orders</a>
             </li>
@@ -305,7 +312,8 @@
             <li>
                 <a href="{{ url('/worker-orders') }}"><i class="fa fa-dashboard fa-fw"></i> Worker Orders</a>
             </li>
-
+            @endhasrole
+            @hasrole('admin|store')
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Days<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -318,7 +326,8 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-
+            @endhasrole
+            @hasrole('admin|store')
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Schedule Types<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -331,10 +340,12 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-
+            @endhasrole
+            @hasrole('admin|store')
             <li>
                 <a href="{{ url('/booked-schedules') }}"><i class="fa fa-dashboard fa-fw"></i> Booked Schedule</a>
             </li>
+            @endhasrole
 
         </ul>
     </div>
