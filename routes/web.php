@@ -215,7 +215,7 @@ Route::middleware(['auth'])->group(function () {
 
 	});
 	
-	Route::group(['middleware' => ['role:driver']], function () {
+	Route::group(['middleware' => ['role:admin|driver']], function () {
 		Route::get('orders/create', 'OrdersController@create');
 		Route::post('orders', 'OrdersController@store');
 
@@ -223,13 +223,13 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('driver-order/{id}', 'DriverOrdersController@show');
 	});
 
-	Route::group(['middleware' => ['role:store']], function () {
+	Route::group(['middleware' => ['role:admin|store']], function () {
 		Route::resource('stores', 'StoresController');
 		Route::get('store-order', 'StoreOrdersController@index');
 		Route::get('store-order/{id}', 'StoreOrdersController@show');
 	});
 
-	Route::group(['middleware' => ['role:customer']], function () {
+	Route::group(['middleware' => ['role:admin|customer']], function () {
 		Route::get('review/{id}', 'StoreOrdersController@reviewCreate');
 		Route::post('/submit-reviews', 'StoreOrdersController@submitReview');
 
