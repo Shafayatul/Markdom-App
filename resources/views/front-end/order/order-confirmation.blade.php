@@ -31,6 +31,7 @@
               </div>
             </div>
 
+
             <div class="place-order-button-div">
               @if ($order !=null)
                 <a href="{{ url('/track-order/'.$order->id) }}">
@@ -41,11 +42,16 @@
                   <button class="btn btn-success place-order-button" type="button" name="button">Track Your Order Here</button>
                 </a>
               @endif
-                Or
+                <br>
+                   Or
+                <br>
                 <a href="{{ url('/store') }}">
                   <button class="btn btn-success place-order-button" type="button" name="button">Continue To Shopping</button>
                 </a>
+
             </div>
+
+
           </div>
         </div>
        </div>

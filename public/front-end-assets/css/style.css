@@ -25,6 +25,16 @@ input[type="button"],input[type="submit"]{
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
 }
+.btn-success {
+    color: #fff;
+    background-color: #3F5394 !important;
+    border-color: #3F5394 !important;
+}
+.btn-success:hover {
+    color: #fff;
+    background-color: #3F5394 !important;
+    border-color: #3F5394 !important;
+}
 .hr-line {
 	width: 100%;
 	border-top: .5px solid #f0f0f0;
@@ -3240,7 +3250,7 @@ div#home {
 .table td, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
     padding: 15px !important;
     font-size: 0.85em;
-    color: #999;
+    color: #000000;
     border-top: none !important;
 }
 .btn {
@@ -3292,8 +3302,8 @@ div#home {
   border-color:rgb(3, 197, 135);
 }
 .btn-success:hover{
-    border-color: #8BC34A !important;
-    background: #8BC34A !important;
+    border-color: #3F5394 !important;
+    background: #3F5394 !important;
 }
 .control2{
   height:253px;

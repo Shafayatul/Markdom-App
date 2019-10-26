@@ -59,13 +59,15 @@
 #grid > .rectangle-box-a {
   height: 150px;
   text-align: center;
-  border-radius: 16px;
+  border-radius: 6px;
+    margin: 10px;
   position: relative;
   /* background-color: #2ecc71 !important; */
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
 }
+
 
 .logo-box {
   width: 100px;
@@ -139,7 +141,7 @@
 
   #grid > .rectangle-box-a {
     height: 100px;
-    border-radius: 45px;
+   
   }
 
   .logo-box {
@@ -189,7 +191,7 @@
 
   #grid > .rectangle-box-a {
     height: 100px;
-    border-radius: 50px;
+   
   }
 
   .logo-box {
@@ -239,7 +241,7 @@
 
   #grid > .rectangle-box-a {
     height: 100px;
-    border-radius: 50px;
+   
   }
 
   .logo-box {

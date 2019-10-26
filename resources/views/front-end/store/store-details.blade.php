@@ -46,26 +46,29 @@
                 <div id="grid">
                   @foreach ($product_details as $product)
                       <div class="product-box shadow">
-                        <a href="{{ route('store-product-details', ['id'=>$product->id]) }}" class="rectangle-box-a">
+                        <a  href="{{ route('store-product-details', ['id'=>$product->id]) }}" class="rectangle-box-a">
                           <div class="product-image-box">
                             <img src="{{ env('MAIN_HOST_URL').$product->preview_image}}" alt="">
                           </div>
                           <div class="product-name">
                             @if(app()->getLocale() == 'en')
-                              <h1 class="text-left">{{ $product->name }}</h1>
+                              <h1 class="text-right">{{ $product->name }}</h1>
                             @else
-                              <h1 class="text-left">{{ $product->name_arabic }}</h1>
+                              <h1 class="text-right">{{ $product->name_arabic }}</h1>
                             @endif
+                               <div class="price-button">
+                            <p class="pull-right">{{ $product->price }}</p>
                           </div>
-                          <div class="price-button">
-                            <p class="pull-left">{{ $product->price }}</p>
                           </div>
+                         
                         </a>
-                        <a href="{{ route('add-to-cart-store', ['id' => $product->id]) }}"><button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button></a>
+                        <a class="row order-now text-center" href="{{ route('add-to-cart-store', ['id' => $product->id]) }}"><button class="btn btn-success add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button></a>
                       </div>
                   @endforeach
                 </div>
             </div>
+
+
           </div>
 </div>
 @endsection

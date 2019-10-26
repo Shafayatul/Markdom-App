@@ -36,9 +36,12 @@
   border-radius: 50%;
 }
 
+
 .rectangle-div {
-  margin-top: 50px;
-  margin-bottom: 40px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .sliding-div-a:hover {
@@ -97,6 +100,7 @@
   .sliding-category-name {
     font-size: 15px;
   }
+  
 }
 
 @media only screen and (min-device-width : 481px) and (max-device-width : 767px) {
@@ -112,4 +116,5 @@
   .sliding-category-name {
     font-size: 16px;
   }
+  
 }

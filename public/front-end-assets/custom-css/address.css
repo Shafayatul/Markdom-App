@@ -9,6 +9,7 @@
 
 .address-box p {
    position:relative;
+
 }
 .effect
 {
@@ -206,10 +207,16 @@ select{
 }
 
 .place-order-button {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  /*width: 50%;*/
+    display: block;
+    margin: auto;
+    background: #3F5394;
+    border-radius: 5px;
+    border: #3F5394;
+}
+
+.address-box p {
+    position: relative;
+    font-size: 15px;
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 400px) {
@@ -255,6 +262,25 @@ select{
     /*width: 100px;*/
     /*height: 34px;*/
   }
+.address-box {    
+    padding-left: 10px;
+    padding-right: 15px;
+}
+
+
+.address-box p {
+   
+    font-size: 10px;
+}
+.delete-icon i {
+    color: #F1484E;
+    font-size: 15px;
+}
+.delete-icon {   
+  
+    right: 10px;
+}
+
 }
 
 @media only screen and (min-device-width : 401px) and (max-device-width : 480px) {
@@ -300,6 +326,28 @@ select{
     /*width: 125px;*/
     /*height: 34px;*/
   }
+.address-box {    
+   padding-left: 10px;
+    padding-right: 20px;
+}
+
+
+.address-box p {
+   
+    font-size: 12px;
+}
+.delete-icon i {
+    color: #F1484E;
+    font-size: 15px;
+}
+.delete-icon {   
+  
+    right: 10px;
+}
+
+
+
+
 }
 
 @media only screen and (min-device-width : 481px) and (max-device-width : 600px) {
@@ -336,6 +384,14 @@ select{
     /*width: 145px;*/
     /*height: 34px;*/
   }
+  .delete-icon i {
+    color: #F1484E;
+    font-size: 20px;
+}
+
+  .address-box p {  
+   font-size: 9px;
+}
 }
 
 @media only screen and (min-device-width : 601px) and (max-device-width : 767px) {
@@ -372,6 +428,14 @@ select{
     /*width: 175px;*/
     /*height: 34px;*/
   }
+  .delete-icon i {
+    color: #F1484E;
+    font-size: 20px;
+}
+
+  .address-box p {  
+    font-size: 11px;
+}
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {

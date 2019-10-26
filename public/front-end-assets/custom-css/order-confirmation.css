@@ -15,8 +15,8 @@
 
 .order-confirmation-box:hover {
   box-shadow: 0 25px 29px rgba(63, 78, 100, 0.15);
-	border: solid 2px rgba(235,235,235,1);
-	border-bottom-color: #13acba;
+  border: solid 2px rgba(235,235,235,1);
+  border-bottom-color: #13acba;
 }
 
 .upper-content h3 {
@@ -47,4 +47,7 @@
   .order_confirmation_section_container {
     margin-top: 70px;
   }
+  .btn {
+    margin-bottom: 0;
+}
 }
