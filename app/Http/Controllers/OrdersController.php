@@ -55,11 +55,11 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        $id = Auth::id();
+      
         $module = Module::where('name', 'Restaurant')->first();
 
         if(isset($module) != null){
-            $stores     = Store::where('module_id', $module->id)->where('store_owner_id', $id)->pluck('name', 'id');
+            $stores     = Store::where('module_id', $module->id)->pluck('name', 'id');
         }else{
             $stores     = [];
         }
