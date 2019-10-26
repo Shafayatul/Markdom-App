@@ -227,6 +227,18 @@ Route::middleware(['auth'])->group(function () {
 		Route::resource('stores', 'StoresController');
 		Route::get('store-order', 'StoreOrdersController@index');
 		Route::get('store-order/{id}', 'StoreOrdersController@show');
+		Route::resource('days', 'DaysController');
+		Route::resource('schedule-types', 'ScheduleTypesController');
+
+		Route::get('/schedule/{id}', 'SchedulesController@index');
+		Route::get('/schedules/{id}/edit', 'SchedulesController@edit');
+		Route::get('/schedules/{day_id}/{store_id}', 'SchedulesController@show');
+		Route::get('/schedules/create', 'SchedulesController@create');
+		Route::post('/schedules', 'SchedulesController@store');
+		Route::delete('/schedules/{id}', 'SchedulesController@destroy');
+
+		Route::patch('/schedules/{id}', 'SchedulesController@update');
+		Route::resource('booked-schedules', 'BookedSchedulesController');
 	});
 
 	Route::group(['middleware' => ['role:admin|customer']], function () {
