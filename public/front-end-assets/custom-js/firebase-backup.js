@@ -23,26 +23,13 @@ $(document).ready(function(){
 	*/
 	var avatarImage = baseUrl + 'front-end-assets/images/avater.png';
 	if ($("#hidden-waiting-page").val() == "yes") {
-
-		// Order placed by customer
-		var newOfferId = $("#hidden-restaurant-offer-customer").val();
-		var database = firebase.database().ref('driver-pop-up').child(newOfferId).set({
-			attempt: 0,
-			restuarent_customer_order_id: $("#hidden-restaurant-offer-customer").val(),
-			anyResponse: false,
-			// customer_log: $("#hidden-lon").val(),
-			// customer_lat: $("#hidden-lat").val()
-		});
-
-		firebase.database().ref('driver-pop-up').child(newOfferId).update({
-			attempt: 1
-		});	
-
+		alert();
 		var activeOfferHtml = '';
 		var restuarent_customer_order_id = $("#hidden-restaurant-offer-customer").val();
+		console.log(restuarent_customer_order_id);
 		// get old offer
 		firebase.database().ref('chat_list').child(restuarent_customer_order_id).on('value', function(snapshot) {
-			if (snapshot.exists()){
+			if (!snapshot.exists()){
 				var allMsg = '';
 				$.each(snapshot.val(), function( index, value ) {
 					var driverName = '';
@@ -60,7 +47,7 @@ $(document).ready(function(){
 		});
 		// get new offer
 		firebase.database().ref('chat_list').child(restuarent_customer_order_id).on('child_added', function(snapshot) {
-			if (snapshot.exists()){
+			if (!snapshot.exists()){
 				var allMsg = '';
 				$.each(snapshot.val(), function( index, value ) {
 					var driverName = '';
@@ -215,7 +202,25 @@ $(document).ready(function(){
 
 
 
+	/**
+	* Order placed by customer
+	*/
 
+	var newOfferId = $("#hidden-restaurant-offer-customer").val();
+	var isAccepted = $("#hidden-is-accepted").val();
+	if (isAccepted == 0) {
+		var database = firebase.database().ref('driver-pop-up').child(newOfferId).set({
+			attempt: 0,
+			restuarent_customer_order_id: $("#hidden-restaurant-offer-customer").val(),
+			anyResponse: false,
+			customer_log: $("#hidden-lon").val(),
+			customer_lat: $("#hidden-lat").val()
+		});
+
+		firebase.database().ref('driver-pop-up').child(newOfferId).update({
+			attempt: 1
+		});	
+	}
 
 
 
