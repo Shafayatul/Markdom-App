@@ -117,12 +117,12 @@ class RestaurantsController extends Controller
         return view('front-end.chat.waiting', compact('restuarent_customer_order', 'store'));
     }
 
-    public function see_order_detail_by_driver($id)
+    public function see_order_detail_by_driver($restuarent_order_id)
     {
-        $url                       = env('MAIN_HOST_URL').'api/restuarant-customer-order-detail/'.$id;
+        $url                       = env('MAIN_HOST_URL').'api/restuarant-customer-order-detail/'.$restuarent_order_id;
         $method                    = 'GET';
         $restuarant_customer_order = $this->callApi($method, $url);
-
+dd($restuarant_customer_order);
 
         $url      = env('MAIN_HOST_URL').'api/customer-detail/'.$restuarant_customer_order->user_id;
         $method   = 'GET';
