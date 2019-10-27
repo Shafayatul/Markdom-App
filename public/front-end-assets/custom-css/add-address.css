@@ -195,6 +195,10 @@ select{
     /*width: 100px;*/
     /*height: 34px;*/
   }
+  .form-horizontal .form-group {
+    margin-right: 15px;
+    margin-left: 15px;
+}
 }
 
 @media only screen and (min-device-width : 401px) and (max-device-width : 480px) {
@@ -240,6 +244,10 @@ select{
     /*width: 125px;*/
     /*height: 34px;*/
   }
+  .form-horizontal .form-group {
+    margin-right: 15px;
+    margin-left: 15px;
+}
 }
 
 @media only screen and (min-device-width : 481px) and (max-device-width : 600px) {
@@ -263,6 +271,10 @@ select{
   h1 {
     font-size: 19px;
   }
+  .form-horizontal .form-group {
+    margin-right: 15px;
+    margin-left: 15px;
+}
 
   .font-p {
     font-size: 16px;
