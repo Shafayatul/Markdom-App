@@ -62,10 +62,10 @@
 		</div>
 	</div>
 </div>
-<input type="hidden" id="hidden-restaurant-offer-customer" name="hidden-restaurant-offer-customer" value="{{ $restuarent_customer_order->id}}">
-<input type="hidden" id="hidden-is-accepted" name="hidden-is-accepted" value="{{ $restuarent_customer_order->is_accepted }}">
+<input type="hidden" id="hidden-restaurant-offer-customer" name="hidden-restaurant-offer-customer" value="{{ $restuarent_customer_order_id}}">
+{{-- <input type="hidden" id="hidden-is-accepted" name="hidden-is-accepted" value="{{ $restuarent_customer_order->is_accepted }}">
 <input type="hidden" id="hidden-lat" name="hidden-lat" value="{{ $store->lat }}">
-<input type="hidden" id="hidden-lon" name="hidden-lon" value="{{ $store->lan }}">
+<input type="hidden" id="hidden-lon" name="hidden-lon" value="{{ $store->lan }}"> --}}
 <input type="hidden" id="hidden-waiting-page"  value="yes">
 
 @endsection

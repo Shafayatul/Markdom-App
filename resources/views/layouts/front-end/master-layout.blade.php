@@ -14,7 +14,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 <body>
 <div class="container">
+	@if(Session::has('is_driver'))
+	<input type="hidden" class="hidden-is-driver" value="{{ Session::get('is_driver') }}">
+	@else
 	<input type="hidden" class="hidden-is-driver" value="0">
+	@endif
   @include('layouts.front-end.include.header')
   @yield('main-content')
 

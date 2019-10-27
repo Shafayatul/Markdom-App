@@ -23,18 +23,42 @@ $(document).ready(function(){
 	*/
 	var avatarImage = baseUrl + 'front-end-assets/images/avater.png';
 	if ($("#hidden-waiting-page").val() == "yes") {
-		alert();
 		var activeOfferHtml = '';
-/*		var restuarent_customer_order_id = $("#hidden-restaurant-offer-customer").val();
-		firebase.database().ref('chat_list').child(restuarent_customer_order_id).on("value", function(snapshot) {
-		    console.log(snapshot.val());
-
+		var restuarent_customer_order_id = $("#hidden-restaurant-offer-customer").val();
+		console.log(restuarent_customer_order_id);
+		// get old offer
+		firebase.database().ref('chat_list').child(restuarent_customer_order_id).on('value', function(snapshot) {
+			var allMsg = '';
 			$.each(snapshot.val(), function( index, value ) {
-				console.log(value.unique_chat_id);
-			  // activeOfferHtml = activeOfferHtml+'<tr class="table_row"><td width="10%" class="img"><a href="#"><img src="'+avatarImage+'" alt=""> '+driverName+' </a></td><td width="20%"><a class="offer-code" href="">#57091019</a></td></tr>';
+				var driverName = '';
+				var offer_price_by_driver = '';
+				var chatUrl = baseUrl+'message/'+value.unique_chat_id;
+				firebase.database().ref('chat_detail').child(value.unique_chat_id).on('value', function(single_snapshot) {
+					console.log(single_snapshot.val().driver_name);
+					driverName = single_snapshot.val().driver_name;
+					offer_price_by_driver = single_snapshot.val().offer_price_by_driver;
+					activeOfferHtml = '<tr class="table_row"><td width="10%" class="img"><a href="#"><img src="'+avatarImage+'" alt=""> '+driverName+' </a></td><td width="20%"><a class="offer-code" href="">$'+offer_price_by_driver+'</a></td><td><a href="'+chatUrl+'">Chat</a></td></tr>';
+					$("#active-offers").append(activeOfferHtml);
+				});
 			});
-		});*/
-		$("#active-offers").html(activeOfferHtml);
+		});
+		// get new offer
+		firebase.database().ref('chat_list').child(restuarent_customer_order_id).on('child_added', function(snapshot) {
+			var allMsg = '';
+			$.each(snapshot.val(), function( index, value ) {
+				var driverName = '';
+				var offer_price_by_driver = '';
+				var chatUrl = baseUrl+'message/'+value.unique_chat_id;
+				firebase.database().ref('chat_detail').child(value.unique_chat_id).on('value', function(single_snapshot) {
+					console.log(single_snapshot.val().driver_name);
+					driverName = single_snapshot.val().driver_name;
+					offer_price_by_driver = single_snapshot.val().offer_price_by_driver;
+					activeOfferHtml = '<tr class="table_row"><td width="10%" class="img"><a href="#"><img src="'+avatarImage+'" alt=""> '+driverName+' </a></td><td width="20%"><a class="offer-code" href="">$'+offer_price_by_driver+'</a></td><td><a href="'+chatUrl+'">Chat</a></td></tr>';
+					$("#active-offers").append(activeOfferHtml);
+				});
+			});
+		});
+		
 	}
 
 
@@ -60,11 +84,6 @@ $(document).ready(function(){
 		$('.button').click(function(){
 			$('.driver-new-order-popup').hide();
 		});
-
-		// here we need to calculate the distance and show pop up
-		// var changedLat = '';
-		// changedLat = changedLat+'<li>'+snapshot.val().lat+'</li>';
-		// $('#all-msg').html(changedLat);
 	});
 
 	/**
@@ -124,7 +143,7 @@ $(document).ready(function(){
 	*/
 	// read previous chat
 	var live_chat_window = $("#live-chat-window").val();
-	if (live_chat_window) {
+	if (live_chat_window == 'yes') {
 		var message_uid      = $("#message_uid").val();
 
 		var starCountRef = firebase.database().ref('message').child(message_uid);
@@ -140,35 +159,39 @@ $(document).ready(function(){
 			});
 			$('.msg_history').html(allMsg);
 		});
-	}
-	// insert new chat
-	$(".msg_send_btn").click(function(){
-		var message_uid = $("#message_uid").val();
-		var isDriver    = $(".hidden-is-driver").val();
-		if (isDriver != 1) {
-			isDriver = 0;
-		}
-		var newMsg = $(".write_msg").val();
-		if(newMsg != ''){
-			var database = firebase.database().ref('message').child(message_uid).push({
-				'msg': newMsg,
-				'is_driver': isDriver
-			});
-		}
-		$(".write_msg").val('');
-	});
-	// show new message
-	firebase.database().ref('message').child(message_uid).on("child_added", function(snapshot) {
-		var newMsg = '';
-		$.each(snapshot.val(), function( index, value ) {
-			if (value.is_driver == 1) {
-				newMsg = newMsg+'<div c4lass="incoming_msg"><div class="received_msg"><div class="received_withd_msg"><p>'+value.msg+'</p></div></div></div>';
-			}else{
-				newMsg = newMsg+'<div class="outgoing_msg"><div class="sent_msg"><p>'+value.msg+'</p></div></div>';
+
+		// insert new chat
+		$(".msg_send_btn").click(function(){
+			var message_uid = $("#message_uid").val();
+			var isDriver    = $(".hidden-is-driver").val();
+			// alert(isDriver);
+			if (isDriver != 1) {
+				isDriver = 0;
 			}
+			var newMsg = $(".write_msg").val();
+			if(newMsg != ''){
+				var database = firebase.database().ref('message').child(message_uid).push({
+					'msg': newMsg,
+					'is_driver': isDriver
+				});
+			}
+			$(".write_msg").val('');
 		});
-		$('.msg_history').append(newMsg);
-	});
+		// show new message
+		firebase.database().ref('message').child(message_uid).on("child_added", function(snapshot) {
+			var newMsg = '';
+			$.each(snapshot.val(), function( index, value ) {
+				if (value.is_driver == 1) {
+					newMsg = newMsg+'<div c4lass="incoming_msg"><div class="received_msg"><div class="received_withd_msg"><p>'+value.msg+'</p></div></div></div>';
+				}else{
+					newMsg = newMsg+'<div class="outgoing_msg"><div class="sent_msg"><p>'+value.msg+'</p></div></div>';
+				}
+			});
+			$('.msg_history').append(newMsg);
+		});
+		
+	}
+
 	
 
 

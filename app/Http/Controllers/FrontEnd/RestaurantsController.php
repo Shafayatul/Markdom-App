@@ -114,8 +114,15 @@ class RestaurantsController extends Controller
         $restuarent_customer_order->is_accepted   = 0;
         $restuarent_customer_order->save();
 
-        return view('front-end.chat.waiting', compact('restuarent_customer_order', 'store'));
+        return redirect('waiting-for-offer/'.$restuarent_customer_order->id);
+
+        // return view('front-end.chat.waiting', compact('restuarent_customer_order', 'store'));
     }
+
+    public function waitingForOffer($restuarent_customer_order_id){
+        return view('front-end.chat.waiting', compact('restuarent_customer_order_id'));
+    }
+
 
     public function chat($message_uid)
     {

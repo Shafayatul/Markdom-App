@@ -41,6 +41,7 @@ class FrontEndController extends Controller
             'Accept'        => 'application/json',
         ];
       $is_driver = $this->callApi($method, $url, [], $headers)->message;
+      Session::put('is_driver', $is_driver);
       return response()->json([
         'is_driver' => $is_driver
       ]);

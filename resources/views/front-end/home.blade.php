@@ -261,7 +261,7 @@
              type:'POST',
              url:'{{ url("/ajax-is-driver") }}',
              success:function(data){
-                console.log(data);
+                console.log('fffffff'+data);
                 $(".hidden-is-driver").val(data.is_driver);
              }
           });
