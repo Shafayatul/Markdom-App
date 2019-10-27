@@ -8,6 +8,17 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Auth;
 use Session;
+use App\Order;
+use App\Address;
+use App\City;
+use App\State;
+use App\Country;
+use App\Cart;
+use App\PromoCode;
+use App\OrderStatus;
+use App\OrderActivity;
+use App\User;
+use SmsaSDK\Smsa;
 
 class FrontEndController extends Controller
 {
@@ -248,5 +259,207 @@ class FrontEndController extends Controller
       $method_city = 'GET';
       $cities = $this->callApi($method_city, $url_city);
       return response()->json(array('msg'=> 'Got State Id', 'cities'=>$cities), 200);
+    }
+
+    public function ajaxCodSubmit(Request $request)
+    {
+      if ($this->check_expiration()) {
+        $method = "POST";
+        $url = env("MAIN_HOST_URL")."api/place-order";
+        $parameters = [
+            'address_id'     => $request->address_id,
+            'promo_code'     => $request->promo_code,
+            'payment_method'     => 'COD'
+        ];
+        $headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+        ];
+        $response = $this->callApi($method, $url, $parameters, $headers);
+        // dd($order_id);
+        return response()->json(['msg'=>'Success','response' =>$response]);
+      }
+    }
+
+    public function orderConfirmation($id=null)
+    {
+      // dd($id);
+      $order = null;
+      if ($id != null) {
+
+        // $order = Order::find($id);
+        $url = env('MAIN_HOST_URL').'api/order-details/'.$id;
+        $method = 'GET';
+        $headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+          ];
+        $order = $this->callApi($method, $url, [], $headers);
+        // dd($order);
+      }
+      return view('front-end.order.order-confirmation', compact('order'));
+    }
+
+    public function placeOrder(Request $request)
+    {
+      if ($this->check_expiration()) {
+        if($request->payment_method == 'Bank Transfer'){
+          if($request->hasFile('image')){
+              $image = $request->file('image');
+              // dd($image);
+              $image_fullname = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+              $path = 'uploads/';
+              $image_url = $path.$image_fullname;
+              $image->move($path,$image_fullname);
+          }else{
+            $image_url = null;
+          }
+        }else{
+           $image_url = null;
+        }
+
+
+        $method = "POST";
+        $url = env("MAIN_HOST_URL")."api/place-order";
+        $parameters = [
+            'address_id'            => $request->address_id,
+            'promo_code'            => $request->promo_code,
+            'payment_method'        => $request->payment_method,
+            'paytab_transaction_id' => $request->paytab_transaction_id,
+            'bank_image'                 => $image_url
+        ];
+        $headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+        ];
+
+        $order_details = $this->callApi($method, $url, $parameters, $headers);
+        
+        $url = env('MAIN_HOST_URL').'api/order-details/'.$order_details->id;
+        $method = 'GET';
+        $headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+          ];
+        $order = $this->callApi($method, $url, [], $headers);
+
+      return view('front-end.order.order-confirmation', compact('order'));
+    }
+  }
+
+  public function addShipmentToSmsa($order_id, $user_id, $address_id)
+  {
+    $user_data          = User::where('id', $user_id)->first();
+    $order_data         = Order::where('id', $order_id)->first();
+    $address_data       = Address::where('id', $address_id)->first();
+    $state_data         = State::where('id', $address_data->state_id)->first();
+    $city_data          = City::where('id', $address_data->city_id)->first();
+    $country_data       = Country::where('id',$address_data->country_id)->first();
+
+    if (($order_data->payment_method == "Paytab") && ($order_data->paytab_transaction_id != null)) {
+        $cod_amount = 0;
+    }else{
+        $cod_amount = $order_data->final_price;
+    }
+
+    $refNo              = $order_data->id;
+    $name               = $user_data->name;
+    $email              = $user_data->email;
+    $country            = $country_data->code;
+    $city               = $state_data->state;
+    $mobile             = $address_data->phone_no;
+    $address1           = "Neighbor ".$city_data->city.", ";
+    $address2           = "Location: ".$address_data->location.", ".$address_data->pin_code;
+    $ship_type          = "DLV";
+    $pcs                = 1;
+    $weight             = '0.5';
+    $item_description   = 'Mobile case';
+    Smsa::nullValues('');
+    $shipmentData = [
+            'refNo' => $refNo, // shipment reference in your application
+            'cName' => $name, // customer name
+            'Cntry' => $country, // shipment country
+            'cCity' => $city, // shipment city, try: Smsa::getRTLCities() to get the supported cities
+            'cMobile' => $mobile, // customer mobile
+            'cAddr1' => $address1, // customer address
+            'cAddr2' => $address2, // customer address 2
+            'shipType' => $ship_type, // shipment type
+            'PCs' => $pcs, // quantity of the shipped pieces
+            'cEmail' => $email, // customer email
+            'codAmt' => $cod_amount, // payment amount if it's cash on delivery, 0 if not cash on delivery
+            'weight' => $weight, // pieces weight
+            'itemDesc' => $item_description, // extra description will be printed
+        ];
+    $shipment = Smsa::addShipment($shipmentData);
+    $awbNumber = $shipment->getAddShipmentResult();
+
+
+    if (is_numeric($awbNumber)) {
+
+        $order                  = Order::where('id', $order_id)->first();
+        $order->smsa_awb_number = $awbNumber;
+        $order->order_status    = 5;
+        $order->save();
+
+    }else{
+
+        if (strpos($awbNumber, '#') !== false) {
+            $oldawbNumber =  explode('# ', $awbNumber);
+
+            $order                  = Order::where('id', $order_id)->first();
+            $order->smsa_awb_number = $oldawbNumber[1];
+            $order->order_status    = 5;
+            $order->save();
+        }else{
+            dd($awbNumber);
+        }
+
+    }
+
+    $lang = $user_data->language;
+    if ($lang == 'en') {
+        $body = "Your product is shipped. Tracking Number: ".$order->smsa_awb_number;
+    }else{
+        // Arabic here
+        $body = "Your product is shipped. Tracking Number: ".$order->smsa_awb_number;
+    }
+    // notification - FCM
+    $optionBuilder = new OptionsBuilder();
+    $optionBuilder->setTimeToLive(60*20);
+    $notificationBuilder = new PayloadNotificationBuilder('Pixel Store');
+    $notificationBuilder->setBody($body)
+                        ->setSound('default');
+
+    $dataBuilder = new PayloadDataBuilder();
+    $dataBuilder->addData(['a_data' => 'my_data']);
+
+    $option = $optionBuilder->build();
+    $notification = $notificationBuilder->build();
+    $data = $dataBuilder->build();
+
+    $token = User::where('id', $order->user_id)->first()->fcm_token;
+
+    $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
+
+    return back();
+  }
+
+    public function trackOrder($id)
+    {
+      if ($this->check_expiration()) {
+        $headers = [
+          'Authorization' => 'Bearer ' . Session::get('access_token'),
+          'Accept'        => 'application/json',
+        ];
+
+        $url_order_details = env('MAIN_HOST_URL').'api/order-details/'.$id;
+        $method_order_details = 'GET';
+        $order_details = $this->callApi($method_order_details, $url_order_details, [], $headers);
+        // $order = Order::where('id', $id)->first();
+        return view('front-end.track-order', compact('order_details'));
+      }else{
+        return redirect()->back();
+      }
+
     }
 }

@@ -33,4 +33,10 @@ class StoresController extends Controller
         $stores = Store::where('category_id', $id)->get();
         return response()->json($stores);
     }
+
+    public function get_stores_by_module_id($id)
+    {
+        $stores = Store::where('module_id', $id)->get();
+        return response()->json($stores);
+    }
 }

@@ -1,3 +1,29 @@
+.delivery-option-details {
+  padding-left: 2px;
+}
+
+.product-summary-box {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+
+.shipment-box {
+  margin-top: 50px;
+}
+
+.delivery-option-title h3{
+  text-align: left;
+  font-size: 20px;
+}
+
+
+
+ .delivery-option-details p {
+    line-height: 1.5;
+    text-align: left;
+}
+
 #x {
     position: absolute;
     background: white;
@@ -131,8 +157,9 @@ h1 {
 
 input[type="text"] {
   height: 36px;
-  border-radius: 8px;
-  border: 1px solid #8BC34A;
+  border-radius: 8px;  
+    border: 1px solid #3F5394;
+
 }
 
 .promo-button {
@@ -153,6 +180,7 @@ input[type="text"] {
   padding: 15px 40px;
 }
 
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 400px) {
   .container {
     padding-left: 0px;
@@ -163,7 +191,7 @@ input[type="text"] {
   }
 
   .product-details-div {
-    box-shadow: none;
+    box-shadow: none ;
     padding: 0px;
   }
 
@@ -196,6 +224,19 @@ input[type="text"] {
     width: 100px;
     height: 34px;
   }
+  .place-order-button {
+    border-radius: 8px;
+    padding: 5px 15px;
+}
+.place-order-button-div {
+    margin-top: 20px;
+}
+
+.promo-code{
+  width: 30% !important;
+  padding-top: 8px;
+}
+
 }
 
 @media only screen and (min-device-width : 401px) and (max-device-width : 480px) {
@@ -241,6 +282,13 @@ input[type="text"] {
     width: 125px;
     height: 34px;
   }
+  .place-order-button {
+    border-radius: 8px;
+    padding: 5px 15px;
+}
+.place-order-button-div {
+    margin-top: 20px;
+}
 }
 
 @media only screen and (min-device-width : 481px) and (max-device-width : 600px) {

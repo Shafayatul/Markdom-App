@@ -36,7 +36,7 @@
     @foreach($schedules as $key=>$value)
     <div class="morning-div">
       <div class="morning-timing-title-box text-left">
-        <span class="icon"><i class="fa fa-check"></i></span>
+        <span class="icon"><img src="{{ asset('front-end-assets/images/sun.jpg') }}"> </span>
         <span class="morning-title">
           <h2>
             {{ $value }}
@@ -50,7 +50,7 @@
             @if($item->is_booked == 1)
               <span class="@if($item->is_booked == 1) selected_date @endif">{{ $item->timespan }}</span>
             @else
-              <a href="{{ route('worker-place-holder', ['id' => $product_id]) }}"><span>{{ $item->timespan }}</span></a>
+              <a href="{{ route('worker-schedule-time', ['id' => $item->id]) }}"><span>{{ $item->timespan }}</span></a>
             @endif
           </div>
           @endif

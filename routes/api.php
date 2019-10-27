@@ -29,6 +29,7 @@ Route::get('get-offers-by-module/{id}', 'Api\OffersController@get_offers_by_modu
 
 Route::get('get-subcategories-by-category/{id}', 'Api\CategoriesController@get_subcategories_by_category_id');
 
+Route::get('get-stores-by-module-id/{id}', 'Api\StoresController@get_stores_by_module_id');
 Route::get('get-stores-by-subcategory/{id}', 'Api\StoresController@get_stores_by_subcategory_id');
 Route::get('get-store-detail/{id}', 'Api\StoresController@get_store_detail');
 Route::get('get-store-by-category/{category_id}', 'Api\StoresController@get_stores_by_category_id');
@@ -49,7 +50,7 @@ Route::get('get-service-category-by-store/{store_id}', 'Api\ServicesController@g
 
 Route::get('get-service-sub-category-by-service-category/{service_category_id}', 'Api\ServicesController@get_service_sub_category_by_service_category_id');
 
-Route::get('get-products-by-service-sub-category/{service_sub_category_id}', 'Api\ServicesController@get_products_by_service_sub_category_id');
+Route::get('get-products-by-service-sub-sub-category/{service_sub_sub_category_id}', 'Api\ServicesController@get_products_by_service_sub_sub_category_id');
 
 Route::get('get-service-sub-sub-category-by-service-sub-category/{service_sub_category_id}', 'Api\ServicesController@get_service_sub_sub_category_by_service_sub_category_id');
 
@@ -94,8 +95,10 @@ Route::group(['middleware' => ['auth:api']], function() {
 	Route::get('get-single-address/{id}','Api\AddressController@get_single_address');
 
 	//Order Section
+	Route::post('worker-place-order', 'Api\OrdersController@worker_place_order');
 	Route::post('place-order','Api\OrdersController@place_order');
 	Route::get('get-order-history','Api\OrdersController@history');
+	Route::get('get-order-summary/{city_id}/{promo_code?}','Api\OrdersController@get_order_summary');
 	Route::get('order-details/{order_id}','Api\OrdersController@order_detail');
 
 	Route::post('promo-code-validation','Api\PromoCodesController@promo_code_validation');

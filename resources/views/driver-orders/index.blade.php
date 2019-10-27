@@ -20,13 +20,14 @@ Driver Orders
                    Driver Orders
                 </div>
                 <div class="panel-body">
+                    @hasrole('driver')
                     <a href="{{ url('/orders/create') }}" class="btn btn-success btn-sm" title="Add New Order">
                         <i class="fa fa-plus" aria-hidden="true"></i> Add New
                     </a>
 
                     <br />
                     <br />
-                    
+                    @endhasrole
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>

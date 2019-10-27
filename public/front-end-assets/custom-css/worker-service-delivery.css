@@ -41,12 +41,20 @@ h1 {
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 550px) {
   .in-service {
-    width: 100%;
+   width: 90%;
+   margin-left: 22px;
   }
 
   .in-customer {
     width: 100%;
   }
+  .in-service-h1 {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    font-size: 20px;
+}
 }
 @media only screen and (min-device-width : 551px) and (max-device-width : 767px) {
   .in-service {
@@ -56,4 +64,11 @@ h1 {
   .in-customer {
     width: 75%;
   }
+  .in-service-h1 {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    font-size: 30px;
+}
 }

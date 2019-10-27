@@ -29,9 +29,9 @@ class ServicesController extends Controller
         return response()->json($service_sub_sub_categories);
     }
 
-    public function get_products_by_service_sub_category_id($service_sub_category_id)
+    public function get_products_by_service_sub_sub_category_id($service_sub_sub_category_id)
     {
-        $products = Product::where('service_sub_category_id', $service_sub_category_id)->get();
+        $products = Product::where('service_sub_sub_category_id', $service_sub_sub_category_id)->get();
         return response()->json($products);
     }
 }

@@ -15,6 +15,13 @@ use App\Product;
 use App\PromoCode;
 use Auth;
 use Illuminate\Http\Request;
+use App\Address;
+use App\State;
+use App\City;
+use App\Country;
+use App\Cart;
+use App\OrderStatus;
+use App\OrderActivity;
 
 class OrdersController extends Controller
 {
@@ -48,11 +55,11 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        $id = Auth::id();
-        $module = Module::where('name', 'Restuarant')->first();
+      
+        $module = Module::where('name', 'Restaurant')->first();
 
         if(isset($module) != null){
-            $stores     = Store::where('module_id', $module->id)->where('store_owner_id', $id)->pluck('name', 'id');
+            $stores     = Store::where('module_id', $module->id)->pluck('name', 'id');
         }else{
             $stores     = [];
         }
@@ -262,6 +269,8 @@ class OrdersController extends Controller
     {
       return view('front-end.order.place-order');
     }
+
+    
 
 
 

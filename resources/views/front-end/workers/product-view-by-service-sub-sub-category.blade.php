@@ -34,26 +34,34 @@
       <div class="product-div">
           <div id="grid">
             @foreach ($services as $service)
-                <div class="product-box shadow">
-                  <a href="{{ route('worker-product-details', ['id'=>$service->id]) }}" class="rectangle-box-a" service-sub-sub-category-id="{{ $service->service_sub_sub_category_id }}">
+                <div class="product-box shadow ">
+                  <a href="#" class="rectangle-box-a" service-sub-sub-category-id="{{ $service->service_sub_sub_category_id }}">
+
                     <div class="product-image-box">
                       <img src="{{ env('MAIN_HOST_URL').$service->preview_image}}" alt="">
                     </div>
                     <div class="product-name">
                       @if(app()->getLocale() == 'en')
-                        <h1 class="text-left">{{ $service->name }}</h1>
+                        <h1 class="text-right">{{ $service->name }}</h1>
                       @else
-                        <h1 class="text-left">{{ $service->name_arabic }}</h1>
+                        <h1 class="text-right">{{ $service->name_arabic }}</h1>
                       @endif
+                       <div class="price-button">
+                      <p class="pull-right">{{ $service->price }}</p>
                     </div>
-                    <div class="price-button">
-                      <p class="pull-left">{{ $service->price }}</p>
                     </div>
+                   
                   </a>
-                  <a href="{{ route('worker-product-details', ['id' => $service->id]) }}"><button class="btn btn-success pull-right add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button></a>
+
+                  <a class="row order-now text-center" href="{{ route('worker-product-details', ['id' => $service->id]) }}"><button class="btn btn-success  add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button></a>
                 </div>
             @endforeach
           </div>
+
+          
+
+
+
       </div>
     </div>
 

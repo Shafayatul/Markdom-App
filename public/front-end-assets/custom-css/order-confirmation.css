@@ -1,0 +1,53 @@
+.order_confirmation_section_container {
+  margin-top: 150px;
+  text-align: center;
+}
+
+.order-confirmation-box {
+  width: 320px;
+  margin: 0 auto;
+  margin-top: 60px;
+  border: 1px solid #ccc;
+  padding: 30px 0px;
+  border-radius: 16px;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+
+.order-confirmation-box:hover {
+  box-shadow: 0 25px 29px rgba(63, 78, 100, 0.15);
+  border: solid 2px rgba(235,235,235,1);
+  border-bottom-color: #13acba;
+}
+
+.upper-content h3 {
+  color: #66a6ff;
+}
+
+.bold-font {
+  font-weight: bold;
+}
+
+.transport-icon i {
+  font-size: 70px;
+  color: #66a6ff;
+}
+
+.lower-content {
+  margin-top: 20px;
+}
+
+.shop_now_button {
+    width: 230px;
+    margin-top: 0px;
+}
+
+/* RESPONSIVE CSS */
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .order_confirmation_section_container {
+    margin-top: 70px;
+  }
+  .btn {
+    margin-bottom: 0;
+}
+}

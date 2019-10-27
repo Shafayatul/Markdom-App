@@ -2,7 +2,7 @@
   width: 200px;
   height: 50px;
   margin: 20px auto;
-  border-radius: 25px;
+ border-radius: 5px;
   background-color: #2ecc71 !important;
   -webkit-box-shadow: 0px 0px 11px -2px #27ae60;
   box-shadow: 0px 0px 11px -2px #27ae60;
@@ -58,36 +58,46 @@
 }
 
 
+
 #grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 3vw;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1vw;
+
   }
 
 #grid > div {
-  height: 300px;
+  height: auto;
   background: #fff;
   text-align: center;
   border-radius: 8px;
-  min-height: 150px;
+  min-height: 120px;
   position: relative;
 }
 
 a:hover {
   text-decoration: none;
 }
+.rectangle-box-a{
+    display: flex;
+    flex-direction: row;
+}
+.order-now{
+margin-right: 0px;
+margin-left: -38px;
+position: absolute;
+bottom: 10px;
 
-.product-box {
-  padding: 10px 15px;
-  height: 100%;
 }
 
+.product-box { 
+  height: 100%;
+}
 .product-image-box {
-  width: 150px;
-  height: 150px;
-  margin: 10px auto;
-  margin-bottom: 15px;
-  border-radius: 8px;
+    width: 15%;
+    height: auto;
+    margin-bottom: 1%;
+   margin-left: 5%;
 }
 
 .product-image-box img {
@@ -96,19 +106,36 @@ a:hover {
   display: block;
   border-radius: 8px;
 }
+.product-name {
+ 
+  margin-top: 4%;
+  position: absolute;
+  right: 6%;
+
+}
+.product-name h1{
+  font-size: 30px;
+
+}
+
+.price-button {
+    position: absolute;
+    margin-top: 20px;
+   left: 80%;
+}
+
 
 .add-cart-button {
-  border-radius: 8px;
-  position: absolute;
-  bottom: 5%;
-  right: 5%;
+    border-radius: 8px;   
+    bottom: 6%;
+    text-align: center;
 }
 
 
 
 /* Responsive */
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 460px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   .restaurant-top-box {
     width: 100%;
     margin: 0px;
@@ -137,21 +164,66 @@ a:hover {
     margin-right: calc((100% - 200px) / 3 - 1px);
     box-shadow: 0 8px 6px -6px black;
   }
-
-  #grid {
+  .product-box{
     grid-template-columns: 1fr;
-    grid-gap: 3vw;
-    }
+    grid-gap: 1vw;
+  }
 
+#grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1vw;
+  }
+
+
+ 
     .sliding-category-box {
       width: 80px;
       height: 80px;
       margin: 0px;
     }
+.product-image-box {
+width: 25%;
+height: auto;
+
+}
+.product-name {
+   margin-top: 10%;
+  position: absolute;
+  right: 6%;
+}
+
+
+
+.product-name h1{
+  font-size: 20px;
+  
+}
+.price-button {
+    position: absolute;
+    margin-top:0px;
+   left: 80%;
+}
+
+
+.add-cart-button {
+    border-radius: 8px;   
+    bottom: 6%;
+    text-align: center;
+    padding: 4px;
+   font-size: 12px;
+}
+.order-now {
+    margin-right: 0px;
+    margin-left: -38px;
+    position: absolute;
+    bottom: -8px;
+}
+
 
 }
 
-@media only screen and (min-device-width : 461px) and (max-device-width : 767px) {
+@media only screen and (min-device-width : 481px) and (max-device-width : 767px) {
   .restaurant-top-box {
     width: 100%;
   }
@@ -181,9 +253,24 @@ a:hover {
   }
 
   #grid {
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 3vw;
+    grid-template-columns: 1fr;
+    grid-gap: 1vw;
   }
+.order-now {
+    margin-right: 0px;
+    margin-left: -38px;
+    position: absolute;
+    bottom: 10px;
+}
+
+
+.product-image-box {
+    width: 15%;
+    height: auto;
+    margin-bottom: 1%;
+    margin-left: 4%;
+}
+
 }
 
 @media only screen and (min-device-width : 767px) and (max-device-width : 1024px) {
@@ -196,10 +283,12 @@ a:hover {
   }
 
   #grid {
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 3vw;
+    grid-template-columns: 1fr;
+    grid-gap: 1vw;
   }
 }
+
+
 
 @media only screen and (min-device-width : 1025px) and (max-device-width : 1200px) {
 
@@ -221,8 +310,8 @@ a:hover {
 @media only screen and (min-device-width : 320px) and (max-device-width : 360px) {
 
   .sliding-category-box {
-    width: 70px;
-    height: 70px;
+    width: 83px;
+    height: 38px;
   }
 
   .sliding-category-name {
@@ -234,14 +323,14 @@ a:hover {
   }
 
   .slick-list {
-    padding-left: 0px !important;
+    padding-left: 10px !important;
   }
 }
 
 @media only screen and (min-device-width : 361px) and (max-device-width : 400px) {
   .sliding-category-box {
     width: 90px;
-    height: 90px;
+    height: 38px;
   }
 
   .sliding-category-name {
@@ -253,14 +342,16 @@ a:hover {
   }
 
   .slick-list {
-    padding-left: 0px !important;
+    padding-left: 12px !important;
   }
+  
+
 }
 
 @media only screen and (min-device-width : 401px) and (max-device-width : 440px) {
   .sliding-category-box {
     width: 100px;
-    height: 100px;
+    height: 35px;
   }
 
   .sliding-category-name {
@@ -272,7 +363,7 @@ a:hover {
   }
 
   .slick-list {
-    padding-left: 0px !important;
+    padding-left: 12px !important;
   }
 }
 
@@ -280,7 +371,7 @@ a:hover {
 
   .sliding-category-box {
     width: 120px;
-    height: 120px;
+   height: 38px;
   }
 
   .sliding-category-name {
@@ -292,14 +383,14 @@ a:hover {
   }
 
   .slick-list {
-    padding-left: 0px !important;
+    padding-left: 10px !important;
   }
 }
 
 @media only screen and (min-device-width : 481px) and (max-device-width : 550px) {
   .sliding-category-box {
-    width: 100px;
-    height: 100px;
+   width: 100px;
+  height: 40px;
   }
 
   .sliding-category-name {
@@ -320,7 +411,7 @@ a:hover {
 
   .sliding-category-box {
     width: 110px;
-    height: 110px;
+   height: 38px;
   }
 
   .sliding-category-name {
@@ -340,8 +431,8 @@ a:hover {
 @media only screen and (min-device-width : 601px) and (max-device-width : 700px) {
 
   .sliding-category-box {
-    width: 110px;
-    height: 110px;
+      width: 137px;
+    height: 43px;
   }
 
   .sliding-category-name {
@@ -360,7 +451,7 @@ a:hover {
 @media only screen and (min-device-width : 701px) and (max-device-width : 767px) {
   .sliding-category-box {
     width: 100px;
-    height: 100px;
+   height: 38px;
   }
 
   .sliding-category-name {
@@ -380,7 +471,7 @@ a:hover {
 
   .sliding-category-box {
     width: 120px;
-    height: 120px;
+    height: 45px;
   }
 
   .sliding-category-name {

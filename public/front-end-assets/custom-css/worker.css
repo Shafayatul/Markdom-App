@@ -15,10 +15,10 @@
 }
 
 .sliding-category-name {
-  margin-top: 15px;
+  margin-top: 21px;
   color: #4c4a37;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 18px;
+  font-size: 35px;
   line-height: 32px;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .rectangle-div {
-  margin-top: 0px;
+  margin-top: 30px;
   margin-bottom: 40px;
 }
 
@@ -179,6 +179,20 @@ background: #FDFDFD;
   
 }
 
+.brand_left {
+  width: calc(100%);
+  float: left;
+  padding-top: 25px;
+  padding-left: 10px;
+  text-align: center;
+}
+.brand_right {
+  width:100%;
+  
+}
+
+
+
 .brand-logo{
  display: inline-grid;
 }
@@ -198,7 +212,7 @@ background: #FDFDFD;
 }
 
   #grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .sliding-category-box {
@@ -207,7 +221,7 @@ background: #FDFDFD;
   }
 
   .sliding-category-name {
-    font-size: 12px;
+    font-size: 15px;
   }
 }
 

@@ -24,6 +24,7 @@ class WorkingHoursController extends Controller
     		$row = [];
     		$row['schedule_type_id'] = $schedule->schedule_type_id;
             $row['timespan'] = $schedule->timespan;
+            $row['id'] = $schedule->id;
     		$book_schedule_count = BookedSchedule::where('schedule_id', $schedule->id)->count();
 
     		if($book_schedule_count == 0){
