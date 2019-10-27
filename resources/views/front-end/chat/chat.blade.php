@@ -16,7 +16,7 @@
   <div class="inbox_msg">
     <div class="mesgs">
       <div class="msg_history">
-        <div c4lass="incoming_msg">
+        {{-- <div c4lass="incoming_msg">
           <div class="incoming_msg_img"> <img src="{{ asset('front-end-assets/images/user-profile.png') }}" alt="sunil"> </div>
           <div class="received_msg">
             <div class="received_withd_msg">
@@ -28,28 +28,7 @@
           <div class="sent_msg">
             <p>hi</p>
             <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-        </div>
-        <div class="incoming_msg">
-          <div class="incoming_msg_img"> <img src="{{ asset('front-end-assets/images/user-profile.png') }}" alt="sunil"> </div>
-          <div class="received_msg">
-            <div class="received_withd_msg">
-              <p>ho</p>
-              <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
-          </div>
-        </div>
-        <div class="outgoing_msg">
-          <div class="sent_msg">
-            <p>hi</p>
-            <span class="time_date"> 11:01 AM    |    Today</span> </div>
-        </div>
-        <div class="incoming_msg">
-          <div class="incoming_msg_img"> <img src="{{ asset('front-end-assets/images/user-profile.png') }}" alt="sunil"> </div>
-          <div class="received_msg">
-            <div class="received_withd_msg">
-              <p>We </p>
-              <span class="time_date"> 11:01 AM    |    Today</span></div>
-          </div>
-        </div>
+        </div> --}}
       </div>
       <div class="type_msg">
         <div class="input_msg_write">
@@ -65,7 +44,8 @@
 
   </div>
   
- 
+ <input type="hidden" id="live-chat-window" value="yes">
+ <input type="hidden" id="message_uid" value="{{ $message_uid }}">
 
 @endsection
 

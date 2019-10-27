@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	var baseUrl = 'http://localhost:8000/';
+	var baseUrl = 'http://webencoder.space/demo/demo61/public/';
 
 	// Your web app's Firebase configuration
 	var firebaseConfig = {
@@ -88,6 +88,7 @@ $(document).ready(function(){
 
 		var unique_chat_id = 'rco'+restuarent_customer_order_id+'d'+driver_id;
 
+
 		// chat list according to restuarent offer customer id
 		// only insert if it is not there
 		firebase.database().ref('chat_list').child(restuarent_customer_order_id).orderByChild("unique_chat_id").equalTo(unique_chat_id).once("value",snapshot => {
@@ -109,9 +110,68 @@ $(document).ready(function(){
 
 		// message
 		firebase.database().ref('message').child(unique_chat_id).push({
-			'msg': offer_price_by_driver
+			'msg': offer_price_by_driver,
+			'is_driver': 1
 		});
+
+		window.location.href = baseUrl+"message/"+unique_chat_id;
+
 	});	
+
+
+	/** 
+	* live chat windown
+	*/
+	// read previous chat
+	var live_chat_window = $("#live-chat-window").val();
+	if (live_chat_window) {
+		var message_uid      = $("#message_uid").val();
+
+		var starCountRef = firebase.database().ref('message').child(message_uid);
+		starCountRef.on('value', function(snapshot) {
+			var allMsg = '';
+
+			$.each(snapshot.val(), function( index, value ) {
+				if (value.is_driver == 1) {
+					allMsg = allMsg+'<div c4lass="incoming_msg"><div class="received_msg"><div class="received_withd_msg"><p>'+value.msg+'</p></div></div></div>';
+				}else{
+					allMsg = allMsg+'<div class="outgoing_msg"><div class="sent_msg"><p>'+value.msg+'</p></div></div>';
+				}
+			});
+			$('.msg_history').html(allMsg);
+		});
+	}
+	// insert new chat
+	$(".msg_send_btn").click(function(){
+		var message_uid = $("#message_uid").val();
+		var isDriver    = $(".hidden-is-driver").val();
+		if (isDriver != 1) {
+			isDriver = 0;
+		}
+		var newMsg = $(".write_msg").val();
+		if(newMsg != ''){
+			var database = firebase.database().ref('message').child(message_uid).push({
+				'msg': newMsg,
+				'is_driver': isDriver
+			});
+		}
+		$(".write_msg").val('');
+	});
+	// show new message
+	firebase.database().ref('message').child(message_uid).on("child_added", function(snapshot) {
+		var newMsg = '';
+		$.each(snapshot.val(), function( index, value ) {
+			if (value.is_driver == 1) {
+				newMsg = newMsg+'<div c4lass="incoming_msg"><div class="received_msg"><div class="received_withd_msg"><p>'+value.msg+'</p></div></div></div>';
+			}else{
+				newMsg = newMsg+'<div class="outgoing_msg"><div class="sent_msg"><p>'+value.msg+'</p></div></div>';
+			}
+		});
+		$('.msg_history').append(newMsg);
+	});
+	
+
+
 
 
 	/**

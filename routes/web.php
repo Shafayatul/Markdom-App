@@ -122,8 +122,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
 //FrontEnd Route Ends Here
 
+Route::get('/message/{message_uid}', 'FrontEnd\RestaurantsController@chat')->name('home');
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
+
+
+
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
