@@ -8,7 +8,7 @@
 <div class="header" id="Header">
   <h4>karamcafe</h4>
   <i class="fa fa-chevron-left " aria-hidden="true"></i>
-  <p><span class="wait">waiting for offer</span> |#222222 </p>
+  <p><span class="wait">waiting for offer</span> |Unique Code#<span id="restaurant-costomer-order">--</span> </p>
 </div>
 <div class="messaging">
   
