@@ -164,6 +164,14 @@ $(document).ready(function(){
 	if (live_chat_window == 'yes') {
 		var message_uid      = $("#message_uid").val();
 
+
+		var starCountRef = firebase.database().ref('chat_detail').child(message_uid);
+		starCountRef.on('value', function(snapshot) {
+			// console.log(snapshot.val().restuarent_customer_order_id);
+			$("#restaurant-costomer-order").html(snapshot.val().restuarent_customer_order_id);
+		});
+
+
 		var starCountRef = firebase.database().ref('message').child(message_uid);
 		starCountRef.on('value', function(snapshot) {
 			var allMsg = '';
