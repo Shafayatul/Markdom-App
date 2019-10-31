@@ -22,6 +22,7 @@ use App\Country;
 use App\Cart;
 use App\OrderStatus;
 use App\OrderActivity;
+use App\RestuarentCustomerOrder;
 
 class OrdersController extends Controller
 {
@@ -93,6 +94,7 @@ class OrdersController extends Controller
 
     public function store(Request $request)
     {
+
         if($request->hasFile('image')){
             $image              = $request->file('image');
             $image_name         = uniqid().'.'.strtolower($image->getClientOriginalExtension());
@@ -165,6 +167,12 @@ class OrdersController extends Controller
             $order_data->total_price     = $total_price[$key];
             $order_data->save();
         }
+
+        $restuarent_customer_orders_id        = $request->unique_code;
+        $RestuarentCustomerOrder              = RestuarentCustomerOrder::find($restuarent_customer_orders_id);
+        $RestuarentCustomerOrder->driver_id   = Auth::id();
+        $RestuarentCustomerOrder->offer_price = $grand_total_price;
+        $RestuarentCustomerOrder->save();
 
 
         return redirect('driver-orders')->with('success', 'Order added!');

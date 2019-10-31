@@ -6,7 +6,7 @@
 @section('main-content')
 
 <div class="header" id="Header">
-  <h4>karamcafe</h4>
+  <h4>Live Chat window</h4>
   <i class="fa fa-chevron-left " aria-hidden="true"></i>
   <p><span class="wait">waiting for offer</span> |Unique Code#<span id="restaurant-costomer-order">--</span> </p>
 </div>
