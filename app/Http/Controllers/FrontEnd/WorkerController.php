@@ -166,7 +166,7 @@ class WorkerController extends Controller
         Session::put('selected_store_id', $product->store_id);
         Session::put('selected_product_id', $id);
 
-      $url_service_type_price     = env('MAIN_HOST_URL').'api/get-service-type-price';
+      $url_service_type_price     = env('MAIN_HOST_URL').'api/get-service-type-price/'.$id;
       $method_service_type_price  = 'GET';
       $service_type_prices        = $this->callApi($method_service_type_price, $url_service_type_price);
       return view('front-end.workers.worker-service-delivery', compact('service_type_prices', 'product'));

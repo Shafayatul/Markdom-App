@@ -207,7 +207,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::patch('/schedules/{id}', 'SchedulesController@update');
 		Route::resource('booked-schedules', 'BookedSchedulesController');
 		Route::resource('modules', 'ModulesController');
-		Route::resource('worker-service-costs', 'WorkerServiceCostsController');
+		
 		Route::resource('countries', 'CountriesController');
 		Route::resource('states', 'StatesController');
 		Route::resource('cities', 'CitiesController');
@@ -235,6 +235,11 @@ Route::middleware(['auth'])->group(function () {
 
 
 	Route::group(['middleware' => ['role:admin|store']], function () {
+
+
+		Route::get('worker-service-costs-by-product/{product_id}', 'WorkerServiceCostsController@create');
+		Route::resource('worker-service-costs', 'WorkerServiceCostsController');
+
 		Route::resource('stores', 'StoresController');
 		Route::get('store-order', 'StoreOrdersController@index');
 		Route::get('store-order/{id}', 'StoreOrdersController@show');

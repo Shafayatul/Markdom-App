@@ -25,7 +25,7 @@ class WorkerServiceCost extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'name_arabic', 'price'];
+    protected $fillable = ['name', 'name_arabic', 'price', 'product_id'];
 
     
 }

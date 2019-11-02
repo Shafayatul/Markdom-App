@@ -13,6 +13,7 @@
     {!! Form::text('price', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
     {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
 </div>
+{!! Form::hidden('product_id', $product_id) !!}
 
 
 <div class="form-group">

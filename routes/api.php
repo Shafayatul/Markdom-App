@@ -42,7 +42,7 @@ Route::get('get-sub-subcategories-by-sub-category/{id}', 'Api\SubCategoriesContr
 
 Route::get('get-product-by-sub-sub-category/{id}', 'Api\ProductsController@get_product_by_subsubcategory_id');
 
-Route::get('get-service-type-price', 'Api\WorkerServiceCostsController@get_service_type_price');
+Route::get('get-service-type-price/{product_id}', 'Api\WorkerServiceCostsController@get_service_type_price');
 
 Route::get('get-review-by-store/{store_id}', 'Api\ReviewsController@get_review_by_store_id');
 

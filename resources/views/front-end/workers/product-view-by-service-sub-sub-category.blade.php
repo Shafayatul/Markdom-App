@@ -53,7 +53,7 @@
                    
                   </a>
 
-                  <a class="row order-now text-center" href="{{ route('worker-product-details', ['id' => $service->id]) }}"><button class="btn btn-success  add-cart-button" type="button" name="button">{{ __('content.add_cart') }}</button></a>
+                  <a class="row order-now text-center" href="{{ route('worker-product-details', ['id' => $service->id]) }}"><button class="btn btn-success  add-cart-button" type="button" name="button">{{ __('content.get_the_service') }}</button></a>
                 </div>
             @endforeach
           </div>

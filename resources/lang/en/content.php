@@ -35,5 +35,6 @@ return [
     'available_unit' => 'Available units',
     'service_provider_shop' => 'In service provider shop',
     'customer_place' => 'In customer place',
+    'get_the_service' => 'Get the service',
 
 ];

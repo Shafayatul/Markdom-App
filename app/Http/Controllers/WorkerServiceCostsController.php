@@ -37,9 +37,9 @@ class WorkerServiceCostsController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create($product_id)
     {
-        return view('worker-service-costs.create');
+        return view('worker-service-costs.create', compact('product_id'));
     }
 
     /**
