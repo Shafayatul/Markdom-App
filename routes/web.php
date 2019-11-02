@@ -121,6 +121,18 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
 });
 
+
+
+/* Driver order in the front end */
+// Route::group(['middleware' => ['role:admin|driver']], function () {
+	Route::get('driver-orders-create', 'OrdersController@createDriver');
+	Route::post('driver-orders-list', 'OrdersController@storeDriver');
+
+	Route::get('driver-orders', 'DriverOrdersController@index');
+	Route::get('driver-order/{id}', 'DriverOrdersController@show');
+// });
+
+
 //FrontEnd Route Ends Here
 
 Route::get('/message/{message_uid}', 'FrontEnd\RestaurantsController@chat')->name('home');
@@ -220,13 +232,7 @@ Route::middleware(['auth'])->group(function () {
 
 	});
 	
-	Route::group(['middleware' => ['role:admin|driver']], function () {
-		Route::get('orders/create', 'OrdersController@create');
-		Route::post('orders', 'OrdersController@store');
 
-		Route::get('driver-orders', 'DriverOrdersController@index');
-		Route::get('driver-order/{id}', 'DriverOrdersController@show');
-	});
 
 	Route::group(['middleware' => ['role:admin|store']], function () {
 		Route::resource('stores', 'StoresController');

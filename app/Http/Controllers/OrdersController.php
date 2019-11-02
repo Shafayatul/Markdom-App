@@ -66,6 +66,19 @@ class OrdersController extends Controller
         }
         
         return view('orders.create', compact('stores'));
+    }    
+    public function createDriver()
+    {
+      
+        $module = Module::where('name', 'Restaurant')->first();
+
+        if(isset($module) != null){
+            $stores     = Store::where('module_id', $module->id)->pluck('name', 'id');
+        }else{
+            $stores     = [];
+        }
+        
+        return view('orders.create-driver', compact('stores'));
     }
 
     /**

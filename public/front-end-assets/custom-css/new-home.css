@@ -3,12 +3,12 @@
   margin-top: 40px;
 }
 .sliding-category-box {
-  width: 150px;
-  height: 150px;
+  width: 77px;
+  height: 77px;
   margin: 0 auto;
   /* border: 1px solid #cecece; */
   border-radius: 50%;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 .sliding-category-name {
@@ -24,7 +24,7 @@
     width: 100%;
     height: 100%;
     display: block;
-    padding: 7px;
+    padding: 3px;
     background-color: #cecece;
     border-radius: 50%;
 }
@@ -109,7 +109,7 @@
   bottom: 20%;
   left: 5%;
   color: #fff;
-  font-size: 22px;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -118,7 +118,7 @@
   bottom: 5%;
   left: 5%;
   color: #fff;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .number {
@@ -126,7 +126,7 @@
   bottom: 20%;
   right: 5%;
   color: #fff;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .number-2 {
@@ -134,7 +134,7 @@
   bottom: 5%;
   right: 5%;
   color: #fff;
-  font-size: 22px;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -151,10 +151,10 @@
     padding-right: 10px;
     padding-left: 10px;
   }
-
+/*
   #grid {
     grid-template-columns: 1fr;
-  }
+  }*/
 
   .rectangle-div {
     margin-top: 40px;
@@ -162,7 +162,7 @@
   }
 
   .sliding-category {
-    margin-top: 20px;
+    margin-top: 0px;
   }
 
   .sliding-category-title {
@@ -204,7 +204,7 @@
     grid-template-columns: 1fr 1fr;
   }
 
-}
+
 
 
 
@@ -244,8 +244,8 @@
 
 @media only screen and (min-device-width : 361px) and (max-device-width : 400px) {
   .sliding-category-box {
-    width: 90px;
-    height: 90px;
+    width: 77px;
+    height: 77px;
   }
 
   .sliding-category-name {
