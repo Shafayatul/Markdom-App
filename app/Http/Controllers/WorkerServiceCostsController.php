@@ -31,7 +31,11 @@ class WorkerServiceCostsController extends Controller
 
         return view('worker-service-costs.index', compact('workerservicecosts'));
     }
-
+    public function indexByProduct($product_id)
+    {
+        $workerservicecosts = WorkerServiceCost::where('product_id', $product_id)->get();
+        return view('worker-service-costs.index', compact('workerservicecosts'));
+    }
     /**
      * Show the form for creating a new resource.
      *

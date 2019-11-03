@@ -167,8 +167,14 @@ $(document).ready(function(){
 
 		var starCountRef = firebase.database().ref('chat_detail').child(message_uid);
 		starCountRef.on('value', function(snapshot) {
-			// console.log(snapshot.val().restuarent_customer_order_id);
+			console.log(snapshot.val());
 			$("#restaurant-costomer-order").html(snapshot.val().restuarent_customer_order_id);
+			// console.log($('.hidden-is-driver').val());
+			if (parseInt($('.hidden-is-driver').val()) == 1) {
+				$(".chat-top-name").html(snapshot.val().customer_name);
+			}else{
+				$(".chat-top-name").html(snapshot.val().driver_name);
+			}
 		});
 
 

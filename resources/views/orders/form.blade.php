@@ -1,3 +1,9 @@
+<div class="form-group {{ $errors->has('unique_code') ? 'has-error' : ''}}">
+    {!! Form::label('unique_code', 'Unique Code(Copied from chat box)', ['class' => 'control-label']) !!}
+    {!! Form::text('unique_code', null, ('' == 'required') ? ['class' => 'form-control unique_code', 'required' => 'required', 'id' => 'unique_code'] : ['class' => 'form-control unique_code', 'id' => 'unique_code']) !!}
+    {!! $errors->first('unique_code', '<p class="help-block">:message</p>') !!}
+</div>
+
 <div class="form-group {{ $errors->has('store_id') ? 'has-error' : ''}}">
     {!! Form::label('store_id', 'Restuarants', ['class' => 'control-label']) !!}
     {!! Form::select('store_id', $stores, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'placeholder'=>'Select a Store', 'id' => 'store_id'] : ['class' => 'form-control', 'placeholder'=>'Select a Store', 'id' => 'store_id']) !!}
@@ -100,11 +106,7 @@
     {!! $errors->first('image', '<p class="help-block">:message</p>') !!}
 </div>
 
-<div class="form-group {{ $errors->has('unique_code') ? 'has-error' : ''}}">
-    {!! Form::label('unique_code', 'Unique Code', ['class' => 'control-label']) !!}
-    {!! Form::text('unique_code', null, ('' == 'required') ? ['class' => 'form-control unique_code', 'required' => 'required', 'id' => 'unique_code'] : ['class' => 'form-control unique_code', 'id' => 'unique_code']) !!}
-    {!! $errors->first('unique_code', '<p class="help-block">:message</p>') !!}
-</div>
+
 
 @if($formMode == 'edit')
     <div class="form-group">
