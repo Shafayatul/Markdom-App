@@ -39,7 +39,7 @@
     </div>
   </div>
   </div>
-   <a class="trigger_popup_fricc">Click here to show the popup</a>
+   {{-- <a class="trigger_popup_fricc">Click here to show the popup</a> --}}
 
 
   </div>

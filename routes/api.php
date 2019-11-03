@@ -103,4 +103,17 @@ Route::group(['middleware' => ['auth:api']], function() {
 
 	Route::post('promo-code-validation','Api\PromoCodesController@promo_code_validation');
 
+	Route::get('get-customer-restuarent-order/{module}', 'Api\CustomersController@customer_restuarent_orders');
+
+	Route::get('get-single-restuarent-order/{id}', 'Api\CustomersController@restaurent_single_order');
+	Route::get('get-single-worker-order/{id}', 'Api\CustomersController@worker_single_order');
+	Route::get('get-single-store-order/{id}', 'Api\CustomersController@store_single_order');
+
+	Route::get('single-restaurent-complete/{id}', 'Api\CustomersController@restaurentOrderComplete');
+	Route::get('single-worker-complete/{id}', 'Api\CustomersController@workerOrderComplete');
+	Route::get('review-check-by-order-id/{id}/{type}', 'Api\CustomersController@order_review_check');
+
+	Route::post('/order-review-submit', 'Api\CustomersController@order_review_submit');
+
+
 });

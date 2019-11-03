@@ -5,30 +5,6 @@
             <li>
                 <a href="{{ url('/home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-user fa-fw"></i> Service-Category<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('service-categories/create') }}">Create</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('service-categories') }}">Manage</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-user fa-fw"></i> Service-Sub-Category<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('service-sub-categories/create') }}">Create</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('service-sub-categories') }}">Manage</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
 
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Promo Codes<span class="fa arrow"></span></a>
@@ -43,18 +19,7 @@
                 <!-- /.nav-second-level -->
             </li>
 
-            <li>
-                <a href="#"><i class="fa fa-user fa-fw"></i> Service-Sub-Sub-Category<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('service-sub-sub-categories/create') }}">Create</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('service-sub-sub-categories') }}">Manage</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
+
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Country<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -152,18 +117,6 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-user fa-fw"></i> Worker Service Costs<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('worker-service-costs/create') }}">Create</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('worker-service-costs') }}">Manage</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
-            <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Category<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
@@ -175,6 +128,38 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Days<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('days/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('days') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Schedule Types<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('schedule-types/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('schedule-types') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+
+            <li>
+                <a href="{{ url('/driver-orders') }}"><i class="fa fa-dashboard fa-fw"></i> Driver Orders</a>
+            </li>
+
+            @endhasrole
+
+            @hasrole('store')
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Sub Category<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -200,8 +185,6 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-            @endhasrole
-            @hasrole('admin|store')
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Stores<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -214,22 +197,6 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-            @endhasrole
-            @hasrole('admin')
-            <li>
-                <a href="#"><i class="fa fa-user fa-fw"></i> Products<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('products/create') }}">Create</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('products') }}">Manage</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
-            @endhasrole
-            @hasrole('admin')
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Service Types<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -242,6 +209,57 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Service-Category<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('service-categories/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('service-categories') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Service-Sub-Category<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('service-sub-categories/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('service-sub-categories') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Service-Sub-Sub-Category<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('service-sub-sub-categories/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('service-sub-sub-categories') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Products<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('products/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('products') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            {{-- <li>
+                <a href="{{ url('/booked-schedules') }}"><i class="fa fa-dashboard fa-fw"></i> Booked Schedule</a>
+            </li> --}}
             @endhasrole
             @hasrole('admin')
             <li>
@@ -299,11 +317,6 @@
                 <a href="{{ url('/orders') }}"><i class="fa fa-dashboard fa-fw"></i> Orders</a>
             </li>
             @endhasrole
-            @hasrole('admin|driver')
-            <li>
-                <a href="{{ url('/driver-orders') }}"><i class="fa fa-dashboard fa-fw"></i> Driver Orders</a>
-            </li>
-            @endhasrole
             @hasrole('admin')
             <li>
                 <a href="{{ url('/store-order') }}"><i class="fa fa-dashboard fa-fw"></i> Store Orders</a>
@@ -313,37 +326,9 @@
                 <a href="{{ url('/worker-orders') }}"><i class="fa fa-dashboard fa-fw"></i> Worker Orders</a>
             </li>
             @endhasrole
-            @hasrole('admin|store')
+            @hasrole('admin|driver')
             <li>
-                <a href="#"><i class="fa fa-user fa-fw"></i> Days<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('days/create') }}">Create</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('days') }}">Manage</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
-            @endhasrole
-            @hasrole('admin|store')
-            <li>
-                <a href="#"><i class="fa fa-user fa-fw"></i> Schedule Types<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('schedule-types/create') }}">Create</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('schedule-types') }}">Manage</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
-            @endhasrole
-            @hasrole('admin|store')
-            <li>
-                <a href="{{ url('/booked-schedules') }}"><i class="fa fa-dashboard fa-fw"></i> Booked Schedule</a>
+                <a href="{{ url('/driver-orders') }}"><i class="fa fa-dashboard fa-fw"></i> Driver Orders</a>
             </li>
             @endhasrole
 

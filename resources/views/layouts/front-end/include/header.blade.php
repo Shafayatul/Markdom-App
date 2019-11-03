@@ -5,9 +5,29 @@
         <div class="overlay-content">
           <ul>
             @if((Session::has('is_driver')) && (Session::get('is_driver') == 1))
-              <li><a href="{{ url('driver-orders-create') }}">Make Order</a></li>
+              <li><a href="{{ url('orders/create') }}">Make Order</a></li>
               <li><a href="{{ url('driver-orders-list') }}">Order List</a></li>
             @else
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Customer Order <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>
+                      <a rel="alternate"  href="{{ url('/customer-order/restaurant') }}">
+                          Restuarent
+                      </a>
+                    </li>
+                    <li>
+                      <a rel="alternate"  href="{{ url('/customer-order/worker') }}">
+                          Worker
+                      </a>
+                    </li>
+                    <li>
+                      <a rel="alternate"  href="{{ url('/customer-order/store') }}">
+                          Store
+                      </a>
+                    </li>
+                </ul>
+              </li>
               <li><a href="{{ route('restaurant') }}">Restorant</a></li>
               <li><a href="{{ route('store') }}" class="main-li-a">Store</a></li>
               <li><a href="{{ route('worker') }}" class="main-li-a">Workers</a></li>

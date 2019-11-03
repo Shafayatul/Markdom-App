@@ -35,7 +35,7 @@
 				</p>	
 			</div>	
 		</div>
-		<div class="container text-centar">
+{{-- 		<div class="container text-centar">
 			<div class="row-fluid row">
 				<div class="span12">
 					<ul class="unstyled">
@@ -59,7 +59,7 @@
 
 				</div>
 			</div>
-		</div>
+		</div> --}}
 	</div>
 </div>
 <input type="hidden" id="hidden-restaurant-offer-customer" name="hidden-restaurant-offer-customer" value="{{ $restuarent_customer_order_id}}">

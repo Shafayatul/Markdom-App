@@ -119,18 +119,32 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
 	Route::get('/track-order/{id}', 'FrontEnd\FrontEndController@trackOrder');
 
+	Route::get('/customer-order/{module}', 'FrontEnd\CustomersController@customerOrder');
+
+	Route::get('restaurent-single-order/{id}', 'FrontEnd\CustomersController@restaurentSingleOrder');
+
+	Route::get('worker-single-order/{id}', 'FrontEnd\CustomersController@workerSingleOrder');
+	Route::get('store-single-order/{id}', 'FrontEnd\CustomersController@storeSingleOrder');
+
+	Route::get('restaurent-single-order-complete/{id}', 'FrontEnd\CustomersController@restaurentOrderComplete');
+	Route::get('worker-single-order-complete/{id}', 'FrontEnd\CustomersController@workerOrderComplete');
+
+	Route::get('customer-review/{id}/{type}', 'FrontEnd\CustomersController@orderReview');
+
+	Route::post('/review-submit', 'FrontEnd\CustomersController@orderReviewSubmit');
+
 });
 
 
 
 /* Driver order in the front end */
-// Route::group(['middleware' => ['role:admin|driver']], function () {
+/*Route::group(['middleware' => ['role:admin|driver']], function () {
 	Route::get('driver-orders-create', 'OrdersController@createDriver');
 	Route::post('driver-orders-list', 'OrdersController@storeDriver');
 
 	Route::get('driver-orders', 'DriverOrdersController@index');
 	Route::get('driver-order/{id}', 'DriverOrdersController@show');
-// });
+});*/
 
 
 //FrontEnd Route Ends Here
@@ -140,7 +154,13 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
 
 
-
+	Route::group(['middleware' => ['role:admin|driver']], function () {
+		Route::resource('orders', 'OrdersController');
+		Route::get('orders/create', 'OrdersController@create');
+		Route::post('orders', 'OrdersController@store');
+		Route::get('driver-orders', 'DriverOrdersController@index');
+		Route::get('driver-order/{id}', 'DriverOrdersController@show');
+	});
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
@@ -154,8 +174,7 @@ Route::middleware(['auth'])->group(function () {
 
 		Route::resource('categories', 'CategoriesController');
 
-		Route::resource('sub-categories', 'SubCategoriesController');
-		Route::resource('sub-sub-categories', 'SubSubCategoriesController');
+
 		Route::resource('stores', 'StoresController');
 
 
@@ -171,15 +190,15 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('order-in-store/{id}', 'StoresController@orderShowByStoreId');
 
 
-		Route::resource('products', 'ProductsController');
-		Route::resource('service-types', 'ServiceTypesController');
+		
+		
 		Route::resource('reviews', 'ReviewsController');
-		Route::resource('orders', 'OrdersController');
+		
 
 
 		//Driver Order Section
-		Route::get('driver-orders', 'DriverOrdersController@index');
-		Route::get('driver-order/{id}', 'DriverOrdersController@show');
+		// Route::get('driver-orders', 'DriverOrdersController@index');
+		// Route::get('driver-order/{id}', 'DriverOrdersController@show');
 		Route::delete('driver-order-delete/{id}', 'DriverOrdersController@destroy');
 
 		Route::resource('offers', 'OffersController');
@@ -215,9 +234,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::resource('payment-types', 'PaymentTypesController');
 		Route::resource('order-status', 'OrderStatusController');
 		Route::resource('order-activities', 'OrderActivitiesController');
-		Route::resource('service-categories', 'ServiceCategoriesController');
-		Route::resource('service-sub-categories', 'ServiceSubCategoriesController');
-		Route::resource('service-sub-sub-categories', 'ServiceSubSubCategoriesController');
+
 		Route::resource('promo-codes', 'PromoCodesController');
 
 
@@ -236,8 +253,18 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::group(['middleware' => ['role:admin|store']], function () {
 
+		Route::resource('service-types', 'ServiceTypesController');
+		Route::resource('service-categories', 'ServiceCategoriesController');
+		Route::resource('service-sub-categories', 'ServiceSubCategoriesController');
+		Route::resource('service-sub-sub-categories', 'ServiceSubSubCategoriesController');
+
+		Route::resource('sub-categories', 'SubCategoriesController');
+		Route::resource('sub-sub-categories', 'SubSubCategoriesController');
+
+		Route::resource('products', 'ProductsController');
 
 		Route::get('worker-service-costs-by-product/{product_id}', 'WorkerServiceCostsController@create');
+		Route::get('worker-service-costs-list-by-product/{product_id}', 'WorkerServiceCostsController@indexByProduct');
 		Route::resource('worker-service-costs', 'WorkerServiceCostsController');
 
 		Route::resource('stores', 'StoresController');

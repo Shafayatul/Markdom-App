@@ -36,4 +36,5 @@ return [
     'service_provider_shop' => 'في متجر مزود الخدمة',
     'customer_place' => 'في مكان العميل',
     'get_the_service' => 'الحصول على الخدمة',
+    'reviewed_msg' => 'أنت بالفعل استعرض',
 ];
