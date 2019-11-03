@@ -36,13 +36,13 @@
         <div class="col-md-12">
           <p>Store Name: {{ $store->name }}</p>
           <p>Location: {{ $store->location }}</p>
-          <div class="review">
+{{--           <div class="review">
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star"></span>
             <span class="fa fa-star"></span>
-          </div>
+          </div> --}}
         </div>
         <div class="col-md-12">
           <div class="form-group">

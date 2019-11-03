@@ -1,281 +1,308 @@
+
 .restaurant {
   margin-top: 30px;
 }
-
-.sliding-category-box {
-  width: 200px;
-  height: 50px;
-  margin: 20px auto;
-  border-radius: 25px;
-  background-color: #2ecc71 !important;
-  -webkit-box-shadow: 0px 0px 11px -2px #27ae60;
-  box-shadow: 0px 0px 11px -2px #27ae60;
-  position: relative;
-  cursor: pointer;
+div.scrollmenu {
+  background-color: #fff;
+  overflow: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 }
 
-.sliding-category-box:hover {
-  background-color: #27ae60 !important;
-}
-
-.sliding-category {
-  margin: 0px 0px 20px 0px;
-}
-
-.sliding-category-box-a {
-  width: 100%;
-  height: 100%;
-  display: block;
+div.scrollmenu li {
+  display: inline-block; 
+  text-align: center;
+  padding: 1px;
   text-decoration: none;
-}
+  -webkit-overflow-scrolling: touch;
 
-.sliding-category-box-a:hover {
-  text-decoration: none;
 }
-
-.sliding-category-name {
-  position: relative;
+div.scrollmenu li a{
+  background-color:#2ECC71;
   color: #fff;
-  top: 25%;
-  left: 0%;
-  right: 0%;
-  font-size: 18px;
+  font-size: 14px;
+  padding: 10px 15px 10px 15px;
+  border-radius: 14px;
+  text-decoration: none;
 }
+
+div.scrollmenu li a:hover {
+  background-color: #777;
+  text-decoration: none;
+}
+
 
 .shadow {
   box-shadow: 0 5px 30px rgba(0.30,0.30,0.30,0.30), 0 5px 5px rgba(0.30,0.30,0.30,0.30);
 }
 
+
+
+.restaurant-details-div {
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.product-div {
+  margin-top: 50px;
+  display: block;
+  overflow: hidden;
+  padding: 20px 10px;
+}
+
+
+
 #grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 3vw;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1vw;
+
   }
 
-#grid > .rectangle-box-a {
-  height: 150px;
+#grid > div {
+  height: auto;
+  background: #fff;
   text-align: center;
-  border-radius: 16px;
+  border-radius: 8px;
+  min-height: 120px;
   position: relative;
-  /*background-color: #27ae60 !important;*/
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
+  margin-top: 20px;
 }
 
-.logo-box {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  position: absolute;
-  top: 20%;
-  left: 5%;
+a:hover {
+  text-decoration: none;
+}
+.rectangle-box-a{
+    display: flex;
+    flex-direction: row;
+}
+.order-now{
+margin-right: 0px;
+margin-left: -38px;
+position: absolute;
+bottom: 10px;
+
 }
 
-.logo-box img {
+.product-box { 
+  height: 100%;
+}
+.product-image-box {
+    width: 25%;
+    height: auto;
+    margin-bottom: 1%;
+   margin-left: 5%;
+   margin-top: 10px;
+}
+
+.product-image-box img {
   width: 100%;
   height: 100%;
   display: block;
-  border-radius: 50%;
+  border-radius: 8px;
 }
-
-.name-location-div {
+.product-name {
+ 
+  margin-top: 4%;
   position: absolute;
-  left: 30%;
-  top: 5%;
+  right: 6%;
+
+}
+.product-name h1{
+  font-size: 30px;
+
 }
 
-.name {
-  color: #fff;
-  font-size: 24px;
-  display: block;
-  line-height: 70px;
-  font-weight: 600;
-  text-align: left;
-}
-
-.location {
-  color: #fff;
-  font-size: 20px;
-  display: block;
-  line-height: 70px;
-  font-weight: 600;
-  text-align: left;
-}
-
-.kilometer {
-  color: #fff;
-  font-size: 24px;
-  line-height: 70px;
-  font-weight: 600;
-  text-align: left;
-  position: absolute;
-  top: 25%;
-  right: 5%;
+.price-button {
+    /*position: absolute;*/
+    margin-top: 20px;
+  /* left: 80%;*/
 }
 
 
-/* Responsive CSS */
+.add-cart-button {
+    border-radius: 8px;   
+    bottom: 6%;
+    text-align: center;
+}
 
-/* Smartphones (portrait and landscape) ----------- */
+
+
+/* Responsive */
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-  .sliding-category-box {
-    width: 95px;
-    height: 45px;
+  #grid > div {
+ 
+  min-height: 80px;
+}
+  .restaurant-top-box {
+    width: 100%;
+    margin: 0px;
   }
 
-  .sliding-category-name {
-    font-size: 12px;
-    font-weight: bold;
+  .restaurant-name {
+    font-size: 16px;
   }
 
-  #grid {
+  .store-rate-title {
+    font-size: 14px;
+  }
+
+  .store-rating {
+    bottom: 6%;
+    font-size: 14px;
+  }
+
+  .restaurant-details-div {
+    width: 100%;
+  }
+
+  .restaurant-details-box {
+    width: 60px;
+    height: 60px;
+    margin-right: calc((100% - 200px) / 3 - 1px);
+    box-shadow: 0 8px 6px -6px black;
+  }
+  .product-box{
     grid-template-columns: 1fr;
+    grid-gap: 1vw;
   }
 
-  #grid > .rectangle-box-a {
-    height: 100px;
-    border-radius: 45px;
+#grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1vw;
   }
 
-  .logo-box {
-    width: 80px;
-    height: 80px;
-    top: 10%;
-    left: 3%;
-  }
 
-  .name-location-div {
+ 
+    
+.product-image-box {
+    width: 25%;
+    height: auto;
+    margin-top: 13px;
+}
+.product-name {
+   margin-top: 7%;
+ 
+ 
+}
+
+
+
+.product-name h1{
+  font-size: 20px;
+  
+}
+.price-button {
+    
+    margin-top:0px;
+  
+}
+
+
+.add-cart-button {
+    border-radius: 8px;   
+    bottom: 6%;
+    text-align: center;
+    padding: 4px;
+   font-size: 12px;
+}
+.order-now {
+    margin-right: 0px;
+    margin-left: -38px;
     position: absolute;
-    left: 30%;
-    top: 1%;
-  }
+    bottom: -8px;
+}
 
-  .name {
-    font-size: 20px;
-    line-height: 40px;
-  }
 
-  .location {
-    font-size: 15px;
-    line-height: 70px;
-  }
-
-  .kilometer {
-    font-size: 18px;
-    top: 15%;
-    right: 5%;
-  }
 }
 
 @media only screen and (min-device-width : 481px) and (max-device-width : 767px) {
-  .sliding-category-box {
-    width: 90px;
-    height: 45px;
+  .restaurant-top-box {
+    width: 100%;
   }
 
-  .sliding-category-name {
-    font-size: 12px;
-    font-weight: bold;
+  .restaurant-name {
+    font-size: 16px;
+  }
+
+  .store-rate-title {
+    font-size: 14px;
+  }
+
+  .store-rating {
+    bottom: 6%;
+    font-size: 14px;
+  }
+
+  .restaurant-details-div {
+    width: 100%;
+  }
+
+  .restaurant-details-box {
+    width: 90px;
+    height: 90px;
+    margin-right: calc((100% - 200px) / 3 - 1px);
+    box-shadow: 0 8px 6px -6px black;
   }
 
   #grid {
     grid-template-columns: 1fr;
+    grid-gap: 1vw;
   }
-
-  #grid > .rectangle-box-a {
-    height: 100px;
-    border-radius: 50px;
-  }
-
-  .logo-box {
-    width: 80px;
-    height: 80px;
-    top: 10%;
-    left: 2%;
-  }
-
-  .name-location-div {
+   #grid > div {
+ 
+  min-height: 100px;
+}
+.order-now {
+    margin-right: 0px;
+    margin-left: -38px;
     position: absolute;
-    left: 30%;
-    top: 5%;
-  }
-
-  .name {
-    font-size: 20px;
-    line-height: 40px;
-  }
-
-  .location {
-    font-size: 15px;
-    line-height: 70px;
-  }
-
-  .kilometer {
-    font-size: 20px;
-    top: 15%;
-    right: 5%;
-  }
+    bottom: 10px;
 }
 
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-  .sliding-category-box {
-    width: 110px;
-    height: 45px;
-  }
 
-  .sliding-category-name {
-    font-size: 12px;
-    font-weight: bold;
+.product-image-box {
+    width: 25%;
+    height: auto;
+   
+    
+}
+
+}
+
+@media only screen and (min-device-width : 767px) and (max-device-width : 1024px) {
+
+  .restaurant-details-box {
+    width: 110px;
+    height: 110px;
+    margin-right: calc((100% - 250px) / 3 - 1px);
+    box-shadow: 0 8px 6px -6px black;
   }
 
   #grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-gap: 1vw;
   }
 
-  #grid > .rectangle-box-a {
-    height: 100px;
-    border-radius: 50px;
-  }
-
-  .logo-box {
-    width: 80px;
-    height: 80px;
-    top: 10%;
-    left: 3%;
-  }
-
-  .name-location-div {
-    position: absolute;
-    left: 30%;
-    top: 2%;
-  }
-
-  .name {
-    font-size: 20px;
-    line-height: 40px;
-  }
-
-  .location {
-    font-size: 15px;
-    line-height: 70px;
-  }
-
-  .kilometer {
-    font-size: 20px;
-    top: 15%;
-    right: 5%;
-  }
 }
+
+
 
 @media only screen and (min-device-width : 1025px) and (max-device-width : 1200px) {
-  .sliding-category-box {
-    width: 130px;
-    height: 45px;
-  }
 
-  .sliding-category-name {
-    font-size: 12px;
-    font-weight: bold;
+  .restaurant-details-box {
+    width: 150px;
+    height: 150px;
+    margin-right: calc((100% - 350px) / 3 - 1px);
+    box-shadow: 0 8px 6px -6px black;
   }
 }
+
+
+
+
+
+
