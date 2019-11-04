@@ -91,13 +91,13 @@ class DriverOrdersController extends Controller
      */
     public function destroy($id)
     {
-        $driverorder = DriverOrder::findOrFail($id);
+        $driverorder = RestuarentCustomerOrder::findOrFail($id);
         if($driverorder->image != null){
             unlink($driverorder->image);
         }
-        
-        DriverOrderData::where('driver_order_id', $id)->delete();
-        DriverOrder::destroy($id);
+        if($driverorder->receipt != null){
+            unlink($driverorder->receipt);
+        }
 
         return redirect('driver-orders')->with('success', 'Driver Orders deleted!');
     }
