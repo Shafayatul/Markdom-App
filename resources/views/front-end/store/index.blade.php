@@ -6,12 +6,14 @@
 @section('main-content')
 <div class="store text-center">
   <div class="container">
-    <div class="sliding-category">
-      <div class="slider-area slider">
+
+
+    <div class="menu-category">
+      <div class="menu-area">
         @foreach ($categories as $single_category)
           <div class="sliding-div">
             <a href="{{ url('sub-category-store/'.$single_category->id) }}" class="sliding-div-a" >
-              <div class="sliding-category-box shadow">
+              <div class="menu-category-box shadow">
                 <div class="sliding-category-img">
                   <img src="{{ env('MAIN_HOST_URL').$single_category->image }}" alt="">
                 </div>
@@ -22,6 +24,8 @@
         @endforeach
       </div>
     </div>
+
+
     <div class="rectangle-div">
       <div id="grid">
         @foreach ($categories_offer as $single_categories_offer)

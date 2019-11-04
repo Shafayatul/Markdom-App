@@ -3,11 +3,13 @@
 }
 
 .order-details-form {
-  text-align: left;
+ text-align: center;
+
+
 }
 
-.order-details-form p {
-  margin: 20px 0px;
+.order-details-form p {  
+  text-align: center;
 }
 
 textarea {
@@ -54,6 +56,9 @@ input[type=text] {
 .custom-file-input {
   color: transparent;
   margin: 0 auto;
+  text-align: center;
+  
+   
 }
 
 .custom-arabic-file-input {
@@ -80,8 +85,10 @@ input[type=text] {
   -webkit-user-select: none;
   cursor: pointer;
   text-shadow: 1px 1px #fff;
-  /* font-weight: 700; */
+   font-weight: 700; 
   font-size: 10pt;
+  margin-left: 16%;
+  
 }
 
 .custom-arabic-file-input::before {
@@ -192,7 +199,7 @@ input[type=text] {
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   textarea {
-    width: 100%;
+    width: 90%;
     height: 130px;
   }
 
@@ -209,7 +216,15 @@ input[type=text] {
   #datepicker {
     width: 170px;
   }
+  .custom-file-input {
+    color: transparent;
+    /* margin: 0 auto; */
+    /* text-align: center; */
+    margin-left: auto;
+    margin-right: auto;
+   
 }
+
 
 @media only screen and (min-device-width : 481px) and (max-device-width : 767px) {
   textarea {

@@ -5,7 +5,7 @@
 
 @section('main-content')
 <div class="restaurant text-center">
-    <div class="sliding-category">
+{{--     <div class="sliding-category">
       <div class="slider-area slider">
         @foreach($categories as $category)
           <div class="sliding-div">
@@ -26,7 +26,31 @@
           </div>
         @endforeach
       </div>
+    </div> --}}
+
+    <div class="menu-category">
+      <div class="menu-area">
+        @foreach($categories as $category)
+          <div class="sliding-div">
+            <a href="{{ route('sub-category-restaurant', ['id'=>$category->id]) }}" class="sliding-div-a">
+              <div class="menu-category-box shadow">
+                <div class="sliding-category-img">
+                  <img src="{{ asset(env('MAIN_HOST_URL').$category->image) }}" alt="">
+                </div>
+              </div>
+              <p class="sliding-category-name">
+                @if(app()->getLocale() == 'en')
+                  {{ $category->name }}
+                @else
+                  {{ $category->name_arabic }}
+                @endif
+              </p>
+            </a>
+          </div>
+        @endforeach
+      </div>
     </div>
+
     <div class="rectangle-div">
       <div id="grid">
         @foreach($offers as $offer)

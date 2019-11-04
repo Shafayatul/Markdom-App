@@ -147,7 +147,7 @@ class CustomersController extends Controller
             	'review' => $request->review
             ];
             $response = $this->callApi($method, $url, $parameters, $headers);
-            return redirect('customer-review/'.$request->order_id.'/'.$request->type)->with('success', 'Order Review Success');
+            return redirect('/')->with('success', 'Order Review Success');
     	}else{
     		return redirect('/user-login');
     	}

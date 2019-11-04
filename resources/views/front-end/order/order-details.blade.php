@@ -9,7 +9,7 @@
 @section('main-content')
 <div class="restaurant text-center">
   <div class="container">
-    <div class="order-details-div">
+    {{-- <div class="order-details-div">
       <form class="order-details-form" action="{{ url('customer-order') }}" method="post" enctype="multipart/form-data">
         @csrf
         <p>Order Details</p>
@@ -25,8 +25,8 @@
           </span>
           <span class="promo-code-button-span"> <button class="apply-button btn">Apply</button> </span>
         </div> --}}
-        <input type="file" name="image" class="custom-file-input" style="display: inline-block !important;">
-        <br/>
+        {{-- <input type="file" name="image" class="custom-file-input" style="display: inline-block !important;"> --}}
+        {{-- <br/> --}}
         {{-- <p>Select Delivery Date: <br> <input type="text" class="delivery_time" id="datepicker"></p> --}}
         {{-- <div class="container"> --}}
           {{-- <div class="row">
@@ -42,6 +42,24 @@
               </div>
           </div> --}}
         {{-- </div> --}}
+        {{-- <input type="hidden" name="store_id" value="{{ $store_id }}">
+        <input type="hidden" name="user_id" value="{{ $user_id }}">
+        <button class="btn btn-success btn-block" type="submit" name="button">
+            <p>Next</p>
+        </button>
+
+      </form>
+    </div>  --}}
+
+
+    <div class="order-details-div">
+      <form class="order-details-form" action="{{ url('customer-order') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <p>Order Details</p>
+        <textarea class="text-center" name="order_details"></textarea>
+        <br/>
+        <br/>
+        <input type="file" name="image" class="custom-file-input">
         <input type="hidden" name="store_id" value="{{ $store_id }}">
         <input type="hidden" name="user_id" value="{{ $user_id }}">
         <button class="btn btn-success btn-block" type="submit" name="button">

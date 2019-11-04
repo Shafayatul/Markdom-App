@@ -6,29 +6,15 @@
 @section('main-content')
   <div class="content">
 
-    {{-- <div class="search-wrapper shadow">
-      <div class="search-bar">
-        <div class="search-icon search-icon-left">
-          <i class="fa fa-search"></i>
-        </div>
-        <div class="search-field">
-          <input class="search-field-input" type="text" maxLength="5" placeholder="Search Item"/>
-        </div>
-        <div class="search-icon search-icon-right">
-          <i class="fa fa-filter"></i>
-        </div>
-      </div>
-    </div> --}}
 
-    {{-- <div class="hr-line"></div> --}}
 
-    <div class="sliding-category">
-      <div class="slider-area slider">
+    <div class="menu-category">
+      <div class="menu-area ">
         @foreach ($models as $model)
           <?php $url_link = strtolower($model->name); ?>
           <div class="sliding-div">
             <a href="{{ url('/'.$url_link) }}" class="sliding-div-a" >
-              <div class="sliding-category-box shadow">
+              <div class="menu-category-box shadow">
                 <div class="sliding-category-img">
                   <img src="{{ asset(env('MAIN_HOST_URL').$model->preview_image) }}" alt="">
                 </div>

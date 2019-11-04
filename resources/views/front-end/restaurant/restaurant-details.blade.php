@@ -24,20 +24,23 @@
             </span>
         </div>
         <div class="restaurant-details-div">
+            <div class="restaurant-details-body">
             <h1 class="text-left">{{ __('content.restuarent_details') }}</h1>
             <div class="text-left single-store-description">
-                @if(app()->getLocale() == 'en')
-                    {{ $store->description }}
-                @else
-                    {{ $store->arabic_description }}
-                @endif
+                <p>
+                    @if(app()->getLocale() == 'en')
+                        {{ $store->description }}
+                    @else
+                        {{ $store->arabic_description }}
+                    @endif
+                </p>
             </div>
             <h1 class="text-left">{{ __('content.menu') }}</h1>
             <div class="restaurant-details-mother">
                 @foreach($products as $product)
                 <div class="restaurant-details-box">
                     <a href="#">
-                        <img src="{{ asset($product->preview_image) }}" alt="">
+                        <img src="{{ asset(env('MAIN_HOST_URL').$product->preview_image) }}" alt="">
                     </a>
                 </div>
                 @endforeach
@@ -61,6 +64,7 @@
                       @lang('content.store_is_closed')
                     @endif
                 </span>
+            </div>
             </div>
             <div class="order-button text-center">
                 <a href="{{ route('order-details', ['user_id' => $user->id, 'store_id' => $store->id]) }}">
