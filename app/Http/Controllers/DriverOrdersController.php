@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DriverOrder;
 use App\DriverOrderData;
-use App\Product;
+use App\User;
+use App\Store;
 use Auth;
+use App\RestuarentCustomerOrder;
 
 class DriverOrdersController extends Controller
 {
@@ -19,7 +21,7 @@ class DriverOrdersController extends Controller
     {
         $perPage = 25;
         $user_id = Auth::id();
-        $driverorders = DriverOrder::where('user_id', $user_id)->latest()->paginate($perPage);
+        $driverorders = RestuarentCustomerOrder::where('driver_id', $user_id)->latest()->paginate($perPage);
         return view('driver-orders.index', compact('driverorders'));
     }
 
@@ -52,10 +54,10 @@ class DriverOrdersController extends Controller
      */
     public function show($id)
     {
-        $products = Product::pluck('name', 'id');
-        $driverorder = DriverOrder::where('id', $id)->first();
-        $driverorderdatas = DriverOrderData::where('driver_order_id', $id)->get();
-        return view('driver-orders.show', compact('driverorder', 'driverorderdatas', 'products'));
+        $stores = Store::pluck('name', 'id');
+        $users = User::pluck('name', 'id');
+        $driverorder = RestuarentCustomerOrder::where('id', $id)->first();
+        return view('driver-orders.show', compact('driverorder', 'stores', 'users'));
     }
 
     /**
