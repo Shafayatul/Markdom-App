@@ -117,18 +117,6 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-user fa-fw"></i> Category<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('categories/create') }}">Create</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('categories') }}">Manage</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
-            <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Days<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
@@ -160,6 +148,18 @@
             @endhasrole
 
             @hasrole('store')
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i> Category<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('categories/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('categories') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Sub Category<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">

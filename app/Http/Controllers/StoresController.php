@@ -12,6 +12,15 @@ use App\Module;
 use App\DriverOrder;
 use App\DriverOrderData;
 use App\Product;
+use App\Order;
+use App\WorkerPlaceOrder;
+use App\RestuarentCustomerOrder;
+use App\User;
+use App\Cart;
+use App\Address;
+use App\Schedule;
+use App\ServiceType;
+use App\OrderStatus;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -26,7 +35,7 @@ class StoresController extends Controller
     {
         $keyword = $request->get('search');
         $perPage = 25;
-
+        $id = Auth::id();
         if (!empty($keyword)) {
             $stores = Store::where('sub_category_id', 'LIKE', "%$keyword%")
                 ->orWhere('name', 'LIKE', "%$keyword%")
@@ -39,7 +48,7 @@ class StoresController extends Controller
                 ->orWhere('status', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $stores = Store::latest()->paginate($perPage);
+            $stores = Store::where('store_owner_id', $id)->latest()->paginate($perPage);
         }
         $subcategories = SubCategory::pluck('name', 'id');
         $categories = Category::pluck('name', 'id');
@@ -50,8 +59,21 @@ class StoresController extends Controller
     public function orderShowByStoreId($id)
     {
         $perPage = 25;
-        $driverorders = DriverOrder::where('store_id', $id)->latest()->paginate($perPage);
-        return view('stores.order-list', compact('driverorders'));
+        $driverorders = WorkerPlaceOrder::where('store_id', $id)->latest()->paginate($perPage);
+        $stores = Store::pluck('name', 'id');
+        $orderstatus = OrderStatus::pluck('order_status', 'id');
+        return view('stores.order-list', compact('driverorders', 'stores', 'orderstatus'));
+    }
+
+    public function orderShow($id)
+    {
+        $single_worker_order = WorkerPlaceOrder::where('id', $id)->first();
+        $schedule = Schedule::where('id', $single_worker_order->schedule_time_id)->first();
+        $product_id = Cart::where('id', $single_worker_order->cart_ids)->first()->product_id;
+        $product = Product::where('id', $product_id)->first();
+        $order_status = OrderStatus::where('id', $single_worker_order->order_status_id)->first();
+        $service_type = ServiceType::where('id', $single_worker_order->service_type_id)->first();
+        return view('stores.single-order-show', compact('single_worker_order', 'schedule', 'product', 'order_status', 'service_type'));
     }
 
     /**
@@ -256,5 +278,11 @@ class StoresController extends Controller
         Store::destroy($id);
 
         return redirect('stores')->with('success', 'Store deleted!');
+    }
+
+    public function orderDelete($id)
+    {
+        WorkerPlaceOrder::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Order Deleted');
     }
 }

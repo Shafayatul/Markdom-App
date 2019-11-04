@@ -32,12 +32,12 @@ class SchedulesController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create($id)
     {
-        $stores = Store::pluck('name', 'id');
+        $store = Store::findOrFail($id);
         $days = Day::pluck('name', 'id');
         $scheduletypes = ScheduleType::pluck('name', 'id');
-        return view('schedules.create', compact('stores', 'days', 'scheduletypes'));
+        return view('schedules.create', compact('store', 'days', 'scheduletypes'));
     }
 
     /**
@@ -77,7 +77,6 @@ class SchedulesController extends Controller
         $days = Day::pluck('name', 'id');
         $scheduletypes = ScheduleType::pluck('name', 'id');
         $current_day = Day::where('id', $day_id)->first();
-        // dd(gettype($schedule_ids));
 
         return view('schedules.show', compact('store_id', 'current_day', 'schedule', 'stores', 'days', 'scheduletypes'));
     }

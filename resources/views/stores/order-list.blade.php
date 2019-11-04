@@ -30,9 +30,8 @@ Orders
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Order Details</th>
+                                    <th>Store</th>
                                     <th>Total Price</th>
-                                    <th>Image</th>
                                     <th>Delivery Time</th>
                                     <th>Actions</th>
                                 </tr>
@@ -41,20 +40,19 @@ Orders
                             @foreach($driverorders as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->order_details }}</td>
-                                    <td>{{ $item->grand_total_price }}</td>
                                     <td>
-                                        @if(isset($item->image))
-                                            <img src="{{ asset($item->image) }}" alt="" style="width: 80px; height: 80px;">
+                                        @if(isset($stores[$item->store_id]))
+                                            {{ $stores[$item->store_id] }}
                                         @endif
                                     </td>
-                                    <td>{{ $item->delivery_time }}</td>
+                                    <td>{{ $item->final_price }}</td>
+                                    <td>{{ $item->estimated_time }}</td>
                                     <td>
-                                        <a href="{{ url('/driver-order/' . $item->id) }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                        <a href="{{ url('/order/' . $item->id) }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                         {{-- <a href="{{ url('/orders/' . $item->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a> --}}
                                         {!! Form::open([
                                             'method'=>'DELETE',
-                                            'url' => ['/driver-order-delete', $item->id],
+                                            'url' => ['/order-delete', $item->id],
                                             'style' => 'display:inline'
                                         ]) !!}
                                             {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(

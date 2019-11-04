@@ -20,7 +20,7 @@ Schedules
                    Schedule:-> {{ $stores[$id] }}
                 </div>
                 <div class="panel-body">
-                    <a href="{{ url('/schedules/create') }}" class="btn btn-success btn-sm" title="Add New Schedule">
+                    <a href="{{ url('/schedule/create/'.$id) }}" class="btn btn-success btn-sm" title="Add New Schedule">
                         <i class="fa fa-plus" aria-hidden="true"></i> Add New
                     </a>
 

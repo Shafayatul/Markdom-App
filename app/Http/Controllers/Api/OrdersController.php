@@ -240,12 +240,11 @@ class OrdersController extends Controller
             $estimated_time = date("l", $time_stamp).' '.date('M d,Y', $time_stamp); ;
         }
 
-        $cart=Cart::where('user_id', Auth::id())->where('is_cart', '1')->latest()->get();
-        foreach ($cart as $single_cart) {
-            $total_price = $total_price + ($single_cart->quantity*$single_cart->unit_price);
-            array_push($cart_ids, $single_cart->id);
-        }
-        $cart_ids = implode(',', $cart_ids);
+        $cart=Cart::where('user_id', Auth::id())->where('is_cart', '1')->latest()->first();
+
+        $store_id = Product::where('id', $cart->product_id)->first()->store_id;
+        $total_price = $total_price + ($cart->quantity*$cart->unit_price);
+        
         
         $promo_code_cnt = PromoCode::where('code', $request->input("promo_code"))->count();
         if (($request->input("promo_code") !== null) && ($promo_code_cnt > 0)) {
@@ -275,7 +274,7 @@ class OrdersController extends Controller
 
         $workerorder                   = new WorkerPlaceOrder;
         $workerorder->user_id          = Auth::id();
-        $workerorder->cart_ids         = $cart_ids;
+        $workerorder->cart_ids         = $cart->id;
         $workerorder->total_price      = $total_price;
         $workerorder->address_id       = $request->input("address_id");
         $workerorder->schedule_time_id = $request->input("schedule_time_id");
@@ -286,6 +285,7 @@ class OrdersController extends Controller
         $workerorder->discount_percent = $discount_percent;
         $workerorder->discount_amount  = $discount_amount;
         $workerorder->promo_code       = $only_promo_code;
+        $workerorder->store_id         = $store_id;
         $workerorder->save();
         if ($workerorder) {
 

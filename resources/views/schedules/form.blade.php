@@ -3,12 +3,8 @@
     {!! Form::select('day_id', $days, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Pick a Day...'] : ['class' => 'form-control', 'placeholder' => 'Pick a Day...']) !!}
     {!! $errors->first('day_id', '<p class="help-block">:message</p>') !!}
 </div>
-
-<div class="form-group {{ $errors->has('store_id') ? 'has-error' : ''}}">
-    {!! Form::label('store_id', 'Store', ['class' => 'control-label']) !!}
-    {!! Form::select('store_id', $stores, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Pick a Store...'] : ['class' => 'form-control', 'placeholder' => 'Pick a Store...']) !!}
-    {!! $errors->first('store_id', '<p class="help-block">:message</p>') !!}
-</div>
+    
+    <input type="hidden" name="store_id" value="{{ $store->id }}">
 
 <div class="form-group {{ $errors->has('schedule_type_id') ? 'has-error' : ''}}">
     {!! Form::label('schedule_type_id', 'Schedule Type', ['class' => 'control-label']) !!}

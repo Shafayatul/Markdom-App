@@ -172,10 +172,10 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::group(['middleware' => ['role:admin']], function () {
 
-		Route::resource('categories', 'CategoriesController');
-
 
 		Route::resource('stores', 'StoresController');
+		Route::get('order/{id}', 'StoresController@orderShow');
+		Route::delete('/order-delete/{id}', 'StoresController@orderDelete');
 
 
 
@@ -218,7 +218,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/schedule/{id}', 'SchedulesController@index');
 		Route::get('/schedules/{id}/edit', 'SchedulesController@edit');
 		Route::get('/schedules/{day_id}/{store_id}', 'SchedulesController@show');
-		Route::get('/schedules/create', 'SchedulesController@create');
+		Route::get('/schedule/create/{id}', 'SchedulesController@create');
 		Route::post('/schedules', 'SchedulesController@store');
 		Route::delete('/schedules/{id}', 'SchedulesController@destroy');
 
@@ -258,6 +258,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::resource('service-sub-categories', 'ServiceSubCategoriesController');
 		Route::resource('service-sub-sub-categories', 'ServiceSubSubCategoriesController');
 
+		Route::resource('categories', 'CategoriesController');
 		Route::resource('sub-categories', 'SubCategoriesController');
 		Route::resource('sub-sub-categories', 'SubSubCategoriesController');
 
@@ -272,14 +273,16 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('store-order/{id}', 'StoreOrdersController@show');
 
 		Route::get('order-in-store/{id}', 'StoresController@orderShowByStoreId');
+		Route::get('order/{id}', 'StoresController@orderShow');
+		Route::delete('/order-delete/{id}', 'StoresController@orderDelete');
 
 		Route::resource('days', 'DaysController');
 		Route::resource('schedule-types', 'ScheduleTypesController');
 
 		Route::get('/schedule/{id}', 'SchedulesController@index');
 		Route::get('/schedules/{id}/edit', 'SchedulesController@edit');
+		Route::get('/schedule/create/{id}', 'SchedulesController@create');
 		Route::get('/schedules/{day_id}/{store_id}', 'SchedulesController@show');
-		Route::get('/schedules/create', 'SchedulesController@create');
 		Route::post('/schedules', 'SchedulesController@store');
 		Route::delete('/schedules/{id}', 'SchedulesController@destroy');
 
