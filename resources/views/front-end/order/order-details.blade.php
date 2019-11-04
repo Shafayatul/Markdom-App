@@ -16,8 +16,8 @@
         <textarea class="text-left" name="order_details"></textarea>
         <br/>
         <br/>
-        <input type="text" name="customer-latitude" id="latitude" readonly>
-        <input type="text" name="customer-longitude" id="longitude" readonly>
+        <input type="hidden" name="customer-latitude" id="latitude" readonly>
+        <input type="hidden" name="customer-longitude" id="longitude" readonly>
         {{-- <div class="get-promo-code">
           <p>Get Promo Code</p>
           <span class="promo-code-input-span">
@@ -26,6 +26,7 @@
           <span class="promo-code-button-span"> <button class="apply-button btn">Apply</button> </span>
         </div> --}}
         <input type="file" name="image" class="custom-file-input" style="display: inline-block !important;">
+        <br/>
         {{-- <p>Select Delivery Date: <br> <input type="text" class="delivery_time" id="datepicker"></p> --}}
         {{-- <div class="container"> --}}
           {{-- <div class="row">
