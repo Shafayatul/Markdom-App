@@ -57,7 +57,19 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/order-notification','OrdersController@orderNotification')->name('order-notification');
 	Route::get('see-order-detail-by-driver/{restuarent_order_id}', 'FrontEnd\RestaurantsController@see_order_detail_by_driver');
 
+	Route::get('restaurent-order-pay-now/{order_id}', 'FrontEnd\CustomersController@orderPayNow');
+	Route::get('/restaurent-add-address', 'FrontEnd\CustomersController@addressView');
+	Route::get('/restaurent-address', 'FrontEnd\CustomersController@addressesView');
+	Route::post('/restaurant-address-submit', 'FrontEnd\CustomersController@restaurantAddressSubmit');
 
+	Route::get('/restaurant-payment-method/{address_id}', 'FrontEnd\CustomersController@restaurantPaymentMethodView');
+	Route::get('restaurant-paytabs-payment', 'FrontEnd\CustomersController@paytabsPayment');
+
+	Route::post('/restaurant-paytabs-response', 'FrontEnd\CustomersController@paytabsResponse');
+
+	Route::post('/restaurant-payment-bank-mada-transfer-submit', 'FrontEnd\CustomersController@restaurentPlaceOrder');
+	Route::post('/restaurant-ajax-cod-submit', 'FrontEnd\CustomersController@ajaxCodSubmit')->name('restaurant-ajax-cod-submit');
+	Route::get('/receipt-download/{id}', 'FrontEnd\CustomersController@receiptDownload');
 
 
 	Route::get('/worker', 'FrontEnd\WorkerController@index')->name('worker');

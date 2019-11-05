@@ -22,6 +22,7 @@ use Response;
 use App\User;
 use App\Address;
 use App\Review;
+use App\Product;
 
 use SmsaSDK\Smsa;
 
@@ -36,8 +37,12 @@ class StoreOrdersController extends Controller
     public function index()
     {
         $perPage = 25;
-        $user_id = Auth::id();
-        $storeorders = Order::where('user_id', $user_id)->latest()->paginate($perPage);
+        $user = Auth::user();
+        if($user->hasRole('admin')){
+            $storeorders = Order::latest()->paginate($perPage);
+        }else{
+            $storeorders = Order::where('user_id', $user->id)->latest()->paginate($perPage);
+        }
         // dd($storeorders);
         $orderstatus = OrderStatus::pluck('order_status', 'id');
         return view('store-orders.index', compact('storeorders', 'orderstatus'));
@@ -73,8 +78,17 @@ class StoreOrdersController extends Controller
     public function show($id)
     {
         $storeorder = Order::where('id', $id)->first();
+        $cart_ids = explode(',',$storeorder->cart_ids);
+
+        $product_ids = Cart::whereIn('id', $cart_ids)->select('product_id')->get();
+
+        $products = Product::whereIn('id', $product_ids)->get();
+        $address = Address::where('id', $storeorder->address_id)->first();
+        $city = City::where('id', $address->city_id)->first();
+        $state = State::where('id', $address->state_id)->first();
+        $country = Country::where('id', $address->country_id)->first();
         $orderstatus = OrderStatus::pluck('order_status', 'id');
-        return view('store-orders.show', compact('storeorder', 'orderstatus'));
+        return view('store-orders.show', compact('storeorder', 'orderstatus', 'products', 'address', 'city', 'state', 'country'));
     }
 
     /**

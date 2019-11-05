@@ -313,9 +313,9 @@
                 <!-- /.nav-second-level -->
             </li>
 
-            <li>
+            {{-- <li>
                 <a href="{{ url('/orders') }}"><i class="fa fa-dashboard fa-fw"></i> Orders</a>
-            </li>
+            </li> --}}
             @endhasrole
             @hasrole('admin')
             <li>

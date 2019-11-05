@@ -4,10 +4,16 @@
     {!! $errors->first('unique_code', '<p class="help-block">:message</p>') !!}
 </div>
 
-<div class="form-group {{ $errors->has('offer_price') ? 'has-error' : ''}}">
-    {!! Form::label('offer_price', 'Price', ['class' => 'control-label']) !!}
-    {!! Form::text('offer_price', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
-    {!! $errors->first('offer_price', '<p class="help-block">:message</p>') !!}
+<div class="form-group {{ $errors->has('food_cost') ? 'has-error' : ''}}">
+    {!! Form::label('food_cost', 'Food Cost', ['class' => 'control-label']) !!}
+    {!! Form::text('food_cost', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+    {!! $errors->first('food_cost', '<p class="help-block">:message</p>') !!}
+</div>
+
+<div class="form-group {{ $errors->has('delivery_charge') ? 'has-error' : ''}}">
+    {!! Form::label('delivery_charge', 'Delivery Charge', ['class' => 'control-label']) !!}
+    {!! Form::text('delivery_charge', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+    {!! $errors->first('delivery_charge', '<p class="help-block">:message</p>') !!}
 </div>
 
 

@@ -45,6 +45,18 @@ Driver Order {{ $driverorder->id }}
                                     <td> {{ $driverorder->offer_price }} </td>
                                 </tr>
                                 <tr>
+                                    <th> Food Cost(SAR) </th>
+                                    <td> {{ $driverorder->food_cost }} </td>
+                                </tr>
+                                <tr>
+                                    <th> Delivery Charge(SAR) </th>
+                                    <td> {{ $driverorder->delivery_charge }} </td>
+                                </tr>
+                                <tr>
+                                    <th> Application Charge(SAR) </th>
+                                    <td> {{ "5" }} </td>
+                                </tr>
+                                <tr>
                                     <th> Store </th>
                                     <td>
                                         @if(isset($stores[$driverorder->store_id])) 

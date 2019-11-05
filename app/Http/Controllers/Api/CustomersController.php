@@ -11,6 +11,7 @@ use App\User;
 use App\Module;
 use App\WorkerPlaceOrder;
 use App\Order;
+use App\OrderActivity;
 use App\Store;
 use App\Cart;
 use App\Address;
@@ -175,5 +176,47 @@ class CustomersController extends Controller
     			'already_reviewed' => 0
     		]);
     	}
+    }
+
+    public function restaurant_place_order(Request $request)
+    {
+        $paytab_transaction_id = null;
+        if($request->input("payment_method") == "COD"){
+            $payment_method = 'COD';
+        }else{
+            $payment_method = 'Paytab';
+            $paytab_transaction_id = $request->input("paytab_transaction_id");
+        }
+
+        $restaurentOrder                              = RestuarentCustomerOrder::where('id', $request->input('selected_restaurent_order_id'))->first();
+        $restaurentOrder->paytab_transaction_id       = $paytab_transaction_id;
+        $restaurentOrder->payment_method              = $payment_method;
+        $restaurentOrder->is_completed                = $request->input("is_complete");
+        $restaurentOrder->save();
+        if ($restaurentOrder) {
+
+        $order_status_obj               = OrderStatus::first();
+
+        $OrderActivity                  = new OrderActivity;
+        $OrderActivity->order_id        = $restaurentOrder->id;
+        $OrderActivity->status          = $order_status_obj->order_status;
+        $OrderActivity->status_arabic   = $order_status_obj->order_status_arabic;
+        $OrderActivity->save();
+
+
+            $data = [];
+            $data['id'] = $restaurentOrder->id;
+            return response()->json($data);
+        }else{
+            return response()->json(
+                ['message' => "Failed"]
+            );
+        }
+    }
+
+    public function receipt_download($id)
+    {
+        $order = RestuarentCustomerOrder::findOrFail($id);
+        return response()->json($order);
     }
 }

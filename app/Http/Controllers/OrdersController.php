@@ -117,11 +117,16 @@ class OrdersController extends Controller
         }else{
             $image_url  = null;
         }
-        $restuarent_customer_orders_id        = $request->unique_code;
-        $RestuarentCustomerOrder              = RestuarentCustomerOrder::find($restuarent_customer_orders_id);
-        $RestuarentCustomerOrder->driver_id   = Auth::id();
-        $RestuarentCustomerOrder->offer_price = $request->offer_price;
-        $RestuarentCustomerOrder->receipt     = $image_url;
+
+        $offer_price = $request->food_cost+$request->delivery_charge+5;
+        
+        $restuarent_customer_orders_id            = $request->unique_code;
+        $RestuarentCustomerOrder                  = RestuarentCustomerOrder::find($restuarent_customer_orders_id);
+        $RestuarentCustomerOrder->driver_id       = Auth::id();
+        $RestuarentCustomerOrder->offer_price     = $offer_price;
+        $RestuarentCustomerOrder->food_cost       = $request->food_cost;
+        $RestuarentCustomerOrder->delivery_charge = $request->delivery_charge;
+        $RestuarentCustomerOrder->receipt         = $image_url;
         $RestuarentCustomerOrder->save();
 
 

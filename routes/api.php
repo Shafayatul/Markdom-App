@@ -115,5 +115,8 @@ Route::group(['middleware' => ['auth:api']], function() {
 
 	Route::post('/order-review-submit', 'Api\CustomersController@order_review_submit');
 
+	Route::post('/restaurant-place-order', 'Api\CustomersController@restaurant_place_order');
+
+	Route::get('/receipt-download/{id}', 'Api\CustomersController@receipt_download');
 
 });

@@ -45,7 +45,16 @@
       				@foreach($response->customer_orders as $item)
 	      				<tr>
 	      					<td>{{ $loop->iteration }}</td>
-	      					<td>{{ $item->order_details }}</td>
+	      					<td>
+	      						
+	      						<a href="{{ url('/receipt-download/'.$item->id) }}">
+	      							@if($item->receipt != null)
+	      								<img src="{{ asset(env('MAIN_HOST_URL').$item->receipt) }}" style="width: 50px; height: 50px;">
+	      							@else
+	      								<img src="{{ asset(env('MAIN_HOST_URL').'front-end-assets/images/image-not-found.png') }}" style="width: 50px; height: 50px;">
+	      							@endif
+	      						</a>
+	      					</td>
 	      					<td>{{ $item->offer_price }}</td>
 	      					<td>
 	      						@if($item->is_accepted == 1)
@@ -69,10 +78,12 @@
 	      								View
 	      							</button>
 	      						</a>
-	      						@if($item->is_completed == 0)
-		      						<a href="{{ url('restaurent-single-order-complete/'.$item->id) }}" title="View Order">
-		      							<button class="btn btn-sm btn-success">
-		      								Complete
+
+	      						@if($item->is_accepted == 1 && $item->is_completed == 0)
+
+	      							<a href="{{ url('restaurent-order-pay-now/'.$item->id) }}" title="View Order">
+		      							<button class="btn btn-sm btn-info">
+		      								Pay Now
 		      							</button>
 		      						</a>
 	      						@endif

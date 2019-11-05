@@ -19,7 +19,7 @@ class PaymentsController extends Controller
     	return view('front-end.payments.payment-method', compact('result'));
     }
 
-        public function paytabsPayment()
+    public function paytabsPayment()
     {
 
       $grand_total;
