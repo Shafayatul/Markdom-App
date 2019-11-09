@@ -123,15 +123,14 @@ h1 {
 }
 
 input[type="text"] {
-  height: 36px;
-  border-radius: 8px;
-  border: 1px solid #8BC34A;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid  #3F5394;
 }
-
 select{
   height: 36px;
   border-radius: 8px;
-  border: 1px solid #8BC34A!important;
+  border: 1px solid #3F5394!important;
 }
 
 .promo-button {

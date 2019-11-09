@@ -23,7 +23,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="rectangle-div">
+        {{-- <div class="rectangle-div">
             <div id="grid">
                 @foreach ($stores as $store)
                 <a href="{{ route('store-details', ['id' => $store->id]) }}" class="rectangle-box-a" store-sub-cat-id="{{ $store->sub_category_id }}" style="background-image: url('{{ env('MAIN_HOST_URL').$store->preview_image }}');">
@@ -47,7 +47,36 @@
                 </a>
                 @endforeach
             </div>
+        </div> --}}
+
+        <div class="rectangle-div">
+            <div id="grid">
+                @foreach ($stores as $store)
+                <a href="{{ route('store-details', ['id' => $store->id]) }}" class="rectangle-box-a shadow media" store-sub-cat-id="{{ $store->sub_category_id }}" {{-- style="background-image: url('{{ env('MAIN_HOST_URL').$store->preview_image }}');" --}}>
+                    <div class="rectangle-box ">
+                        <div class="logo-box">
+                            <img src="{{ asset('front-end-assets/images/client_4.jpg') }}" alt="">
+                        </div>
+                        <div class="name-location-div">
+                            @if(app()->getLocale() == 'en')
+                                <span class="name text-right">{{ $store->name }}</span>
+                                <span class="location text-right">{{ $store->location }}</span>
+                                @else
+                                <span class="name text-right">{{ $store->name_arabic }}</span>
+                                <span class="location text-center">{{ $store->arabic_location }}</span>
+                                @endif
+                                <div class="kilometer-div text-center">
+                            <span class="kilometer">2.05 KM</span>
+                        </div>
+                        </div>
+                        
+                    </div>
+                </a>
+                @endforeach
+            </div>
         </div>
+
+        
     </div>
 </div>
 @endsection

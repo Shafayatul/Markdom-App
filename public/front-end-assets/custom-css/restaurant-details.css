@@ -60,7 +60,45 @@
   display: block;
   overflow: hidden;
 }
+.modal.and.carousel {
+  position: fixed;
+}
+.card-body{
 
+}
+.card-img-top{
+  width: 80%;
+  border-radius: 14px;
+}
+.card-price{
+font-size: 30px;
+color: #09689e;
+padding: 10px 5px;
+font-weight: bold;
+}
+.card-title{
+font-size: 20px;
+color: #09689e;
+padding: 5px;
+}
+.card-text{
+  font-size: 16px;
+}
+.carousel-control.right {   
+    background-image: none;
+    color: #777;
+  }
+  .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+      margin-right: -32px;
+}
+
+.carousel-control.left{
+  background-image: none;
+    color: #777;
+}
+.carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
+     margin-left: -32px;
+}
 .restaurant-details-box {
   width: 150px;
   height: 150px;
@@ -133,6 +171,12 @@ padding-left: 14px;
     width: 80%;
   }
 */
+  .modal-content {
+    margin-right: 10%;
+    margin-left: 10%;
+    display: block;
+    width: 73%;
+  }
   .restaurant-name {
     font-size: 16px;
   }
@@ -162,12 +206,22 @@ padding-left: 14px;
     font-size: 15px;
   }
 }
+.card{
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
 
 @media only screen and (min-device-width : 481px) and (max-device-width : 767px) {
   /*.restaurant-top-box {
     width: 80%;
   }*/
-
+  .modal-content {
+    margin-right: 10%;
+    margin-left: 10%;
+    display: block;
+    width: 80%;
+  }
   .restaurant-name {
     font-size: 16px;
   }

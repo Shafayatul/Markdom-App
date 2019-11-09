@@ -36,10 +36,19 @@
                 </p>
             </div>
             <h1 class="text-left">{{ __('content.menu') }}</h1>
-            <div class="restaurant-details-mother">
+            {{-- <div class="restaurant-details-mother">
                 @foreach($products as $product)
                 <div class="restaurant-details-box">
                     <a href="#">
+                        <img src="{{ asset(env('MAIN_HOST_URL').$product->preview_image) }}" alt="">
+                    </a>
+                </div>
+                @endforeach
+            </div> --}}
+            <div class="restaurant-details-mother">
+                @foreach($products as $product)
+                <div class="restaurant-details-box">
+                    <a href="#lightbox" data-toggle="modal" data-slide-to="0">
                         <img src="{{ asset(env('MAIN_HOST_URL').$product->preview_image) }}" alt="">
                     </a>
                 </div>
@@ -66,6 +75,55 @@
                 </span>
             </div>
             </div>
+
+
+            <div class="container">
+              {{-- <ul class="nav nav-pills nav-stacked">
+                <li><a href="#lightbox" >Open Lightbox</a></li>
+                <li><a href="#lightbox" data-toggle="modal" data-slide-to="1">2nd Image</a></li>
+                <li><a href="#lightbox" data-toggle="modal" data-slide-to="2">3rd Image</a></li>
+                <li><a href="#lightbox" data-toggle="modal" data-slide-to="15">Open non existing Image</a></li>
+              </ul>  --}}             
+              <div class="modal fade and carousel slide" id="lightbox">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <ol class="carousel-indicators">
+                        @foreach($products as $product)
+                        <li data-target="#lightbox" data-slide-to="0" class="active pick-item"></li>
+                        @endforeach
+                      </ol>
+                      <div class="carousel-inner">
+                    @foreach($products as $key => $product)
+                        <div class="item {{$key == 0 ? 'active' : '' }}">
+                          <div class="card" >
+                              <img class="card-img-top rounded" src="{{ asset(env('MAIN_HOST_URL').$product->preview_image) }}" alt="Card image cap">
+                              <div class="card-body">
+                                <h5 class="card-price">${{ $product->price }}</h5>
+                                <h5 class="card-title">{{ $product->name }}</h5>
+                                <p class="card-text">{{ $product->description }}</p>
+                                
+                              </div>
+                            </div>
+                        </div>
+                    @endforeach
+                      </div><!-- /.carousel-inner -->
+                      <a class="left carousel-control" href="#lightbox" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                      </a>
+                      <a class="right carousel-control" href="#lightbox" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                      </a>
+                    </div><!-- /.modal-body -->
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+
+            </div><!-- /.container -->
+
+
+
+
             <div class="order-button text-center">
                 <a href="{{ route('order-details', ['user_id' => $user->id, 'store_id' => $store->id]) }}">
                     <button class="btn btn-success btn-block" type="button" name="button">
@@ -93,7 +151,7 @@
 {{-- <input type="hidden" id="hidden-redirect-url" value="{{ url() }}"> --}}
 
 @endsection
+
 @section('front-additional-js')
-<script type="text/javascript">
-</script>
+
 @endsection

@@ -101,30 +101,26 @@ label{
 .modal-title {
     font-size: 30px;
 }
-.modal-content {
-    border-radius: 0;
+.modal-contentt {
+    border-radius: 15px;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
     -o-border-radius: 0px;
     box-shadow: none;
 }
-.modal-content h3{
+.modal-contentt h3{
 	color: #59595b;
 	font-weight: 700;
 	font-size: 1.2em;
 	border: none;
 	padding: 0 10px;
 }
-.modal-content {
+.modal-contentt {
     -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
-    box-shadow: none;
+    
     border: none;
-    border-radius: 0;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
+    border-radius: 15px;    
     padding: 11px;
 }
 .modal-lg {
@@ -672,9 +668,9 @@ span.checkbox2 {
   -o-transition: 0.5s all;
 }
 .signin-rit p {
-	float: right;
-    width: 30%;
-	font-size: 1em;
+    width: 43%;
+    font-size: 1em;
+    margin-bottom: 8px;
 }
 .signin-rit p a{
   color: #999;
@@ -4798,7 +4794,7 @@ label {
 	.modal-lg {
 		width: 300px;
 	}
-	.modal-content {
+	.modal-contentt {
 		padding: 0px;
 	}
 	.modal-title {
@@ -5039,9 +5035,9 @@ img{ max-width:100%;}
 }
 
 .offer-list {
-    width: 40%;
     float: right;
-    top: 0;
+    margin-top: 2%;
+    margin-right: 2%;
 }
 
 
@@ -5071,24 +5067,31 @@ color: #55C4CF;
   padding: 5px;
   border-radius: 10px;
 }
-.user-profile {
-    width: 100%;
+.modal-content {
+    width: 70%;
     height: auto;
     background: #fff;
     border-radius: 22px;
-    position: absolute;
-    margin-left: -86px;
-    margin-top: 140px;
+    /* margin-top: 140px; */
+    margin: 0 auto;
 }
 
 
-.profile {
-  width: 70%;
-margin-left: 20px;
-margin-top: 20px;
+.profile { 
+margin-left: 2%;
+margin-top: 2%;
 }
-
-
+.porfile-details{
+	margin-bottom: 2%;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.porfile-details-bottom{
+	display: block;
+	margin-top: 11%;
+	text-align: center;
+}
 .profile  .bio {
   margin: auto;
   display: inline-block;
@@ -5098,10 +5101,10 @@ margin-top: 20px;
   font-family: "varela round", sans-serif;
 }
 .profile > .description {
- margin-right: 40px;
-text-align: initial;
-padding-left: 50px;
-  
+    text-align: center;
+    width: 38%;
+    height: auto;
+    margin-top: 2%;
 }
 .profile  .description .username {
  font-size: 14px;
@@ -5117,17 +5120,16 @@ width: 18%;
 float: left;
 }
 
-.user-profile ul.data {
+.modal-content ul {
  margin-top: 40px; 
  list-style: none;
 }
-.user-profile li {
+.modal-content ul li {
 color: #D1D1D1;
 margin: 0 auto;
 font-size: 18px;
-display: table-cell;
 text-align: center;
-padding-left: 80px;  
+/*padding-left: 80px;  */
 }  
 
 .checked {
@@ -5161,15 +5163,7 @@ width: 102px;
 */
 
 @media (min-width: 768px) and (max-width: 1024px) {
- .user-profile {
-width: 100%;
-height: auto;
-background: #fff;
-border-radius: 22px;
-position: absolute;
-margin-left: -23px;
-margin-top: 140px;
-  } 
+ 
  
   
 }
@@ -5180,18 +5174,7 @@ margin-top: 140px;
 */
 
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
- .user-profile ul.data {
- margin-top: 40px; 
- list-style: none;
-}
-.user-profile li {
-color: #D1D1D1;
-margin: 0 auto;
-font-size: 18px;
-display: table-cell;
-text-align: center;
-padding-left: 80px;  
-}  
+ 
   
   
 }
@@ -5202,18 +5185,12 @@ padding-left: 80px;
 */
 
 @media (min-width: 481px) and (max-width: 767px) {
- .user-profile ul.data {
- margin-top: 40px; 
- list-style: none;
+ 
+.profile > img.avatar {
+ border-radius: 18em;
+width: 15%;
+float: left;
 }
-.user-profile li {
-color: #D1D1D1;
-margin: 0 auto;
-font-size: 14px;
-display: table-cell;
-text-align: center;
-padding-left: 80px;  
-} 
   
   
 }
@@ -5224,20 +5201,8 @@ padding-left: 80px;
 */
 
 @media (min-width: 320px) and (max-width: 480px) {
-.user-profile {
-width: 100%;
-height: auto;
-background: #fff;
-border-radius: 22px;
-position: absolute;
-margin-left: -23px;
-margin-top: 140px;
-  }
-.profile {
-  width: 70%;
-margin-left: 20px;
-margin-top: 20px;
-}
+
+
 
 
 .profile  .bio {
@@ -5248,12 +5213,7 @@ margin-top: 20px;
   font-size: .87em;
   font-family: "varela round", sans-serif;
 }
-.profile > .description {
- margin-right: 40px;
-text-align: initial;
-padding-left: 50px;
-  
-}
+
 .profile  .description .username {
  font-size: 14px;
  margin:0;
@@ -5268,29 +5228,15 @@ width: 18%;
 float: left;
 }
 
-.user-profile .data {
- margin-top: 40px; 
- list-style: none;
-}
-.user-profile ul.data {
- margin-top: 40px; 
- list-style: none;
-}
-.user-profile ul.data li {
-    color: #D1D1D1;
-    margin: 0 auto;
-    font-size: 12px;
-    display: table-cell;
-    text-align: center;
-    padding-left: 27px;
-}
+
+
 
 
 .checked {
   color: orange;
 }
 
-.user-profile .data{
+.modal-content ul{
   text-align: center;
 }
 .button-group{
@@ -5317,4 +5263,7 @@ width: 102px;
 }  
 
   
+}
+@media (min-width: 320px) and (max-width: 440px) {
+
 }

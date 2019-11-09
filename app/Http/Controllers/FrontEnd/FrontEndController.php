@@ -28,7 +28,6 @@ class FrontEndController extends Controller
       $url        = env('MAIN_HOST_URL').'api/get-modules';
       $method     = 'GET';
       $models     = $this->callApi($method, $url);
-
       return view('front-end.home', compact('models'));
     }
 

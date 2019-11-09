@@ -27,21 +27,87 @@
         ?>
           <div class="restaurant-details-div">
             <h1 class="text-left">{{ __('content.store_details') }}</h1>
-            <div class="sliding-category">
-              <div class="slider-area slider">
+            <div class="menu-category">
+              <div class="slider menu-area">
                 @foreach ($multiple_images as $single_image)
                   <div class="sliding-div">
-                    <a href="" class="sliding-div-a" >
+                    <a href="#lightbox" data-toggle="modal" data-slide-to="1" class="sliding-div-a" >
                       <div class="sliding-category-box">
                         <div class="sliding-category-img">
                           <img src="{{ env('MAIN_HOST_URL').$single_image}}" alt="">
                         </div>
                       </div>
                     </a>
+
                   </div>
                 @endforeach
+
               </div>
             </div>
+              <div class="container">
+              {{-- <ul class="nav nav-pills nav-stacked">
+                <li><a href="#lightbox" >Open Lightbox</a></li>
+                <li><a href="#lightbox" data-toggle="modal" data-slide-to="1">2nd Image</a></li>
+                <li><a href="#lightbox" data-toggle="modal" data-slide-to="2">3rd Image</a></li>
+                <li><a href="#lightbox" data-toggle="modal" data-slide-to="15">Open non existing Image</a></li>
+              </ul>  --}}             
+              <div class="modal fade and carousel slide" id="lightbox">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <ol class="carousel-indicators">
+                        <li data-target="#lightbox" data-slide-to="0" class="active"></li>
+                        <li data-target="#lightbox" data-slide-to="1"></li>
+                        <li data-target="#lightbox" data-slide-to="2"></li>
+                      </ol>
+                      <div class="carousel-inner">
+                        <div class="item active">
+                          <div class="card" >
+                              <img class="card-img-top rounded" src="{{ env('MAIN_HOST_URL').$single_image}}" alt="Card image cap">
+                              <div class="card-body">
+                                <h5 class="card-price">$45</h5>
+                                <h5 class="card-title">product Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                
+                              </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card" >
+                              <img class="card-img-top rounded" src="{{ env('MAIN_HOST_URL').$single_image}}" alt="Card image cap">
+                              <div class="card-body">
+                                 <h5 class="card-price">$45</h5>
+                                <h5 class="card-title">product Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                
+                              </div>
+                            </div>
+                           
+                        </div>
+                        <div class="item">
+                          <div class="card" >
+                              <img class="rounded card-img-top" src="{{ env('MAIN_HOST_URL').$single_image}}" alt="Card image cap">
+                              <div class="card-body">
+                                 <h5 class="card-price">$45</h5>
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                
+                              </div>
+                            </div>
+                        </div>
+                      </div><!-- /.carousel-inner -->
+                      <a class="left carousel-control" href="#lightbox" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                      </a>
+                      <a class="right carousel-control" href="#lightbox" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                      </a>
+                    </div><!-- /.modal-body -->
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+
+            </div><!-- /.container -->
             <div class="product-div">
                 <div id="grid">
                   @foreach ($product_details as $product)
