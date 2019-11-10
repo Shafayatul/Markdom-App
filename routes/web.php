@@ -201,6 +201,10 @@ Route::middleware(['auth'])->group(function () {
 
 		Route::get('order-in-store/{id}', 'StoresController@orderShowByStoreId');
 
+		Route::get('/store-module-in-store/{id}', 'StoresController@orderShowByStoreOrderId');
+		Route::get('/store-order/{id}', 'StoresController@storeOrderShow');
+		Route::delete('/store-order-delete/{id}', 'StoresController@storeOrderDelete');
+
 
 		
 		
@@ -300,6 +304,11 @@ Route::middleware(['auth'])->group(function () {
 
 		Route::patch('/schedules/{id}', 'SchedulesController@update');
 		Route::resource('booked-schedules', 'BookedSchedulesController');
+
+
+		Route::get('/store-module-in-store/{id}', 'StoresController@orderShowByStoreOrderId');
+		Route::get('/store-order/{id}', 'StoresController@storeOrderShow');
+		Route::delete('/store-order-delete/{id}', 'StoresController@storeOrderDelete');
 	});
 
 	Route::group(['middleware' => ['role:admin|customer']], function () {

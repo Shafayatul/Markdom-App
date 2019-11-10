@@ -122,7 +122,7 @@ class StoreController extends Controller
       $url        = env('MAIN_HOST_URL').'api/get-product-detail/'.$id;
       $method     = 'GET';
       $product   = $this->callApi($method, $url);
-
+      // dd($product);
       Session::put('module_id', $product->module_id);
 
       if ($this->check_expiration()) {
@@ -135,7 +135,8 @@ class StoreController extends Controller
         $parameters = [
           'product_id'      => $id,
           'quantity'        => '1',
-          'module_id'       => $product->module_id
+          'module_id'       => $product->module_id,
+          'store_id'        => $product->store_id,
         ];
         $body = $this->callApi($method, $url, $parameters, $headers);
         return redirect('/store-cart/'.$product->module_id);

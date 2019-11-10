@@ -38,6 +38,7 @@ class CartsController extends Controller
     	$user_id        = Auth::id();
         $product_id     = $request->input('product_id');
         $module_id      = $request->input('module_id');
+        $store_id       = $request->input('store_id');
         $count = Cart::where('user_id', Auth::id())->where('is_cart', '1')->where('product_id', $product_id)->count();
         Log::debug($count);
         $current_product = Product::where('id', $request->input('product_id'))->first();
@@ -53,12 +54,13 @@ class CartsController extends Controller
         }else{
 
             $Cart = new Cart;
-            $Cart->user_id                   	= $user_id;
-            $Cart->product_id               	= $product_id;
-            $Cart->module_id                    = $module_id;
-            $Cart->quantity                  	= $request->input('quantity');
-            $Cart->unit_price                   = $product_price;
-            $Cart->is_cart                   	= 1;
+            $Cart->user_id    = $user_id;
+            $Cart->product_id = $product_id;
+            $Cart->module_id  = $module_id;
+            $Cart->store_id   = $store_id;
+            $Cart->quantity   = $request->input('quantity');
+            $Cart->unit_price = $product_price;
+            $Cart->is_cart    = 1;
             $Cart->save();            
         }
 

@@ -17,6 +17,7 @@ use App\PromoCode;
 use App\RestuarentCustomerOrder;
 use Auth;
 use App\WorkerPlaceOrder;
+use App\StoreOrderData;
 
 class OrdersController extends Controller
 {
@@ -67,7 +68,6 @@ class OrdersController extends Controller
 
         $final_price = $final_price + $shipping_fees;
 
-        $cart = Cart::where('user_id', Auth::id())->where('is_cart', '1')->update(['is_cart'=>'0']);
         $order_status = OrderStatus::first()->id;
 
         if ($request->input("payment_method") == "COD") {
@@ -100,6 +100,15 @@ class OrdersController extends Controller
         $order->promo_code                  = $only_promo_code;
 		$order->save();
         if ($order) {
+
+        $cart=Cart::where('user_id', Auth::id())->where('is_cart', '1')->latest()->get();
+        foreach ($cart as $single_cart) {
+            $store_order_data = new StoreOrderData;
+            $store_order_data->order_id = $order->id;
+            $store_order_data->store_id = $single_cart->store_id;
+            $store_order_data->save();
+        }
+        $cart = Cart::where('user_id', Auth::id())->where('is_cart', '1')->update(['is_cart'=>'0']);
 
         $order_status_obj               = OrderStatus::first();
 

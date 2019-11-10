@@ -70,7 +70,9 @@ Stores
 
                                         <a href="{{ url('/stores/' . $item->id . '/edit') }}" title="Edit Store"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
                                         
-                                        <a href="{{ url('/order-in-store/' . $item->id) }}" title="View Store"><button class="btn btn-sm" style="background-color: black; color: white;"><i class="fa fa-list" aria-hidden="true"></i> Order List</button></a>
+                                        <a href="{{ url('/order-in-store/' . $item->id) }}" title="View Store"><button class="btn btn-sm" style="background-color: black; color: white;"><i class="fa fa-list" aria-hidden="true"></i> Worker-Order List</button></a>
+
+                                        <a href="{{ url('/store-module-in-store/' . $item->id) }}" title="View Store"><button class="btn btn-sm" style="background-color: black; color: white;"><i class="fa fa-list" aria-hidden="true"></i> Store-Order List</button></a>
 
                                         {!! Form::open([
                                             'method'=>'DELETE',

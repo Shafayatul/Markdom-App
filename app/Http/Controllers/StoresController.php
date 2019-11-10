@@ -13,6 +13,7 @@ use App\DriverOrder;
 use App\DriverOrderData;
 use App\Product;
 use App\Order;
+use App\StoreOrderData;
 use App\WorkerPlaceOrder;
 use App\RestuarentCustomerOrder;
 use App\User;
@@ -23,6 +24,9 @@ use App\ServiceType;
 use App\OrderStatus;
 use Illuminate\Http\Request;
 use Auth;
+use App\City;
+use App\State;
+use App\Country;
 
 class StoresController extends Controller
 {
@@ -74,6 +78,32 @@ class StoresController extends Controller
         $order_status = OrderStatus::where('id', $single_worker_order->order_status_id)->first();
         $service_type = ServiceType::where('id', $single_worker_order->service_type_id)->first();
         return view('stores.single-order-show', compact('single_worker_order', 'schedule', 'product', 'order_status', 'service_type'));
+    }
+
+    public function orderShowByStoreOrderId($id)
+    {
+        $perPage = 25;
+        $storeorders = StoreOrderData::where('store_id', $id)->pluck('order_id');
+        $orders = Order::whereIn('id', $storeorders)->paginate($perPage);
+        $orderstatus = OrderStatus::pluck('order_status', 'id');
+        $store = Store::where('id', $id)->first();
+        return view('stores.store-order-list', compact('orders', 'orderstatus', 'store'));
+    }
+
+    public function storeOrderShow($id)
+    {
+        $single_store_order = Order::where('id', $id)->first();
+        $cart_ids = explode(',', $single_store_order->cart_ids);
+        $user = User::where('id', $single_store_order->user_id)->first();
+        $address = Address::where('id', $single_store_order->address_id)->first();
+        $city = City::where('id', $address->city_id)->first();
+        $state = State::where('id', $address->state_id)->first();
+        $country = Country::where('id', $address->country_id)->first();
+        $product_ids = Cart::whereIn('id',$cart_ids)->pluck('product_id');
+        $products = Product::whereIn('id', $product_ids)->get();
+        $order_status = OrderStatus::where('id', $single_store_order->order_status_id)->first();
+        $stores = Store::pluck('name', 'id');
+        return view('stores.single-store-order-show', compact('single_store_order', 'products', 'order_status', 'address', 'user', 'city', 'state', 'country', 'stores'));
     }
 
     /**
@@ -283,6 +313,17 @@ class StoresController extends Controller
     public function orderDelete($id)
     {
         WorkerPlaceOrder::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Order Deleted');
+    }
+
+    public function storeOrderDelete($id)
+    {
+        $order = Order::findOrFail($id);
+        if($order->image != null){
+            unlink($order->image);
+        }
+        Order::destroy($id);
+        StoreOrderData::where('order_id', $id)->delete();
         return redirect()->back()->with('success', 'Order Deleted');
     }
 }

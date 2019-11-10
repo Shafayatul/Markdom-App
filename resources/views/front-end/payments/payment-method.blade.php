@@ -119,7 +119,7 @@
 @endsection --}}
 @section('front-additional-js')
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="{{ asset('front-end-assets/js/categories_custom.js')}}"></script>
+{{-- <script src="{{ asset('front-end-assets/js/categories_custom.js')}}"></script> --}}
 <script type="text/javascript">
 
   $(document).ready(function(){

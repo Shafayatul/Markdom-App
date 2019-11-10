@@ -263,8 +263,10 @@ class FrontEndController extends Controller
 
     public function ajaxCodSubmit(Request $request)
     {
+
       if ($this->check_expiration()) {
         $method = "POST";
+        
         $url = env("MAIN_HOST_URL")."api/place-order";
         $parameters = [
             'address_id'     => $request->address_id,
@@ -276,8 +278,9 @@ class FrontEndController extends Controller
               'Accept'        => 'application/json',
         ];
         $response = $this->callApi($method, $url, $parameters, $headers);
-        // dd($order_id);
         return response()->json(['msg'=>'Success','response' =>$response]);
+      }else{
+        return redirect('/login');
       }
     }
 
