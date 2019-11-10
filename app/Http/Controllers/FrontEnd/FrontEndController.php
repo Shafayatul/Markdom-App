@@ -28,7 +28,14 @@ class FrontEndController extends Controller
       $url        = env('MAIN_HOST_URL').'api/get-modules';
       $method     = 'GET';
       $models     = $this->callApi($method, $url);
-      return view('front-end.home', compact('models'));
+
+      $url_offer    = env('MAIN_HOST_URL').'api/get-offers-by-module/3';
+      $method_offer = 'GET';
+      $offers       = $this->callApi($method_offer, $url_offer);
+      // dd($offers);
+
+
+      return view('front-end.home', compact('models', 'offers'));
     }
 
     public function isDriver()

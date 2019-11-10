@@ -58,6 +58,14 @@ Products
                                     <td>
                                         <a href="{{ url('/products/' . $item->id) }}" title="View Product"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                         <a href="{{ url('/products/' . $item->id . '/edit') }}" title="Edit Product"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                        @if($item->module_id == 3)
+                                            @if($item->is_offer == 1)
+                                                <a href="{{ url('/product-offer-delete/' . $item->id) }}" title="View Product"><button class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete Offer</button></a>
+                                            @else
+                                                <a href="{{ url('/product-offer-add/' . $item->id) }}" title="View Product"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Add Offer</button></a>
+                                            @endif
+                                        @endif
+
                                         {!! Form::open([
                                             'method'=>'DELETE',
                                             'url' => ['/products', $item->id],

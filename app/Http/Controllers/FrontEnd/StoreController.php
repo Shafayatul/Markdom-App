@@ -21,9 +21,10 @@ class StoreController extends Controller
       $method           = 'GET';
       $categories       = $this->callApi($method, $url);
 
-      $url_offer        = env('MAIN_HOST_URL').'api/get-offers-by-module/3';
-      $method_offer     = 'GET';
-      $categories_offer = $this->callApi($method_offer, $url_offer);
+      $url_offer    = env('MAIN_HOST_URL').'api/get-offers-by-module/3';
+      $method_offer = 'GET';
+      $categories_offer       = $this->callApi($method_offer, $url_offer);
+      // dd($offers);
 
       return view('front-end.store.index', compact('categories', 'categories_offer'));
     }

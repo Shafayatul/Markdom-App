@@ -269,4 +269,33 @@ class ProductsController extends Controller
 
         return redirect('products')->with('success', 'Product deleted!');
     }
+
+    public function offerAdd($id)
+    {
+        return view('products.offer-add', compact('id'));
+    }
+
+    public function offerSave(Request $request)
+    {
+        $product_id             = $request->product_id;
+        $product                = Product::where('id', $product_id)->first();
+        $product->is_offer      = 1;
+        $product->offer_type    = $request->offer_type;
+        $product->offer_amount  = $request->offer_amount;
+        $product->offer_percent = $request->offer_percent;
+        $product->save();
+        return redirect('/products')->with('success', 'Product Offer Added');
+    }
+
+    public function offerDelete($id)
+    {
+
+        $product                = Product::findOrFail('id', $$id);
+        $product->is_offer      = null;
+        $product->offer_type    = null;
+        $product->offer_amount  = null;
+        $product->offer_percent = null;
+        $product->save();
+        return redirect('/products')->with('success', 'Product Offer Deletd');
+    }
 }

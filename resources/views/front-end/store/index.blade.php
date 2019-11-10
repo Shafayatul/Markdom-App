@@ -28,9 +28,9 @@
 
     <div class="rectangle-div">
       <div id="grid">
-        @foreach ($categories_offer as $single_categories_offer)
+{{--         @foreach ($categories_offer as $single_categories_offer)
           <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <span class="title">{{ $single_categories_offer->title }}</span>
+          <span class="title">{{ $single_categories_offer->name }}</span>
           <span class="number">
             @if ($single_categories_offer->amount != null)
               {{ $single_categories_offer->amount }}
@@ -39,7 +39,7 @@
             @endif
           </span>
         </div>
-        @endforeach
+        @endforeach --}}
       </div>
     </div>
   </div>

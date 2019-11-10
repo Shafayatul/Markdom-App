@@ -309,6 +309,10 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/store-module-in-store/{id}', 'StoresController@orderShowByStoreOrderId');
 		Route::get('/store-order/{id}', 'StoresController@storeOrderShow');
 		Route::delete('/store-order-delete/{id}', 'StoresController@storeOrderDelete');
+
+		Route::get('/product-offer-add/{id}', 'ProductsController@offerAdd');
+		Route::get('/product-offer-delete/{id}', 'ProductsController@offerDelete');
+		Route::post('/offer-save', 'ProductsController@offerSave');
 	});
 
 	Route::group(['middleware' => ['role:admin|customer']], function () {

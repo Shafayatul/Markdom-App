@@ -34,100 +34,25 @@
 
     <div class="rectangle-div">
       <div id="grid">
-        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <span class="title">Signature</span>
-          <span class="title-2">Juices</span>
-          <span class="number">Average</span>
-          <span class="number-2">30-35 mins</span>
-        </div>
-        <div class="rectangle-box shadow" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
-          <span class="title">Signature</span>
-          <span class="title-2">Juices</span>
-          <span class="number">Average</span>
-          <span class="number-2">30-35 mins</span>
-        </div>
+        @foreach($offers as $offer)
+       
+          <div class="rectangle-box shadow" style="background-image: url('{{ asset(env('MAIN_HOST_URL').$offer->preview_image) }}');"> 
+            <a href="{{ url('store-product-details/'.$offer->id) }}">
+            <span class="title">{{ $offer->name }}</span>
+            <span class="title-2">Price: {{ $offer->price }}</span>
+            @if($offer->offer_type == 'Amount')
+              <span class="number">Offer Amount: {{ $offer->offer_amount }}</span>
+            @else
+              <span class="number">Offer Percent: {{ $offer->offer_percent }}%</span>
+            @endif
+            </a>
+          </div>
+        @endforeach
+
       </div>
     </div>
 
-    <div class="sliding-category-2">
-      <div class="sliding-category-title">
-        <h1 class="text-center">Featured On Carriage</h1>
-      </div>
-      <div class="slider-area-2 slider">
-          <div class="sliding-div-2">
-            <a href="#" class="sliding-div-2-a" >
-              <div class="sliding-category-box-2">
-                <div class="sliding-category-img-2">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="sliding-div-2">
-            <a href="#" class="sliding-div-2-a" >
-              <div class="sliding-category-box-2">
-                <div class="sliding-category-img-2">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="sliding-div-2">
-            <a href="#" class="sliding-div-2-a" >
-              <div class="sliding-category-box-2">
-                <div class="sliding-category-img-2">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="sliding-div-2">
-            <a href="#" class="sliding-div-2-a" >
-              <div class="sliding-category-box-2">
-                <div class="sliding-category-img-2">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="sliding-div-2">
-            <a href="#" class="sliding-div-2-a" >
-              <div class="sliding-category-box-2">
-                <div class="sliding-category-img-2">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="sliding-div-2">
-            <a href="#" class="sliding-div-2-a" >
-              <div class="sliding-category-box-2">
-                <div class="sliding-category-img-2">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="sliding-div-2">
-            <a href="#" class="sliding-div-2-a" >
-              <div class="sliding-category-box-2">
-                <div class="sliding-category-img-2">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="sliding-div-2">
-            <a href="#" class="sliding-div-2-a" >
-              <div class="sliding-category-box-2">
-                <div class="sliding-category-img-2">
-                  <img src="{{ asset('front-end-assets/images/b11.jpg') }}" alt="">
-                </div>
-              </div>
-            </a>
-          </div>
-      </div>
-    </div>
+
   </div>
 @endsection
 

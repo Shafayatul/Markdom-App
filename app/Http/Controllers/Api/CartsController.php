@@ -43,6 +43,13 @@ class CartsController extends Controller
         Log::debug($count);
         $current_product = Product::where('id', $request->input('product_id'))->first();
         $product_price = $current_product->price;
+        if($current_product->is_offer == 1){
+            if($current_product->offer_type == 'Amount'){
+                $product_price = $current_product->offer_amount;
+            }else{
+                $product_price = $current_product->price*$current_product->offer_percent/100;
+            }
+        }
 
         if($count>0) {
             $id = Cart::where('user_id', Auth::id())->where('is_cart', '1')->where('product_id', $product_id)->first()->id;
