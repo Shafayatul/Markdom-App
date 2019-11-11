@@ -33,7 +33,7 @@
                 @endif
               </p>
             </div>
-            <div class="right text-right"> <p>{{ $product_details->price }}</p></div>
+            <div class="right text-right"> <p>{{ $product_details->price }} SAR</p></div>
           </div>
           <div class="product-description">
             <div class="left text-left">
@@ -45,16 +45,22 @@
                 @endif
               </p>
             </div>
-            <div class="right text-right"> <p>
+           {{--  <div class="right text-right"> <p>
               @for ($i=0; $i <5; $i++)
                 <i class="fa fa-star"></i>
               @endfor
             </p>
-          </div>
+          </div> --}}
           </div>
         </div>
         <div class="stock">
-          <p>only 10 pcs available</p>
+          @if($product_details->is_offer == 1)
+            @if($product_details->offer_type == 'Amount')
+              <p>Discount: {{ $product_details->offer_amount }} SAR</p>
+            @else
+              <p>Discount: {{ $product_details->offer_percent }}%</p>
+            @endif
+          @endif
         </div>
 
         <div class="add-cart-button-div">

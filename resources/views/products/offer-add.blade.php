@@ -38,7 +38,7 @@ Create New Offer
 
                     <div class="form-group {{ $errors->has('offer_type') ? 'has-error' : ''}}">
                         {!! Form::label('offer_type', 'Type', ['class' => 'control-label']) !!}
-                        {!! Form::select('offer_type', (['' => '---Select Type---', 'Amount' => 'Amount', 'Percentage' => 'Percentage']), null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'id' => 'type'] : ['class' => 'form-control', 'id' => 'type']) !!}
+                        {!! Form::select('offer_type', (['' => '---Select Type---', 'Amount' => 'Amount', 'Percent' => 'Percent']), null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'id' => 'type'] : ['class' => 'form-control', 'id' => 'type']) !!}
                         {!! $errors->first('offer_type', '<p class="help-block">:message</p>') !!}
                     </div>
 
