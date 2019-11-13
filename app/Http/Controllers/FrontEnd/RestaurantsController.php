@@ -16,11 +16,16 @@ class RestaurantsController extends Controller
     public function index()
     {
 
-      $url                    = env('MAIN_HOST_URL').'api/get-categories-by-module/1';
+      $restaurant = 'Restaurant';
+      $url = env('MAIN_HOST_URL').'api/get-module/'.$restaurant;
+      $method = 'GET';
+      $module = $this->callApi($method, $url);
+
+      $url                    = env('MAIN_HOST_URL').'api/get-categories-by-module/'.$module->id;
       $method                 = 'GET';
       $categories             = $this->callApi($method, $url);
 
-      $url                    = env('MAIN_HOST_URL').'api/get-offers-by-module/1';
+      $url                    = env('MAIN_HOST_URL').'api/get-offers-by-module/'.$module->id;
       $method                 = 'GET';
       $offers                 = $this->callApi($method, $url);
 

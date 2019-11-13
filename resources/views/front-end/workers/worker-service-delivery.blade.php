@@ -12,9 +12,9 @@
         <div class="in-service">
           <h1 class="in-service-h1">
               @if(app()->getLocale() == 'en')
-                  {{ $service_type_price->name }}
+                  {{ $service_type_price->title }}
               @else
-                {{ $service_type_price->name_arabic }}
+                {{ $service_type_price->title_arabic }}
               @endif
           </h1>
         </div>

@@ -5,9 +5,6 @@
 @endsection
 @section('main-content')
   <div class="content">
-
-
-
     <div class="menu-category">
       <div class="menu-area ">
         @foreach ($models as $model)
@@ -35,7 +32,6 @@
     <div class="rectangle-div">
       <div id="grid">
         @foreach($offers as $offer)
-       
           <div class="rectangle-box shadow" style="background-image: url('{{ asset(env('MAIN_HOST_URL').$offer->preview_image) }}');"> 
             <a href="{{ url('store-product-details/'.$offer->id) }}">
             <span class="title">{{ $offer->name }}</span>

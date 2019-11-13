@@ -1,7 +1,3 @@
-a:hover{
-  text-decoration: none;
-}
-
 .order {
   margin-top: 30px;
 }
@@ -58,8 +54,7 @@ a:hover{
   padding-left: 45px;
 }
 
-.icon img {
-  width: 10%;
+.icon i {
   color: #cecece;
 }
 
@@ -82,16 +77,12 @@ h2 {
 
   h2 {
     font-size: 18px;
-    padding-left: 3px;
+    padding-left: 10px;
   }
 
   .icon {
     padding-left: 10px;
   }
-  .icon img {
-     width: 10%;
-    color: #cecece;
-}
 
   .morning-slider-area span, .afternoon-slider-area span, .evening-slider-area span {
     padding: 9px 0px 0px 0px;
@@ -118,16 +109,12 @@ h2 {
 
   h2 {
     font-size: 21px;
-    padding-left: 2px;
+    padding-left: 10px;
   }
 
   .icon {
     padding-left: 10px;
   }
-  .icon img {
-    width: 10%;
-    color: #cecece;
-}
 
   .morning-slider-area span, .afternoon-slider-area span, .evening-slider-area span {
     padding: 9px 0px 0px 0px;
@@ -154,16 +141,12 @@ h2 {
 
   h2 {
     font-size: 21px;
-   padding-left: 2px;
+    padding-left: 10px;
   }
 
   .icon {
     padding-left: 10px;
   }
-  .icon img {
-    width: 10%;
-    color: #cecece;
-}
 
   .morning-timing-title-box, .afternoon-timing-title-box, .evening-timing-title-box {
     padding-left: 0px;

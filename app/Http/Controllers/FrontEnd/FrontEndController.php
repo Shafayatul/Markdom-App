@@ -63,7 +63,12 @@ class FrontEndController extends Controller
     {
      
       if($this->autoLogin($request->email, $request->password)){
-        return redirect('/');
+        if($request->previous_url == url('/user-login')){
+          return redirect('/');
+        }else{
+          return redirect($request->previous_url);
+        }
+        
       }else{
         return redirect()->back()->with('message', 'Credentials do not match.');
       }
@@ -313,6 +318,21 @@ class FrontEndController extends Controller
     public function placeOrder(Request $request)
     {
       if ($this->check_expiration()) {
+
+        if($request->payment_method == 'Bank Transfer'){
+          if($request->hasFile('image')){
+              $image = $request->file('image');
+              // dd($image);
+              $image_fullname = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+              $path = 'uploads/';
+              $image_url = $path.$image_fullname;
+              $image->move($path,$image_fullname);
+          }else{
+            $image_url = null;
+          }
+        }else{
+           $image_url = null;
+        }
         
         $method = "POST";
         $url = env("MAIN_HOST_URL")."api/place-order";
@@ -321,7 +341,7 @@ class FrontEndController extends Controller
             'promo_code'            => $request->promo_code,
             'payment_method'        => $request->payment_method,
             'paytab_transaction_id' => $request->paytab_transaction_id,
-            'bank_image'                 => $image_url
+            'bank_image'            => $image_url
         ];
         $headers = [
               'Authorization' => 'Bearer ' . Session::get('access_token'),

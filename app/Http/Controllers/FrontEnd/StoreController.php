@@ -17,11 +17,16 @@ class StoreController extends Controller
 {
     public function index()
     {
-      $url              = env('MAIN_HOST_URL').'api/get-categories-by-module/3';
+      $store = 'Store';
+      $url = env('MAIN_HOST_URL').'api/get-module/'.$store;
+      $method = 'GET';
+      $module = $this->callApi($method, $url);
+
+      $url              = env('MAIN_HOST_URL').'api/get-categories-by-module/'.$module->id;
       $method           = 'GET';
       $categories       = $this->callApi($method, $url);
 
-      $url_offer    = env('MAIN_HOST_URL').'api/get-offers-by-module/3';
+      $url_offer    = env('MAIN_HOST_URL').'api/get-offers-by-module/'.$module->id;
       $method_offer = 'GET';
       $categories_offer       = $this->callApi($method_offer, $url_offer);
       // dd($offers);
@@ -140,6 +145,7 @@ class StoreController extends Controller
           'store_id'        => $product->store_id,
         ];
         $body = $this->callApi($method, $url, $parameters, $headers);
+        // dd($body);
         return redirect('/store-cart/'.$product->module_id);
       }else{
         return redirect('/user-login');

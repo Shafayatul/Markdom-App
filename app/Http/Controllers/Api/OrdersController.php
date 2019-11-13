@@ -18,6 +18,7 @@ use App\RestuarentCustomerOrder;
 use Auth;
 use App\WorkerPlaceOrder;
 use App\StoreOrderData;
+use App\Product;
 
 class OrdersController extends Controller
 {
@@ -268,7 +269,6 @@ class OrdersController extends Controller
 
         $final_price = $final_price + $shipping_fees;
 
-        $cart = Cart::where('user_id', Auth::id())->where('is_cart', '1')->update(['is_cart'=>'0']);
         $order_status = OrderStatus::first()->id;
 
 
@@ -288,6 +288,7 @@ class OrdersController extends Controller
         $workerorder->store_id         = $store_id;
         $workerorder->save();
         if ($workerorder) {
+        $cart = Cart::where('user_id', Auth::id())->where('is_cart', '1')->update(['is_cart'=>'0']);
 
         $order_status_obj               = OrderStatus::first();
 

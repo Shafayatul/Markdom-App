@@ -40,7 +40,7 @@
                       <a href="{{ route('worker-details', ['id' => $store->id]) }}" class="#" store-sub-cat-id="{{ $store->sub_category_id }}" style="">
                       <tr class="table-row">
                         <td width="15%"> 
-                          <img src="{{ asset('front-end-assets/images/burger3.jpg') }}" alt="" width="100%" class="img-fluid rounded shadow-sm"> 
+                          <img src="{{ asset(env('MAIN_HOST_URL').$store->preview_image) }}" alt="" width="100%" class="img-fluid rounded shadow-sm"> 
                         </td>
                         <th width="15%">
                           <div class="p-2">                            

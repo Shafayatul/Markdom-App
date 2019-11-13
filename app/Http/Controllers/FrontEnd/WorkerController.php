@@ -19,11 +19,17 @@ class WorkerController extends Controller
 
     public function index()
     {
-      $url = env('MAIN_HOST_URL').'api/get-stores-by-module-id/2';
+
+      $worker = 'Worker';
+      $url = env('MAIN_HOST_URL').'api/get-module/'.$worker;
+      $method = 'GET';
+      $module = $this->callApi($method, $url);
+
+      $url = env('MAIN_HOST_URL').'api/get-stores-by-module-id/'.$module->id;
       $method = 'GET';
       $stores = $this->callApi($method, $url);
 
-      $url        = env('MAIN_HOST_URL').'api/get-offers-by-module/2';
+      $url        = env('MAIN_HOST_URL').'api/get-offers-by-module/'.$module->id;
       $method     = 'GET';
       $offers     = $this->callApi($method, $url);
 
@@ -35,6 +41,7 @@ class WorkerController extends Controller
       $url                = env('MAIN_HOST_URL').'api/get-service-category-by-store/'.$store_id;
       $method             = 'GET';
       $service_categories = $this->callApi($method, $url);
+      // dd($service_categories);
       return view('front-end.workers.service-category-worker', compact('service_categories'));
     }
 
@@ -117,6 +124,7 @@ class WorkerController extends Controller
       $url                        = env('MAIN_HOST_URL').'api/get-service-sub-category-by-service-category/'.$id;
       $method                     = 'GET';
       $service_sub_categories     = $this->callApi($method, $url);
+
       return view('front-end.workers.service-sub-category-worker', compact('service_sub_categories'));
     }
 
@@ -126,6 +134,7 @@ class WorkerController extends Controller
       $url      = env('MAIN_HOST_URL').'api/get-service-sub-sub-category-by-service-sub-category/'.$id;
       $method   = 'GET';
       $service_sub_sub_categories = $this->callApi($method, $url);
+      // dd($service_sub_sub_categories);
       return view('front-end.workers.service-sub-sub-category-worker', compact('service_sub_sub_categories'));
     }
 
@@ -166,9 +175,10 @@ class WorkerController extends Controller
         Session::put('selected_store_id', $product->store_id);
         Session::put('selected_product_id', $id);
 
-      $url_service_type_price     = env('MAIN_HOST_URL').'api/get-service-type-price/'.$id;
+      $url_service_type_price     = env('MAIN_HOST_URL').'api/get-service-type-price';
       $method_service_type_price  = 'GET';
       $service_type_prices        = $this->callApi($method_service_type_price, $url_service_type_price);
+        // dd($service_type_prices);
       return view('front-end.workers.worker-service-delivery', compact('service_type_prices', 'product'));
       }else{
         return redirect('/user-login');

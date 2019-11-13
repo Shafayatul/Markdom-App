@@ -24,6 +24,7 @@ Route::get('get-city/{state_id}', 'Api\CountriesController@city');
 Route::get('get-all-schedule-type-by-lang/{lang}', 'Api\WorkingHoursController@get_all_schedule_type_by_lang');
 
 Route::get('get-modules', 'Api\ModulesController@get_modules');
+Route::get('get-module/{module}', 'Api\ModulesController@get_module_by_module_name');
 Route::get('get-categories-by-module/{id}', 'Api\CategoriesController@get_categories_by_module_id');
 Route::get('get-offers-by-module/{id}', 'Api\OffersController@get_offers_by_module_id');
 
@@ -42,7 +43,7 @@ Route::get('get-sub-subcategories-by-sub-category/{id}', 'Api\SubCategoriesContr
 
 Route::get('get-product-by-sub-sub-category/{id}', 'Api\ProductsController@get_product_by_subsubcategory_id');
 
-Route::get('get-service-type-price/{product_id}', 'Api\WorkerServiceCostsController@get_service_type_price');
+Route::get('get-service-type-price', 'Api\WorkerServiceCostsController@get_service_type_price');
 
 Route::get('get-review-by-store/{store_id}', 'Api\ReviewsController@get_review_by_store_id');
 

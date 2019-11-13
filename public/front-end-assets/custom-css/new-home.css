@@ -102,7 +102,7 @@ box-sizing: border-box;
 
 #grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 3vw;
   }
 #grid > div {
@@ -428,7 +428,7 @@ box-sizing: border-box;
   }
 
   #grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 

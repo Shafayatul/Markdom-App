@@ -28,9 +28,9 @@
                     </li>
                 </ul>
               </li>
-              <li><a href="{{ route('restaurant') }}">Restorant</a></li>
-              <li><a href="{{ route('store') }}" class="main-li-a">Store</a></li>
-              <li><a href="{{ route('worker') }}" class="main-li-a">Workers</a></li>
+              <li><a href="{{ route('Restaurant') }}">Restorant</a></li>
+              <li><a href="{{ route('Store') }}" class="main-li-a">Store</a></li>
+              <li><a href="{{ route('Worker') }}" class="main-li-a">Workers</a></li>
             @endif
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">@lang('header.my_account') <b class="caret"></b></a>

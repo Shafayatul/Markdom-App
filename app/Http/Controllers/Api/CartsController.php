@@ -13,7 +13,7 @@ use Log;
 
 class CartsController extends Controller
 {
-	public function index($module_id){
+    public function index($module_id){
         $data = [];
         $carts=Cart::where('user_id', Auth::id())->where('is_cart', '1')->where('module_id', $module_id)->latest()->get();
         foreach ($carts as $cart) {
@@ -24,7 +24,7 @@ class CartsController extends Controller
             $single_data['product_id']              = $cart->product_id; 
             $single_data['product_name']            = $product->name; 
             $single_data['product_name_arabic']     = $product->name_arabic; 
-            $single_data['preview_image']          	= $product->preview_image;
+            $single_data['preview_image']           = $product->preview_image;
             $single_data['total_price']             = $cart->quantity*$cart->unit_price; 
             $single_data['quantity']                = $cart->quantity;
             $single_data['price']                   = $cart->unit_price;
@@ -35,15 +35,15 @@ class CartsController extends Controller
 
     public function store(Request $request)
     {
-    	$user_id        = Auth::id();
+        $user_id        = Auth::id();
         $product_id     = $request->input('product_id');
         $module_id      = $request->input('module_id');
-        $store_id       = $request->input('store_id');
         $count = Cart::where('user_id', Auth::id())->where('is_cart', '1')->where('product_id', $product_id)->count();
         Log::debug($count);
         $current_product = Product::where('id', $request->input('product_id'))->first();
         $product_price = $current_product->price;
-        if($current_product->is_offer == 1){
+
+         if($current_product->is_offer == 1){
             if($current_product->offer_type == 'Amount'){
                 $product_price = $current_product->offer_amount;
             }else{
@@ -61,13 +61,12 @@ class CartsController extends Controller
         }else{
 
             $Cart = new Cart;
-            $Cart->user_id    = $user_id;
-            $Cart->product_id = $product_id;
-            $Cart->module_id  = $module_id;
-            $Cart->store_id   = $store_id;
-            $Cart->quantity   = $request->input('quantity');
-            $Cart->unit_price = $product_price;
-            $Cart->is_cart    = 1;
+            $Cart->user_id                      = $user_id;
+            $Cart->product_id                   = $product_id;
+            $Cart->module_id                    = $module_id;
+            $Cart->quantity                     = $request->input('quantity');
+            $Cart->unit_price                   = $product_price;
+            $Cart->is_cart                      = 1;
             $Cart->save();            
         }
 
@@ -83,7 +82,7 @@ class CartsController extends Controller
 
     public function update_quantity_cart(Request $request)
     {
-    	$id = $request->input('cart_id');
+        $id = $request->input('cart_id');
 
         // $old_quantity = Cart::where('id', $id)->first()->quantity;
 

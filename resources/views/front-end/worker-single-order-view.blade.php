@@ -24,7 +24,7 @@
                                     <th>Service Type</th>
                                     <td>
                                           @if(isset($response->service_type->title))
-                                                {{ $response->schedule->title }}
+                                                {{ $response->service_type->title }}
                                           @endif
                                     </td>  
                               </tr>

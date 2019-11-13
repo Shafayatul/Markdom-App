@@ -29,7 +29,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
 
 	//Store Section
-	Route::get('/store', 'FrontEnd\StoreController@index')->name('store');
+	Route::get('/store', 'FrontEnd\StoreController@index')->name('Store');
 	Route::get('/sub-category-store/{id}', 'FrontEnd\StoreController@subCategoryStore');
 	Route::get('/store-details/{id}', 'FrontEnd\StoreController@storeDetails')->name('store-details');
 	Route::get('/store-product-details/{id}', 'FrontEnd\StoreController@storeProductDetails')->name('store-product-details');
@@ -45,7 +45,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/chat', 'FrontEnd\FrontEndController@chat')->name('chat');
 	// Route::get('/waiting', 'FrontEnd\FrontEndController@waiting')->name('waiting');
 
-	Route::get('/restaurant', 'FrontEnd\RestaurantsController@index')->name('restaurant');
+	Route::get('/restaurant', 'FrontEnd\RestaurantsController@index')->name('Restaurant');
 	Route::get('/sub-category/restaurant/{id}', 'FrontEnd\RestaurantsController@subCategoryRestaurant')->name('sub-category-restaurant');
 	Route::get('/restaurant-details/{id}', 'FrontEnd\RestaurantsController@restaurantDetails')->name('restaurant-details');
 
@@ -72,7 +72,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('/receipt-download/{id}', 'FrontEnd\CustomersController@receiptDownload');
 
 
-	Route::get('/worker', 'FrontEnd\WorkerController@index')->name('worker');
+	Route::get('/worker', 'FrontEnd\WorkerController@index')->name('Worker');
 	Route::get('/service-category-by-worker/{id}', 'FrontEnd\WorkerController@service_category_show_by_store_id');
 	// Route::get('/sub-category-worker/{id}', 'FrontEnd\WorkerController@subCategoryWorker');
 	// Route::get('/sub-sub-category-worker/{id}', 'FrontEnd\WorkerController@subSubCategoryWorker');
@@ -144,6 +144,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	Route::get('customer-review/{id}/{type}', 'FrontEnd\CustomersController@orderReview');
 
 	Route::post('/review-submit', 'FrontEnd\CustomersController@orderReviewSubmit');
+
+
+	//Renting Section
+	Route::get('/renting', 'RentingsController@index');
 
 });
 

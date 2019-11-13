@@ -56,6 +56,7 @@ class CustomersController extends Controller
               'Accept'        => 'application/json',
             ];
             $response = $this->callApi($method, $url, [], $headers);
+            // dd($response);
             return view('front-end.worker-single-order-view', compact('response'));
     	}else{
     		return redirect('/user-login');

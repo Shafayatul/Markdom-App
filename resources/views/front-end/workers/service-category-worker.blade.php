@@ -9,7 +9,7 @@
     <div class="rectangle-div">
       <div id="grid">
         @foreach($service_categories as $service_category)
-        <a href="{{ route('service-sub-category-worker', ['id' => $service_category->id]) }}" class="rectangle-box-a" style="background-image: url('{{ asset('front-end-assets/images/b11.jpg') }}');">
+        <a href="{{ route('service-sub-category-worker', ['id' => $service_category->id]) }}" class="rectangle-box-a" style="background-image: url('{{ asset(env('MAIN_HOST_URL').$service_category->preview_image) }}');">
           <div class="rectangle-box shadow">
             <span class="title">
                @if(app()->getLocale() == 'en')

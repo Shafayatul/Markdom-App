@@ -16,10 +16,10 @@ class PaymentsController extends Controller
     public function payment_method_view()
     {
       $result = null;
-    	return view('front-end.payments.payment-method', compact('result'));
+      return view('front-end.payments.payment-method', compact('result'));
     }
 
-    public function paytabsPayment()
+        public function paytabsPayment()
     {
 
       $grand_total;
@@ -81,7 +81,16 @@ class PaymentsController extends Controller
                 'Accept'        => 'application/json',
             ];
           $single_product = $this->callApi($method, $url, [], $headers);
+          // dd($single_product);
           $product_price.=  $single_product->price.' || ';
+
+          if($single_product->is_offer == 1){
+            if($single_product->offer_type == 'Amount'){
+                $product_price = $single_product->offer_amount;
+            }else{
+                $product_price = $single_product->price*$single_product->offer_percent/100;
+            }
+        }
         }
 
         }

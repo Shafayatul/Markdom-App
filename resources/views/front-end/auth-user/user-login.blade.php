@@ -36,6 +36,7 @@
              <label class="checkbox"><i class="fa fa-check password-i"></i></label>
           </span> --}}
           <div class="clearfix"> </div>
+          <input type="hidden" id="previous-url" name="previous_url" value="{{ URL::previous() }}">
         </div>
         <input type="submit" value="Log in">
       </form>
