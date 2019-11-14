@@ -149,6 +149,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 	//Renting Section
 	Route::get('/renting', 'RentingsController@index');
 
+	Route::get('/worker-payment-method', 'FrontEnd\WorkerController@workerPaymentMethodView');
+	Route::post('/worker-ajax-cod-submit', 'FrontEnd\WorkerController@ajaxCodSubmit')->name('worker-ajax-cod-submit');
+	Route::post('/worker-payment-bank-mada-transfer-submit', 'FrontEnd\WorkerController@workerBankPlaceOrder');
+	Route::get('/worker-notification/{id}', 'FrontEnd\WorkerController@workerNotification');
+
+	Route::get('worker-paytabs-payment', 'FrontEnd\WorkerController@paytabsPayment');
+
+	Route::post('/worker-paytabs-response', 'FrontEnd\WorkerController@paytabsResponse');
+
 });
 
 

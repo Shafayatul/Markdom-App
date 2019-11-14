@@ -46,6 +46,25 @@
                               </tr>
 
                               <tr>
+                                    <th>Payment Method</th>
+                                    <td>
+                                          @if(isset($response->single_worker_order->payment_method))
+                                                {{ $response->single_worker_order->payment_method }}
+                                          @endif
+                                    </td>
+                              </tr>
+                              @if(isset($response->single_worker_order->payment_method) == 'Paytab')
+                              <tr>
+                                    <th>Paytab transaction</th>
+                                    <td>
+                                          @if(isset($response->single_worker_order->paytab_transaction_id))
+                                                {{ $response->single_worker_order->paytab_transaction_id }}
+                                          @endif
+                                    </td>
+                              </tr>
+                              @endif
+
+                              <tr>
                                     <th>Promo Code</th>
 
                                     <td>
@@ -91,6 +110,16 @@
                                           @endif
                                     </td>
                               </tr>
+                              @if(isset($response->single_worker_order->payment_method) == 'Bank Transfer')
+                              <tr>
+                                    <th>Image</th>
+                                    <td>
+                                          @if(isset($response->single_worker_order->image))
+                                                <img src="{{ asset($response->single_worker_order->image) }}" alt="" style="width: 200px; height: 200px;">
+                                          @endif
+                                    </td>
+                              </tr>
+                              @endif
       			</tbody>
       		</table>
       	</div>

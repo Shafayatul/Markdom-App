@@ -58,6 +58,26 @@ Order {{ $single_worker_order->id }}
                                     </tr>
 
                                     <tr>
+                                      <th>Payment Method</th>
+                                      <td>
+                                            @if(isset($single_worker_order->payment_method))
+                                                  {{ $single_worker_order->payment_method }}
+                                            @endif
+                                      </td>
+                                    </tr>
+
+                                    @if($single_worker_order->payment_method == 'Paytab')
+                                      <tr>
+                                        <th>Paytab transaction</th>
+                                        <td>
+                                              @if(isset($single_worker_order->paytab_transaction_id))
+                                                    {{ $single_worker_order->paytab_transaction_id }}
+                                              @endif
+                                        </td>
+                                      </tr>
+                                    @endif
+
+                                    <tr>
                                         <th>Promo Code</th>
 
                                         <td>
@@ -103,6 +123,19 @@ Order {{ $single_worker_order->id }}
                                               @endif
                                         </td>
                                     </tr>
+
+                                    @if($single_worker_order->payment_method == 'Bank Transfer')
+                                      <tr>
+                                        <th>Image</th>
+                                        <td>
+                                              @if(isset($single_worker_order->image))
+                                                  <a href="{{ url($single_worker_order->image) }}" download>
+                                                    <img src="{{ asset($single_worker_order->image) }}" alt="" style="width: 200px; height: 200px;">
+                                                  </a>
+                                              @endif
+                                        </td>
+                                      </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

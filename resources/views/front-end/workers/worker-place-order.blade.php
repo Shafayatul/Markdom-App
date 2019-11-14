@@ -16,24 +16,6 @@
             <h3>Shipment</h3>
           </div> 
         @foreach($body as $cart)
-        {{-- <div class="product-details-box shadow">
-          <div class="product-image-box shadow">
-            <img src="{{ asset(env('MAIN_HOST_URL').$cart->preview_image) }}" alt="">
-          </div>
-          <span class="service-name">{{ $cart->product_name }}</span>
-          <span class="product-amount">30SR</span>
-          <div class="product-amount shadow">
-            <span class="total-product">{{ $cart->quantity }}</span>
-          </div>
-        </div> --}}
-        {{-- <div class="product-details-box shadow">
-          <div class="product-image-box shadow">
-            <img src="{{ asset(env('MAIN_HOST_URL').$cart->preview_image) }}" alt="">
-          </div>
-          <span class="service-name">{{ $cart->product_name }} </span>
-          <span class="total-amount">{{ $cart->quantity }}</span>
-          <span class="product-amount">{{ $cart->price }}SR</span>
-        </div> --}}
 
         <div id="product-details">
                   
@@ -54,9 +36,9 @@
           </div>
         </div>
         @endforeach
-        <input type="hidden" name="schedule_time_id" value="{{ $schedule_timspan_id }}">
-        <input type="hidden" name="service_type_id" value="{{ $service_type_id }}">
-          <input type="hidden" name="address_id" value="{{ $single_address->id }}" />
+        <input type="hidden" id="schedule_time_id" name="schedule_time_id" value="{{ $schedule_timspan_id }}" />
+        <input type="hidden" id="service_type_id" name="service_type_id" value="{{ $service_type_id }}" />
+        <input type="hidden" id="address_id" name="address_id" value="{{ $single_address->id }}" />
       </div>
 
 
@@ -108,14 +90,7 @@
           </div>
           <div class="delivery-cost"> <p class="font-p"></p></div>
         </div>
-{{--         <div class="payment-details-box">
-          <div class="payment-title"> <h1>{{ __('content.date') }}</h1> </div>
-          <div class="payment-description"> <p class="font-p">20/10/2019</p> </div>
-        </div>
-        <div class="payment-details-box">
-          <div class="payment-title"> <h1>{{ __('content.time') }}</h1> </div>
-          <div class="payment-description"> <p class="font-p">10am - 12pm</p> </div>
-        </div> --}}
+
 
 
         <div class="payment-details-box">
@@ -132,7 +107,10 @@
 
 
         <div class="place-order-button-div">
-          <button class="btn btn-success place-order-button" type="submit" name="button">{{ __('content.place_order') }}</button>
+          {{-- <button class="btn btn-success place-order-button" type="submit" name="button">{{ __('content.place_order') }}</button> --}}
+        @if ($cnt>0)
+          <a href="{{ url('/worker-payment-method') }}"><button class="btn btn-success place-order-button" type="button" name="button">Continue To Payment</button></a>
+        @endif
         </div>
       </div>
     </form>
@@ -149,6 +127,8 @@ $("#promo_btn").click(function(e){
     e.preventDefault();
   var promo_code = $(".promo_code").val();
   var city_id = $(".city_id").val();
+
+    window.localStorage.setItem('promo_code', promo_code);
 
     $.ajax({
           headers: {
@@ -173,6 +153,23 @@ $("#promo_btn").click(function(e){
               }
           }
       });
+
+
+
+
 });
+
+    var user_id = "{{ $user->id }}";
+    window.localStorage.setItem('user_id', user_id);
+
+
+    var address_id = "{{ $single_address->id }}";
+    window.localStorage.setItem('address_id', address_id);
+
+    var service_type_id = $("#service_type_id").val();
+    window.localStorage.setItem('service_type_id', service_type_id);
+
+    var schedule_time_id = $("#schedule_time_id").val();
+    window.localStorage.setItem('schedule_time_id', schedule_time_id);
 </script>
 @endsection

@@ -13,6 +13,7 @@ use DateTimeZone;
 use Session;
 use Log;
 use App\Product;
+use Paytabs;
 
 class WorkerController extends Controller
 {
@@ -44,20 +45,6 @@ class WorkerController extends Controller
       // dd($service_categories);
       return view('front-end.workers.service-category-worker', compact('service_categories'));
     }
-
-    // public function subCategoryWorker($id)
-    // {
-    //   $url_category = env('MAIN_HOST_URL').'api/get-subcategories-by-category/'.$id;
-    //   $method_category = 'GET';
-    //   $subCategories = $this->callApi($method_category, $url_category);
-
-    //   $url    = env('MAIN_HOST_URL').'api/get-store-by-category/'.$id;
-    //   $method = 'GET';
-    //   $stores = $this->callApi($method, $url);
-    //   // dd($stores);
-    //   return view('front-end.workers.sub-category-worker', compact('subCategories', 'stores'));
-    // }
-
     public function workerServiceTime($id, $date = null){
       // dd($id);
       if($date == null){
@@ -85,39 +72,7 @@ class WorkerController extends Controller
 
     }
 
-    // public function workerDetails($id)
-    // {
-    
-    //   $url      = env('MAIN_HOST_URL').'api/get-store-detail/'.$id;
-    //   $method   = 'GET';
-    //   $store    = $this->callApi($method, $url);
 
-      
-
-    //   $url      = env('MAIN_HOST_URL').'api/get-review-by-store/'.$id;
-    //   $method   = 'GET';
-    //   $review   = $this->callApi($method, $url);
-
-    //   $url                = env('MAIN_HOST_URL').'api/get-service-category-by-store/'.$id;
-    //   $method             = 'GET';
-    //   $service_categories = $this->callApi($method, $url);
-
-    //   return view('front-end.workers.worker-details', compact('store', 'review', 'service_categories'));
-    // }
-
-    // public function subSubCategoryWorker($id)
-    // {
-    //   $url_sub_category = env('MAIN_HOST_URL').'api/get-sub-subcategories-by-sub-category/'.$id;
-    //   $method_sub_category = 'GET';
-    //   $subSubCategories = $this->callApi($method_sub_category, $url_sub_category);
-    //   // dd($subSubCategories);
-    //   return view('front-end.workers.sub-sub-category-worker');
-    // }
-
-    // public function workerServiceDelivery()
-    // {
-    //   return view('front-end.workers.worker-service-delivery');
-    // }
 
     public function serviceSubCategoryWorker($id)
     {
@@ -205,10 +160,7 @@ class WorkerController extends Controller
       return redirect('/worker-place-holder/'.$product_id);
     }
 
-    // public function workercart()
-    // {
-    //   //
-    // }
+
 
     public function workerPlaceOrder($product_id)
     {
@@ -251,6 +203,7 @@ class WorkerController extends Controller
         // dd($single_address);
         $schedule_timspan_id = Session::get('selected_service_schedule_id');
         $service_type_id     = Session::get('selected_service_type_id');
+        // dd($schedule_timspan_id, $service_type_id);
 
         return view('front-end.workers.worker-place-order', compact('body', 'user', 'schedule_timspan_id', 'single_address', 'address_id', 'service_type_id'));
       }else{
@@ -258,32 +211,6 @@ class WorkerController extends Controller
       }
     }
 
-    // public function workerNotification()
-    // {
-    //   return view('front-end.workers.worker-notification');
-    // }
-
-    // public function addToCartService($id)
-    // {
-    //   $product = Product::where('id', $id)->first();
-    //   if ($this->check_expiration()) {
-    //     $url      = env('MAIN_HOST_URL').'api/add-to-cart';
-    //     $method   = 'POST';
-    //     $headers  = [
-    //           'Authorization' => 'Bearer ' . Session::get('access_token'),
-    //           'Accept'        => 'application/json',
-    //       ];
-    //     $parameters = [
-    //       'product_id'      => $id,
-    //       'quantity'        => '1',
-    //       'module_id'       => $product->module_id
-    //     ];
-    //     $body = $this->callApi($method, $url, $parameters, $headers);
-    //     return redirect('/worker-place-holder/'.$id);
-    //   }else{
-    //     return redirect('/user-login');
-    //   }
-    // }
 
     public function check_expiration(){
       $remaining_time = Session::get('expires_at')-time();
@@ -341,26 +268,264 @@ class WorkerController extends Controller
       }
     }
 
-    public function workerOrderSubmit(Request $request)
+    public function workerPaymentMethodView()
+    {
+      $result = null;
+      return view('front-end.workers.payment-method', compact('result'));
+    }
+
+    public function ajaxCodSubmit(Request $request)
     {
       if ($this->check_expiration()) {
-      $url = env('MAIN_HOST_URL').'api/worker-place-order';
-      $method = 'POST';
-      $headers = [
-            'Authorization' => 'Bearer ' . Session::get('access_token'),
-            'Accept'        => 'application/json',
+        $method = "POST";
+        $url = env("MAIN_HOST_URL")."api/worker-place-order";
+        $parameters = [
+            'payment_method'      => 'COD',
+            'address_id'          => $request->address_id,
+            'promo_code'          => $request->promo_code,
+            'schedule_timspan_id' => $request->schedule_timspan_id,
+            'service_type_id'     => $request->service_type_id,
         ];
-      $parameters = [
-            'schedule_time_id' => $request->schedule_time_id,
-            'service_type_id'  => $request->service_type_id,
-            'address_id'       => $request->address_id,
-            'promo_code'       => $request->promo_code
-
-          ];
-      $body = $this->callApi($method, $url, $parameters, $headers);
-      return view('front-end.workers.worker-notification', compact('body'));
-    }else{
-      return redirect('/user-login');
+        $headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+        ];
+        $response = $this->callApi($method, $url, $parameters, $headers);
+        // dd($response);
+        return response()->json(['msg'=>'Success','response' =>$response]);
+      }else{
+        return redirect('/login');
+      }
     }
-  }
+
+    public function workerBankPlaceOrder(Request $request)
+    {
+      if ($this->check_expiration()) {
+
+        if($request->payment_method == 'Bank Transfer'){
+          if($request->hasFile('image')){
+              $image = $request->file('image');
+              // dd($image);
+              $image_fullname = uniqid().'.'.strtolower($image->getClientOriginalExtension());
+              $path = 'uploads/';
+              $image_url = $path.$image_fullname;
+              $image->move($path,$image_fullname);
+          }else{
+            $image_url = null;
+          }
+        }else{
+           $image_url = null;
+        }
+        
+        $method = "POST";
+        $url = env("MAIN_HOST_URL")."api/worker-place-order";
+        $parameters = [
+            'address_id'            => $request->address_id,
+            'promo_code'            => $request->promo_code,
+            'payment_method'        => $request->payment_method,
+            'paytab_transaction_id' => $request->paytab_transaction_id,
+            'schedule_timspan_id'   => $request->schedule_timspan_id,
+            'service_type_id'       => $request->service_type_id,
+            'bank_image'            => $image_url
+        ];
+        $headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+        ];
+
+        $body = $this->callApi($method, $url, $parameters, $headers);
+
+        return redirect('/worker-notification/'.$body->order->id);
+      }else{
+        return redirect('/user-login');
+      }
+    }
+
+
+    public function workerNotification($id)
+    {
+      // dd($id);
+      if($this->check_expiration()){
+          $url = env('MAIN_HOST_URL').'api/worker-order-details/'.$id;
+          $method = 'GET';
+          $headers = [
+                'Authorization' => 'Bearer ' . Session::get('access_token'),
+                'Accept'        => 'application/json',
+            ];
+          $body = $this->callApi($method, $url, [], $headers);
+          return view('front-end.workers.worker-notification', compact('body'));
+      }else{
+        return redirect('/user-login');
+      }
+        
+    }
+
+    public function paytabsPayment()
+    {
+
+      $worker = 'Worker';
+      $url = env('MAIN_HOST_URL').'api/get-module/'.$worker;
+      $method = 'GET';
+      $module = $this->callApi($method, $url);
+
+      $grand_total;
+      $current_user;
+      $single_address;
+      $single_product;
+      $carts;
+      $product_name;
+      $product_price;
+      $product_quantity;
+
+
+
+      $address_id = Session::get('address_id');
+
+      if ($this->check_expiration()) {
+
+        $url = env('MAIN_HOST_URL').'api/user-details';
+        $method = 'GET';
+        $headers = [
+          'Authorization' => 'Bearer ' . Session::get('access_token'),
+          'Accept'        => 'application/json',
+        ];
+        $current_user = $this->callApi($method, $url, [], $headers);
+
+        $url = env('MAIN_HOST_URL').'api/get-single-address/'.$address_id;
+        $method = 'GET';
+        $headers = [
+          'Authorization' => 'Bearer ' . Session::get('access_token'),
+          'Accept'        => 'application/json',
+        ];
+        $single_address = $this->callApi($method, $url, [], $headers);
+
+        $shipping_charge = $single_address->city->delivery_fees;
+
+        $url = env('MAIN_HOST_URL').'api/view-cart/'.$module->id;
+        $method = 'GET';
+        $headers = [
+              'Authorization' => 'Bearer ' . Session::get('access_token'),
+              'Accept'        => 'application/json',
+          ];
+        $carts = $this->callApi($method, $url, [], $headers);
+        $cnt = 0;
+        foreach ($carts as $cart) {
+          $cnt = $cnt + $cart->total_price;
+        }
+        $grand_total = $cnt+$shipping_charge;
+
+        $product_name = '';
+        $product_price = '';
+        $product_quantity = '';
+        foreach($carts as $cart){
+          $product_name .=  $cart->product_name.' || ';
+          $product_quantity.=  $cart->quantity.' || ';
+          $url = env('MAIN_HOST_URL').'api/get-product-detail/'.$cart->product_id;
+          $method = 'GET';
+          $headers = [
+                'Authorization' => 'Bearer ' . Session::get('access_token'),
+                'Accept'        => 'application/json',
+            ];
+          $single_product = $this->callApi($method, $url, [], $headers);
+          // dd($single_product);
+          $product_price.=  $single_product->price.' || ';
+
+          if($single_product->is_offer == 1){
+            if($single_product->offer_type == 'Amount'){
+                $product_price = $single_product->offer_amount;
+            }else{
+                $product_price = $single_product->price*$single_product->offer_percent/100;
+            }
+        }
+        }
+
+        }
+
+      $name = $current_user->name;
+      $email = $current_user->email;
+      // $phone = $current_user->phone;
+      $cc_phone_number = $single_address->country->code_arabic;
+
+      $billing_address = $single_address->flat_no.' '.$single_address->location;
+      $city = $single_address->city->name;
+      $state = $single_address->state->name;
+      $postal_code = $single_address->pin_code;
+      $country = $single_address->country->code;
+
+
+      $arr_name = explode(" ", $name);
+      $last_word  = $arr_name[count($arr_name)-1];
+      $count_name_arr = count($arr_name);
+
+      if($count_name_arr > 2){
+          $first_name = $arr_name[0];
+          $last_name = $last_word;
+
+      }elseif ($count_name_arr == 2) {
+          $first_name = $arr_name[0];
+          $last_name = $arr_name[1];
+      }else{
+          $first_name = $arr_name[0];
+          $last_name = 'ABCD';
+      }
+
+      $product_names = rtrim($product_name,' || ');
+      $product_prices = rtrim($product_price,' || ');
+      $product_quantities = rtrim($product_quantity,' || ');
+      $shipping_charge = $single_address->city->delivery_fees;
+
+      // dd($product_prices);
+    $pt = Paytabs::getInstance(env("MERCHANT_EMAIL"), env("MERCHANT_SECRET"));
+      // dd($pt);
+    $result = $pt->create_pay_page(array(
+      "merchant_email" => env("MERCHANT_EMAIL"),
+      'secret_key' => env("MERCHANT_SECRET"),
+      'title' => "Bill To ".$name,
+      'cc_first_name' => $first_name,
+      'cc_last_name' => $last_name,
+      'email' => $email,
+      'cc_phone_number' => $cc_phone_number,
+      'phone_number' => '+8801751837757',
+      'billing_address' => $billing_address,
+      'city' => $city,
+      'state' => $state,
+      'postal_code' => $postal_code,
+      'country' => $country,
+      'address_shipping' => $billing_address,
+      'city_shipping' => $city,
+      'state_shipping' => $state,
+      'postal_code_shipping' => $postal_code,
+      'country_shipping' => $country,
+      "products_per_title"=> $product_names,
+      'currency' => "SAR",
+      "unit_price"=> $product_prices,
+      'quantity' => $product_quantities,
+      'other_charges' => $shipping_charge,
+      'amount' => $grand_total,
+      'discount'=>"0",
+      "msg_lang" => "en",
+      "reference_no" => "1231231",
+      "site_url" => "http://webencoder.space/demo/demo61/public/",
+      'return_url' => "http://webencoder.space/demo/demo61/public/worker-paytabs-response",
+      "cms_with_version" => "API USING PHP"
+    ));
+    // dd($result);
+
+        if($result->response_code == 4012){
+        return redirect($result->payment_url);
+          }
+          return $result->result;
+    }
+
+    public function paytabsResponse(Request $request)
+    {
+      $pt = Paytabs::getInstance(env("MERCHANT_EMAIL"), env("MERCHANT_SECRET"));
+      $result = $pt->verify_payment($request->payment_reference);
+
+      if($result->response_code == 100){
+        return view('front-end.workers.payment-method', compact('result'));
+      }
+      return redirect()->back()->with('msg', 'Payment Not Successfull');
+    }
+
 }

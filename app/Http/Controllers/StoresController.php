@@ -64,6 +64,7 @@ class StoresController extends Controller
     {
         $perPage = 25;
         $driverorders = WorkerPlaceOrder::where('store_id', $id)->latest()->paginate($perPage);
+        // dd($driverorders);
         $stores = Store::pluck('name', 'id');
         $orderstatus = OrderStatus::pluck('order_status', 'id');
         return view('stores.order-list', compact('driverorders', 'stores', 'orderstatus'));
@@ -72,6 +73,7 @@ class StoresController extends Controller
     public function orderShow($id)
     {
         $single_worker_order = WorkerPlaceOrder::where('id', $id)->first();
+        // dd($single_worker_order);
         $schedule = Schedule::where('id', $single_worker_order->schedule_time_id)->first();
         $product_id = Cart::where('id', $single_worker_order->cart_ids)->first()->product_id;
         $product = Product::where('id', $product_id)->first();

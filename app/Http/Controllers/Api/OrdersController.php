@@ -169,6 +169,37 @@ class OrdersController extends Controller
         return response()->json($data);
     }
 
+    public function worker_order_detail($order_id)
+    {
+        $data = [];
+        $activity = [];
+
+        $order = WorkerPlaceOrder::where('id', $order_id)->first();
+        $order_status = OrderStatus::get();
+        $order_status_data = [];
+        foreach ($order_status as $single_order_status) {
+            $status = [];
+            $status['id']           = $single_order_status->id;
+            $status['name']         = $single_order_status->order_status;
+            $status['arabic_name']  = $single_order_status->order_status_arabic;
+            if ($order->order_status >= $single_order_status->id) {
+                $status['status']   = 1;
+            }else{
+                $status['status']   = 0;
+            }
+            array_push($order_status_data, $status);
+        }
+
+
+        $data = [];
+        $data['id']                     = $order->id;
+        $data['order']                  = $order;
+        $data['orderDate']              = $order->created_at;
+        $data['status']                 = $order_status_data;
+        $data['activity']               = OrderActivity::where('order_id', $order_id)->get();;
+        return response()->json($data);
+    }
+
     public function restuarant_customer_order_detail($id)
     {
         $restuarant_customer_order = RestuarentCustomerOrder::where('id', $id)->first();
@@ -229,6 +260,8 @@ class OrdersController extends Controller
     {
         $total_price = 0;
         $final_price = 0;
+        $paytab_transaction_id = null;
+        $image = null;
         $cart_ids = [];
         $city_id = Address::where('id', $request->input('address_id'))->first()->city_id;
         $city  = City::where('id', $city_id)->first();
@@ -270,22 +303,37 @@ class OrdersController extends Controller
         $final_price = $final_price + $shipping_fees;
 
         $order_status = OrderStatus::first()->id;
+        if ($request->input("payment_method") == "COD") {
+            $payment_method = 'COD';
+            $final_price = $final_price+15;
+        }elseif($request->input("payment_method") == "Paytab"){
+            $payment_method = 'Paytab';
+            $paytab_transaction_id = $request->input("paytab_transaction_id");
+        }else{
+
+            $image = $request->input("bank_image");
+            $payment_method = 'Bank Transfer';
+
+        }
 
 
-        $workerorder                   = new WorkerPlaceOrder;
-        $workerorder->user_id          = Auth::id();
-        $workerorder->cart_ids         = $cart->id;
-        $workerorder->total_price      = $total_price;
-        $workerorder->address_id       = $request->input("address_id");
-        $workerorder->schedule_time_id = $request->input("schedule_time_id");
-        $workerorder->service_type_id  = $request->input("service_type_id");
-        $workerorder->final_price      = $final_price;
-        $workerorder->order_status_id  = $order_status;
-        $workerorder->estimated_time   = $estimated_time;
-        $workerorder->discount_percent = $discount_percent;
-        $workerorder->discount_amount  = $discount_amount;
-        $workerorder->promo_code       = $only_promo_code;
-        $workerorder->store_id         = $store_id;
+        $workerorder                        = new WorkerPlaceOrder;
+        $workerorder->user_id               = Auth::id();
+        $workerorder->cart_ids              = $cart->id;
+        $workerorder->total_price           = $total_price;
+        $workerorder->address_id            = $request->input("address_id");
+        $workerorder->schedule_time_id      = $request->input("schedule_timspan_id");
+        $workerorder->service_type_id       = $request->input("service_type_id");
+        $workerorder->final_price           = $final_price;
+        $workerorder->order_status_id       = $order_status;
+        $workerorder->estimated_time        = $estimated_time;
+        $workerorder->discount_percent      = $discount_percent;
+        $workerorder->discount_amount       = $discount_amount;
+        $workerorder->promo_code            = $only_promo_code;
+        $workerorder->store_id              = $store_id;
+        $workerorder->payment_method        = $payment_method;
+        $workerorder->paytab_transaction_id = $paytab_transaction_id;
+        $workerorder->image                 = $image;
         $workerorder->save();
         if ($workerorder) {
         $cart = Cart::where('user_id', Auth::id())->where('is_cart', '1')->update(['is_cart'=>'0']);
