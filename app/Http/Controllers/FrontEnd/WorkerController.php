@@ -380,6 +380,7 @@ class WorkerController extends Controller
 
 
       $address_id = Session::get('address_id');
+      // dd($address_id);
 
       if ($this->check_expiration()) {
 
@@ -447,6 +448,7 @@ class WorkerController extends Controller
       $cc_phone_number = $single_address->country->code_arabic;
 
       $billing_address = $single_address->flat_no.' '.$single_address->location;
+      // dd($billing_address);
       $city = $single_address->city->name;
       $state = $single_address->state->name;
       $postal_code = $single_address->pin_code;

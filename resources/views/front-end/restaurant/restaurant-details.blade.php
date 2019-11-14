@@ -89,8 +89,8 @@
                   <div class="modal-content">
                     <div class="modal-body">
                       <ol class="carousel-indicators">
-                        @foreach($products as $product)
-                        <li data-target="#lightbox" data-slide-to="0" class="active pick-item"></li>
+                        @foreach($products as $key => $product)
+                        <li data-target="#lightbox" data-slide-to="{{ $key }}" class="active pick-item"></li>
                         @endforeach
                       </ol>
                       <div class="carousel-inner">

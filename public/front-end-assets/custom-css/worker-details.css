@@ -58,18 +58,36 @@
 
 .title {
   position: absolute;
-  top: 5%;
+    bottom: -16%;
+    left: 5%;
+    color: #01a185;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.title-2 {
+  position: absolute;
+  bottom: -26%;
   left: 5%;
-  color: #fff;
-  font-size: 20px;
+  color: #01a185;
+  font-size: 14px;
 }
 
 .number {
+ position: absolute;
+bottom: -11%;
+right: 0%;
+color:#01a185;
+font-size: 9px;;
+}
+
+.number-2 {
   position: absolute;
   bottom: 5%;
   right: 5%;
   color: #fff;
-  font-size: 20px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 /* Responsive */

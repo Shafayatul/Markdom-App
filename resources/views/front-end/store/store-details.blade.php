@@ -29,9 +29,9 @@
             <h1 class="text-left">{{ __('content.store_details') }}</h1>
             <div class="menu-category">
               <div class="slider menu-area">
-                @foreach ($multiple_images as $single_image)
+                @foreach ($multiple_images as $key => $single_image)
                   <div class="sliding-div">
-                    <a href="#lightbox" data-toggle="modal" data-slide-to="1" class="sliding-div-a" >
+                    <a href="#lightbox" data-toggle="modal" data-slide-to="{{ $key }}" class="sliding-div-a" >
                       <div class="sliding-category-box">
                         <div class="sliding-category-img">
                           <img src="{{ env('MAIN_HOST_URL').$single_image}}" alt="">
@@ -56,23 +56,28 @@
                   <div class="modal-content">
                     <div class="modal-body">
                       <ol class="carousel-indicators">
-                        <li data-target="#lightbox" data-slide-to="0" class="active"></li>
-                        <li data-target="#lightbox" data-slide-to="1"></li>
-                        <li data-target="#lightbox" data-slide-to="2"></li>
+                        @foreach ($multiple_images as $key => $single_image)
+                        <li data-target="#lightbox" data-slide-to="{{ $key }}" class="active"></li>
+                         @endforeach
+                        {{-- <li data-target="#lightbox" data-slide-to="1"></li>
+                        <li data-target="#lightbox" data-slide-to="2"></li> --}}
                       </ol>
                       <div class="carousel-inner">
-                        <div class="item active">
+                        @foreach ($multiple_images as $key => $single_image)
+                        <div class="item {{$key == 0 ? 'active' : '' }}">
                           <div class="card" >
                               <img class="card-img-top rounded" src="{{ env('MAIN_HOST_URL').$single_image}}" alt="Card image cap">
                               <div class="card-body">
-                                <h5 class="card-price">$45</h5>
+                               {{-- < h5 class="card-price">$45</h5>
                                 <h5 class="card-title">product Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
                                 
                               </div>
                             </div>
                         </div>
-                        <div class="item">
+                        @endforeach
+
+                        {{-- <div class="item">
                             <div class="card" >
                               <img class="card-img-top rounded" src="{{ env('MAIN_HOST_URL').$single_image}}" alt="Card image cap">
                               <div class="card-body">
@@ -94,7 +99,7 @@
                                 
                               </div>
                             </div>
-                        </div>
+                        </div> --}}
                       </div><!-- /.carousel-inner -->
                       <a class="left carousel-control" href="#lightbox" role="button" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left"></span>

@@ -115,28 +115,28 @@
   });
 
 
-  if ($(window).width() < 480 ) {
-    $(".slider-area").slick({
-        dots: false,
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 3
-    });
-  }else if ($(window).width() < 767) {
-    $(".slider-area").slick({
-        dots: false,
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1
-    });
-  }else {
-    $(".slider-area").slick({
-        dots: false,
-        infinite: true,
-        slidesToShow: 5,
-        slidesToScroll: 1
-    });
-  }
+  // if ($(window).width() < 480 ) {
+  //   $(".slider-area").slick({
+  //       dots: false,
+  //       infinite: true,
+  //       slidesToShow: 3,
+  //       slidesToScroll: 3
+  //   });
+  // }else if ($(window).width() < 767) {
+  //   $(".slider-area").slick({
+  //       dots: false,
+  //       infinite: true,
+  //       slidesToShow: 4,
+  //       slidesToScroll: 1
+  //   });
+  // }else {
+  //   $(".slider-area").slick({
+  //       dots: false,
+  //       infinite: true,
+  //       slidesToShow: 5,
+  //       slidesToScroll: 1
+  //   });
+  // }
 
 </script>
 @endsection

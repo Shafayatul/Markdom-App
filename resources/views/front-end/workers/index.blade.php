@@ -96,7 +96,7 @@
 @endsection
 
 @section('front-additional-js')
-<script type="text/javascript">
+{{-- <script type="text/javascript">
   if ($(window).width() < 480 ) {
     $(".slider-area").slick({
         dots: false,
@@ -120,5 +120,5 @@
     });
   }
 
-</script>
+</script> --}}
 @endsection
