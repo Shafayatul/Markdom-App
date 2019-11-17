@@ -179,13 +179,7 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
 
 
-	Route::group(['middleware' => ['role:admin|driver']], function () {
-		Route::resource('orders', 'OrdersController');
-		Route::get('orders/create', 'OrdersController@create');
-		Route::post('orders', 'OrdersController@store');
-		Route::get('driver-orders', 'DriverOrdersController@index');
-		Route::get('driver-order/{id}', 'DriverOrdersController@show');
-	});
+
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
@@ -194,6 +188,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('get-products-list', 'AjaxController@getProductsList');
 	Route::get('get-product-data', 'AjaxController@getProductData');
 	Route::get('get-discount-data', 'AjaxController@getDiscountData');
+	Route::get('/password-change', 'UsersController@passwordChangeView');
+	Route::post('/password-changed', 'UsersController@passwordChanged')->name('password-change');
 
 	Route::group(['middleware' => ['role:admin']], function () {
 
@@ -241,8 +237,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::post('/assign-user', 'UsersController@userAssigned')->name('assign-user');
 		Route::get('/user-active/{id}', 'UsersController@userActivated');
 		Route::get('/user-inactive/{id}', 'UsersController@userInactivated');
-		Route::get('/password-change', 'UsersController@passwordChangeView');
-		Route::post('/password-changed', 'UsersController@passwordChanged')->name('password-change');
+		
 
 		Route::get('/schedule/{id}', 'SchedulesController@index');
 		Route::get('/schedules/{id}/edit', 'SchedulesController@edit');
@@ -276,6 +271,15 @@ Route::middleware(['auth'])->group(function () {
 		
 		Route::resource('restuarent-customer-orders', 'RestuarentCustomerOrdersController');
 
+	});
+
+	Route::group(['middleware' => ['role:admin|driver']], function () {
+		Route::resource('orders', 'OrdersController');
+		Route::get('orders/create', 'OrdersController@create');
+		Route::post('orders', 'OrdersController@store');
+		Route::get('driver-orders', 'DriverOrdersController@index');
+		Route::get('driver-order/{id}', 'DriverOrdersController@show');
+		Route::delete('driver-order-delete/{id}', 'DriverOrdersController@destroy');
 	});
 	
 

@@ -90,7 +90,7 @@ class PaymentsController extends Controller
             }else{
                 $product_price = $single_product->price*$single_product->offer_percent/100;
             }
-        }
+          }
         }
 
         }
@@ -137,43 +137,43 @@ class PaymentsController extends Controller
       'title' => "Bill To ".$name,
       'cc_first_name' => $first_name,
       'cc_last_name' => $last_name,
-      'email' => $email,
       'cc_phone_number' => $cc_phone_number,
-      'phone_number' => '+8801751837757',
+      'phone_number' => '1751837757',
+      'email' => $email,
+      "products_per_title"=> $product_names,
+      "unit_price"=> $product_prices,
+      'quantity' => $product_quantities,
+      'other_charges' => $shipping_charge,
+      'amount' => $grand_total,
+      'discount'=>"0",
+      'currency' => "SAR",
+      "reference_no" => "ABC-123",
       'billing_address' => $billing_address,
       'city' => $city,
       'state' => $state,
       'postal_code' => $postal_code,
       'country' => $country,
       'address_shipping' => $billing_address,
-      'city_shipping' => $city,
       'state_shipping' => $state,
+      'city_shipping' => $city,
       'postal_code_shipping' => $postal_code,
       'country_shipping' => $country,
-      "products_per_title"=> $product_names,
-      'currency' => "SAR",
-      "unit_price"=> $product_prices,
-      'quantity' => $product_quantities,
-      'other_charges' => $shipping_charge,
-      'amount' => $grand_total,
-      'discount'=>"0",
       "msg_lang" => "en",
-      "reference_no" => "1231231",
       "site_url" => "http://webencoder.space/demo/demo61/public/",
       'return_url' => "http://webencoder.space/demo/demo61/public/paytabs-response",
       "cms_with_version" => "API USING PHP"
     ));
-    // dd($result);
 
+      
         if($result->response_code == 4012){
-        return redirect($result->payment_url);
-          }
+          return redirect($result->payment_url);
+        }
           return $result->result;
     }
 
     public function paytabsResponse(Request $request)
     {
-      $pt = Paytabs::getInstance("webencoder32@gmail.com", "sdNT6F26xhReY6xv61rOrwsOgrZoEpN7CB1Ih3PPkH3jNAOUCgI4MbS2CRrhgfoSQpB8trXO807WBWQdczhZK91n0tFhI39ztKIX");
+      $pt = Paytabs::getInstance(env("MERCHANT_EMAIL"), env("MERCHANT_SECRET"));
       $result = $pt->verify_payment($request->payment_reference);
 
       if($result->response_code == 100){

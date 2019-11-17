@@ -20,9 +20,9 @@ Reviews
                    Reviews
                 </div>
                 <div class="panel-body">
-                    <a href="{{ url('/reviews/create') }}" class="btn btn-success btn-sm" title="Add New Review">
+                    {{-- <a href="{{ url('/reviews/create') }}" class="btn btn-success btn-sm" title="Add New Review">
                         <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                    </a>
+                    </a> --}}
 
                     <br />
                     <br />
@@ -51,7 +51,7 @@ Reviews
                                     <td>{{ $item->review }}</td>
                                     <td>
                                         <a href="{{ url('/reviews/' . $item->id) }}" title="View Review"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                        <a href="{{ url('/reviews/' . $item->id . '/edit') }}" title="Edit Review"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                        {{-- <a href="{{ url('/reviews/' . $item->id . '/edit') }}" title="Edit Review"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a> --}}
                                         {!! Form::open([
                                             'method'=>'DELETE',
                                             'url' => ['/reviews', $item->id],

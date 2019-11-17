@@ -21,7 +21,7 @@ Review {{ $review->id }}
                 </div>
                 <div class="panel-body">
                     <a href="{{ url('/reviews') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                    <a href="{{ url('/reviews/' . $review->id . '/edit') }}" title="Edit Review"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                    {{-- <a href="{{ url('/reviews/' . $review->id . '/edit') }}" title="Edit Review"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a> --}}
                     {!! Form::open([
                         'method'=>'DELETE',
                         'url' => ['reviews', $review->id],

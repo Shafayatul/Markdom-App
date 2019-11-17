@@ -141,10 +141,6 @@
                 <!-- /.nav-second-level -->
             </li>
 
-            <li>
-                <a href="{{ url('/driver-orders') }}"><i class="fa fa-dashboard fa-fw"></i> Driver Orders</a>
-            </li>
-
             @endhasrole
 
             @hasrole('store')
@@ -271,19 +267,6 @@
                     </li> --}}
                     <li>
                         <a href="{{ url('reviews') }}">Manage</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
-            
-            <li>
-                <a href="#"><i class="fa fa-user fa-fw"></i> Offers<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('offers/create') }}">Create</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('offers') }}">Manage</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

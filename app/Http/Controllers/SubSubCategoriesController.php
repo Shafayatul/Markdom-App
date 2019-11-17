@@ -140,8 +140,8 @@ class SubSubCategoriesController extends Controller
             $image_url  = $subsubcategory->image;
         }
 
-        $subcategory->category_id           = $subsubcategory->category_id;
-        $subcategory->module_id             = $subsubcategory->module_id;
+        $subsubcategory->category_id           = $subsubcategory->category_id;
+        $subsubcategory->module_id             = $subsubcategory->module_id;
         $subsubcategory->sub_category_id    = $subsubcategory->sub_category_id;
         $subsubcategory->name               = $request->name;
         $subsubcategory->name_arabic        = $request->name_arabic;
