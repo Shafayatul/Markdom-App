@@ -63,6 +63,14 @@ Route::get('get-promo-codes', 'Api\PromoCodesController@get_promo_codes');
 Route::get('customer-detail/{id}', 'Api\UsersController@customer_detail');
 Route::get('restuarant-customer-order-detail/{id}', 'Api\OrdersController@restuarant_customer_order_detail');
 
+
+//Relocation Section
+Route::get('get-relocation-store-by-module-id/{id}', 'Api\RelocationsController@get_stores_by_module_id');
+Route::get('get-cartype-by-store-id/{store_id}', 'Api\RelocationsController@get_cartypes_by_store_id');
+
+Route::get('get-store-by-store-id/{store_id}', 'Api\RelocationsController@get_store_by_store_id');
+Route::get('get-cartype-by-cartype-id/{cartype_id}', 'Api\RelocationsController@get_cartype_by_carttype_id');
+
 Route::group(['middleware' => ['auth:api']], function() {
 
 	// Route::get('/test', 'Api\TestController@index');
@@ -120,5 +128,7 @@ Route::group(['middleware' => ['auth:api']], function() {
 	Route::post('/restaurant-place-order', 'Api\CustomersController@restaurant_place_order');
 
 	Route::get('/receipt-download/{id}', 'Api\CustomersController@receipt_download');
+
+	Route::post('/relocation-place-order', 'Api\RelocationsController@relocation_place_order');
 
 });

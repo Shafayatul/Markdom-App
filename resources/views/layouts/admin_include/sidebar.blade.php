@@ -194,6 +194,30 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i>Relocation Stores<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('relocation-stores/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('relocation-stores') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-user fa-fw"></i>Car Types<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('car-types/create') }}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('car-types') }}">Manage</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> Service Types<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

@@ -263,7 +263,7 @@ class StoresController extends Controller
 
         $store->sub_category_id         = $store->sub_category_id;
         $store->category_id             = $store->category_id;
-        $store->module_id             = $store->module_id;
+        $store->module_id               = $store->module_id;
         $store->name                    = $request->name;
         $store->name_arabic             = $request->name_arabic;
         $store->description             = $request->description;

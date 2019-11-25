@@ -158,6 +158,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
 	Route::post('/worker-paytabs-response', 'FrontEnd\WorkerController@paytabsResponse');
 
+	//Relocation Section
+	Route::get('/relocation', 'FrontEnd\RelocationsController@index')->name('Relocation');
+	Route::get('/select-location/{store_id}', 'FrontEnd\RelocationsController@selectLocationView')->name('select-location');
+	Route::get('/select-location-step-two', 'FrontEnd\RelocationsController@selectLocationTwoView')->name('select-location-step-two');
+	Route::get('/select-location-final-step', 'FrontEnd\RelocationsController@selectLocationFinalStepView')->name('select-location-final-step');
+	Route::post('/ajax-get-price', 'FrontEnd\RelocationsController@ajaxGetPrice')->name('ajax-get-price');
+
+	Route::post('/relocation-place-order', 'FrontEnd\RelocationsController@relocationPlaceOrder')->name('relocation-place-order');
+
 });
 
 
@@ -330,6 +339,8 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/product-offer-add/{id}', 'ProductsController@offerAdd');
 		Route::get('/product-offer-delete/{id}', 'ProductsController@offerDelete');
 		Route::post('/offer-save', 'ProductsController@offerSave');
+		Route::resource('relocation-stores', 'RelocationStoresController');
+		Route::resource('car-types', 'CarTypesController');
 	});
 
 	Route::group(['middleware' => ['role:admin|customer']], function () {
@@ -340,4 +351,6 @@ Route::middleware(['auth'])->group(function () {
 		Route::post('/worker-submit-reviews', 'WorkerOrdersController@submitReview');
 	});
 });
+
+
 

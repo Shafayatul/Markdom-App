@@ -31,6 +31,7 @@
               <li><a href="{{ route('Restaurant') }}">Restorant</a></li>
               <li><a href="{{ route('Store') }}" class="main-li-a">Store</a></li>
               <li><a href="{{ route('Worker') }}" class="main-li-a">Workers</a></li>
+              <li><a href="{{ route('Relocation') }}" class="main-li-a">Relocation</a></li>
             @endif
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">@lang('header.my_account') <b class="caret"></b></a>
