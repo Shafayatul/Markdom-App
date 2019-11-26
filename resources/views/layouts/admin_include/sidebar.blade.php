@@ -325,13 +325,16 @@
                 <a href="{{ url('/orders') }}"><i class="fa fa-dashboard fa-fw"></i> Orders</a>
             </li> --}}
             @endhasrole
-            @hasrole('admin')
+            @hasrole('admin|store')
             <li>
                 <a href="{{ url('/store-order') }}"><i class="fa fa-dashboard fa-fw"></i> Store Orders</a>
             </li>
 
             <li>
                 <a href="{{ url('/worker-orders') }}"><i class="fa fa-dashboard fa-fw"></i> Worker Orders</a>
+            </li>
+            <li>
+                <a href="{{ url('/relocation-orders') }}"><i class="fa fa-dashboard fa-fw"></i> Relocation Orders</a>
             </li>
             @endhasrole
             @hasrole('admin|driver')

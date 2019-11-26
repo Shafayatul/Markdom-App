@@ -24,6 +24,8 @@ class CreateRelocationStoreOrdersTable extends Migration
             $table->string('lng2')->nullable();
             $table->string('price')->nullable();
             $table->boolean('status')->default(0)->nullable();
+            $table->string('payment_method')->nullable();
+            $table->string('paytab_transaction_id')->nullable();
             $table->timestamps();
         });
     }

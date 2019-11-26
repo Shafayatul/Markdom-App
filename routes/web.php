@@ -167,6 +167,19 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
 	Route::post('/relocation-place-order', 'FrontEnd\RelocationsController@relocationPlaceOrder')->name('relocation-place-order');
 
+	Route::get('/customer-relocation-order', 'FrontEnd\RelocationsController@relocationOrderView');
+
+	Route::get('relocation-address/{id}', 'FrontEnd\RelocationsController@relocationAddressView');
+	Route::get('/relocation-add-address', 'FrontEnd\RelocationsController@relocationAddAddressView');
+	Route::post('/relocation-address-submit', 'FrontEnd\RelocationsController@relocationAddressSubmit')->name('relocation-address-submit');
+	Route::get('/relocation-payment-method/{id}', 'FrontEnd\RelocationsController@relocationPaymentMethodView');
+
+	Route::get('relocation-paytabs-payment', 'FrontEnd\RelocationsController@paytabsPayment');
+	Route::post('/relocation-paytabs-response', 'FrontEnd\RelocationsController@paytabsResponse');
+	Route::post('/relocation-payment-bank-mada-transfer-submit', 'FrontEnd\RelocationsController@relocationPaymentSubmit');
+	Route::get('relocation-review/{id}/{type}', 'FrontEnd\RelocationsController@relocationReview');
+	Route::get('relocation-single-order/{id}', 'FrontEnd\RelocationsController@relocationSingleorder');
+
 });
 
 
@@ -336,11 +349,21 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('/store-order/{id}', 'StoresController@storeOrderShow');
 		Route::delete('/store-order-delete/{id}', 'StoresController@storeOrderDelete');
 
+		Route::get('worker-orders', 'WorkerOrdersController@index');
+		Route::get('worker-order/{id}', 'WorkerOrdersController@show');
+		Route::delete('worker-order-delete/{id}', 'WorkerOrdersController@destroy');
+
 		Route::get('/product-offer-add/{id}', 'ProductsController@offerAdd');
 		Route::get('/product-offer-delete/{id}', 'ProductsController@offerDelete');
 		Route::post('/offer-save', 'ProductsController@offerSave');
 		Route::resource('relocation-stores', 'RelocationStoresController');
 		Route::resource('car-types', 'CarTypesController');
+
+		Route::get('relocation-orders', 'RelocationOrdersController@index');
+		Route::get('/relocation-order-confirmed/{id}', 'RelocationOrdersController@confirmedOrder');
+		Route::get('/relocation-order-pending/{id}', 'RelocationOrdersController@pendingOrder');
+		Route::get('relocation-order-view/{id}', 'RelocationOrdersController@show');
+		Route::delete('/relocation-order-delete/{id}', 'RelocationOrdersController@destroy');
 	});
 
 	Route::group(['middleware' => ['role:admin|customer']], function () {

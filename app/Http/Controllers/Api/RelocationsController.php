@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\RelocationStore;
 use App\RelocationStoreOrder;
 use App\CarType;
+use App\OrderStatus;
+use App\OrderActivity;
 use Auth;
 
 class RelocationsController extends Controller
@@ -51,5 +53,58 @@ class RelocationsController extends Controller
         }else{
              return response()->json(['msg' => 'Failed']);
         }
+    }
+
+    public function relocation_order_by_user()
+    {
+        $relocation_orders = RelocationStoreOrder::where('user_id', Auth::id())->get();
+        $cartypes = CarType::pluck('name', 'id')->toArray();
+        $stores = RelocationStore::pluck('name', 'id')->toArray();
+
+        return response()->json([
+                'relocation_orders' => $relocation_orders,
+                'cartypes'          => $cartypes,
+                'stores'            => $stores
+            ]);
+    }
+
+    public function relocation_order_by_order_id($id){
+        $relocation_order = RelocationStoreOrder::where('id', $id)->first();
+        return response()->json($relocation_order);
+    }
+
+    public function relocation_order_data_update(Request $request)
+    {
+        $id = $request->input('selected_relocation_order_id');
+        $relocation_order = RelocationStoreOrder::findOrFail($id);
+        $relocation_order->payment_method = $request->input('payment_method');
+        $relocation_order->paytab_transaction_id = $request->input('paytab_transaction_id');
+        $relocation_order->save();
+        if($relocation_order){
+            $order_status_obj               = OrderStatus::first();
+
+            $OrderActivity                  = new OrderActivity;
+            $OrderActivity->order_id        = $relocation_order->id;
+            $OrderActivity->status          = $order_status_obj->order_status;
+            $OrderActivity->status_arabic   = $order_status_obj->order_status_arabic;
+            $OrderActivity->save();
+            return response()->json(['msg' => 'Success']);
+
+        }else{
+             return response()->json(['msg' => 'Failed']);
+        }
+    }
+
+    public function relocation_single_order($id)
+    {
+        $relocation_order = RelocationStoreOrder::where('id', $id)->first();
+        $cartypes = CarType::pluck('name', 'id')->toArray();
+        $stores = RelocationStore::pluck('name', 'id')->toArray();
+
+        return response()->json([
+                'relocation_order' => $relocation_order,
+                'cartypes'          => $cartypes,
+                'stores'            => $stores
+            ]);
     }
 }

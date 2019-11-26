@@ -26,6 +26,11 @@
                           Store
                       </a>
                     </li>
+                    <li>
+                      <a rel="alternate"  href="{{ url('/customer-relocation-order') }}">
+                          Relocation
+                      </a>
+                    </li>
                 </ul>
               </li>
               <li><a href="{{ route('Restaurant') }}">Restorant</a></li>

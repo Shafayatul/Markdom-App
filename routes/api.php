@@ -131,4 +131,10 @@ Route::group(['middleware' => ['auth:api']], function() {
 
 	Route::post('/relocation-place-order', 'Api\RelocationsController@relocation_place_order');
 
+	Route::get('get-customer-relocation-order', 'Api\RelocationsController@relocation_order_by_user');
+
+	Route::get('get-single-relocation-order/{id}', 'Api\RelocationsController@relocation_order_by_order_id');
+	Route::post('relocation-payment-data-update', 'Api\RelocationsController@relocation_order_data_update');
+	Route::get('get-single-relocation-order-by-order-id/{id}', 'Api\RelocationsController@relocation_single_order');
+
 });

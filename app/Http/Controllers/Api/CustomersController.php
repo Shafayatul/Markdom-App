@@ -20,6 +20,7 @@ use App\Schedule;
 use App\ServiceType;
 use App\OrderStatus;
 use App\Review;
+use App\RelocationStoreOrder;
 
 class CustomersController extends Controller
 {
@@ -141,7 +142,17 @@ class CustomersController extends Controller
     		$review->worker_place_order_id = $worker_order->id;
     		$review->save();
     		return response()->json(['message' => 'Success']);
-    	}else{
+    	}elseif ($request->type == 'Relocation') {
+            $relocation_order = RelocationStoreOrder::where('id', $request->input('order_id'))->first();
+
+            $review = new Review;
+            $review->user_id = $id;
+            $review->star = $request->input('star');
+            $review->review = $request->input('review');
+            $review->relocation_order_id = $relocation_order->id;
+            $review->save();
+            return response()->json(['message' => 'Success']);
+        }else{
     		$store_order = Order::where('id', $request->input('order_id'))->first();
 
     		$review = new Review;
@@ -175,7 +186,17 @@ class CustomersController extends Controller
     		return response()->json([
     			'already_reviewed' => 0
     		]);
-    	}
+    	}elseif($type == 'Relocation'){
+            $review = Review::where('relocation_order_id', $id)->count();
+            if($review > 0){
+                return response()->json([
+                    'already_reviewed' => 1
+                ]);
+            }
+            return response()->json([
+                'already_reviewed' => 0
+            ]);
+        }
     }
 
     public function restaurant_place_order(Request $request)
