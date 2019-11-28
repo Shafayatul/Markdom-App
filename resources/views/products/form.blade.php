@@ -1,3 +1,4 @@
+@if($formMode == 'create')
 <div class="form-group {{ $errors->has('module_id') ? 'has-error' : ''}}">
     {!! Form::label('module_id', 'Module', ['class' => 'control-label']) !!}
     {!! Form::select('module_id', $modules, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'placeholder' => '--Select Module--'] : ['class' => 'form-control', 'placeholder' => '--Select Module--']) !!}
@@ -45,6 +46,7 @@
     {!! Form::select('service_sub_sub_category_id', $service_sub_sub_categories, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'placeholder' => '--Select Service Sub Sub Category--'] : ['class' => 'form-control', 'placeholder' => '--Select Service Sub Sub Category--']) !!}
     {!! $errors->first('service_sub_sub_category_id', '<p class="help-block">:message</p>') !!}
 </div>
+@endif
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
     {!! Form::label('name', 'Name', ['class' => 'control-label']) !!}
     {!! Form::text('name', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}

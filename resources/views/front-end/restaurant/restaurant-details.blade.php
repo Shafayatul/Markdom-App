@@ -97,12 +97,15 @@
                     @foreach($products as $key => $product)
                         <div class="item {{$key == 0 ? 'active' : '' }}">
                           <div class="card" >
-                              <img class="card-img-top rounded" src="{{ asset(env('MAIN_HOST_URL').$product->preview_image) }}" alt="Card image cap">
+                            <a href="{{ url($product->preview_image) }}" download="{{ url($product->preview_image) }}">
+                              <img class="card-img-top rounded" src="{{ asset(env('MAIN_HOST_URL').$product->preview_image) }}" alt="{{ $product->name }}">
+                            </a>
                               <div class="card-body">
-                                <h5 class="card-price">${{ $product->price }}</h5>
-                                <h5 class="card-title">{{ $product->name }}</h5>
-                                <p class="card-text">{{ $product->description }}</p>
-                                
+                                @if(app()->getLocale() == 'en')
+                                    <h5 class="card-title">{{ $product->name }}</h5>
+                                @else
+                                    <h5 class="card-title">{{ $product->name_arabic }}</h5>
+                                @endif
                               </div>
                             </div>
                         </div>

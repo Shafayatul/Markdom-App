@@ -220,14 +220,14 @@ class ProductsController extends Controller
             $data[]  = $product->multiple_images;
         }
 
-        $product->store_id                      = $request->store_id;
-        $product->module_id                     = $request->module_id;
-        $product->category_id                   = $request->category_id;
-        $product->sub_category_id               = $request->sub_category_id;
-        $product->sub_sub_category_id           = $request->sub_sub_category_id;
-        $product->service_category_id           = $request->service_category_id;
-        $product->service_sub_category_id       = $request->service_sub_category_id;
-        $product->service_sub_sub_category_id   = $request->service_sub_sub_category_id;
+        // $product->store_id                      = $request->store_id;
+        // $product->module_id                     = $request->module_id;
+        // $product->category_id                   = $request->category_id;
+        // $product->sub_category_id               = $request->sub_category_id;
+        // $product->sub_sub_category_id           = $request->sub_sub_category_id;
+        // $product->service_category_id           = $request->service_category_id;
+        // $product->service_sub_category_id       = $request->service_sub_category_id;
+        // $product->service_sub_sub_category_id   = $request->service_sub_sub_category_id;
         $product->name                          = $request->name;
         $product->name_arabic                   = $request->name_arabic;
         $product->description                   = $request->description;
